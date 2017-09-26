@@ -1,0 +1,546 @@
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('personCtrl', function($scope) {
+		$scope.myYear = false;
+		$scope.myYue = false;
+		$scope.myShaix = false;
+		$scope.myXians= false;
+		$scope.toggle= function() {
+			$scope.myYear = !$scope.myYear;
+		}
+		$scope.toggYue= function() {
+			$scope.myYue = !$scope.myYue;
+		}
+		$scope.toggShaix= function() {
+			$scope.myShaix = !$scope.myShaix;
+		}
+		$scope.toggXians= function() {
+			$scope.myXians = !$scope.myXians;
+		}
+	});
+</script>
+<div class="wrapper-md" >
+
+	<!--表格显示-->
+	<div class="panel panel-default">
+
+		<div class="row NKwrapper Nkinput">
+			<div class="Nkkqtol fl">
+				<i>|</i>
+				考勤统计
+			</div>
+
+			<div  class="fr NkkqtolBut" ng-app="myApp" ng-controller="personCtrl">
+
+				<div class="col-px-180 fl" style="position: relative;">
+					<div class="form-control ng-pristine ng-valid ng-touched NkinputSelec" ng-click="toggle()">时间：2017年</div>
+					<!--显隐（年份）-->
+					<div class="Nkxy Nkpopover" style="display: block;top: 31px;left: 16px;" ng-show="myYear">
+						<div class="Nkarrow"></div>
+						<div class="Nkpopover-inner col-px-150">
+							<div class="Nkpopover-content" >
+								<ul>
+									<a><li>2017</li></a>
+									<li>2016</li>
+									<li>2015</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="col-px-100 fl" style="position: relative;" >
+					<div class="form-control ng-pristine ng-valid ng-touched NkinputSelec" ng-click="toggYue()">6月</div>
+					<!--显隐（年份）-->
+					<div class="Nkxy Nkpopover" style="display: block;top: 31px;left: 16px;" ng-show="myYue" >
+						<div class="Nkarrow"></div>
+						<div class="Nkpopover-inner col-px-70">
+							<div class="Nkpopover-content" >
+								<ul>
+									<a><li>5月</li></a>
+									<a><li>6月</li></a>
+									<a><li>7月</li></a>
+									<a><li>8月</li></a>
+									<a><li>9月</li></a>
+									<a><li>10月</li></a>
+									<a><li>11月</li></a>
+									<a><li>12月</li></a>
+								</ul>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-px-80 fl" style="position: relative;">
+					<button class="btn btn-default saixuan Nksx"  ng-click="toggShaix()">
+						筛选</button>
+					<!--筛选弹出-->
+					<div class="shaixBox" style="display: block;" ng-show="myShaix">
+						<div  class="wixian"></div>
+
+						<div class="brbotP NKwrapper Nkcont">
+							<div class="form-group NkSerTit">
+								<label class="col-px-70 control-label fl NkSN">姓名</label>
+								<div class="col-px-230 fr">
+									<input type="text" class="form-control" placeholder="姓名筛选">
+								</div>
+							</div>
+							<ul>
+								<li>王松</li>
+								<li>刘长青</li>
+							</ul>
+						</div>
+						<!--部门-->
+						<div class="brbotP NKwrapper Nkcont">
+							<div class="form-group NkSerTit">
+								<label class="col-px-70 control-label fl NkSN">部门</label>
+								<div class="col-px-230 fr">
+									<input type="text" class="form-control" placeholder="部门筛选">
+								</div>
+							</div>
+							<ul>
+								<li>销售部</li>
+								<li>市场部</li>
+								<li class="active">HIS 产品部</li>
+								<li>大数据部</li>
+								<li>平台产品部</li>
+								<li>财务部</li>
+								<li>采购部</li>
+								<li>行政企业管部</li>
+								<li>研发中心</li>
+								<li>医技产品部</li>
+							</ul>
+
+						</div>
+						<!--标签-->
+						<div class="brbotP NKwrapper Nkcont">
+							<p>标签</p>
+							<ul>
+								<li>常驻省人医</li>
+							</ul>
+						</div>
+						<!--重置按钮-->
+						<div class="fr NKwrapper">
+							<button class="btn m-b-xs w-xs ButCz">Info</button>
+						</div>
+
+					</div>
+					<!--筛选弹出end-->
+				</div>
+				<div class="col-px-80 fl">
+					<button class="btn btn-default xianshi Nksx" ng-click="toggXians()">
+						显示</button>
+					<!--显示弹出-->
+					<div class="shaixBox" style="display: block;" ng-show="myXians">
+						<div  class="wixian"></div>
+						<!--默认-->
+						<div class="brbotP NKwrapper Nkcont">
+							<p>默认</p>
+							<ul>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox" checked="" value="">
+											<i></i>
+											姓名
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox" >
+											<i></i>
+											部门
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											应签到天数
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											实签到天数
+										</label>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!--签到情况-->
+						<div class="brbotP NKwrapper Nkcont">
+							<p>签到情况</p>
+							<ul>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox" >
+											<i></i>
+											正常出勤
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox" checked="" value="">
+											<i></i>
+											迟到天数
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											早退天数
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											旷工
+										</label>
+									</div>
+								</li>
+							</ul>
+
+						</div>
+						<!--带薪假-->
+						<div class="brbotP NKwrapper Nkcont">
+							<p>带薪假</p>
+							<ul>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											产假
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											年假
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											陪产假
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox" checked="" value="">
+											<i></i>
+											婚假
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											丧假
+										</label>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<!--扣薪假-->
+						<div class="brbotP NKwrapper Nkcont">
+							<p>扣薪假</p>
+							<ul>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox" checked="" value="">
+											<i></i>
+											事假
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											病假
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="checkbox">
+										<label class="i-checks">
+											<input type="checkbox">
+											<i></i>
+											其他
+										</label>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+						<!--重置按钮-->
+						<div class="fr NKwrapper">
+							<button class="btn m-b-xs w-xs ButCz">重置</button>
+							<button class="btn m-b-xs w-xs ButCzBg">确定</button>
+						</div>
+
+					</div>
+					<!--显示弹出end-->
+				</div>
+				<div class="col-px-80 fl">
+					<button class="btn btn-default daochu Nksx">
+						导出</button>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="table-responsive">
+			<table class="table table-striped b-t b-light JG">
+				<thead class="bgJ" style="text-align: center;">
+				<tr>
+					<th rowspan="2" style="width:20px;">
+						<label class="i-checks m-b-none">
+							<input type="checkbox"><i></i>
+						</label>
+					</th>
+					<th rowspan="2">序号</th>
+					<th rowspan="2">姓名</th>
+					<th rowspan="2">部门</th>
+					<th rowspan="2">应签到天数</th>
+					<th rowspan="2">实签到天数</th>
+					<th colspan="4">签到时间</th>
+					<th colspan="5">带薪假</th>
+					<th colspan="3">扣薪假</th>
+				</tr>
+
+				<tr>
+					<th>正常出勤</th>
+					<th>迟到天数</th>
+					<th>早退天数</th>
+					<th>旷工</th>
+
+					<th>年假</th>
+					<th>产假</th>
+					<th>陪产假</th>
+					<th>婚假</th>
+					<th>丧假</th>
+
+					<th>事假</th>
+					<th>病假</th>
+					<th>其他</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>1</td>
+					<td class="texL">张三</td>
+					<td class="texL">技术部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>2</td>
+					<td class="texL">李四</td>
+					<td class="texL">人事部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>3</td>
+					<td class="texL">王五</td>
+					<td class="texL">人事部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>3</td>
+					<td class="texL">李四</td>
+					<td class="texL">人事部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>5</td>
+					<td class="texL">李四</td>
+					<td class="texL">人事部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>5</td>
+					<td class="texL">李四</td>
+					<td class="texL">人事部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>6</td>
+					<td class="texL">李四</td>
+					<td class="texL">人事部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				<tr>
+					<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+					<td>7</td>
+					<td class="texL">李四</td>
+					<td class="texL">人事部</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>2</td>
+					<td>22</td>
+					<td>21</td>
+					<td>2</td>
+					<td>22</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!--翻页-->
+		<footer class="panel-footer">
+			<div class="row">
+				<div class="text-center text-center-xs">
+					<ul class="pagination pagination-sm m-t-none m-b-none">
+						<li><a href><i class="fa fa-chevron-left"></i></a></li>
+						<li><a href>1</a></li>
+						<li><a href>2</a></li>
+						<li><a href>3</a></li>
+						<li><a href>4</a></li>
+						<li><a href>5</a></li>
+						<li><a href><i class="fa fa-chevron-right"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</div>
+</div>

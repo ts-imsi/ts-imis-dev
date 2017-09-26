@@ -1,0 +1,106 @@
+<!-- 模版中对外只能提供一个(也许可能多个，看版本) 元素节点 ，所以需要用一个容器包起来，这里使用了一个 DIV 标签把其他标签包起来了 -->
+<div>
+	<ol class="breadcrumb">
+		<li><a ui-sref="Index">Index</a></li>
+		<li><a ui-sref="About">About</a></li>
+		<li><a ui-sref="Location">Location</a></li>
+		<li><a ui-sref="BaiduMap">BaiduMap</a></li>
+		<li><a ui-sref="AttList">AttList</a></li>
+		<li class="active">SearchAttList</li>
+	</ol>
+
+
+	<uib-tabset active="active">
+		<!--<uib-tab index="0" heading="Static title">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>部门标签</th>
+					<th>员工</th>
+					<th>日期</th>
+					<th>星期</th>
+					<th>签到时间</th>
+					<th>签退时间</th>
+					<th>工作时长</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="att in $ctrl.attList">
+					<td ng-bind="att.tagName"></td>
+					<td ng-bind="att.name"></td>
+					<td ng-bind="att.attenceDate"></td>
+					<td ng-bind="att.week"></td>
+					<td ng-bind="att.signinTime | date:'HH:mm:ss'"></td>
+					<td ng-bind="att.signoutTime | date:'HH:mm:ss'"></td>
+					<td ng-bind="att.workHours"></td>
+				</tr>
+				</tbody>
+			</table>
+			<ul uib-pagination total-items="$ctrl.totalCount" ng-model="$ctrl.pageNo" ng-change="$ctrl.pageChanged()"
+				items-per-page="$ctrl.pageSize" max-size="$ctrl.maxSize" class="pagination-sm"
+				boundary-links="true" force-ellipses="true"></ul>
+		</uib-tab>-->
+		<uib-tab index="$index + 1" ng-repeat="tab in $ctrl.tabs" heading="{{tab.title}}" disable="tab.disabled" select="$ctrl.alertMe(tab.content)">
+			<div class="jumbotron">
+				<div class="col-md-6">
+					<p class="input-group">
+						<input type="text" class="form-control" uib-datepicker-popup ng-model="$ctrl.dt" is-open="$ctrl.popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+						<span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+					</p>
+				</div>
+				<label>员工:</label>
+				<input type="text" ng-model="$ctrl.name">
+				<label>部门标签:</label>
+				<input type="text" ng-model="$ctrl.tagName">
+				<label>类型:</label>
+				<input type="text" ng-model="$ctrl.type">
+				<button role="button" ng-click="$ctrl.setPage(1,tab.content)">查询</button>
+			</div>
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>部门标签</th>
+					<th>员工</th>
+					<th>日期</th>
+					<th>星期</th>
+					<th ng-show="tab.content=='考勤列表'">签到时间</th>
+					<th ng-show="tab.content=='考勤列表'">签退时间</th>
+					<th ng-show="tab.content=='考勤列表'">工作时长</th>
+					<th ng-show="tab.content=='考勤列表'">类型</th>
+					<th ng-show="tab.content=='迟到列表'">迟到时间</th>
+					<th ng-show="tab.content=='迟到列表'">迟到分钟</th>
+					<th ng-show="tab.content=='早退列表'">早退时间</th>
+					<th ng-show="tab.content=='早退列表'">早退分钟</th>
+					<th ng-show="tab.content=='缺勤列表'">原因</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="att in $ctrl.attList" ng-click="$ctrl.showAttenceLogView(att)">
+					<td ng-bind="att.tagName"></td>
+					<td ng-bind="att.name"></td>
+					<td ng-bind="att.attenceDate"></td>
+					<td ng-bind="att.week"></td>
+					<td ng-show="tab.content=='考勤列表'" ng-bind="att.signinTime | date:'HH:mm:ss'"></td>
+					<td ng-show="tab.content=='考勤列表'" ng-bind="att.signoutTime | date:'HH:mm:ss'"></td>
+					<td ng-show="tab.content=='考勤列表'" ng-bind="att.workHours"></td>
+					<td ng-show="tab.content=='考勤列表'" ng-bind="att.type"></td>
+					<td ng-show="tab.content=='迟到列表'" ng-bind="att.signinTime | date:'HH:mm:ss'"></td>
+					<td ng-show="tab.content=='迟到列表'" ng-bind="att.lateTime"></td>
+					<td ng-show="tab.content=='早退列表'" ng-bind="att.signoutTime | date:'HH:mm:ss'"></td>
+					<td ng-show="tab.content=='早退列表'" ng-bind="att.backTime"></td>
+					<td ng-show="tab.content=='缺勤列表'" ng-bind="att.remark"></td>
+				</tr>
+				</tbody>
+			</table>
+			<ul uib-pagination total-items="$ctrl.totalCount" ng-model="$ctrl.pageNo" ng-change="$ctrl.pageChanged(tab.content)"
+				items-per-page="$ctrl.pageSize" max-size="$ctrl.maxSize" class="pagination-sm"
+				boundary-links="true" force-ellipses="true"></ul>
+		</uib-tab>
+	</uib-tabset>
+
+
+
+
+</div>

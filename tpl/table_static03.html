@@ -1,0 +1,314 @@
+<!--<script type="text/javascript">
+function $(id) {
+ return document.getElementById(id);
+}
+window.onload = function() {
+ var Root = $("nav_li").getElementsByTagName("a");
+ for (var i = 0; i < Root.length; i++) {
+  c = Root[i];
+  c.setAttribute("id", "show_" + i);
+  var xp = function(i) {
+   show(i);
+  };
+  c.onclick= dete_bibao(xp, i, c);
+ }
+}
+function show(j) {
+ for (var n = 0; n <= 6; n++) {
+  if ($("show_" + n).className != "col-lg-2") {
+   $("show_" + n).className = "col-lg-2";
+  }
+  if (n == j) {
+   $("show_" + n).className = "Nkselect";
+  }
+ }
+}
+function dete_bibao(fn, params, obj) {
+ return function() {
+  fn.call(obj || window, params);
+ }
+}
+</script>-->
+
+
+<!--考勤异常-->
+
+
+<!--表格-->
+<div class="wrapper-md">
+
+	<!--切换-->
+<div class="Nk-tab-CheckWork" id="nav_li">
+	<a class="Nkselect">
+      <div class="bgGreeg bgDSize h60">
+        <div class="CheckWorkbody">
+        	<i class="Nkgreen">签到人数</i>
+        	<span class="NkGray">268</span>
+            <em>
+            	<div class="NkNkarrow-bottom arrow-box" >
+				        <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+				   		 </div>
+            </em>
+        </div>
+      </div>
+    </a>
+
+	<a class="col-lg-2">
+      <div class="bgOrg bgDSize h60">
+        <div class="CheckWorkbody">
+        	<i class="NkOrg">迟到人数</i>
+        	<span class="NkGray">12</span>
+            <em>
+            	<div class="NkNkarrow-bottom arrow-box" >
+				        <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+				   		 </div>
+            </em>
+        </div>
+      </div>
+    </a>
+
+		<a class="col-lg-2">
+      <div class="bgBuld bgDSize h60">
+        <div class="CheckWorkbody">
+        	<i class="NkBuld">早退人数</i>
+        	<span class="NkGray">5</span>
+            <em>
+            	<div class="NkNkarrow-bottom arrow-box" >
+				        <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+				   		 </div>
+            </em>
+        </div>
+      </div>
+    </a>
+
+		<a class="col-lg-2">
+      <div class="bgRed bgDSize h60">
+        <div class="CheckWorkbody">
+        	<i class="NkRed">未签到人数</i>
+        	<span class="NkGray">6</span>
+            <em>
+            	<div class="NkNkarrow-bottom arrow-box" >
+				        <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+				   		 </div>
+            </em>
+        </div>
+      </div>
+    </a>
+
+		<a class="col-lg-2">
+      <div class="bgBu bgDSize h60">
+        <div class="CheckWorkbody">
+        	<i class="NkBu">加班人数</i>
+        	<span class="NkGray">4</span>
+            <em>
+            	<div class="NkNkarrow-bottom arrow-box" >
+				        <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+				   		 </div>
+            </em>
+        </div>
+      </div>
+    </a>
+
+
+		<a class="col-lg-2">
+      <div class="bgYew bgDSize h60">
+        <div class="CheckWorkbody">
+        	<i class="NkYew">请假人数</i>
+        	<span class="NkGray">0</span>
+            <em>
+            	<div class="NkNkarrow-bottom arrow-box" >
+				        <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+				   		 </div>
+            </em>
+        </div>
+      </div>
+    </a>
+
+
+	</div>
+
+
+	<!--表格显示-->
+  <div class="panel panel-default fl">
+
+    <div class="row wrapper Nkinput">
+
+
+      <!-- datepicker -->
+          <div class="col-lg-2-4" ng-controller="DatepickerDemoCtrl" >
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+      <!-- / datepicker -->
+    	   <span style="float: left;padding-top: 5px;">--</span>
+      <!-- datepicker -->
+          <div class="col-lg-2-4" ng-controller="DatepickerDemoCtrl" >
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+      <!-- / datepicker -->
+          <div class="col-lg-2" >
+            <button class="btn btn-default saixuan Nksx">
+            	筛选</button>
+           </div>
+
+      <div  class="fr">
+          <div class="col-xs-6" >
+            <button class="btn btn-default piliang Nksx">
+            	批量操作</button>
+           </div>
+          <div class="col-xs-6" >
+            <button class="btn btn-default daochu Nksx">
+            	导出</button>
+           </div>
+
+      </div>
+
+
+
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light JG">
+        <thead class="bgJ">
+          <tr>
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox"><i></i>
+              </label>
+            </th>
+            <th>考勤日期</th>
+            <th>姓名</th>
+            <th>部门</th>
+            <th>签到时间</th>
+            <th>状态</th>
+            <th>考勤地点</th>
+            <th>外出是由</th>
+            <th style="width:30px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Idrawfast</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 25, 2013</td>
+            <td>
+              <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Formasa</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 22, 2013</td>
+            <td>
+              <a href ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Avatar system</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 15, 2013</td>
+            <td>
+              <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Throwdown</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 11, 2013</td>
+            <td>
+              <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Idrawfast</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 7, 2013</td>
+            <td>
+              <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Formasa</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 3, 2013</td>
+            <td>
+              <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Avatar system</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 2, 2013</td>
+            <td>
+              <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>Videodown</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>4c</td>
+            <td>Jul 1, 2013</td>
+            <td>
+              <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="text-center text-center-xs">
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li><a href><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href>1</a></li>
+            <li><a href>2</a></li>
+            <li><a href>3</a></li>
+            <li><a href>4</a></li>
+            <li><a href>5</a></li>
+            <li><a href><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+  <!-- Lazy loading -->

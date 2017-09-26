@@ -1,0 +1,270 @@
+/******公用样式*********/
+.fl{float: left;}
+.fr{float: right;}
+ul li{list-style: none;}
+.h60{height: 60px;}
+ul,ol{padding: 0;margin: 0;}
+.brbotP{border-bottom: 1px solid #E7E7E7;float: left;width: 100%;}
+.dnone{display: none;}
+*{font-size: 14px; font-family: "微软雅黑";}
+.borderX{border: 1px solid #dee5e7;}
+.MadL5{margin-left: 5px !important;}
+.texL{text-align: left !important;}
+/*字体颜色*/
+.Nkgreen{color: #30be00;}
+.NkOrg{color: #FF9933;}
+.NkBuld{color:#36C0C2;}
+.NkRed{color: #FF524D;}
+.NkYew{color: #C4C400;}
+.NkBu{color: #3683DB;}
+.NkGray{color: #4A4A4A;}
+i{font-style: normal;}
+/*考勤异常*/
+.Nk-tab-CheckWork em{position:absolute;bottom:-5px;left:50%;margin-left:-10px;width:20px;height:15px;border: 6px solid transparent;display:none}
+.Nkbottom{width: 20px;height: 20px;position: absolute;left: 43%;bottom: -19px;z-index: 2;}
+.Nkbottom-arrow1,.Nkbottom-arrow2{width:0;height:0;display:block;position:absolute;left:0;top:0;z-index: 5;/*兼容ie8-*/border-bottom:10px transparent dashed;border-left:10px transparent dashed;border-right:10px transparent dashed;border-top:10px white solid;overflow:hidden;}
+.Nkbottom-arrow2{border-top:10px white solid;}
+.bgGreeg .Nkbottom-arrow1{top:1px;border-top:10px #30be00 solid;}
+.bgOrg .Nkbottom-arrow1{top:1px;border-top:10px #FF9933 solid;}
+.bgBuld .Nkbottom-arrow1{top:1px;border-top:10px #36C0C2 solid;}
+.bgRed .Nkbottom-arrow1{top:1px;border-top:10px #FF524D solid;}
+.bgBu .Nkbottom-arrow1{top:1px;border-top:10px #3683DB solid;}
+.bgYew .Nkbottom-arrow1{top:1px;border-top:10px #C4C400 solid;}
+.Nk-tab-CheckWork .Nkselect{width:16.66666667%;float:left;position:relative;min-height: 1px;padding-right: 15px;padding-left: 15px;}
+.Nk-tab-CheckWork .Nkselect em{display:block}
+.Nk-tab-CheckWork .Nkselect em#show_0{display:block}
+.Nk-tab-CheckWork .Nkselect{cursor:pointer}
+.Nk-tab-CheckWork .Nkselect em{ display:block;animation:myfirst 0.5s;-moz-animation:myfirst 0.5s; -webkit-animation:myfirst 0.5s; -o-animation:myfirst 0.5s; }
+
+/*鼠标经过箭头滑动css
+.Nk-tab-CheckWork .Nkselect:hover em{ display:block;animation:myfirst 0.5s;-moz-animation:myfirst 0.5s; -webkit-animation:myfirst 0.5s; -o-animation:myfirst 0.5s; }
+*/
+@keyframes myfirst
+{
+	from {left:0%;}
+	to {left:50%;}
+}
+
+@-moz-keyframes myfirst
+{
+	from {left:0%;}
+	to {left:50%;}
+}
+
+@-webkit-keyframes myfirst
+{
+	from {left:0%;}
+	to {left:50%;}
+}
+
+@-o-keyframes myfirst
+{
+	from {left:0%;}
+	to {left:50%;}
+}
+
+.Nk-tab-CheckWork{padding:5px 0 10px 0;float: left; width: 100%;}
+.bgDSize{background-size: 25px;border-radius: 3px; background-position-x: 90%; background-position-y: 50%; background-repeat: no-repeat;}
+.bgGreeg{background-image:url(../img/Pagemk.png);background-color:#30BE00 ;border: 1px solid #30BE00;}
+.bgOrg{background-image:url(../img/ic_access_alarms.png);background-color:#FF9933;border: 1px solid #FF9933;}
+.bgBuld{background-image:url(../img/ic_update.png);background-color:#36C0C2;border: 1px solid #36C0C2;}
+.bgRed{background-image:url(../img/ic_timer_off.png);background-color: #FF524D;border: 1px solid #FF524D;}
+.bgBu{background-image:url(../img/ic_add_alarm.png);background-color:#3683DB ;border: 1px solid #3683DB;}
+.bgYew{background-image:url(../img/ic_settings_backup_restore.png);background-color:#C4C400;border: 1px solid #C4C400;}
+.CheckWorkbody{height: 58px;padding: 12px;width: 70%;background: #fff;}
+.CheckWorkbody i{width: 100%; display: block;font-size: 14px;font-weight: bold}
+.CheckWorkbody span{font-weight: bold;font-size: 16px;}
+/***************表格********************/
+/*表格顶部渐变显示*/
+.bgJ{background-image: linear-gradient(-180deg, #FFFFFF 3%, #F5F5F5 98%);}
+.bgJ tr > th{vertical-align: middle!important; border-bottom: 0!important; border-left: 1px solid #E7E7E7; padding:8px 0;!important}
+.bgJ th{text-align: center;}
+.JG .i-checks input:checked + i:before{top: 5px;left: 4px;width: 9px;height: 9px;background-color: #FF9933;}
+.JG .i-checks input:checked + i{border-color: #FF9933;}
+.JG tbody tr td{text-align: center;}
+/***********输入框宽度大小************/
+.Nkinput .form-control{color: #4A4A4A;}
+.Nkinput .Nksx{padding-left: 32px !important;}
+/**********按钮********/
+/*筛选*/
+button.saixuan{background: url(../img/Fillt.png)15% 50% no-repeat;background-size: 12px;}
+/*批量*/
+button.piliang{background: url(../img/fa-check-square-o.png)15% 50% no-repeat;background-size: 12px;}
+/*导出*/
+button.daochu{background: url(../img/fa-sign-out.png)15% 50% no-repeat;background-size: 12px;}
+/*显示*/
+button.xianshi{background: url(../img/fa-sort-amount-desc.png)15% 50% no-repeat;background-size: 12px;}
+/*新建规则*/
+button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-size: 12px;}
+.xguize.active:active{background: url(../img/fa-add.png)15% 50% no-repeat !important;background-size: 12px !important;}
+.xguize:active, .xguize.active, .open .dropdown-toggle.xguize {
+	background-image: url(../img/fa-add.png);
+}
+/**/
+.NKwrapper{padding: 15px 15px 5px 15px;}
+.col-xs-25{width: 25%;position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
+.col-xs-30{width: 30%;position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
+.col-xs-50{width: 47%;position: relative; min-height: 1px;}
+.col-xs-17{width: 17%;position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
+.col-xs-10{width: 10%;position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
+.col-px-180{width: 180px;position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
+.col-px-230{width: 250px;position: relative; min-height: 1px;}
+.col-px-270{width: 300px;position: relative; min-height: 1px;}
+.col-px-120{width: 120px;position: relative; min-height: 1px; }
+.col-px-150{width: 150px;position: relative; min-height: 1px;}
+.col-px-140{width: 140px;position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
+.col-px-100{width: 100px;position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
+.col-px-100-r{width: 100px;position: relative; min-height: 1px; padding-right: 15px; }
+.col-px-80{width: 80px;position: relative; min-height: 1px;}
+.col-px-70{width: 70px;position: relative; min-height: 1px;}
+.col-px-50{width: 50px;position: relative; min-height: 1px;}
+.col-px-60{width: 60px;position: relative; min-height: 1px;}
+/*********考勤统计************/
+.Nkkqtol{width: 15%;margin-left: 20px;padding-left: 5px; }
+.Nkkqtol i{font-size: 20px;font-weight: bold;padding-right: 5px;}
+.NkkqtolBut{width: 60%;}
+
+
+/*下拉框显隐*/
+.Nkxy{margin-top: 10px;opacity: 1;}
+.Nkarrow, .Nkarrow:after {position: absolute;display: block;width: 0;height: 0;border-color: transparent; border-style: solid;}
+.Nkarrow {top: -20px;left: 50%;margin-left: -11px;border-top-width: 0; border-bottom-color: #999;border-bottom-color: rgba(0, 0, 0, .25);border-width: 11px;z-index: 1110;}
+.Nkarrow:after {position: absolute;display: block; width: 0;height: 0;border-color: transparent;border-style: solid;}
+.Nkarrow:after {border-width: 8px;content: "";}
+.Nkarrow:after {top: 3px;margin-left: -8px; content: " ";border-top-width: 0;border-bottom-color: #fff;}
+.Nkpopover {position: absolute;top: 0;left: 0; z-index: 1110;display: none;max-width: 276px; padding: 1px;font-size: 14px;font-weight: normal;line-height: 1.42857143;text-align: left;white-space: normal;background-color: #fff;-webkit-background-clip: padding-box; background-clip: padding-box;border: 1px solid #ccc; border: 1px solid rgba(0, 0, 0, .2);border-radius: 6px;-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);box-shadow: 0 5px 10px rgba(0, 0, 0, .2);}
+.Nkpopover-title {padding: 8px 14px;margin: 0;font-size: 14px;background-color: #f7f7f7;border-bottom: 1px solid #ebebeb;border-radius: 5px 5px 0 0;}
+.Nkng-hide:not(.ng-hide-animate) {display: none !important;}
+.Nkpopover-content {float: left; width: 100%;}
+.NkinputSelec{background: url(../img/fa-caret-down2.png)90% 50% no-repeat;background-size: 12px;}
+.Nkpopover-content ul li{height: 30px; line-height: 30px;padding: 2px 0; text-align: center;}
+@media only screen and (min-width: 100px) and (max-width: 640px) {
+	.NkkqtolBut{width: 100%;}
+	.col-px-80 {width: 30%;position: relative; min-height: 1px;margin-top: 10px; margin-left: 3%;}
+	.Nkkqtol {width: 100%;margin-left: 20px;padding-left: 5px; margin-bottom: 10px;}
+}
+
+.Nkpopover-content ul li:hover{background-color: #2277EF; width: 100%; cursor:pointer; display: inline-block;color: #fff;}
+/************筛选弹出**********************/
+.shaixBox{position: absolute;min-height: 1px;top: 31px;background-color: #fff; width: 370px;right: 6px;border: 1px solid #9B9B9B; z-index: 1110;}
+.shaixBox_sj{position: absolute;min-height: 1px;top: 31px;background-color: #fff; width: 400px;right: 6px;border: 1px solid #9B9B9B; z-index: 1110;}
+.shaixBox p{font-weight: bold;color: #555555;}
+.NkSerTit{color: #555; width: 100%; float: left;}
+.NkSN{padding-top: 10px; font-weight: bold;}
+.Nkcont ul li{color: #8a8a8a;float: left; padding: 5px 10px 5px 0px;font-size: 12px;}
+.Nkcont ul li.active{color: #fc4e07;}
+.wixian{position: absolute;background-color: #fff;height: 4px;width: 72px;right: 0px; top: -2px;}
+.NkkqtolBut .btn-default:hover,.NkkqtolBut .btn-default:visited, .NkkqtolBut .btn-default:focus, .NkkqtolBut .btn-default:active, .NkkqtolBut .btn-default.active, .NkkqtolBut .open .dropdown-toggle.btn-default {color: #58666e !important;background-color: #fff;border-color: #9B9B9B;}
+.ButCz{border: 1px #2277EF solid;background-color: #fff;color: #2277EF;}
+.ButCz:hover{border: 1px #19a9d5 solid;color: #19a9d5;}
+.ButCzBg{background-color: #2277EF;color: #fff;}
+.ButCzBg:hover{color: #ffffff !important; background-color: #19a9d5;}
+.shaixBox .i-checks > i {position: relative;display: inline-block;width: 16px;height: 16px;margin-top: -2px;margin-right: 1px;margin-left: -20px;line-height: 1;vertical-align: middle;background-color: #fff;border: 1px solid #cfdadd;}
+.shaixBox .i-checks input:checked + i:before {top: 3px;left: 3px;width: 9px;height: 9px;background-color: #23b7e5;}
+
+/*搜索按钮*/
+.NkSearinput{padding-right: 30px;}
+.NkSearBut{background: url(../img/fa-search.png) 50% 50% no-repeat; width: 20px; height: 20px; background-size: 20px;}
+.NkSea{position: absolute; top: 7px; right: 21px;border: 0px;}
+
+
+/*新规则弹出-*/
+.NkNewRule{position: fixed; overflow-y:scroll; top: 52px; bottom: 0;width: 50%;display: block;right: 0;background-color: #fff;z-index: 12;}
+.RuleTit{height: 35px;line-height: 35px;background-image: linear-gradient(-180deg, #FFFFFF 3%, #F5F5F5 98%);padding-left: 10px;width: 100%;box-shadow: 0px 0px 2px #ddd;border-left: 1px solid #e7e7e7;}
+.RuleCont{padding: 40px 15px 0 30px;}
+.RuleForm{margin-top: 30px;}
+.RuleInput{float: left;width: 100%;}
+.RuleInput .RuleName{float: left; width: 110px;padding: 10px 0px;text-align: right;padding-right: 10px;}
+.RuleInput .Rinput{float: left; width: 80%;}
+.RuleInput .Rinput40{float: left; width: 39%; margin-right: 1%;}
+.RuleInput .Rinput41{float: left; width: 40%;}
+.RuleInput .Rinput50{float: left; width: 50%;}
+.RuleInput .Rinput60{float: left; width: 60%;}
+.RuleInput .Rinput70{float: left; width: 70%;}
+.RuleInput.Rinput96{float: left; width: 96%;}
+.RuleInput .RSerBut{float: left; width: 10%;border: 1px solid #cfdadd; height: 34px;}
+.RuleInput .checkbox-inline{padding-top: 10px;}
+.map img{width: 100%;}
+
+@media only screen and (min-width: 100px) and (max-width: 640px) {
+	.NkNewRule {width: 100%;}
+	.RuleInput .RuleName{width: 80px;}
+	.selePepcont{ width: 100%!important;margin: 0 auto;float: left;margin-bottom: 20px;}
+	.selePepPhon{ width: 100%!important;margin: 0 auto;float: left;margin-bottom: 20px; height: auto !important;}
+}
+
+.save{background: url(../img/save.png) 1% 50% no-repeat; background-size: 18px;padding-left: 20px; color: #2a6496; margin-right: 10px; border: 0;}
+.CloseBut{background: url(../img/close.png) 1% 50% no-repeat; background-size: 18px;padding-left: 20px; color: #2a6496; margin-right: 10px; border: 0;}
+.timeSlot .Slot{position: absolute; top: 8px; left: 10px; color: #2277EF;}
+/*新规则中的下拉显隐*/
+.NkNewpopover {position: absolute;top: 31px;left: 110px; z-index: 1060;display: none;max-width: 276px; padding: 1px;font-size: 14px;font-weight: normal;line-height: 1.42857143;text-align: left;white-space: normal;background-color: #fff;-webkit-background-clip: padding-box; background-clip: padding-box;border: 1px solid #ccc; border: 1px solid rgba(0, 0, 0, .2);border-radius: 6px;-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);box-shadow: 0 5px 10px rgba(0, 0, 0, .2);}
+
+/*************查看人员（照片）***************/
+.selePepcont{width: 58%;}
+.selePepPhon{width: 40%; height: 280px; }
+.PepPhon{width: 70%; margin: 2px auto;}
+.PepPhon img{width: 100%;}
+.WorkingYears{margin-top: 15px;width: 100%; text-align: center; }
+.WorkingYears i{background-color: #F0F0F0; padding: 5px 25px;border-radius: 10px;border: 1px solid #dee5e7;}
+/*标签*/
+.NkTab ul li{float: left;width: 18%; text-align: center;height: 40px;line-height: 40px; margin: 0 1%;}
+.NkTab ul li.TabBul{border: 1px solid #3ACCCC; color: #fff; background-color: #37C7FD;}
+.NkTab ul li.TabGre{border: 1px solid #3D9970; color: #fff; background-color: #2FCC3F;}
+.NkTab ul li.TabOrg{border: 1px solid #FF841C; color: #fff; background-color: #FFA962;}
+.NkTab ul li.TabRed{border: 1px solid #FF4236; color: #fff; background-color: #FF948E;}
+/*添加标签*/
+.addTab{background: url(../img/fa-addTab.png) 50% 50% no-repeat; background-size: 40px; height: 40px;width: 40px;border: 0;}
+/*tab切换*/
+.RulTab{z-index: 2;}
+.RuleTitTab{height: 40px;line-height: 40px;padding-left: 10px;width: 100%;box-shadow: 0px 0px 2px #ddd; background-color: #FEFFDE;}
+.RulTab ul li{float: left;padding: 0 15px; font-size: 14px;}
+.RulTab ul li.RuActive{color:#3ACCCC; border-bottom: 3px solid #3ACCCC;font-weight: bold;}
+.RulTab ul li a{color:#666;}
+.RulTab ul li a:hover,.RulTab ul li a:visited,.RulTab ul li a:focus{color:#3ACCCC !important;}
+.disn{display: none;}
+#tagContent DIV.selectTag {
+	DISPLAY: block
+}
+/*错误提示*/
+.errorInput{ width: 100%; float: left; padding-left: 110px; color: #f20; }
+.errorInput-1{ width: 100%; float: left; padding-left: 0px; color: #f20; }
+/*头部LOGO*/
+.headerLogo{height: 20px;margin-top: 16px !important; float: left;    padding-left: 18px;}
+
+
+
+
+/*假期设置*/
+.Nkcol-xs-2{width: 10%;}
+.Nkcol-xs-3{width: 30%;}
+.Nkcol-xs-5{width: 60%;}
+.NKcol-xs-10{width: 100%;}
+.Nkcol-lg-12{width: 98%;margin-left: 1%;margin-right: 1%;}
+.texCent{text-align: center;}
+.NkType{border-bottom: 1px solid #ddd;}
+.Lbian{border-left: 1px solid #DDDDDD;}
+.addBut{background: url(../img/Group7.png)50% 50% no-repeat;background-size: 25px;width: 30px;height: 30px;border: 0;}
+.DelBut{background: url(../img/Pagegh.png)50% 50% no-repeat;background-size: 20px;width: 30px;height: 30px;border: 0;}
+.Lbian b{height: 34px;line-height: 34px;}
+
+/*登录页面*/
+.LoginBG{width:100%;height:100%;text-align:center;position: relative;}
+
+.Login{width: 900px; height: 400px;font-family: "微软雅黑";position: fixed;top:50%;margin-top:-220px;left: 50%;margin-left: -450px;box-shadow: 0 0 15px #58666E;}
+.LoginLForm{width: 400px; height: 400px; float: left;background-color: #fff;position: relative;}
+.LoginRImg{width: 500px; height: 400px;float: right;position: relative;}
+.LoginLogo{position: absolute; background: url(../img/Path.png)50% 50% no-repeat #fff; background-size: 40px; width: 60px;height: 60px;border-radius: 100%;padding: 5px;top: -20px; left: -20px;box-shadow: 4px 4px 4px #F0F0F0;}
+.LoginTit{font-size: 22px;padding: 30px 0px 0px 0px;line-height: 80px;font-weight: bold;}
+.LoginGroup{padding: 0 30px;}
+.LoginInput{padding: 10px 15px;margin-bottom: -1px; background-color: #fff;}
+
+/*登录input*/
+.fromInput{display: block;width: 100%; height: 40px;padding: 6px 12px 6px 36px;font-size: 14px;line-height: 1.42857143;color: #555;background-color: #fff; background-image: none;border: 1px solid #D5D5D5; border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
+.NameImg{background: url(../img/Shapeb.png) 10px 50% no-repeat; background-size: 18px;}
+.PassImg{background: url(../img/Shapea.png) 10px 50% no-repeat; background-size: 18px;}
+.LoginBut{width: 80%;margin: 5px auto;}
+.LoginBac{background-color: #2277EF; letter-spacing: 15px;color: #fff;text-indent: 15px;}
+.LoGongs{position: absolute;bottom: 10px;text-align: center;width: 100%;color: #d0d0d0;font-size: 12px;}
+.LoginLable{font-weight: normal; color: #999;}
+.LoginBorder{border: 1px solid #efefef;}
+.ImgTit{color: rgba(255, 255, 255, 0.6);font-size: 16px;position: absolute;left: 20px;bottom: 10px;}

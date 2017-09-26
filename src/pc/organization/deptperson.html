@@ -1,0 +1,88 @@
+<div class="bg-light lter b-b wrapper-md-12">
+    <h1 class="m-n font-thin h3">人员</h1>
+</div>
+<div class="wrapper-md">
+
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div  class="fr">
+                <div class="col-px-140 fl">
+                    <button class="btn btn-default xguize Nksx" ng-click="personctrl.udpateControllPer();personctrl.openPanel()">
+                        修改部门</button>
+                </div>
+                <div class="col-px-140 fl">
+                    <button class="btn btn-default xguize Nksx" ng-click="personctrl.showcontrollPer();personctrl.openPanel()">
+                        新增部门</button>
+                </div>
+                <div class="col-px-140 fl">
+                    <button class="btn btn-default xguize Nksx" ng-click="personctrl.deleteDept('sm')">
+                        删除部门</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>工号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>部门</th>
+                    <th>手机号</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="deptperson in personctrl.deptpersonlist" ng-click="personctrl.updateDeptPersonView(deptperson)"
+                    ng-dblclick="personctrl.openPanel2()">
+                    <td ng-bind="deptperson.workNum"></td>
+                    <td ng-bind="deptperson.name"></td>
+                    <td ng-switch="deptperson.sex"><span ng-switch-when="1">男</span><span ng-switch-when="2">女</span></td>
+                    <td ng-bind="deptperson.depName"></td>
+                    <td ng-bind="deptperson.phone"></td>
+                    <td ng-switch="deptperson.isVaild"><span ng-switch-when="1">启用</span><span ng-switch-when="0">停用</span></td>
+                    <td>
+                        <button type="button" ng-click="personctrl.updateDeptPersonView(deptperson);personctrl.openPanel2()"
+                                class="btn btn-default" >查看
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-2 hidden-xs">
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <pagination total-items="personctrl.totalCount" ng-model="personctrl.pageNo"
+                                ng-change="personctrl.pageChanged()"
+                                items-per-page="personctrl.pageSize" max-size="personctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- / header -->
+    <div data-ng-include="'src/pc/organization/deptpersonadd.html'" ng-class="personctrl.panelClass"></div>
+
+    <div data-ng-include="'src/pc/organization/personview.html'" ng-class="personctrl.panelClass2"></div>
+</div>
+
+<script type="text/ng-template" id="deleteConfirm.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">提示</h4>
+    </div>
+    <div class="modal-body" id="show-body">
+        是否确认删除！
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="confirmctrl.ok()">是</button>
+        <button class="btn btn-warning" type="button" ng-click="confirmctrl.cancel()">否</button>
+    </div>
+</script>

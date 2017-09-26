@@ -1,0 +1,69 @@
+<form name="form" class="form-horizontal" novalidate ng-submit="deptctrl.saveDept(form.$valid)">
+
+    <div class="fl RuleTit">
+        <i>|</i>
+        <span ng-show="deptctrl.showbutton" >新增部门</span>
+        <span ng-show="!deptctrl.showbutton" >查看部门</span>
+        <div class="fr">
+            <input type="submit" ng-if="deptctrl.showbutton" class="save fl" value="保存" />
+            <input type="submit" ng-if="!deptctrl.showbutton" class="save fl" value="更新" />
+            <input type="button" class="CloseBut fl" ng-click="deptctrl.closePanel()"/>
+        </div>
+    </div>
+
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput">
+                <label  class="RuleName">编号：</label>
+                <input type="text" ng-if="deptctrl.showbutton"  class="form-control Rinput60" ng-model="deptctrl.pkid" name="pkid" required ng-blur="deptctrl.findDeptidRepeat()">
+                <span class="errorInput" ng-show="deptctrl.findpkid" ng-bind="deptctrl.message"></span>
+                <span class="errorInput" ng-show="form.pkid.$error.required && deptctrl.submitted">该选项框必填</span>
+                <input type="text" ng-if="!deptctrl.showbutton"  class="form-control Rinput60" ng-model="deptctrl.pkid" readonly>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">部门名称：</label>
+                <input type="text" class="form-control Rinput60" ng-model="deptctrl.deptname" name="deptname" required >
+                <span class="errorInput" ng-show="form.deptname.$error.required && deptctrl.submitted">该选项框必填</span>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">上级部门：</label>
+                <input type="hidden" ng-model="deptctrl.per_deptid">
+                <input type="text" class="form-control Rinput50" ng-model="deptctrl.per_deptname" required name="per_deptname">
+                <button class="NkSearBut RSerBut" type="button" ng-click="deptctrl.findDept()"></button>
+                <span class="errorInput" ng-show="form.per_deptname.$error.required && deptctrl.submitted">该选项框必填</span>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">部门描述：</label>
+                <textarea type="text" class="form-control Rinput60" ng-model="deptctrl.remark" cols="40" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+    </form>
+    <script type="text/ng-template" id="selectdept.html">
+
+        <div class="wrapper hidden-sm hidden-xs">
+            <div class="bg-light" ng-if="selectdeptctrl.success" >
+
+                <span ng-if="doing_async">...loading...</span>
+                <abn-tree
+                        tree-data         = "selectdeptctrl.my_data"
+                        tree-control      = "selectdeptctrl.my_tree"
+                        on-select         = "selectdeptctrl.my_tree_handler(branch)"
+                        expand-level      = "3"
+                        initial-selection = "selectdeptctrl.inittree"
+                        icon-leaf         = "fa fa-folder"
+                        icon-expand       = "fa fa-folder"
+                        icon-collapse     = "fa fa-folder-open"
+                >
+                </abn-tree>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="selectdeptctrl.selectdept()">选择</button>
+            <button class="btn btn-warning" type="button" ng-click="selectdeptctrl.cancel()">取消</button>
+        </div>
+
+    </script>

@@ -1,0 +1,193 @@
+
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light ">
+
+    <!-- column -->
+    <div class="col  lter b-r"  style="width: 340px;">
+        <div class="vbox" style="overflow-y: scroll;height: 560px;">
+            <div class="wrapper-sm b-b">
+                <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
+                    <span><h4 style="margin-top: 2px;margin-bottom: 2px;">员工列表</h4></span>
+                </div>
+            </div>
+
+            <div class="wrapper b-b">
+                <div class="row" ng-show="ctrl.isShowOpe('all')">
+                    <label class="col-sm-3 control-label" style="line-height: 34px;">公司：</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" ng-model="ctrl.companyPkid" ng-change="ctrl.getDeptList()">
+                            <option value="">请选择</option>
+                            <option value="{{item.pkid}}" ng-repeat="item in ctrl.companyList">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" ng-show="ctrl.isShowOpe('all')">
+                    <label class="col-sm-3 control-label" style="line-height: 34px;">部门：</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" ng-model="ctrl.deptPkid">
+                            <option value="">请选择</option>
+                            <option value="{{dept.pkid}}" ng-repeat="dept in ctrl.deptList">{{dept.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 control-label" style="line-height: 34px;">姓名：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" ng-model="ctrl.perName">
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 control-label" style="line-height: 34px;"></label>
+                    <div class="col-sm-9">
+                        <a href class="btn btn-sm btn-info" style="width: 45%;" ng-click="ctrl.searchPersonnel()"><i class="fa fa-search fa-fw m-r-xs"></i> 查询</a>
+                        <a href class="btn btn-sm btn-danger" style="width: 50%;" ng-click="ctrl.showPLAddJF()" ng-show="ctrl.isShowOpe('add')"><i class="fa fa-plus fa-fw m-r-xs"></i> 批量添加积分</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row-row">
+                <div class="cell scrollable hover">
+                    <div class="cell-inner">
+                        <div class="table-responsive bg-white-only">
+                            <table class="table table-striped b-t b-light">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%;" data-sort-ignore="true">
+                                        <label class="i-checks m-b-none">
+                                            <input type="checkbox" ng-model="ctrl.checkAll" ng-change="ctrl.selectAll()"><i></i>
+                                        </label>
+                                    </th>
+                                    <th>姓名</th>
+                                    <th>当前等级</th>
+                                    <th>当前积分</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in ctrl.jfPersonList"  ng-click="ctrl.selectPerson(item)"  style="cursor: pointer;">
+                                    <td>
+                                        <label class="i-checks m-b-none"><input type="checkbox" name="id" ng-model="item.check"><i></i></label>
+                                    </td>
+                                    <td ng-bind="item.name"></td>
+                                    <td ng-bind="item.score"></td>
+                                    <td ng-bind="item.rankName"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+
+    <!-- column -->
+    <div class="col bg-white-only">
+        <div class="vbox">
+            <div class="wrapper-sm b-b" style="line-height: 23px;">
+                <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
+                    <!--<a class="pull-right text-danger m-r">批量删除积分</a>-->
+                    <a class="pull-right text-info m-r-lg" ng-click="ctrl.showInfo('deptAdd')">部门添加积分</a>
+                    <a class="pull-right text-info m-r-lg" ng-click="ctrl.showInfo('add')" ng-show="ctrl.isShowOpe('add')">添加积分</a>
+                    <a class="pull-right text-info m-r-lg" ng-click="ctrl.showLevelSelect()" ng-show="ctrl.isShowOpe('update')">修改等级</a>
+                    <span class="m-r">姓名：<b ng-bind="ctrl.person.name"></b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>当前积分：<b ng-bind="ctrl.person.score"></b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="m-r">当前等级：
+                        <b ng-bind="ctrl.person.rankName"></b>
+                    </span>
+                </div>
+            </div>
+
+            <div class="wrapper b-b">
+                <div class="input-group" style="width: 600px;">
+                    <span class="input-group-addon input-sm" style="background-color: #fff;border-color: #fff;">时间：
+                      </span>
+                    <input type="text" class="form-control input-sm" datepicker-popup readonly ng-model="ctrl.dtStart" is-open="ctrl.openedStart" close-text="关闭" current-text="今天" clear-text="清空" required />
+                    <span class="input-group-btn ">
+                        <button type="button" class="btn btn-default btn-sm" ng-click="ctrl.openStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+                    <span class="input-group-addon input-sm" style="background-color: #fff;border-color: #fff;">--
+                      </span>
+
+                    <input type="text" class="form-control input-sm" datepicker-popup readonly ng-model="ctrl.dtEnd" is-open="ctrl.openedEnd" close-text="关闭" current-text="今天" clear-text="清空" required />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default btn-sm" ng-click="ctrl.openEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                      </span>
+
+                    <span class="input-group-btn" style="padding-left: 20px;">
+                        <a href class="btn btn-sm btn-info" ng-click="ctrl.selectPerson(ctrl.person)" style="border-top-left-radius: 2px;border-bottom-left-radius: 2px;"><i class="fa fa-search fa-fw m-r-xs"></i> 查询</a>
+                      </span>
+                </div>
+            </div>
+            <div class="row-row">
+                <div class="cell scrollable hover">
+                    <div class="cell-inner">
+                        <div class="bg-white-only">
+                            <table class="table table-striped b-t b-light">
+                                <thead>
+                                <tr>
+                                    <!--<th style="width: 5%;" data-sort-ignore="true">-->
+                                    <!--<label class="i-checks m-b-none">-->
+                                    <!--<input type="checkbox" ng-model="checkAll" ng-change="selectAll()"><i></i>-->
+                                    <!--</label>-->
+                                    <!--</th>-->
+                                    <th data-toggle="true" style="width: 20%">
+                                        时间
+                                    </th>
+                                    <th style="width: 15%;">
+                                        分数
+                                    </th>
+                                    <th style="width: 15%;">
+                                        状态
+                                    </th>
+                                    <th style="width: 30%;" data-sort-ignore="true">
+                                        原因
+                                    </th>
+                                    <th style="width: 20%;" data-sort-ignore="true">
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in ctrl.recordList">
+                                    <!--<td><label class="i-checks m-b-none"><input type="checkbox" name="id" ng-model="item.check"><i></i></label></td>-->
+                                    <td ng-bind="item.created| date:'yyyy-MM-dd'"></td>
+                                    <td ng-bind="item.score"></td>
+                                    <td ng-if="item.status==0" >
+                                        <span class="label bg-primary" title="待审批">待审批</span>
+                                    </td>
+                                    <td ng-if="item.status==1" >
+                                        <span class="label bg-info" title="正常">正常</span>
+                                    </td>
+                                    <td ng-bind="item.remark"></td>
+                                    <td>
+                                        <a class="text-info" ng-click="ctrl.showInfo('info',item)">详情</a>
+                                        <a class="text-info" ng-click="ctrl.showInfo('edit',item)" ng-show="ctrl.isShowOpe('update')">编辑</a>
+
+                                        <a class="text-danger" ng-show="item.isShow==1&&item.status==1&&ctrl.isShowOpe('delete')" ng-click="ctrl.cancelJfRecord(item)">冲账</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                                <tfoot class="">
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <div class="pull-left" style="line-height: 40px;"><b>总计：{{ctrl.totalCount==undefined?0:ctrl.totalCount}}条记录</b></div>
+                                        <div class="col-sm-7 text-right text-center-xs">
+                                            <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                                        ng-change="ctrl.pageChanged()"
+                                                        items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                                        boundary-links="true" force-ellipses="true"></pagination>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+</div>
+<!-- /hbox layout -->

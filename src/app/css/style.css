@@ -1,0 +1,130 @@
+/*通用属性*/
+body{color:#666666;font-size:14px;font-family:"微软雅黑";background-color:#efefef;height:100%;overflow-y:scroll;min-width: 320px;}
+a{text-decoration:none;outline:none;}
+img{border:none;width: 100%;}
+ul,ol{list-style:none}
+i,b{font-style: normal;}
+.f_r { float: right;}
+.f_l{float: left;}
+em{font-style: normal;}
+.checkb{position: relative;}
+html, body, div, ul, li, ol, a, input, textarea, p, dl, dt, dd {
+    margin: 0;
+    padding: 0;
+}
+a, input, img, textarea, span, div {
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(9,186,7,.5);
+}
+input{border: 0;}
+ul,li{list-style:none;}
+.clearfix:after{content:".";display:block;height:0;clear:both;overflow:hidden;}
+.clearfix{zoom:1;}
+/*字体颜色*/
+.green{color: #09ba07 !important;}
+.blue{color: #221fba !important;}
+.red{color: #E55516 !important;}
+.org{color: #FF8800 !important;}
+.boxs{box-shadow: #ddd 1px 1px 1px;}
+
+/**************************通讯录************************************/
+/*搜索*/
+.seaBg{background-color: #68CDFD; padding:5px;}
+.SeaIn{margin-bottom: -15px;}
+.seaBg input.seaBCol{background-color: #FFF;}
+.MLname{color: #666666;font-size: 14px;}
+.MLzhiw{color: #999;font-size: 14px;}
+/*通讯录内容*/
+.sort_box{width: 100%; padding-top: 45px; overflow: hidden; background-color: #fff;}
+.sort_box .chebox{top: 20px !important;}
+/****************个人信息************/
+.sort_list{padding:10px 20px 10px 10px; width: 100%; position: relative; line-height: 40px; border-bottom:1px solid #ddd;}
+/*头像*/
+.sort_list .num_logo{width: 42px; height: 42px; vertical-align: middle; float: left;}
+.sort_list .num_logo img{width: 40px; height: 45px;}
+.sort_list .num_name{color: #000; line-height: 25px;width: 100%;}
+.sort_list .num_name span{display: block; width: 33%; text-align: left;float: left;	}
+.name_zhiw{line-height: 15px;color: #8f8f94;font-size: 14px;}
+.name_zhiw span{display: block; width: 100%; text-align: left;float: left;	}
+.NameADZhiw{padding: 2px;padding-left: 50px;}
+.POPCha{margin-left: 50px;}
+.sort_letter{height: 30px; line-height: 30px; padding-left: 20px; color:#787878; background-color: #fbfbfb; font-size: 14px; border-bottom:1px solid #ddd;}
+
+
+/************************考勤*****************************/
+/*下拉选择*/
+.cheUser{display:block; width:100%; float:left; text-align:center; position:relative; height:46px; line-height:46px; background:#fff; color:#666; text-decoration:none;z-index: 98;border-bottom: 1px solid #ddd;margin-bottom: 10px;}
+.cheUser div{ margin:0 auto; width:130px;font-size: 18px;}
+.cheUser p{ display:block; float:left}
+.cheUser span{content: '';float:left;border:6px solid transparent;border-bottom-color: #ffbb6e;width: 0;height: 0;z-index: 100;display:block;margin:15px 0px 0px 5px}
+.cheUser span.addclass{border-top-color: #b0dcb2;border-bottom:0px;margin:21px 0px 0px 5px}
+.cheCont ul{ border:1px solid #ddd;line-height:46px; border-radius:10px; width:120px; position:absolute; left:50%; margin-left:-60px; top:50px; background:#fff; z-index: 99;}
+.cheCont ul:after {position: absolute;top:-20px;right:50px;content: '';border: 10px solid transparent;border-bottom-color: #ddd;width: 0;height: 0;z-index: 100;}
+.cheCont ul li{ width:100%; float:left; text-indent:15px; color:#333; list-style-type:none; text-align:left; border-bottom:1px solid #ddd}
+.cheCont ul li:last-child{border:0px}
+.cheCont ul li.thisnav{background: url(../images/yes.png) 90% 50% no-repeat; background-size: 12px;}
+.cheCont a{color: #666;}
+/*考勤*/
+.workSched {background-color: #ffffff; margin-top: 10px;border-bottom: 1px solid #ddd;float: left;width:100%;position: relative;}
+.workSched span{padding: 5px 10px; color: #999;}
+#rilia{font-size: 14px; color: #666; padding: 0px 10px;border-bottom: 1px #ddd solid;height: 40px;line-height: 40px;}
+
+/*签到情况显示*/
+.sign{}
+.sign ul li{background-color: #fff;float: left;width: 100%;border-bottom: 1px #ddd solid;padding: 5px 0;}
+.sign ul li i{height: 60px;line-height: 60px;width: 12%;text-align: center;display: block;font-style: normal;float: left;}
+.signCont{width: 92%; margin: 0 1%;}
+.signCont span{display: block;width: 43%;padding: 0;float: left;height: 30px;line-height: 30px;}
+.signCont b{color: #666;font-weight: normal;}
+.signCont p{width: 100%;color: #999;padding: 5px 0;}
+.signCont p b{width: 64%;display: block;float: right; text-align: left;}
+/*公司考勤*/
+.checkWork{margin-bottom: 50px}
+.checkDay{line-height: 46px;background-color: #FFFFFF;padding: 0 10px;border-bottom: 1px #EFEFEF solid;color: #333;}
+.checkDay span{font-weight: normal;color: #626D7F;}
+.checkSig{line-height: 46px;background-color: #FFFFFF;padding: 0 10px;border-bottom: 1px solid #ddd;}
+.checkSig ul li{border-bottom: 1px solid #efefef;color: #999;}
+.checkSig ul li:last-child{border: 0px;}
+.checkSig ul li i{float: right;padding-right: 15px;font-size: 16px;font-weight: bold;}
+/*地图*/
+.map{width: 100%; height: 300px; margin: 10px 0;border-bottom: 1px solid #ddd; position: relative;}
+.map img{width: 100%;height: 100%;}
+/******重新定位*******/
+.GoTo{position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px;}
+.GoToAg{width: 40px; height: 40px; background: url(../images/dw.png) 50% 50% no-repeat rgba(255,255,255,.8); border-radius: 100%; background-size: 32px;}
+/*我的位置*/
+.Location{background-color: #FFFFFF;border-bottom: 1px solid #ddd;}
+.Location p{width: 96%;padding: 16px 2% 16px 2%;}
+.Location i{color: #0099FF;padding: 0 5px;}
+/*签到按钮*/
+.sigBut{width: 96%;margin: 10px 2% 0 2%; border-radius: 5px;height: 46px;line-height: 46px;font-size: 16px;color: #666;-webkit-appearance: none;}
+/*按钮颜色*/
+.SignBut{position: fixed;bottom: 0px;width:100%;background-color: #ffffff; padding-bottom: 5px}
+.siBack{color: #fff;background: url(../images/zw.png) 38% 50% #09BA07 no-repeat;background-size: 30px;}
+.qtBack{background:  #EFEFEF ; color: #666;border:1px solid #ddd;}
+.yqBack{color: #6f6d6d;background-color: #ddd;}
+.yqKeep{color: #fff;background-color: #09BA07;}
+/*外出原因*/
+.OutCause{width: 100%;margin-top: 10px;background-color: #fff;border-bottom: 1px solid #ddd;}
+.Outtesta{width: 92%;margin: 5px 2%; padding: 2%; background-color: #fff;font-size: 16px; color: #999;border: 0;}
+.signPosition{width: 100%;position: fixed;top: 356px;bottom: 0;overflow: scroll;}
+
+
+/*个人信息*/
+.PerInfo{margin-top:-10px;float: left;width: 100%;}
+.vip_infor_titles{width:100%; float:left; text-indent:20px; padding:15px 0; color:#333}
+ul.vip_infor{width:100%; float:left;border-top:#E5E5E5 1px solid}
+ul.vip_infor div{color: #999;}
+ul.vip_infor li{border-bottom:#E5E5E5 1px solid; position:relative; background:#ffffff;float: left;width: 100%;padding: 14px 3%;}
+ul.vip_infor li .pre{ position:absolute; color:#000000;  right:15px; height:50px; width:40px; background:url(../images/pre.png) right center no-repeat; top:0px}
+ul.vip_infor li p{ width:70px; float:left; color:#666666; font-size:16px;}
+ul.vip_infor li .InfoInput{font-size:16px;border:0px; text-align: right; width: 68%;float: right;margin-right: 10px;}
+ul.vip_infor li .InfoInputOnly{color: #999;}
+ul.vip_infor li select{line-height:46px; font-size:16px;border:0px;}
+ul.vip_infor li.as{background:none; height:auto; border-bottom:0px}
+ul.vip_infor li.as a{background:#F9B32F; height:50px; line-height:50px; margin:15px; color:#ffffff; text-align:center; font-size:18px; border:0px;font-family:Microsoft YaHei; border-radius:5px; display:block}
+ul.vip_infor li a.binding{ width:60px; height:36px; background:#19B5FD; color:#fff; display:block; font-size:16px; float:right; text-align:center; border-radius:5px; line-height:36px; margin:8px 15px 0px 0px; position:absolute; right:0px}
+ul.vip_infor li a.rights{ width:60px; height:36px; color:#367CE7; display:block; font-size:16px; line-height:36px; position:absolute; right:15px; top:8px; right:-2px; font-size:14px}
+ul.vip_infor li readonly{color: #999;}
+ul.vip_infor li .InfoTextarea{width: 65%; font-size: 16px;border: 0;padding: 0 15px;resize: none;font-family: "微软雅黑";float: right;text-align: right;}
+ul.vip_infor li .tit{position: absolute;top: 0;left: 0;}

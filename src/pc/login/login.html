@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+	<html lang="en" data-ng-app="app">
+	<head>
+	  <meta charset="utf-8" />
+	  <title>湖南创星科技股份有限公司</title>
+	  <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	  <link rel="stylesheet" href="../../../css/bootstrap.css" type="text/css" />
+  	  <link rel="stylesheet" href="../../../css/newStyle.css" type="text/css" />
+  	  <link rel="stylesheet" href="../../../css/app.css" type="text/css" />
+</head>
+	<body style="background-color: #f5f7fa;">
+	  <div class="LoginBG">
+		  	 <div class="Login">
+		  	 <div class="LoginLForm">
+		  	 	<!--logo-->
+		  	 	<div class="LoginLogo"></div>
+		  	 	<!--登录from-->
+		  	 	 <div class="fl col-lg-12">
+		  	 	 	<div class="LoginTit">创星之家综合信息平台</div>
+		  	 	 	
+				        <!--登录信息输入-->
+		  	 	 	     <div class="LoginGroup list-group-sm">
+				            <div class="LoginInput">
+				              <input placeholder="用户名" class="fromInput LoginBorder NameImg" ng-model="ctrl.user.name" required>
+				            </div>
+				            <div class="LoginInput">
+				              <input type="password" placeholder="密码" class="fromInput LoginBorder PassImg" ng-model="ctrl.user.password" required>
+				            </div>
+				          </div>
+				        <!--记住密码勾选-->
+				          <div class="m-t-none fr">
+				            <label class="i-checks LoginLable" style="padding: 15px;">
+				              <input type="checkbox" ng-model="agree" required><i></i>记住密码
+				            </label>
+				          </div>
+		  	 	 </div>
+		  	 	 <!--登录按钮-->
+		  	 	 <div class="LoginBut">
+		  	 	 	<button type="submit" class="btn btn-lg btn-block LoginBac" ng-click="ctrl.login()" ng-disabled="form.$invalid" disabled="disabled">登录</button>
+		  	 	 </div>
+		  	 	 <!--版权信息-->
+		  	 	 <div class="LoGongs">
+		  	 	 	湖南创星科技股份有限公司 版权所有
+		  	 	 </div>
+		  	 </div>
+		  	 <!--广告图片 （图片下方文字）-->
+		  	 <div class="LoginRImg">
+		  	 	<img src="../../../img/500444850.png" />
+		  	 	<div class="ImgTit">
+		  	 		大健康信息产业的佼佼者
+		  	 	</div>
+		  	 </div>
+		  </div>
+	  </div>
+	</body>
+</html>

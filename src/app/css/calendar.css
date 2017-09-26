@@ -1,0 +1,19 @@
+/*初始化*/
+*{margin:0;padding:0;-webkit-user-select: none;}
+/*日历*/
+.calendar-container{width: 100%;float: left;background: #fff;border-bottom: 1px solid #ddd;}
+.calendar-month{float:left;width:20%;height:45px;text-align:center;cursor:pointer;line-height:45px;}
+.calendar-year{float:left;width:20%;height:45px;text-align:center;cursor:pointer;line-height:45px;}
+.calendar-prevyear,
+.calendar-prevmonth,
+.calendar-nextyear,
+.calendar-nextmonth{float:left;width:15%;height:45px;text-align:center;cursor:pointer;line-height:45px;}
+.calendar-week{width:100%;height:45px;border-bottom: 1px solid #dddddd;}
+.calendar-week div{float:left;width:14.28%;height:45px;color:#c5c5c5;background-color:#ffffff;text-align:center;line-height:45px;cursor:pointer;  border-bottom: 1px solid #ddd;}
+.calendar-content{width:100%;background-color:#fefefe;}
+.calendar-content div{float:left;width:14.28%;height: 40px;line-height: 40px;padding: 5px 0px;background-color:#fefefe;color:#333;text-align:center;cursor:pointer;}
+.calendar-content .canChoose{background-color:#fefefe;}
+.calendar-content .canChoose:hover{color: #fff;background-color:#09F;}
+.calendar-content div.today{color:#09F;}
+/*有签到情况的日期样式*/
+.chooseday{color: #ff8800;font-weight: bold;}

@@ -1,0 +1,263 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">人员档案管理</h1>
+</div>
+
+<div class="wrapper-md">
+
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div  class="fr">
+
+                <div class="col-px-140 fl" ng-show="ctrl.isShowOpe('add')">
+                    <button class="btn btn-default xguize Nksx"  ng-click="ctrl.createPerson();ctrl.openPanel()">
+                        入职人员</button>
+                </div>
+                <div class="col-px-80 fl" style="position: relative;" id="myShaix">
+                    <button class="btn btn-default saixuan Nksx"  ng-click="ctrl.toggShaix()">
+                        筛选</button>
+                    <!--筛选弹出-->
+                    <div class="shaixBox_sj" style="display: block;" ng-show="ctrl.myShaix">
+                        <div  class="wixian"></div>
+
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">姓名</label>
+                                <div class="col-px-270 fr">
+                                    <input type="text" class="form-control" placeholder="姓名筛选" ng-model="ctrl.name">
+                                </div>
+                            </div>
+                        </div>
+                        <!--部门-->
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">部门</label>
+                                <div class="col-px-270 fr">
+                                    <input type="text" class="form-control" placeholder="部门筛选" ng-model="ctrl.depName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">性别</label>
+                                <div class="col-px-270 fr">
+                                    <input type="radio" name="person-sexcx" value="1" ng-model="ctrl.sexcx" ><i></i> 男
+                                    <input type="radio" name="person-sexcx" value="2" ng-model="ctrl.sexcx"><i></i> 女
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">工号</label>
+                                <div class="col-px-270 fr">
+                                    <input type="text" class="form-control" placeholder="工号" ng-model="ctrl.workNum">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">岗位</label>
+                                <div class="col-px-270 fr">
+                                    <select class="form-control Rinput60" ng-model="ctrl.twfDictPo" ng-options="twfDict.name  for twfDict in ctrl.twfDictpoList"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">社保购买时间</label>
+                                <div class="col-px-270 fr">
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.SocialStart" is-open="ctrl.strarSocialOpened"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="ctrl.openSocialStart($event)"><i
+                                                        class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <span style="float: left;">-</span>
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.SocialEnd" is-open="ctrl.endSocialOpen"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="ctrl.openSocialEnd($event)"><i
+                                                    class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">公积金购买时间</label>
+                                <div class="col-px-270 fr">
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.AccumulationStart" is-open="ctrl.strarAccumulationOpened"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="ctrl.openAccumulationStart($event)"><i
+                                                        class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <span style="float: left;">-</span>
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.AccumulationEnd" is-open="ctrl.endAccumulationOpen"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="ctrl.openAccumulationEnd($event)"><i
+                                                    class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">生日</label>
+                                <div class="col-px-270 fr">
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.BirthdayStart" is-open="ctrl.strarBirthdayOpened"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="ctrl.openBirthdayStart($event)"><i
+                                                        class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <span style="float: left;">-</span>
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.BirthdayEnd" is-open="ctrl.endBirthdayOpen"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="ctrl.openBirthdayEnd($event)"><i
+                                                    class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--重置按钮-->
+                        <div class="fr NKwrapper">
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.cancel()">清空</button>
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.submitSeach()">查询</button>
+                        </div>
+
+                    </div>
+                    <!--筛选弹出end-->
+
+                </div>
+                <div class="col-px-80 fl" ng-show="ctrl.isShowOpe('export')">
+                    <a ng-href="{{ctrl.excelPersonExprot}}" >
+                        <button class="btn btn-default daochu Nksx">
+                            导出</button></a>
+                </div>
+                <div class="col-px-120 fl" ng-show="ctrl.isShowOpe('person_list')">
+                    <a ng-href="{{ctrl.excelPersonAddressExprot}}"><button class="btn btn-default daochu Nksx" ng-click="ctrl.addAddressName()">
+                        导出通讯录</button></a>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th style="width:20px;">
+                        <label class="i-checks m-b-none">
+                            <input type="checkbox"><i></i>
+                        </label>
+                    </th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>工号</th>
+                    <th>部门</th>
+                    <th>岗位</th>
+                    <th>手机号码</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="per in ctrl.personList" ng-click="ctrl.updatePersonnelView(per)"
+                    ng-dblclick="ctrl.openPanel()">
+                    <td><label class="i-checks m-b-non"><input type="checkbox" name="post[]"><i></i></label>
+                    </td>
+                    <td ng-bind="per.name"></td>
+                    <td ng-bind="per.sex | sexType"></td>
+                    <td ng-bind="per.workNum"></td>
+                    <td ng-bind="per.depName"></td>
+                    <td ng-bind="per.position"></td>
+                    <td ng-bind="per.phone"></td>
+                    <td>
+                        <a ng-click="ctrl.deletePerson(per.perId,per.workNum)">离职
+                        </a>
+                        <a ng-click="ctrl.updatePersonnelView(per);ctrl.openPanel()">修改
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="selectAddressName.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">导出设置</h4>
+    </div>
+    <div class="modal-body" id="show-body">
+        <label class="checkbox-inline i-checks" ng-repeat="tagName in Addressctrl.selectList">
+            <input type="checkbox" id="tagName"   ng-checked="Addressctrl.isSelected(tagName)" ng-click="Addressctrl.updateSelection($event,tagName)"><i></i> {{tagName}}
+        </label>
+    </div>
+
+
+    <div class="modal-footer">
+        <a ng-href="{{Addressctrl.excelPersonAddressExprot}}"><button class="btn btn-warning" ng-click="Addressctrl.save()">导出</button></a>
+        <button class="btn btn-warning" type="button" ng-click="Addressctrl.cancel()">取消</button>
+    </div>
+</script>
+
+<div data-ng-include=" 'src/pc/personnelFile/personnel.tpl.html' " ng-class="ctrl.panelClass"></div>

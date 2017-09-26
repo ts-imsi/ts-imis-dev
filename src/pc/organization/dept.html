@@ -1,0 +1,61 @@
+<div class="bg-light lter b-b wrapper-md-12">
+    <h1 class="m-n font-thin h3">下属公司</h1>
+</div>
+<div class="wrapper-md">
+
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div  class="fr">
+
+                <div class="col-px-140 fl">
+                    <button class="btn btn-default xguize Nksx"  ng-click="deptctrl.showcontroll();deptctrl.openPanel()">
+                        新增部门</button>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>组织名称</th>
+                    <th>上属机构</th>
+                    <th>描述</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="dept in deptctrl.deptlist" ng-click="deptctrl.updateDeptView(dept)"
+                    ng-dblclick="deptctrl.openPanel()">
+                    <td ng-bind="dept.depId"></td>
+                    <td ng-bind="dept.depName"></td>
+                    <td ng-bind="dept.parentDepName"></td>
+                    <td ng-bind="dept.remark"></td>
+                    <td>
+                        <button type="button" ng-click="deptctrl.updateDeptView(dept);deptctrl.openPanel()"
+                                class="btn btn-default">修改
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-2 hidden-xs">
+                </div>
+                <div class="col-sm-6 text-right text-center-xs">
+                    <pagination total-items="deptctrl.totalCount" ng-model="deptctrl.pageNo"
+                                ng-change="deptctrl.pageChanged()"
+                                items-per-page="deptctrl.pageSize" max-size="deptctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <div data-ng-include="'src/pc/organization/deptadd.html'" ng-class="deptctrl.panelClass"></div>
+</div>

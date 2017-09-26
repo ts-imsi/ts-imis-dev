@@ -1,0 +1,158 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">积分审批</h1>
+</div>
+
+<div class="wrapper-md">
+
+    <div class="panel panel-default" style="height: 500px">
+        <!-- hbox layout -->
+        <div class="hbox hbox-auto-xs hbox-auto-sm bg-light">
+            <!-- column -->
+            <div class="col">
+                <div class="vbox">
+                    <div class="wrapper b-b">
+                        公司:
+                        <select class="form-control input-sm w-sm inline m-r" ng-model="ctrl.companyPkid" ng-change="ctrl.getDeptList()">
+                            <option value="">请选择</option>
+                            <option value="{{item.pkid}}" ng-repeat="item in ctrl.companyList">{{item.name}}</option>
+                        </select>
+                        部门:
+                        <select class="form-control input-sm w-sm inline m-r" ng-model="ctrl.deptPkid">
+                            <option value="">请选择</option>
+                            <option value="{{dept.pkid}}" ng-repeat="dept in ctrl.deptList">{{dept.name}}</option>
+                        </select>
+                        姓名: <input id="filter" type="text" class="form-control input-sm w-sm inline m-r" style="width: 100px;" ng-model="ctrl.perName"/>
+
+                        <a href class="btn btn-sm btn-info" ng-click="ctrl.search()"><i class="fa fa-search fa-fw m-r-xs"></i> 查询</a>
+
+                        <a href class="btn btn-sm btn-default pull-right" ng-click="ctrl.batchApproval()">批量审批</a>
+                    </div>
+                    <div class="row-row">
+                        <div class="cell scrollable hover">
+                            <div class="cell-inner">
+                                <div class="table-responsive">
+                                    <table class="table table-striped b-t b-light">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 5%;" data-sort-ignore="true">
+                                                <label class="i-checks m-b-none">
+                                                    <input type="checkbox" ng-model="ctrl.checkAll" ng-click="ctrl.selectAll($event)"><i></i>
+                                                </label>
+                                            </th>
+                                            <th data-toggle="true" style="width: 8%">
+                                                姓名
+                                            </th>
+                                            <th style="width: 8%;">
+                                                编号
+                                            </th>
+                                            <th style="width: 10%;">
+                                                公司
+                                            </th>
+                                            <th  style="width: 8%;">
+                                                部门
+                                            </th>
+                                            <th style="width: 9%;">
+                                                当前积分
+                                            </th>
+                                            <th style="width: 9%;">
+                                                应加积分
+                                            </th>
+                                            <th style="width: 17%;">
+                                                加分原因
+                                            </th>
+                                            <th style="width: 8%;">
+                                                状态
+                                            </th>
+                                            <th style="width: 14%;">
+                                                操作
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="recordApp in ctrl.recordAppList">
+                                            <td><label class="i-checks m-b-none"><input type="checkbox" name="id" ng-click="ctrl.updateSelection($event,recordApp)" ng-model="recordApp.check"><i></i></label></td>
+                                            <td>
+                                                {{recordApp.name}}
+                                            </td>
+                                            <td>
+                                                {{recordApp.workNum}}
+                                            </td>
+                                            <td>
+                                                {{recordApp.company}}
+                                            </td>
+                                            <td>
+                                                {{recordApp.depName}}
+                                            </td>
+                                            <td>
+                                                {{recordApp.currentScore}}
+                                            </td>
+                                            <td>
+                                                {{recordApp.score}}
+                                            </td>
+                                            <td>
+                                                {{recordApp.remark}}
+                                            </td>
+                                            <td>
+                                                <span class="label bg-primary" title="待审核">待审核</span>
+                                            </td>
+                                            <td>
+                                                <a class="text-info" ng-click="ctrl.Approval(recordApp)">审核</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot class="">
+                                        <tr>
+                                            <td colspan="10" class="text-center">
+                                                <div class="pull-left" style="line-height: 40px;"><b>总计：{{ctrl.totalCount==undefined?0:ctrl.totalCount}}条记录</b></div>
+                                                <div class="col-sm-5 text-right text-center-xs">
+                                                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                                                ng-change="ctrl.pageChanged()"
+                                                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                                                boundary-links="true" force-ellipses="true"></pagination>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /column -->
+        </div>
+        <!-- /hbox layout -->
+    </div>
+</div>
+
+<script type="text/ng-template" id="RecordApp.html">
+    <form class="form-horizontal" name="RecordAppForm" novalidate role="form">
+        <div class="modal-header">
+            <h4 class="modal-title">积分审核</h4>
+        </div>
+        <div class="RuleCont">
+            <div class="panel-body">
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName"></label>
+                    {{ctrl.name}}
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">备注：</label>
+                    <textarea  type="text" class="form-control Rinput60" cols="60" rows="4" required name="remark" ng-model="ctrl.remark"></textarea>
+                    <span class="errorInput"
+                          ng-show="RecordAppForm.remark.$error.required &&ctrl.submitted">
+                              该选项框必填
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" ng-click="ctrl.cancel()">取消</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.agreeRecordApp()">同意</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.notAgreeRecordApp()">不同意</button>
+        </div>
+    </form>
+</script>

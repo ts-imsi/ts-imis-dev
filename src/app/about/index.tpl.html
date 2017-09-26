@@ -1,0 +1,29 @@
+<!-- 模版中对外只能提供一个(也许可能多个，看版本) 元素节点 ，所以需要用一个容器包起来，这里使用了一个 DIV 标签把其他标签包起来了 -->
+<div>
+	<ol class="breadcrumb">
+		<li><a ui-sref="Index">Index</a></li>
+		<li class="active">About</li>
+	</ol>
+
+	<div class="jumbotron">
+		<!-- 使用ng-bind 比 使用 {{ $ctrl.title }} 更好，方式JS没加载完成时页面会把 {{ ... }} 这个语法显示出来 -->
+		<section class="post-content">
+			<h2 ng-bind="ctrl.title"></h2>
+
+			<p>Bootstrap中文网 -- www.bootcss.com 创建于2012年。起因是国内没有较好的关于Bootstrap的中文教程和交流渠道，因此，我们对Bootstrap的文档进行了翻译整理，并且建立了QQ群和微博（<a href="http://weibo.com/bootcss">@bootcss</a>），方便更多热爱这个CSS框架的攻城师们分享、交流自己在前端设计、开发方面的心得。</p>
+			<h3 id="-bootstrap-">展示你的Bootstrap作品</h3>
+			<p>你是Bootstrap粉丝吗？你正在用Bootstrap做开发吗？你开发的网站是 Powered By Bootstrap 的吗？那就把你的网站show出来吧！</p>
+			<p>凡是经过确认采用Bootstrap CSS框架的网站，我们会将你所提交网站的截图及介绍展示到“Bootstrap优站精选”列表中，并有机会在 Bootstrap中文网 的首页进行推荐。</p>
+			<blockquote>
+			<p>请发邮件到下面的邮箱，并在邮件标题上注明（Bootstrap网站作品提交 -- 网站名称或网址）。<br>Mail： admin@bootcss.com</p>
+			</blockquote>
+			<h3 id="-">加入我们</h3>
+			<p>Bootstrap中文网致力于前端开发推广，坚持分享、开放的互联网精神，旨在为广大前端攻城师、设计师提供交流的平台，如果你和我们有相同的目标，我们乐意一起携手前行。</p>
+			<p>如果你也热爱前端开发、热爱 Bootstrap，有一颗创业的心，欢迎和我们联系，更欢迎你加入我们的团队！</p>
+			<p>Mail: admin@bootcss.com</p>
+		</section>
+		<p>
+			<a href="http://v3.bootcss.com/components/" target="_blank">bootstrap 中文文档 http://v3.bootcss.com/components/</a>
+		</p>
+	</div>
+</div>

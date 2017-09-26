@@ -1,0 +1,95 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">考勤设置</h1>
+</div>
+<div class="wrapper-md">
+    <div class="row">
+        <div class="col-sm-10">
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div  class="fr">
+                <div class="col-px-150 fl" >
+                <button type="button" ng-click="ctrl.createlocation();ctrl.openPanel()" class="btn btn-default xguize Nksx"
+                        >新增考勤地点
+                </button>
+                </div>
+            </div>
+        </div>
+        <div data-ng-include=" 'src/pc/note/noteupdate.tpl.html' " ng-class="ctrl.panelClass"></div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th style="width:20px;">
+                        <label class="i-checks m-b-none">
+                            <input type="checkbox"><i></i>
+                        </label>
+                    </th>
+                    <th>规则名称</th>
+                    <th>考勤地址</th>
+                    <th>部门名称</th>
+                    <th>适用范围</th>
+                    <th>上班时间</th>
+                    <th>下班时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="location in ctrl.locationList" ng-click="ctrl.updateLocationView(location)"
+                    ng-dblclick="ctrl.openPanel()">
+                    <td><label class="i-checks m-b-non"><input type="checkbox" name="post[]"><i></i></label>
+                    </td>
+                    <td ng-bind="location.name"></td>
+                    <td ng-bind="location.address"></td>
+                    <td ng-bind="location.depName"></td>
+                    <td ng-bind="location.tagName"></td>
+                    <td ng-bind="location.signinTime"></td>
+                    <td ng-bind="location.signoutTime"></td>
+                    <td>
+                        <a ng-click="ctrl.deleteLocation(location.pkid)">删除</a>
+                        <a ng-click="ctrl.updateLocationView(location);ctrl.openPanel()">修改</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script type="text/ng-template" id="selectdept.html">
+
+        <div class="wrapper hidden-sm hidden-xs">
+            <div class="bg-light" ng-if="selectdeptctrl.success" >
+
+                <span ng-if="doing_async">...loading...</span>
+                <abn-tree
+                        tree-data         = "selectdeptctrl.my_data"
+                        tree-control      = "selectdeptctrl.my_tree"
+                        on-select         = "selectdeptctrl.my_tree_handler(branch)"
+                        expand-level      = "3"
+                        icon-leaf         = "fa fa-user"
+                        icon-expand       = "fa fa-folder"
+                        icon-collapse     = "fa fa-folder-open"
+                >
+                </abn-tree>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="selectdeptctrl.selectdept()">选择</button>
+            <button class="btn btn-warning" type="button" ng-click="selectdeptctrl.cancel()">取消</button>
+        </div>
+
+    </script>
+</div>

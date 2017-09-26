@@ -1,0 +1,172 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">劳动合同</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="col-px-150 fl" ng-show="ctrl.isShowOpe('add')">
+                    <button class="btn btn-default xguize Nksx" ui-toggle-class="active" target=".contact"
+                            ng-click="ctrl.createContract();ctrl.openPanel()">
+                        新增劳动合同
+                    </button>
+                </div>
+                <div class="col-px-80 fl" style="position: relative;" id="myShaix">
+                    <button class="btn btn-default saixuan Nksx" ng-click="ctrl.toggShaix()">
+                        筛选
+                    </button>
+                    <!--筛选弹出-->
+                    <div class="shaixBox_sj" style="display: block;" ng-show="ctrl.myShaix">
+                        <div class="wixian"></div>
+
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">姓名</label>
+                                <div class="col-px-270 fr">
+                                    <input type="text" class="form-control" placeholder="姓名筛选" ng-model="ctrl.name">
+                                </div>
+                            </div>
+                        </div>
+                        <!--工号-->
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">工号</label>
+                                <div class="col-px-270 fr">
+                                    <input type="text" class="form-control" placeholder="工号筛选" ng-model="ctrl.workNum">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--部门-->
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">部门</label>
+                                <div class="col-px-270 fr">
+                                    <input type="text" class="form-control" placeholder="部门筛选" ng-model="ctrl.depName">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">签订时间</label>
+                                <div class="col-px-270 fr">
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.dtStart" is-open="ctrl.strardtOpened"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="ctrl.opendtStart($event)"><i
+                                                        class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <span style="float: left;">-</span>
+                                    <div class="col-xs-50 fl" style="position: relative;">
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}"
+                                                   ng-model="ctrl.dtEnd" is-open="ctrl.enddtOpen"
+                                                   datepicker-options="dateOptions"
+                                                   date-disabled="ctrl.disabled(date, mode)"
+                                                   close-text="Close"/>
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="ctrl.opendtEnd($event)"><i
+                                                    class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">合同年限</label>
+                                <div class="col-px-270 fr">
+                                    <input type="text" class="form-control" placeholder="合同年限" ng-model="ctrl.years">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-60 control-label fl NkSN">合同类型</label>
+                                <div class="col-px-270 fr">
+                                    <select class="form-control Rinput60" ng-model="ctrl.twfDictContractType" ng-options="twfDict.name  for twfDict in ctrl.twfDictList"></select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--重置按钮-->
+                        <div class="fr NKwrapper">
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.cancel()">清空</button>
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.submitSeach()">查询</button>
+                        </div>
+
+                    </div>
+                    <!--筛选弹出end-->
+
+                </div>
+                <div class="col-px-120 fl" ng-show="ctrl.isShowOpe('export')">
+                    <a ng-href="{{ctrl.excelContractExprot}}">
+                        <button class="btn btn-default daochu Nksx">
+                            导出
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div data-ng-include=" 'src/pc/contract/contractupdate.tpl.html' " ng-class="ctrl.panelClass"></div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>工号</th>
+                    <th>合同编号</th>
+                    <th>入职时间</th>
+                    <th>转正日期</th>
+                    <th>合同签订情况</th>
+                    <th>合同开始时间</th>
+                    <th>合同结束时间</th>
+                    <th>合同年限</th>
+                    <th>合同类型</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="contract in ctrl.contractList" ng-click="ctrl.updateContractView(contract)"
+                    ng-dblclick="ctrl.openPanel()">
+                    <td ng-bind="contract.name"></td>
+                    <td ng-bind="contract.workNum"></td>
+                    <td ng-bind="contract.conCode"></td>
+                    <td ng-bind="contract.entryDate | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="contract.regularDate | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="contract.status |statusType"></td>
+                    <td ng-bind="contract.startDate | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="contract.endDate | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="contract.years"></td>
+                    <td ng-bind="contract.type | contractType"></td>
+                    <td>
+                        <button type="button" ng-click="ctrl.updateContractView(contract);ctrl.openPanel()"
+                                class="btn btn-default">修改
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>

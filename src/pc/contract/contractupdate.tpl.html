@@ -1,0 +1,150 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.contractUpdate(form.$valid,form.$invalid,ctrl.contract)">
+    <!--标题-->
+    <div class="fl RuleTit">
+        <i>|</i>
+        劳动合同
+        <div class="fr">
+            <input type="submit" ng-if="ctrl.showsubmit" class="save fl"  value="保存" />
+            <input type="submit" ng-if="!ctrl.showsubmit" class="save fl"  value="更新" />
+            <input type="button" id="activeid" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
+        </div>
+    </div>
+
+    <div class="RuleCont">
+        <div class="panel-body">
+                    <div class="form-group RuleInput">
+                        <label for="workNum" class="RuleName">工号:</label>
+                        <input type="text" class="form-control Rinput60" id="workNum" name="workNum" ng-model="ctrl.contract.workNum" required ng-blur="ctrl.findWorkNumRepeat()">
+                        <span class="errorInput" ng-show="ctrl.findworkNum" ng-bind="ctrl.message"></span>
+                        <span class="errorInput"
+                              ng-show="form.workNum.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label  class="RuleName">姓名:</label>
+                        <input type="text" class="form-control Rinput60" id="name" ng-model="ctrl.contract.name"  required  name="name" readonly maxlength="50">
+                        <span class="errorInput"
+                              ng-show="form.name.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">入职时间:</label>
+                        <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.contract.entryDate" is-open="ctrl.opened" name="entryDate" required datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)"  close-text="关闭" readonly/>
+                        <button type="button" class="btn RSerBut" ng-click="ctrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+
+                        <span class="errorInput"
+                              ng-show="form.entryDate.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">转正时间:</label>
+                        <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.contract.regularDate" name="regularDate" required is-open="ctrl.reguopened"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)"  close-text="关闭" readonly/>
+                        <button type="button" class="btn RSerBut" ng-click="ctrl.openregu($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <span class="errorInput"
+                              ng-show="form.regularDate.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">合同签订情况：</label>
+                        <label class="checkbox-inline i-checks">
+                            <input type="radio" name="contract-status" value="1" ng-model="ctrl.status"><i></i> 已签
+                        </label>
+                        <label class="checkbox-inline i-checks">
+                            <input type="radio" name="contract-status" value="0" ng-model="ctrl.status"><i></i> 未签
+                        </label>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label for="conCode" class="RuleName">合同编号:</label>
+                        <input type="text" class="form-control Rinput60" id="conCode"  ng-model="ctrl.contract.conCode"    name="conCode" required maxlength="100" >
+                        <span class="errorInput"
+                              ng-show="form.conCode.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label  class="RuleName">合同签订日期:</label>
+                        <input type="text" class="form-control Rinput50" name="signDate"  required datepicker-popup="{{ctrl.format}}" ng-model="ctrl.contract.signDate"  is-open="ctrl.signopened"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)"  close-text="关闭"   readonly>
+                        <button type="button" class="btn RSerBut" ng-click="ctrl.opensign($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <span class="errorInput"
+                              ng-show="form.signDate.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">合同开始时间:</label>
+                        <input type="text" class="form-control Rinput50" name="startDate" required datepicker-popup="{{ctrl.format}}" ng-model="ctrl.contract.startDate" is-open="ctrl.startopened"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)"  close-text="关闭" readonly/>
+                        <button type="button" class="btn RSerBut" ng-click="ctrl.openstart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <span class="errorInput"
+                              ng-show="form.startDate.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">合同结束时间:</label>
+                        <input type="text" class="form-control Rinput50" name="endDate" required datepicker-popup="{{ctrl.format}}" ng-model="ctrl.contract.endDate" is-open="ctrl.endopened"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)"  close-text="关闭" readonly/>
+                        <button type="button" class="btn RSerBut" ng-click="ctrl.openend($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <span class="errorInput"
+                              ng-show="form.endDate.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label for="years" class="RuleName">合同年限:</label>
+                        <input type="text" class="form-control Rinput60" id="years" required ng-model="ctrl.contract.years"    name="years"  maxlength="50" ng-pattern="ctrl.szReg">
+                        <span class="errorInput"
+                              ng-show="form.years.$error.pattern">
+                                合同年限为整数
+                        </span>
+                        <span class="errorInput"
+                              ng-show="form.years.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label  class="RuleName">合同类型:</label>
+                        <select class="form-control Rinput60" name="contractType" required  ng-model="ctrl.twfDict" ng-options="twfDict.name  for twfDict in ctrl.twfDictList"></select>
+                        <span class="errorInput"
+                              ng-show="form.contractType.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label for="conNum" class="RuleName">份数:</label>
+                        <input type="text" class="form-control Rinput60" id="conNum" required ng-model="ctrl.contract.conNum"    name="conNum"  maxlength="50" ng-pattern="ctrl.szReg">
+                        <span class="errorInput"
+                              ng-show="form.conNum.$error.pattern">
+                                份数为整数
+                        </span>
+                        <span class="errorInput"
+                              ng-show="form.conNum.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                    <!--<div class="form-group RuleInput">
+                        <label for="xyNum" class="RuleName">协议份数:</label>
+                        <input type="text" class="form-control Rinput60" id="xyNum" ng-model="ctrl.contract.xyNum"    name="xyNum" required maxlength="50" ng-pattern="ctrl.szReg">
+                        <span class="errorInput"
+                              ng-show="form.xyNum.$error.pattern">
+                                协议份数为整数
+                        </span>
+                        <span class="errorInput"
+                              ng-show="form.xyNum.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>-->
+                    <div class="form-group RuleInput">
+                        <label for="remark" class="RuleName">备注:</label>
+                        <input type="text" class="form-control Rinput60" id="remark" ng-model="ctrl.contract.remark"    name="remark"  maxlength="100">
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
+
+</form>

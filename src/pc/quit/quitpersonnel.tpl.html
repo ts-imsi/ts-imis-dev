@@ -1,0 +1,108 @@
+<form class="form-horizontal" name="form">
+    <!--标题-->
+    <div class="fl RuleTitTab">
+        <!--tab切换-->
+        <div  class="RulTab">
+            <ul id="tags">
+                <li ng-class="ctrl.tagclass02"><a ng-click="ctrl.selectTag('1')">个人信息</a></li>
+            </ul>
+
+        </div>
+        <div class="fr">
+            <input type="button" class="CloseBut fl" ng-click="ctrl.closeQuitPanel()"/>
+        </div>
+    </div>
+
+
+
+
+    <div class="RuleCont">
+
+    <div class="panel-body">
+        <div class="row" ng-show="ctrl.tag==1">
+            <div class="form-group RuleInput">
+                <label for="workNum" class="RuleName">工号：</label>
+                <input type="text" class="form-control Rinput60" id="workNum" ng-model="ctrl.person.workNum" readonly name="workNum"  >
+            </div>
+            <div class="form-group RuleInput">
+                <label for="name" class="RuleName">姓名：</label>
+                <input type="text" class="form-control Rinput60" id="name" ng-model="ctrl.person.name" readonly  ng-pattern="ctrl.nameReg">
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">手机号码：</label>
+                <input type="text" class="form-control Rinput60" id="phone" ng-model="ctrl.person.phone"  readonly >
+            </div>
+            <div class="form-group RuleInput">
+                <label for="idCard" class="RuleName">身份证号：</label>
+                <input type="text" class="form-control Rinput60" id="idCard" ng-model="ctrl.person.idCard" name="idCard" readonly >
+            </div>
+            <div class="form-group RuleInput">
+                <label  class="RuleName">生日：</label>
+                <!--<input type="text" class="form-control Rinput40" id="birthday" ng-model="ctrl.person.birthday"  >-->
+                <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.birthday" is-open="ctrl.biropen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                <button type="button" class="btn RSerBut" ng-click="ctrl.openbir($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">生日类别：</label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="person-birthdayType" value="1" ng-model="ctrl.birthdayType"><i></i> 公历
+                </label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="person-birthdayType" value="2" ng-model="ctrl.birthdayType" ><i></i> 农历
+                </label>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="householdRegiste" class="RuleName">户籍：</label>
+                <input type="text" class="form-control Rinput60" id="householdRegiste" ng-model="ctrl.person.householdRegiste" readonly >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="houseAddress" class="RuleName">家庭住址：</label>
+                <input type="text" class="form-control Rinput60" id="houseAddress" ng-model="ctrl.person.houseAddress" readonly >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="school" class="RuleName">毕业院校：</label>
+                <input type="text" class="form-control Rinput60" id="school" ng-model="ctrl.person.school"  readonly>
+            </div>
+            <div class="form-group RuleInput">
+                <label for="major" class="RuleName">专业：</label>
+                <input type="text" class="form-control Rinput60" id="major" ng-model="ctrl.person.major"  readonly>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">学历：</label>
+                <select  class="form-control Rinput60"  ng-model="ctrl.twfDictxl" ng-options="obj.code as obj.name for obj in ctrl.twfDictxlList" name="namexl"><option value="">请选择</option></select>
+                <!--<input type="text" class="form-control Rinput40" id="education" ng-model="ctrl.person.education"  >-->
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">毕业时间：</label>
+                <!--<input type="text" class="form-control Rinput40" id="graduateDate" ng-model="ctrl.person.graduateDate"  >-->
+                <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.graduateDate" is-open="ctrl.graopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                <button type="button" class="btn RSerBut" ng-click="ctrl.opengra($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="linkman" class="RuleName">紧急联系人：</label>
+                <input type="text" class="form-control Rinput60" id="linkman" name="linkman" ng-model="ctrl.person.linkman"  readonly>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="linkPhone" class="RuleName">联系人电话：</label>
+                <input type="text" class="form-control Rinput60" id="linkPhone" ng-model="ctrl.person.linkPhone" name="linkPhone" readonly>
+            </div>
+
+
+            <div class="form-group RuleInput">
+                <label for="remark" class="RuleName">备注：</label>
+                <input type="text" class="form-control Rinput60" id="remark" ng-model="ctrl.person.remark"  readonly>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+</form>

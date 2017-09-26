@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+</head>
+<body>
+<div class="cheUser">
+    <div> 积分记录</div>
+</div>
+<!--个人信息内容-->
+<div class="PerInfo">
+    <ul class="vip_infor">
+        <li><p>姓名</p>
+            <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.tbJfPerson.name" readonly></li>
+        <li><p>当前积分</p>
+            <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.tbJfPerson.score" readonly></li>
+        <li><p>当前等级</p>
+            <input type="text" ng-model="$ctrl.tbJfPerson.rankName" class="InfoInput InfoInputOnly" readonly></li>
+        <li ng-repeat="jfRecord in $ctrl.jfRecordList">
+            <p style="width: 100px">{{jfRecord.created | date : 'yyyy-MM-dd'}}</br> <span style="font-size: 12px">{{jfRecord.remark}}</span></p>
+            <input type="text" class="InfoInput InfoInputOnly" ng-model="jfRecord.score" readonly></li>
+    </ul>
+</div>
+</body>
+</html>

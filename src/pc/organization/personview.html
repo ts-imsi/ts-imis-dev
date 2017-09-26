@@ -1,0 +1,118 @@
+<form class="form-horizontal"  novalidate role="form">
+    <!--标题-->
+    <div class="fl RuleTit">
+        <i>|</i>
+        查看人员
+        <div class="fr">
+            <input  type="submit"  class="save fl" ng-click="personctrl.updateTuser()" value="更新" />
+            <input type="button" class="CloseBut fl" ng-click="personctrl.closePanel2()"/>
+        </div>
+    </div>
+
+    <div class="RuleCont">
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="selePepcont fl">
+                    <div class="form-group RuleInput">
+                        <label for="workNum" class="RuleName">工号：</label>
+                        <input type="text" class="form-control Rinput60" id="workNum" ng-model="personctrl.tppersonnel.workNum">
+                    </div>
+
+                    <div class="form-group RuleInput">
+                        <label for="name" class="RuleName">姓名：</label>
+                        <input type="text" class="form-control Rinput60" id="name" ng-model="personctrl.tppersonnel.name" readonly>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">性别：</label>
+                        <label class="checkbox-inline i-checks">
+                            <input type="radio" name="person-sex" value="1" ng-model="personctrl.tppersonnel.sex"><i></i> 男
+                        </label>
+                        <label class="checkbox-inline i-checks">
+                            <input type="radio" name="person-sex" value="0" ng-model="personctrl.tppersonnel.sex"><i></i> 女
+                        </label>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">手机号码：</label>
+                        <input type="text" class="form-control Rinput60" id="phone" ng-model="personctrl.tppersonnel.phone"  readonly>
+                    </div>
+
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">入职时间：</label>
+                        <input type="text" class="form-control Rinput60" id="entryDate" ng-model="personctrl.tppersonnel.entryDate" readonly>
+                    </div>
+
+                </div>
+                <div class="selePepPhon fr">
+                    <!--照片-->
+                    <div class="PepPhon">
+                        <img ng-if="!personctrl.tppersonnel.picture" src="../img/a0.jpg"  />
+                        <img ng-if="personctrl.tppersonnel.picture" ng-src="{{personctrl.tppersonnel.picture}}"  />
+                    </div>
+                    <!--工龄-->
+                    <div class="WorkingYears">
+                        在职时长：<span ng-bind="personctrl.tppersonnel.entryDate|incumbency"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group RuleInput" >
+                    <label class="RuleName">所属部门：</label>
+                    <input type="text" class="form-control Rinput" id="depName" ng-model="personctrl.tppersonnel.depName"  readonly>
+                </div>
+
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">岗位名称：</label>
+                    <input type="text" class="form-control Rinput" id="position" ng-model="personctrl.tppersonnel.position"  readonly>
+                </div>
+
+                <div class="form-group RuleInput NkTab">
+                    <label class="RuleName">标签：</label>
+                    <ul ng-repeat="tag in personctrl.tppersonnel.tagList">
+                        <li class="TabBul">
+                            <span ng-bind="tag.tagName"></span>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group RuleInput" >
+                    <label class="RuleName">账号：</label>
+                    <input type="text" class="form-control Rinput" placeholder="" ng-model="personctrl.Tname" readonly>
+                </div>
+
+
+                <div class="form-group RuleInput" >
+                    <label class="RuleName">密码：</label>
+                    <input type="password" class="form-control Rinput" placeholder="" ng-model="personctrl.Tpassword">
+                </div>
+
+                <div class="form-group RuleInput" style="position: relative;">
+                    <label class="RuleName">状态：</label>
+                    <div class="form-control ng-pristine ng-valid ng-touched NkinputSelec Rinput40" ng-click="personctrl.toggZhuant()" ng-bind="personctrl.zt"></div>
+                    <div class="Nkxy NkNewpopover Rinput40" style="display: block;" ng-show="personctrl.myZhuant" >
+                        <div class="Nkarrow"></div>
+                        <div class="Nkpopover-inner">
+                            <div class="Nkpopover-content" >
+                                <ul>
+                                    <a ng-click="personctrl.changeYue('启用')"><li>启用</li></a>
+                                    <a ng-click="personctrl.changeYue('关闭')"><li>关闭</li></a>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</form>

@@ -1,0 +1,447 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">考勤异常</h1>
+</div>
+<div class="wrapper-md">
+
+    <!--切换-->
+    <div class="Nk-tab-CheckWork" id="nav_li" ng-show="ctrl.isShowOpe('show_top')">
+        <a ng-class="ctrl.content=='考勤列表'?'Nkselect':'col-lg-2'" ng-click="ctrl.alertMe('考勤列表')">
+            <div class="bgGreeg bgDSize h60">
+                <div class="CheckWorkbody">
+                    <i class="Nkgreen">签到人数</i>
+                    <span class="NkGray" ng-bind="ctrl.attCount.signInNum"></span>
+                    <em>
+                        <div class="NkNkarrow-bottom arrow-box" >
+                            <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+                        </div>
+                    </em>
+                </div>
+            </div>
+        </a>
+
+        <a ng-class="ctrl.content=='迟到列表'?'Nkselect':'col-lg-2'" ng-click="ctrl.alertMe('迟到列表')">
+            <div class="bgOrg bgDSize h60">
+                <div class="CheckWorkbody">
+                    <i class="NkOrg">迟到人数</i>
+                    <span class="NkGray" ng-bind="ctrl.attCount.lateNum"></span>
+                    <em>
+                        <div class="NkNkarrow-bottom arrow-box" >
+                            <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+                        </div>
+                    </em>
+                </div>
+            </div>
+        </a>
+
+        <a class="col-lg-2"ng-class="ctrl.content=='早退列表'?'Nkselect':'col-lg-2'" ng-click="ctrl.alertMe('早退列表')">
+            <div class="bgBuld bgDSize h60">
+                <div class="CheckWorkbody">
+                    <i class="NkBuld">早退人数</i>
+                    <span class="NkGray" ng-bind="ctrl.attCount.backNum"></span>
+                    <em>
+                        <div class="NkNkarrow-bottom arrow-box" >
+                            <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+                        </div>
+                    </em>
+                </div>
+            </div>
+        </a>
+
+        <a class="col-lg-2"ng-class="ctrl.content=='缺勤列表'?'Nkselect':'col-lg-2'" ng-click="ctrl.alertMe('缺勤列表')">
+            <div class="bgRed bgDSize h60">
+                <div class="CheckWorkbody">
+                    <i class="NkRed">当天未签到</i>
+                    <span class="NkGray" ng-bind="ctrl.attCount.lackNum"></span>
+                    <em>
+                        <div class="NkNkarrow-bottom arrow-box" >
+                            <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+                        </div>
+                    </em>
+                </div>
+            </div>
+        </a>
+
+        <a ng-class="ctrl.content=='加班列表'?'Nkselect':'col-lg-2'" ng-click="ctrl.alertMe('加班列表')">
+            <div class="bgBu bgDSize h60">
+                <div class="CheckWorkbody">
+                    <i class="NkBu">加班人数</i>
+                    <span class="NkGray" ng-bind="ctrl.attCount.addWorkNum"></span>
+                    <em>
+                        <div class="NkNkarrow-bottom arrow-box" >
+                            <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+                        </div>
+                    </em>
+                </div>
+            </div>
+        </a>
+
+
+        <a ng-class="ctrl.content=='请假列表'?'Nkselect':'col-lg-2'" ng-click="ctrl.alertMe('请假列表')">
+            <div class="bgYew bgDSize h60">
+                <div class="CheckWorkbody">
+                    <i class="NkYew">请假人数</i>
+                    <span class="NkGray" ng-bind="ctrl.attCount.leaveNum"></span>
+                    <em>
+                        <div class="NkNkarrow-bottom arrow-box" >
+                            <b class="Nkbottom"><i class="Nkbottom-arrow1"></i><i class="Nkbottom-arrow2"></i></b>
+                        </div>
+                    </em>
+                </div>
+            </div>
+        </a>
+
+
+    </div>
+
+
+    <!--表格显示-->
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div  class="fr">
+                <div class="col-px-180 fl" style="position: relative;" ng-if="ctrl.content!='缺勤列表'">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.dtStart" is-open="ctrl.openedStart" min-date="minDate" datepicker-options="dateOptions" date-disabled="ctrl.disabled(date, mode)" ng-required="true" close-text="关闭" />
+                        <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="ctrl.openStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                    </p>
+                </div>
+                <span style="float: left;padding-top: 5px;" ng-if="ctrl.content!='缺勤列表'">--</span>
+                <div class="col-px-180 fl" style="position: relative;" ng-if="ctrl.content!='缺勤列表'">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.dtEnd" is-open="ctrl.openedEnd" min-date="minDate" datepicker-options="dateOptions" date-disabled="ctrl.disabled(date, mode)" ng-required="true" close-text="关闭" />
+                        <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="ctrl.openEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                    </p>
+                </div>
+                <div class="col-px-80 fl" ng-if="ctrl.content!='缺勤列表'">
+                    <button class="btn btn-default xianshi Nksx" ng-click="ctrl.submitSeach(ctrl.content)">
+                        查询</button>
+                </div>
+                <div class="col-px-80 fl" style="position: relative;" id="myShaix">
+                    <button class="btn btn-default saixuan Nksx"  ng-click="ctrl.toggShaix()">
+                        筛选</button>
+                    <!--筛选弹出-->
+                    <div  class="shaixBox"  ng-show="ctrl.myShaix">
+                        <div  class="wixian"></div>
+
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-70 control-label fl NkSN">姓名</label>
+                                <div class="col-px-230 fr">
+                                    <input type="text" class="form-control" placeholder="姓名筛选" ng-model="ctrl.name">
+                                </div>
+                            </div>
+                            <ul>
+                                <li ng-repeat="name in ctrl.nameStrs" ng-bind="name"></li>
+                            </ul>
+                        </div>
+                        <!--部门-->
+                        <div class="brbotP NKwrapper Nkcont" ng-show="ctrl.isShowOpe('filter')">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-70 control-label fl NkSN">部门</label>
+                                <div class="col-px-230 fr">
+                                    <input type="text" class="form-control" placeholder="部门筛选" ng-model="ctrl.tagName">
+                                </div>
+                            </div>
+                            <ul>
+                                <li ng-repeat="tagN in ctrl.tagNameStrs" ng-bind="tagN"></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="brbotP NKwrapper Nkcont" ng-show="ctrl.content=='考勤列表'||ctrl.content=='迟到列表'">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-70 control-label fl NkSN">签到类型</label>
+                                <div class="col-px-230 fr">
+                                    <select class="form-control Rinput60" ng-model="ctrl.signinType">
+                                        <option value="">请选择</option>
+                                        <option value="signIn">公司签到</option>
+                                        <option value="sign">外出考勤</option>
+                                        <option value="inEx">公司迟到</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="brbotP NKwrapper Nkcont" ng-show="ctrl.content=='请假列表'">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-70 control-label fl NkSN">请假操作人</label>
+                                <div class="col-px-230 fr">
+                                    <input type="text" class="form-control" placeholder="操作人筛选" ng-model="ctrl.createUser">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--重置按钮-->
+                        <div class="fr NKwrapper">
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.cancel()">清空</button>
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.submitSeach(ctrl.content)">查询</button>
+                        </div>
+
+                    </div>
+                    <!--筛选弹出end-->
+
+                </div>
+                <div class="col-px-140 fl" ng-if="ctrl.content=='迟到列表'||ctrl.content=='早退列表'">
+                    <button class="btn btn-default piliang Nksx" ng-click="ctrl.attenceToLeaveMultiple(ctrl.content)">
+                        批量请假</button>
+                </div>
+                <div class="col-px-80 fl" ng-show="ctrl.isShowOpe('export')">
+                    <a href="{{ctrl.excelExprot}}"><button class="btn btn-default daochu Nksx" ng-click="ctrl.myShaix = false">
+                        导出</button></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light JG">
+                <thead class="bgJ">
+                <tr>
+                    <th style="width:20px;">
+                        <label class="i-checks m-b-none">
+                            <input type="checkbox" ng-checked="ctrl.isSelectedAll()"><i></i>
+                        </label>
+                    </th>
+                    <th>考勤日期</th>
+                    <th>姓名</th>
+                    <th>部门</th>
+                    <th>星期</th>
+                    <th ng-show="ctrl.content=='考勤列表'">签到时间</th>
+                    <th ng-show="ctrl.content=='考勤列表'">签到地点</th>
+                    <th ng-show="ctrl.content=='考勤列表'">签到类型</th>
+                    <th ng-show="ctrl.content=='考勤列表'">外出事由</th>
+
+                    <th ng-show="ctrl.content=='迟到列表'">签到时间</th>
+                    <th ng-show="ctrl.content=='迟到列表'">考勤地点</th>
+                    <th ng-show="ctrl.content=='迟到列表'">迟到时长(分)</th>
+                    <th ng-show="ctrl.content=='迟到列表'">签到类型</th>
+                    <th ng-show="ctrl.content=='迟到列表'">备注</th>
+
+                    <th ng-show="ctrl.content=='早退列表'">签退时间</th>
+                    <th ng-show="ctrl.content=='早退列表'">考勤地点</th>
+                    <th ng-show="ctrl.content=='早退列表'">早退时长(分)</th>
+                    <th ng-show="ctrl.content=='早退列表'">备注</th>
+
+                    <th ng-show="ctrl.content=='缺勤列表'">原因</th>
+
+                    <th ng-show="ctrl.content=='加班列表'">签到时间</th>
+                    <th ng-show="ctrl.content=='加班列表'">签到地点</th>
+                    <th ng-show="ctrl.content=='加班列表'">签退时间</th>
+                    <th ng-show="ctrl.content=='加班列表'">签退地点</th>
+                    <th ng-show="ctrl.content=='加班列表'">加班时长</th>
+                    <th ng-show="ctrl.content=='加班列表'">加班事由</th>
+
+                    <th ng-show="ctrl.content=='请假列表'">请假类型</th>
+                    <th ng-show="ctrl.content=='请假列表'">请假时间</th>
+                    <th ng-show="ctrl.content=='请假列表'">操作人</th>
+                    <th ng-show="ctrl.content=='请假列表'">请假事由</th>
+
+                    <th style="width:60px;" ng-if="ctrl.content=='迟到列表'||ctrl.content=='早退列表'||ctrl.content=='缺勤列表'">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="att in ctrl.attList">
+                    <td><label class="i-checks m-b-none"><input type="checkbox" ng-checked="ctrl.isSelected(att)" ng-click="ctrl.updateSelection($event,att)" name="post[]"><i></i></label></td>
+                    <td ng-bind="att.attenceDate"></td>
+                    <td ng-bind="att.name"></td>
+                    <td ng-bind="att.tagName"></td>
+                    <td ng-bind="att.week | dateTOsun"></td>
+                    <td ng-show="ctrl.content=='考勤列表'" ng-bind="att.signinTime | date:'HH:mm:ss'"></td>
+                    <td ng-show="ctrl.content=='考勤列表'" ng-bind="att.signinAddress"></td>
+                    <td ng-show="ctrl.content=='考勤列表'" ng-bind="att.signinType | signinType"></td>
+                    <td ng-show="ctrl.content=='考勤列表'" ng-bind="att.remark"></td>
+
+                    <td ng-show="ctrl.content=='迟到列表'" ng-bind="att.signinTime | date:'HH:mm:ss'"></td>
+                    <td ng-show="ctrl.content=='迟到列表'" ng-bind="att.signinAddress"></td>
+                    <td ng-show="ctrl.content=='迟到列表'" ng-bind="att.lateTime"></td>
+                    <td ng-show="ctrl.content=='迟到列表'" ng-bind="att.signinType | signinType"></td>
+                    <td ng-show="ctrl.content=='迟到列表'" ng-bind="att.remark"></td>
+
+                    <td ng-show="ctrl.content=='早退列表'" ng-bind="att.signoutTime | date:'HH:mm:ss'"></td>
+                    <td ng-show="ctrl.content=='早退列表'" ng-bind="att.signoutAddress"></td>
+                    <td ng-show="ctrl.content=='早退列表'" ng-bind="att.backTime"></td>
+                    <td ng-show="ctrl.content=='早退列表'" ng-bind="att.remark"></td>
+
+                    <td ng-show="ctrl.content=='缺勤列表'" ng-bind="att.remark"></td>
+
+                    <td ng-show="ctrl.content=='加班列表'" ng-bind="att.signinTime | date:'HH:mm:ss'"></td>
+                    <td ng-show="ctrl.content=='加班列表'" ng-bind="att.signinAddress"></td>
+                    <td ng-show="ctrl.content=='加班列表'" ng-bind="att.signoutTime | date:'HH:mm:ss'"></td>
+                    <td ng-show="ctrl.content=='加班列表'" ng-bind="att.signoutAddress"></td>
+                    <td ng-show="ctrl.content=='加班列表'" ng-bind="att.workHours"></td>
+                    <td ng-show="ctrl.content=='加班列表'" ng-bind="att.remark"></td>
+
+                    <td ng-show="ctrl.content=='请假列表'" ng-bind="att.type | LeaveType"></td>
+                    <td ng-show="ctrl.content=='请假列表'&&att.leaveHours==2">{{att.startTime}}~{{att.endTime}}</td>
+                    <td ng-show="ctrl.content=='请假列表'&&att.leaveHours==3">08:30:00~12:00:00</td>
+                    <td ng-show="ctrl.content=='请假列表'&&att.leaveHours==4">14:00:00~17:30:00</td>
+                    <td ng-show="ctrl.content=='请假列表'&&att.leaveHours==8">08:30:00~17:30:00</td>
+                    <td ng-show="ctrl.content=='请假列表'" ng-bind="att.createUser"></td>
+                    <td ng-show="ctrl.content=='请假列表'" ng-bind="att.remark"></td>
+
+                    <td ng-if="ctrl.content=='迟到列表'||ctrl.content=='早退列表'||ctrl.content=='缺勤列表'">
+                        <button  class="btn btn-sm btn-default" ng-click="ctrl.attenceToLeaveSingle(att,ctrl.content)">请假</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="text-center text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo" max-size="ctrl.maxSize" ng-change="ctrl.pageChanged(ctrl.content)"
+                                class="pagination-sm m-t-none m-b"
+                                boundary-links="true" rotate="false" num-pages="ctrl.pageSize"></pagination>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="text/ng-template" id="attenceToLeave.html">
+        <form class="form-horizontal" name="attenceForm" ng-submit="ctrl.attenceToLeavesave(attenceForm.$valid,attenceForm.$invalid,ctrl.attenceLeave)" novalidate role="form">
+            <div class="modal-header">
+                <h4 class="modal-title">考勤异常操作</h4>
+            </div>
+            <div class="RuleCont">
+                <div class="panel-body">
+
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">请假类型：</label>
+                        <select class="form-control Rinput60" ng-model="ctrl.twfDict"
+                                ng-options="twfDict.name  for twfDict in ctrl.twfDictList" required name="leave" ng-change="ctrl.changeOptions()">
+                            <option value="">请选择请假类型</option>
+                        </select>
+                        <span class="errorInput" ng-show="attenceForm.leave.$error.required && ctrl.submitted">该选项框必填</span>
+                    </div>
+                    <div ng-if="ctrl.xianshi">
+                        <div class="form-group RuleInput">
+                            <label class="RuleName">开始时间：</label>
+                            <input type="text" class="form-control Rinput60" ng-model="ctrl.attenceLeave.startTime" name="startTime" ng-maxlength="100" required ng-pattern="ctrl.httptimeReg">
+                            <span class="errorInput" ng-show="attenceForm.startTime.$error.pattern"> 时间格式不合法;如："08:45:00"</span>
+                            <span class="errorInput" ng-show="attenceForm.startTime.$error.required && ctrl.submitted"> 该选项框必填 </span>
+                        </div>
+                        <div class="form-group RuleInput">
+                            <label class="RuleName">结束时间：</label>
+                            <input type="text" class="form-control Rinput60" ng-model="ctrl.attenceLeave.endTime" name="endTime" ng-maxlength="100" required ng-pattern="ctrl.httptimeReg">
+                            <span class="errorInput" ng-show="attenceForm.endTime.$error.pattern"> 时间格式不合法;如："08:45:00" </span>
+                            <span class="errorInput" ng-show="attenceForm.endTime.$error.required && ctrl.submitted"> 该选项框必填 </span>
+                        </div>
+                    </div>
+                    <div ng-if="!ctrl.xianshi">
+                        <div class="form-group RuleInput">
+                            <label class="RuleName">请假时间：</label>
+                            <select class="form-control Rinput60" ng-model="ctrl.riqi" name="riqi" required>
+                                <option value="3">上0.5</option>
+                                <option value="4">下0.5</option>
+                                <option value="8">1</option>
+                            </select>
+                            <span class="errorInput" ng-show="attenceForm.riqi.$error.required && ctrl.submitted"> 该选项框必填</span>
+                        </div>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">请假事由：</label>
+                        <textarea  type="text" class="form-control Rinput60" cols="60" rows="4" required name="remark" ng-model="ctrl.attenceLeave.remark"></textarea>
+                        <span class="errorInput" ng-show="attenceForm.remark.$error.required && ctrl.submitted"> 该选项框必填 </span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="submit">保存</button>
+                <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+            </div>
+        </form>
+    </script>
+
+    <script type="text/ng-template" id="attenceToLeaveMultiple.html">
+        <div class="modal-header">
+            <h4 class="modal-title" id="show-title">考勤异常操作</h4>
+        </div>
+        <form class="form-horizontal" name="attenceMulForm"
+              ng-submit="ctrl.attenceToLeaveMulsave(attenceMulForm.$valid,attenceMulForm.$invalid,ctrl.attenceLeave)"
+              novalidate role="form">
+            <div class="RuleCont">
+                <div class="panel-body">
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">调整人数：</label>
+                        <input type="text" class="form-control Rinput60" ng-model="ctrl.attenceMul" readonly>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">请假类型：</label>
+                        <select class="form-control Rinput60" ng-model="ctrl.twfDict"
+                                ng-options="twfDict.name  for twfDict in ctrl.twfDictList" required name="leave"
+                                ng-change="ctrl.changeOptions()">
+                            <option value="">请选择请假类型</option>
+                        </select>
+                        <span class="errorInput"
+                              ng-show="form.leave.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+
+                    <div ng-if="ctrl.xianshi">
+                        <div class="form-group RuleInput">
+                            <label class="RuleName">开始时间：</label>
+                            <input type="text" class="form-control Rinput60" ng-model="ctrl.attenceLeave.startTime"
+                                   name="startTime" ng-maxlength="100" required ng-pattern="ctrl.httptimeReg">
+                            <span class="errorInput"
+                                  ng-show="attenceMulForm.startTime.$error.pattern">
+                                时间格式不合法;如："08:45:00"
+                            </span>
+                            <span class="errorInput"
+                                  ng-show="attenceMulForm.startTime.$error.required && ctrl.submitted">
+                                        该选项框必填
+                            </span>
+                        </div>
+                        <div class="form-group RuleInput">
+                            <label class="RuleName">结束时间：</label>
+                            <input type="text" class="form-control Rinput60" ng-model="ctrl.attenceLeave.endTime"
+                                   name="endTime" ng-maxlength="100" required ng-pattern="ctrl.httptimeReg">
+                            <span class="errorInput"
+                                  ng-show="attenceMulForm.endTime.$error.pattern">
+                                    时间格式不合法;如："08:45:00"
+                        </span>
+                            <span class="errorInput"
+                                  ng-show="attenceMulForm.endTime.$error.required && ctrl.submitted">
+                                        该选项框必填
+                        </span>
+                        </div>
+                    </div>
+                    <div ng-if="!ctrl.xianshi">
+                        <div class="form-group RuleInput">
+                            <label class="RuleName">请假时间：</label>
+                            <select class="form-control Rinput60" ng-model="ctrl.riqi" name="riqi" required>
+                                <option value="3">上0.5</option>
+                                <option value="4">下0.5</option>
+                                <option value="8">1</option>
+                            </select>
+                            <span class="errorInput"
+                                  ng-show="form.leave.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                            <span class="errorInput"
+                                  ng-show="attenceMulForm.riqi.$error.required && ctrl.submitted">
+                                        该选项框必填
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">请假事由：</label>
+                        <textarea type="text" class="form-control Rinput60" cols="60" rows="4" required name="remark"
+                                  ng-model="ctrl.attenceLeave.remark"></textarea>
+                        <span class="errorInput"
+                              ng-show="attenceMulForm.remark.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="submit">保存</button>
+                <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+            </div>
+        </form>
+    </script>
+</div>

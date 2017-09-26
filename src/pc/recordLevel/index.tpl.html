@@ -1,0 +1,137 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">积分管理</h1>
+</div>
+
+<div class="wrapper-md">
+
+    <div class="panel panel-default" style="height: 500px">
+        <!-- hbox layout -->
+        <div class="hbox hbox-auto-xs hbox-auto-sm bg-light ">
+            <!-- column -->
+            <div class="col  lter b-r">
+                <div class="vbox">
+                    <div class="wrapper-xs b-b">
+                        <div class="input-group m-b-xxs">
+                            <span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+                            <input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="类型/名称/初始分数/晋级分数" ng-model="query">
+                        </div>
+                    </div>
+                    <div class="row-row">
+                        <div class="cell scrollable hover">
+                            <div class="cell-inner">
+                                <div class="table-responsive">
+                                    <table class="table table-striped b-t b-light">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:20px;">
+                                                <label class="i-checks m-b-none">
+                                                    <input type="checkbox" ng-model="ctrl.checkAll" ng-click="ctrl.selectAll($event)"><i></i>
+                                                </label>
+                                            </th>
+                                            <th>类型</th>
+                                            <th>名称</th>
+                                            <th>初始分数</th>
+                                            <th>晋级分数</th>
+                                            <th>排序</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="record in ctrl.recordRankList | filter:query" style="cursor: pointer;">
+                                            <td ng-style="record.selectedStyle"><label class="i-checks m-b-none"><input type="checkbox" name="id" ng-click="ctrl.updateSelection($event,record)" ng-model="record.check"><i></i></label></td>
+                                            <td ng-style="record.selectedStyle" ng-click="ctrl.selectLevel(record)">{{record.type}}</td>
+                                            <td ng-style="record.selectedStyle" ng-click="ctrl.selectLevel(record)">{{record.name}}</td>
+                                            <td ng-style="record.selectedStyle" ng-click="ctrl.selectLevel(record)">{{record.score}}</td>
+                                            <td ng-style="record.selectedStyle" ng-click="ctrl.selectLevel(record)">{{record.prmScore}}</td>
+                                            <td ng-style="record.selectedStyle" ng-click="ctrl.selectLevel(record)">{{record.px}}</td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper b-t text-center">
+                        <a href class="btn btn-sm btn-danger pull-left" ng-click="ctrl.deleteLevel()"><i class="fa fa-trash-o fa-fw m-r-xs"></i> 批量删除</a>
+                        <a href class="btn btn-sm btn-default " ng-click="ctrl.createLevel()"><i class="fa fa-plus fa-fw m-r-xs"></i> 添加</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /column -->
+
+            <!-- column -->
+            <div class="col bg-white-only" style="width: 45%">
+                <form name="form-level" class="form-validation vbox">
+                    <div class="vbox">
+                        <div class="wrapper-sm b-b">
+                            <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
+                                <a class="pull-right text-danger m-r" ng-hide="ctrl.levelAdd" ng-click="ctrl.deleteSignLevel(ctrl.recordLevel)">删除</a>
+                                <a class="pull-right text-info m-r-lg" ng-hide="ctrl.recordLevel.editing || ctrl.levelAdd" ng-click="ctrl.editLevel(ctrl.recordLevel)">编辑</a>
+                                <a class="pull-right text-info m-r-lg" ng-show="ctrl.recordLevel.editing || ctrl.levelAdd" ng-click="ctrl.doneEditingLevel(ctrl.recordLevel)">取消</a>
+                                <button type="submit" class="pull-right no-border no-bg text-info m-r-lg font-bold" style="color:#23b7e5;margin-top: -2px;" ng-show="ctrl.levelItem.editing || ctrl.levelAdd" ng-click="ctrl.doLevel()">完成</button>
+                                <span><h4 style="margin-top: 2px;margin-bottom: 2px;">信息</h4></span>
+                            </div>
+                        </div>
+                        <div class="row-row">
+                            <div class="cell">
+                                <div class="cell-inner">
+                                    <div class="wrapper-lg">
+                                        <!-- fields -->
+                                        <div class="form-horizontal">
+
+                                            <div class="form-group m-b-sm">
+                                                <input type="hidden"   ng-model="ctrl.recordLevel.pkid">
+                                                <label class="col-sm-3 control-label"><strong>类型：</strong></label>
+                                                <div class="col-sm-9">
+                                                    <p class="form-control-static" ng-hide="ctrl.recordLevel.editing || ctrl.levelAdd">{{ctrl.recordLevel.type}}</p>
+                                                    <input type="text" class="form-control" ng-show="ctrl.recordLevel.editing || ctrl.levelAdd" ng-model="ctrl.recordLevel.type" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-b-sm">
+                                                <label class="col-sm-3 control-label"><strong>名称：</strong></label>
+                                                <div class="col-sm-9">
+                                                    <p class="form-control-static" ng-hide="ctrl.recordLevel.editing || ctrl.levelAdd">{{ctrl.recordLevel.name}}</p>
+                                                    <select class="form-control" ng-show="ctrl.recordLevel.editing || ctrl.levelAdd" ng-model="ctrl.recordLevel.name" required>
+                                                        <option value="">请选择</option>
+                                                        <option value="初级">初级</option>
+                                                        <option value="中级">中级</option>
+                                                        <option value="高级">高级</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-b-sm">
+                                                <label class="col-sm-3 control-label"><strong>初始分数：</strong></label>
+                                                <div class="col-sm-9">
+                                                    <p class="form-control-static" ng-hide="ctrl.recordLevel.editing || ctrl.levelAdd">{{ctrl.recordLevel.score}}</p>
+                                                    <input type="number" class="form-control" ng-show="ctrl.recordLevel.editing || ctrl.levelAdd" ng-model="ctrl.recordLevel.score" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-b-sm">
+                                                <label class="col-sm-3 control-label"><strong>晋级分数：</strong></label>
+                                                <div class="col-sm-9">
+                                                    <p class="form-control-static" ng-hide="ctrl.recordLevel.editing || ctrl.levelAdd">{{ctrl.recordLevel.prmScore}}</p>
+                                                    <input type="number" class="form-control" ng-show="ctrl.recordLevel.editing || ctrl.levelAdd" ng-model="ctrl.recordLevel.prmScore" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-b-sm">
+                                                <label class="col-sm-3 control-label"><strong>排序：</strong></label>
+                                                <div class="col-sm-9">
+                                                    <p class="form-control-static" ng-hide="ctrl.recordLevel.editing || ctrl.levelAdd">{{ctrl.recordLevel.px}}</p>
+                                                    <input type="number" class="form-control" ng-show="ctrl.recordLevel.editing || ctrl.levelAdd" ng-model="ctrl.recordLevel.px" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- / fields -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /column -->
+        </div>
+        <!-- /hbox layout -->
+    </div>
+
+</div>

@@ -1,0 +1,278 @@
+
+<div>
+    <ol class="breadcrumb">
+        <li><a ui-sref="Index">Index</a></li>
+        <li><a ui-sref="About">About</a></li>
+        <li><a ui-sref="Mobile">Mobile</a></li>
+        <li class="active">Location</li>
+        <li><a ui-sref="BaiduMap">BaiduMap</a></li>
+    </ol>
+
+
+    <div>
+        <button type="button" ng-click="$ctrl.showLocationView()" class="btn btn-default">新增考勤地点</button>
+        <table class="table table-bordered">
+            <caption>考勤规则列表</caption>
+            <thead>
+            <tr>
+                <th>考勤规则名称</th>
+                <th>考勤地址</th>
+                <th>部门名称</th>
+                <th>标签名</th>
+                <th>上班时间</th>
+                <th>下班时间</th>
+                <th>考勤范围</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="location in $ctrl.locationList" >
+                <td ng-bind="location.name"></td>
+                <td ng-bind="location.address"></td>
+                <td ng-bind="location.depName"</td>
+                <td ng-bind="location.tagName"></td>
+                <td ng-bind="location.signinTime"></td>
+                <td ng-bind="location.signoutTime"></td>
+                <td  ng-bind="location.range"></td><!--<span ng-show="!edit"  ng-dblclick="edit = true" ng-bind="location.range"></span>
+                    <input type="text"  ng-show="edit" ng-model="location.range" ng-blur="$ctrl.updateLocation(this,location)"/>-->
+                <td ><button type="button" ng-click="$ctrl.deleteLocation(location.pkid)" class="btn btn-default">删除</button>
+                    <button type="button" ng-click="$ctrl.updateLocationView(location)" class="btn btn-default">修改</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <ul uib-pagination total-items="$ctrl.totalCount" ng-model="$ctrl.pageNo" ng-change="$ctrl.pageChanged()"
+            items-per-page="$ctrl.pageSize" max-size="$ctrl.maxSize" class="pagination-sm"
+            boundary-links="true" force-ellipses="true"></ul>
+    </div>
+</div>
+<script type="text/ng-template" id="ShowLocationView.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">新增考勤地点</h3>
+    </div>
+    <form class="form-horizontal" name="userForm" ng-submit="$ctrl.LocationSave(userForm.$valid,$ctrl.tbAttenceLocation)" novalidate role="form">
+
+        <!--<button class="btn btn-primary" type="button" ng-click="$ctrl.LocationSave($ctrl.tbAttenceLocation)">保存</button>-->
+        <div class="form-group">
+
+            <label for="name" class="col-sm-3 control-label">考勤地址名称</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="name" ng-model="$ctrl.tbAttenceLocation.name"  required="required"  name="name"  maxlength="50" placeholder="请输入名称">
+
+            </div>
+            <div class="error" ng-messages="userForm.name.$error" style="color:red;" ng-if="userForm.name.$touched">
+                <div ng-message="required">考勤地址名称不能为空</div>
+                <div ng-message="maxlength">考勤地址名称长度不能超过50</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">标签名</label>
+            <div class="col-sm-6">
+                <select class="form-control" ng-model="$ctrl.twfDict" ng-options="twfDict.name  for twfDict in $ctrl.twfDictList"></select>
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">部门名称</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="depName" ng-model="$ctrl.tbAttenceLocation.depName"  required="required"  name="depName"  maxlength="100">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">部门id</label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" id="depId" ng-model="$ctrl.tbAttenceLocation.depId"  required="required"  name="depId"  maxlength="100">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">排除日期</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="outDate" ng-model="$ctrl.tbAttenceLocation.outDate"  required="required"  name="outDate"  maxlength="100">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">增加日期</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="inDate" ng-model="$ctrl.tbAttenceLocation.inDate"  required="required"  name="inDate"  maxlength="100">
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="signinTime" class="col-sm-3 control-label">上班时间</label>
+            <div class="col-sm-3">
+                <input type="text"  class="form-control" id="signinTime" ng-model="$ctrl.tbAttenceLocation.signinTime"   ng-maxlength="100" name="signinTime" placeholder="请输入日期">
+            </div>
+            <label for="signoutTime" class="col-sm-2 control-label">下班时间</label>
+            <div class="col-sm-3">
+                <input type="text"  class="form-control" id="signoutTime" ng-model="$ctrl.tbAttenceLocation.signoutTime"   ng-maxlength="100" name="signoutTime" placeholder="请输入日期">
+            </div>
+        </div>
+        <div class="row">
+            <label  class="col-sm-3 control-label">星期选择</label>
+            <div class="col-sm-7">
+                <ul class="checkbox-inline">
+
+                    <li class="checkbox-inline" ng-repeat="week in $ctrl.weekList">
+                        <input class="checkbox-inline" type="checkbox"  id="week"   ng-checked="$ctrl.isSelected(week)" ng-click="$ctrl.updateSelection($event,week)"><span ng-bind="week"></span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="row">
+            <label for="range" class="col-sm-3 control-label">考勤范围</label>
+            <div class="col-sm-6">
+                <input type="number"  class="form-control" id="range" ng-model="$ctrl.tbAttenceLocation.range"   ng-maxlength="3" name="range" placeholder="请输入数字">
+            </div>
+            <div class="col-sm-1">米</div>
+            <div class="error" ng-messages="userForm.range.$error" style="color:red;" ng-if="userForm.range.$touched">
+                <div ng-message="required">考勤范围不能为空</div>
+                <div ng-message="maxlength">考勤范围长度不能超过3</div>
+            </div>
+        </div>
+        <div class="form-group">
+        </div>
+        <div class="row">
+            <label for="address" class="col-sm-3 control-label">详细地址</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="$ctrl.tbAttenceLocation.address" required="required"  id="address" name="address" placeholder="请输入地址">
+            </div>
+            <div class="error" ng-messages="userForm.address.$error" style="color:red;" ng-if="userForm.address.$touched">
+                <div ng-message="required">详细地址不能为空</div>
+            </div>
+            <div class="col-sm-1"><button type="button" ng-click="$ctrl.showBaiduMapAddress()" class="btn btn-default">搜索</button></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <img ng-src="{{$ctrl.baidumapurl}}"/>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">保存</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>
+
+<script type="text/ng-template" id="updateLocationView.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="update-title">修改考勤地点</h3>
+    </div>
+    <div class="modal-body" id="update-body">
+    <form class="form-horizontal" name="userForms" ng-submit="$ctrl.updateLocation(userForms.$valid,$ctrl.location)" novalidate role="form">
+
+        <!--<button class="btn btn-primary" type="button" ng-click="$ctrl.LocationSave($ctrl.tbAttenceLocation)">保存</button>-->
+        <div class="form-group">
+
+            <label for="name" class="col-sm-3 control-label">考勤地址名称</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="$ctrl.location.name"  required="required"  name="name"  maxlength="50" placeholder="请输入名称">
+            </div>
+            <div class="error" ng-messages="userForms.name.$error" style="color:red;" ng-if="userForms.name.$touched">
+                <div ng-message="required">考勤地址名称不能为空</div>
+                <div ng-message="maxlength">考勤地址名称长度不能超过50</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">标签名</label>
+            <div class="col-sm-6">
+                <select class="form-control" ng-model="$ctrl.twfDict"  ng-options=" twfDict.name  for twfDict in $ctrl.twfDictList">
+
+                </select>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">部门名称</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control"  ng-model="$ctrl.location.depName"  required="required"  name="depName"  maxlength="100">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">部门id</label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control"  ng-model="$ctrl.location.depId"  required="required"  name="depId"  maxlength="100">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">排除日期</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control"  ng-model="$ctrl.location.outDate"  required="required"  name="outDate"  maxlength="100">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">增加日期</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="$ctrl.location.inDate"  required="required"  name="inDate"  maxlength="100">
+            </div>
+        </div>
+
+        <div class="row">
+            <label for="signinTime" class="col-sm-3 control-label">上班时间</label>
+            <div class="col-sm-3">
+                <input type="text"  class="form-control"  ng-model="$ctrl.location.signinTime"   ng-maxlength="100" name="signinTime" placeholder="请输入日期">
+            </div>
+            <label for="signoutTime" class="col-sm-2 control-label">下班时间</label>
+            <div class="col-sm-3">
+                <input type="text"  class="form-control" ng-model="$ctrl.location.signoutTime"   ng-maxlength="100" name="signoutTime" placeholder="请输入日期">
+            </div>
+        </div>
+        <div class="row">
+            <label  class="col-sm-3 control-label">工作日</label>
+            <div class="col-sm-7">
+                   <span class="checkbox-inline" ng-repeat="week in $ctrl.weekList">
+                        <input class="checkbox-inline" type="checkbox"   ng-checked="$ctrl.isSelected(week)" ng-click="$ctrl.updateSelection($event,week)" value="week"><span ng-bind="week"></span>
+                    </span>
+            </div>
+
+        </div>
+        <div class="row">
+            <label for="range" class="col-sm-3 control-label">考勤范围</label>
+            <div class="col-sm-6">
+                <input type="number"  class="form-control"  ng-model="$ctrl.location.range"   ng-maxlength="3" name="range" placeholder="请输入数字">
+            </div>
+            <div class="col-sm-1">米</div>
+            <div class="error" ng-messages="userForms.range.$error" style="color:red;" ng-if="userForms.range.$touched">
+                <div ng-message="required">考勤范围不能为空</div>
+                <div ng-message="maxlength">考勤范围长度不能超过3</div>
+            </div>
+        </div>
+        <div class="form-group">
+        </div>
+        <div class="row">
+            <label for="address" class="col-sm-3 control-label">详细地址</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="$ctrl.location.address" required="required"  name="address" placeholder="请输入地址">
+            </div>
+            <div class="error" ng-messages="userForms.address.$error" style="color:red;" ng-if="userForms.address.$touched">
+                <div ng-message="required">详细地址不能为空</div>
+            </div>
+            <div class="col-sm-1"><button type="button" ng-click="$ctrl.showBaiduMapAddress()" class="btn btn-default">搜索</button></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <img ng-src="{{$ctrl.baidumapurl}}"/>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">保存</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">取消</button>
+        </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/ng-template" id="saveRange.html">
+    <div class="form-group">
+        <label>考勤范围</label>
+        <input type="hidden" ng-model="location.pkid" class="form-control">
+        <input type="text" ng-model="location.range" class="form-control">
+    </div>
+    <button type="button" ng-click="$ctrl.updateLocation(location.range,location.pkid)" class="btn btn-primary">保存</button>
+</script>

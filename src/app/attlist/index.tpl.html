@@ -1,0 +1,68 @@
+<!--下拉选择效果-->
+<div class="cheUser" style="border: 0;" href="javascript:void(0);" ng-click="$ctrl.showhidediv($ctrl.sheet)" ng-show="$ctrl.checkUser">
+	<div><p ng-bind="$ctrl.myname"></p><span ng-class="$ctrl.addclass"></span></div>
+</div>
+<div class="cheUser" style="border: 0;" href="javascript:void(0);" ng-show="!$ctrl.checkUser">
+	<div><p ng-bind="$ctrl.myname"></p></div>
+</div>
+<div class="cheCont">
+	<ul ng-show="$ctrl.sheet">
+		<a href="javascript:void(0);" ng-click="$ctrl.clickSubAtt()"> <li ng-class="$ctrl.tagclass02">下属考勤</li></a>
+	</ul>
+</div>
+
+
+<div>
+	<div style="display:inline-block; min-height:290px;width:100%;float: left;">
+		<div uib-datepicker ng-model="$ctrl.dt" class="well well-sm" datepicker-options="options" ng-click="$ctrl.selectDate()"></div>
+	</div>
+</div>
+
+
+
+
+<div class="workSched" style="margin-top: -30px;">
+
+	<div id="rilia" ng-bind="$ctrl.dt | date:'yyyy年MM月dd日'"></div>
+
+	<!--签到样式定位-->
+	<div class="signPosition">
+		<!--签到情况显示-->
+		<div class="sign">
+			<ul>
+				<li ng-repeat="attLog in $ctrl.attLogList">
+					<i class="green" ng-show="attLog.type=='signIn'||attLog.type=='signOut'||attLog.type=='sign'">●</i>
+					<i class="org" ng-show="attLog.type=='inEx'||attLog.type=='outEx'">●</i>
+					<div class="signCont">
+						<span>签到时间：<b ng-bind="attLog.attenceTime | date:'HH:mm:ss'"></b></span>
+						<span style="text-align: right;">状态：
+							<b class="green" ng-show="attLog.type=='signIn'||attLog.type=='signOut'||attLog.type=='sign'">正常</b>
+							<b class="red" ng-show="attLog.type=='inEx'">迟到</b>
+							<b class="red" ng-show="attLog.type=='outEx'">早退</b>
+						</span>
+						<p>签到地点：<b ng-bind="attLog.address"> </b></p>
+					</div>
+				</li>
+				<!--<li>
+					<i class="org">●</i>
+					<div class="signCont">
+						<span>签到时间：<b>08:52</b></span>
+						<span>状态：<b class="red">迟到</b></span>
+						<p>签到地点：<b> 湖南省长沙市高新区麓云路100号</b></p>
+					</div>
+				</li>
+				<li>
+					<i class="org">●</i>
+					<div class="signCont">
+						<span>签到时间：<b>08:52</b></span>
+						<span>状态：<b class="red">迟到</b></span>
+						<p>签到地点：<b> 湖南省长沙市高新区麓云路100号</b></p>
+					</div>
+				</li>-->
+
+
+			</ul>
+		</div>
+	</div>
+
+</div>

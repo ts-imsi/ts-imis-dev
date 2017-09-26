@@ -1,0 +1,66 @@
+<!--下拉选择效果-->
+<div class="cheUser">
+	<div><p>我的考勤</p><span id="select_sheet" class=""></span></div>
+</div>
+<!--<div class="cheCont">
+	<ul id="sheet" style="display:none">
+		<a href="#"><li class="thisnav"> 我的考勤</li></a>
+		<a href="subordinate.html"><li>下属考勤</li></a>
+	</ul>
+</div>-->
+
+
+<div>
+	<div style="display:inline-block; min-height:290px;width:100%;float: left;">
+		<div uib-datepicker ng-model="$ctrl.dt" class="well well-sm" datepicker-options="options" ng-click="$ctrl.selectDate()"></div>
+	</div>
+</div>
+
+
+
+
+<div class="workSched" style="margin-top: -30px;">
+
+	<div id="rilia" ng-bind="$ctrl.dt | date:'yyyy年MM月dd日'"></div>
+
+	<!--签到样式定位-->
+	<div class="signPosition">
+		<!--签到情况显示-->
+		<div class="sign">
+			<ul>
+				<li ng-repeat="attLog in $ctrl.attLogList">
+					<i class="green" ng-show="attLog.type=='signIn'||attLog.type=='signOut'||attLog.type=='sign'">●</i>
+					<i class="org" ng-show="attLog.type=='inEx'||attLog.type=='outEx'">●</i>
+					<div class="signCont">
+						<span>签到时间：<b ng-bind="attLog.attenceTime | date:'HH:mm:ss'"></b></span>
+						<span style="text-align: right;">状态：
+							<b class="green" ng-show="attLog.type=='signIn'||attLog.type=='signOut'||attLog.type=='sign'">正常</b>
+							<b class="red" ng-show="attLog.type=='inEx'">迟到</b>
+							<b class="red" ng-show="attLog.type=='outEx'">早退</b>
+						</span>
+						<p>签到地点：<b ng-bind="attLog.address"> </b></p>
+					</div>
+				</li>
+				<!--<li>
+					<i class="org">●</i>
+					<div class="signCont">
+						<span>签到时间：<b>08:52</b></span>
+						<span>状态：<b class="red">迟到</b></span>
+						<p>签到地点：<b> 湖南省长沙市高新区麓云路100号</b></p>
+					</div>
+				</li>
+				<li>
+					<i class="org">●</i>
+					<div class="signCont">
+						<span>签到时间：<b>08:52</b></span>
+						<span>状态：<b class="red">迟到</b></span>
+						<p>签到地点：<b> 湖南省长沙市高新区麓云路100号</b></p>
+					</div>
+				</li>-->
+
+
+			</ul>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <strong>级别选择列表</strong>
+</div>
+<ul class="list-group alt scrollable" style="height: 400px;margin-bottom:0px;">
+    <li class="list-group-item" ng-repeat="item in ctrl.levelList" ng-click="ctrl.select(item)" style="cursor: pointer">
+        <div class="media">
+            <div class="pull-left text-success m-t-sm">
+                <label class="i-checks">
+                    <input type="radio" name="a" ng-value="item.pkid" ng-model="ctrl.selectID">
+                    <i></i>
+                </label>
+            </div>
+            <div class="media-body">
+                <div><a href>{{item.name}}{{item.type}}</a></div>
+                <small class="text-muted">初始积分 {{item.score}}         晋级积分  {{item.prmScore}}</small>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<div class="modal-footer text-center">
+    <button class="btn btn-info" ng-click="ctrl.submitOK()">提交</button>
+</div>

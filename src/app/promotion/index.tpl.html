@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+</head>
+<body>
+
+<div class="cheUser">
+    <div> 晋级申请</div>
+</div>
+<!--个人信息内容-->
+<div class="PerInfo">
+    <!--
+        css备注：
+        input和div只要用InfoInput即可
+        readonly 添加样式InfoInputOnly更改字体颜色
+
+    -->
+    <ul class="vip_infor" >
+        <li>
+            <span ng-show="$ctrl.tbJfPerson.status==1">正在审核中...</span>
+        <li><p>姓名</p>
+            <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.tbJfPerson.name" readonly></li>
+        <li><p>当前积分</p>
+            <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.tbJfPerson.score" readonly></li>
+        <li><p>当前等级</p>
+            <input type="text"  ng-model="$ctrl.tbJfPerson.rankName" class="InfoInput InfoInputOnly" readonly></li>
+        <li><p style="width:130px; float:left; color:#666666; font-size:16px;">距离晋级申请还差</p>
+            <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.distanceScore" readonly></li>
+        <li><p>所属公司</p>
+            <input type="text"  ng-model="$ctrl.tbJfPerson.company" class="InfoInput InfoInputOnly" readonly></li>
+        <li><p>所属部门</p>
+            <input type="text"  ng-model="$ctrl.tbJfPerson.depName" class="InfoInput InfoInputOnly" readonly></li>
+        <li><p>下一等级</p>
+            <input type="text"  ng-model="$ctrl.tbJfPerson.nextRankName" class="InfoInput InfoInputOnly" readonly></li>
+        <li><p style="width:115px; float:left; color:#666666; font-size:16px;">下一级所需积分</p>
+            <input type="text"  ng-model="$ctrl.tbJfPerson.prmScore" name="phone" class="InfoInput" readonly>
+        </li>
+    </ul>
+    <div class="SignBut">
+        <input ng-show="$ctrl.showbutton && $ctrl.tbJfPerson.status==0" type="button" ng-click="$ctrl.promotionApply()" class="sigBut yqKeep" value="晋级申请">
+    </div>
+</div>
+</body>
+</html>

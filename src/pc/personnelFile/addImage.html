@@ -1,0 +1,88 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="show-title">员工图片上传</h4>
+</div>
+<div class="wrapper-md">
+    <div class="m-b">
+        请选择一张2M以下的图片
+        <input type="file" onchange="angular.element(this).scope().handleFileSelect(event)"/>
+    </div>
+    <div class="hbox hbox-auto-xs">
+        <div class="col">
+            <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+                <div class="bg-light" style="height:320px">
+                    <img-crop
+                            image="myImage"
+                            result-image="myCroppedImage"
+                            result-image-size="160"
+                            area-type="square"
+                    ></img-crop>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="inline bg-white wrapper-sm b-a">
+                <div class="bg-light">
+                    <img ng-src="{{myCroppedImage}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="imageCtrl.uploadImage()">上传</button>
+    <button class="btn btn-warning" type="button" ng-click="imageCtrl.cancel()">取消</button>
+</div>
+
+
+
+<!--
+<div class="wrapper-md">
+    <p class="m-t-md">Single</p>
+    <input type="file" nv-file-select="" uploader="uploader" />
+</div>
+
+
+<div class="wrapper-md">
+    <table class="table bg-white-only b-a">
+        <thead>
+        <tr>
+            <th width="50%">Name</th>
+            <th ng-show="uploader.isHTML5">Size</th>
+            <th ng-show="uploader.isHTML5">Progress</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in uploader.queue">
+            <td><strong>{{ item.file.name }}</strong></td>
+            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+            <td ng-show="uploader.isHTML5">
+                <div class="progress progress-sm m-b-none m-t-xs">
+                    <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                </div>
+            </td>
+            <td class="text-center">
+                <span ng-show="item.isSuccess" class="text-success"><i class="glyphicon glyphicon-ok"></i></span>
+                <span ng-show="item.isCancel" class="text-warning"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                <span ng-show="item.isError" class="text-danger"><i class="glyphicon glyphicon-remove"></i></span>
+            </td>
+            <td nowrap>
+                <button type="button" class="btn btn-default btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                    Upload
+                </button>
+                <button type="button" class="btn btn-default btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-default btn-xs" ng-click="item.remove()">
+                    Remove
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>-->

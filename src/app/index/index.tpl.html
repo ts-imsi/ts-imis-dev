@@ -1,0 +1,157 @@
+<!-- 模版中对外只能提供一个(也许可能多个，看版本) 元素节点 ，所以需要用一个容器包起来，这里使用了一个 DIV 标签把其他标签包起来了 -->
+<div>
+	<ol class="breadcrumb">
+		<li class="active">Index</li>
+		<li><a ui-sref="About">About</a></li>
+		<li><a ui-sref="Location">Location</a></li>
+		<li><a ui-sref="BaiduMap">BaiduMap</a></li>
+		<li><a ui-sref="AttList">AttList</a></li>
+		<li><a ui-sref="SearchAttList">SearchAttList</a></li>
+	</ol>
+
+	<div class="jumbotron">
+		<!-- 使用ng-bind 比 使用 {{ $ctrl.title }} 更好，方式JS没加载完成时页面会把 {{ ... }} 这个语法显示出来 -->
+		<div uib-alert ng-repeat="alert in $ctrl.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="$ctrl.closeAlert($index)">{{alert.msg}}</div>
+
+		<h1 ng-bind="$ctrl.title"></h1>
+		<p ng-bind="$ctrl.content"></p>
+		<p>
+			<button class="btn btn-primary btn-lg" role="button" ng-click="$ctrl.alert()">Alert</button>
+			<a ui-sref="About">about page</a>
+		</p>
+		<p>phone count:{{$ctrl.phones.length}}</p>
+		<table>
+			<tr ng-repeat="i in [1,2,3,4,5]" ng-bind="i+1"></tr>
+		</table>
+		Search:<input ng-model="query">{{query}}
+		Select:<select ng-model="$ctrl.orderPro">
+		           <option value="name">name</option>
+		           <option value="age">age</option>
+	           </select>
+		<ul>
+			<li ng-repeat="phone in $ctrl.phones|filter:query|orderBy:$ctrl.orderPro" ng-bind="phone.name"></li>
+		</ul>
+		<button class="btn btn-primary btn-lg" role="button" ng-click="$ctrl.getTest()">我是按钮2</button>
+	</div>
+	<div>
+
+		<table class="table table-striped">
+			<caption>列表分页测试demo</caption>
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th>名称</th>
+				<th>code</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="test in $ctrl.testList">
+				<td ng-bind="test.pkid"></td>
+				<td ng-bind="test.name"></td>
+				<td ng-bind="test.code"></td>
+			</tr>
+			</tbody>
+		</table>
+		<ul uib-pagination total-items="$ctrl.totalCount" ng-model="$ctrl.pageNo" ng-change="$ctrl.pageChanged()"
+			items-per-page="$ctrl.pageSize" max-size="$ctrl.maxSize" class="pagination-sm"
+			boundary-links="true" force-ellipses="true"></ul>
+		</div>
+	<div>
+
+		<button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button>
+		<button type="button" class="btn btn-default" ng-click="$ctrl.open('lg')">Large modal</button>
+		<button type="button" class="btn btn-default" ng-click="$ctrl.open('sm')">Small modal</button>
+		<div ng-show="$ctrl.selected">Selection from a modal: {{ $ctrl.selected }}</div>
+		<div class="modal-parent">
+		</div>
+		<div>
+			<div><p style="font-size: 14px;">{{ $ctrl.msg || "使用您的权限帐户登录 " }}</p></div>
+			<div>
+				<input type="text" ng-model="$ctrl.user.name" name="name" placeholder="用户名"/>
+			</div>
+			<div>
+				<input type="text" ng-model="$ctrl.user.password" name="password" placeholder="密码"/>
+			</div>
+
+		</div>
+		<button type="button" class="loginButton" ng-click="$ctrl.login($ctrl.user)">登录</button>
+
+
+		<script type="text/ng-template" id="alert.html">
+			<div ng-transclude></div>
+		</script>
+
+		<div uib-alert ng-repeat="alert in $ctrl.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="$ctrl.closeAlert($index)">{{alert.msg}}</div>
+
+		<button type="button" class='btn btn-default' ng-click="$ctrl.addAlert()">Add Alert</button>
+
+	</div>
+
+
+	<div class="container">
+
+		<div class="row">
+
+			<h3>AngularJS Dynamic Form Fields</h3>
+
+			<hr/>
+			<div>
+				<fieldset  data-ng-repeat="choice in $ctrl.choices">
+					<select>
+						<option>Mobile</option>
+						<option>Office</option>
+						<option>Home</option>
+					</select>
+
+
+					<label class="checkbox-inline i-checks" ng-if="choice.type==1">
+						<input type="text" ng-model="choice.name" name="" placeholder="Enter mobile number">
+					</label>
+
+					<label class="checkbox-inline i-checks" ng-if="choice.type==2">
+						<input type="radio" name="choice.id" value="1" ng-model="choice.name" ><i></i> 男
+						<input type="radio" name="choice.id" value="2" ng-model="choice.name"><i></i> 女
+					</label>
+
+
+
+
+
+					<button class="remove" ng-show="$last" ng-click="$ctrl.removeChoice()">-</button>
+				</fieldset>
+				<button class="addfields" ng-click="$ctrl.addNewChoice()">Add fields</button>
+
+				<div id="choicesDisplay">
+					{{ $ctrl.choices }}
+				</div>
+			</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+</div>
+<script type="text/ng-template" id="myModalContent.html">
+	<div class="modal-header">
+		<h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+	</div>
+	<div class="modal-body" id="modal-body">
+		<ul>
+			<li ng-repeat="item in $ctrl.items">
+				<a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+			</li>
+		</ul>
+		Selected: <b>{{ $ctrl.selected.item }}</b>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+		<button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+	</div>
+
+</script>

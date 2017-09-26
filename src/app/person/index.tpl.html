@@ -1,0 +1,45 @@
+<form class="form-horizontal" novalidate name="form" ng-submit="$ctrl.winXinPersonUpdate(form.$valid,$ctrl.winXinPerson)">
+    <div class="cheUser">
+        <div> 个人信息</div>
+    </div>
+    <!--个人信息内容-->
+    <div class="PerInfo">
+        <!--
+            css备注：
+            input和div只要用InfoInput即可
+            readonly 添加样式InfoInputOnly更改字体颜色
+
+        -->
+        <ul class="vip_infor" style="margin-bottom: 50px;">
+            <li><p>姓名</p>
+                <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.winXinPerson.name" readonly></li>
+            <li><p>当前积分</p>
+                <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.tbJfPerson.score" readonly></li>
+            <li><p>当前等级</p>
+                <input type="text" ng-model="$ctrl.tbJfPerson.rankName" class="InfoInput InfoInputOnly" readonly></li>
+            <li><p>所属公司</p>
+                <input type="text" class="InfoInput InfoInputOnly" ng-model="$ctrl.winXinPerson.corporation" readonly></li>
+            <li><p>所属部门</p>
+                <input type="text"  ng-model="$ctrl.winXinPerson.depName" class="InfoInput InfoInputOnly" readonly></li>
+            <li><p>职位</p>
+                <input type="text"  ng-model="$ctrl.winXinPerson.position" class="InfoInput InfoInputOnly" readonly></li>
+            <li><p>身份证</p>
+                <input type="text"  ng-model="$ctrl.winXinPerson.idCard" class="InfoInput InfoInputOnly" readonly></li>
+            <li><p>联系方式</p>
+                <input type="text" placeholder="请填写您的手机号码" ng-model="$ctrl.winXinPerson.phone" name="phone" class="InfoInput" required >
+            </li>
+            <li><p>入职时间</p>
+                <input type="text"  value="{{$ctrl.winXinPerson.entryDate |date:'yyyy-MM-dd'}}" class="InfoInput InfoInputOnly" readonly></li>
+            <li><p>转正时间</p>
+                <input type="text"  value="{{$ctrl.winXinPerson.regularDate |date:'yyyy-MM-dd'}}" class="InfoInput InfoInputOnly" readonly></li>
+            <li><p>生日</p>
+                <input type="text"  value="{{$ctrl.winXinPerson.birthday |date:'yyyy-MM-dd'}}" class="InfoInput InfoInputOnly" readonly></li>
+            <li><p>家庭地址</p>
+                <textarea  class="InfoTextarea" placeholder="家庭地址" ng-model="$ctrl.winXinPerson.houseAddress" name="houseAddress" required></textarea></li>
+        </ul>
+        <div class="SignBut">
+            <input ng-show="$ctrl.showbutton" type="submit" class="sigBut yqKeep" value="保存">
+        </div>
+    </div>
+
+</form>

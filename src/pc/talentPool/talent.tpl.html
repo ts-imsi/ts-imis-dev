@@ -1,0 +1,213 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.talentSave(form.$valid,form.$invalid,ctrl.talent)">
+    <!--标题-->
+    <div class="fl RuleTitTab">
+        <!--tab切换-->
+        <div  class="RulTab">
+            <ul id="tags">
+                <li ng-class="ctrl.tagclass01"><a ng-click="ctrl.selectTag('1')">人才信息</a></li>
+                <li ng-class="ctrl.tagclass02"><a ng-click="ctrl.selectTag('2')">工作经历</a></li>
+            </ul>
+
+        </div>
+        <!--tab切换end-->
+        <div class="fr">
+            <input ng-show="ctrl.tag==1" type="submit" ng-if="ctrl.showbutton" class="save fl" value="保存" />
+            <input ng-show="ctrl.tag==1" type="submit" ng-if="!ctrl.showbutton" class="save fl" value="更新" />
+            <input ng-show="ctrl.tag==2" type="button"  class="save fl" ng-click="ctrl.addWorkHistory(ctrl.workHistory,ctrl.talent.pkid)" value="新增" />
+            <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
+        </div>
+    </div>
+
+
+
+
+    <div class="RuleCont">
+
+    <div class="panel-body">
+        <div class="row" ng-show="ctrl.tag==1">
+            <div class="form-group RuleInput">
+                <label for="name" class="RuleName">姓名：</label>
+                <input type="text" class="form-control Rinput60" id="name" required ng-model="ctrl.talent.name" name="name" ng-pattern="ctrl.nameReg">
+                <span class="errorInput" ng-show="form.name.$error.pattern">请输入中文，英文，字母，数字，下划线</span>
+                <span class="errorInput" ng-show="form.name.$error.required && ctrl.submitted">该选项框必填</span>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">性别：</label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="talent-sex" value="1" ng-model="ctrl.sex"><i></i> 男
+                </label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="talent-sex" value="2" ng-model="ctrl.sex"><i></i> 女
+                </label>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="phone" class="RuleName">联系方式：</label>
+                <input type="text" class="form-control Rinput60" required id="phone" ng-model="ctrl.talent.phone" name="phone" ng-pattern="ctrl.phoneReg">
+                <span class="errorInput" ng-show="form.phone.$error.pattern">手机号码不合法</span>
+                <span class="errorInput" ng-show="form.phone.$error.required && ctrl.submitted">该选项框必填</span>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="workDate" class="RuleName">就业日期：</label>
+                <input type="text" id="workDate" class="form-control Rinput50"  datepicker-popup="{{ctrl.format}}" name="workDate" ng-model="ctrl.talent.workDate" is-open="ctrl.opened"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                <button type="button" class="btn RSerBut" ng-click="ctrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="willJob" class="RuleName">意向岗位：</label>
+                <input type="text" class="form-control Rinput60" id="willJob" name="willJob"  ng-model="ctrl.talent.willJob" >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="beGood" class="RuleName">擅长技术：</label>
+                <input type="text" class="form-control Rinput60" id="beGood" name="beGood"  ng-model="ctrl.talent.beGood" >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="school" class="RuleName">毕业学校：</label>
+                <input type="text" class="form-control Rinput60" id="school" name="school"  ng-model="ctrl.talent.school" >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="education" class="RuleName">学历：</label>
+                <input type="text" class="form-control Rinput60" id="education" name="education"  ng-model="ctrl.talent.education" >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="certificate" class="RuleName">相关证书：</label>
+                <input type="text" class="form-control Rinput60" id="certificate" ng-model="ctrl.talent.certificate" >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="resumeFile" class="RuleName">简历附件：</label>
+                <input type="text" class="form-control Rinput60" id="resumeFile" ng-model="ctrl.talent.resumeFile" readonly >
+                <button ng-show="ctrl.fileItem" type="button" class="btn RSerBut" ng-click="ctrl.fileItem.upload()"
+                        ng-disabled="ctrl.fileItem.isReady
+                        || ctrl.fileItem.isUploading
+                        || ctrl.fileItem.isSuccess">
+                    上传
+                </button>
+                <input type="file" nv-file-select="" uploader="uploader" />
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">是否来过公司：</label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="talent-isCome" value="1" ng-model="ctrl.isCome"><i></i> 来过
+                </label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="talent-isCome" value="0" ng-model="ctrl.isCome"><i></i> 未来过
+                </label>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">面试结果：</label>
+                <select class="form-control Rinput60" ng-model="ctrl.twfDict" required  name="result" ng-options="twfDict.name  for twfDict in ctrl.twfDictList"></select>
+                <span class="errorInput" ng-show="form.result.$error.required && ctrl.submitted">该选项框必填</span>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="reserve" class="RuleName">储备岗位：</label>
+                <input type="text" class="form-control Rinput60" id="reserve" ng-model="ctrl.talent.reserve" >
+            </div>
+
+            <div class="form-group RuleInput">
+                <label for="remark" class="RuleName">备注：</label>
+                <textarea  type="text" class="form-control Rinput60" id="remark" cols="60" rows="4" ng-model="ctrl.talent.remark"></textarea>
+            </div>
+
+
+
+        </div>
+        <div class="row" ng-show="ctrl.tag==2">
+
+            <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                    <tr>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>公司</th>
+                        <th>部门</th>
+                        <th>职位</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="work in ctrl.whList" >
+                        <td ng-bind="work.startDate"></td>
+                        <td ng-bind="work.endDate"></td>
+                        <td ng-bind="work.company"></td>
+                        <td ng-bind="work.dept"></td>
+                        <td ng-bind="work.post"></td>
+                        <td>
+                            <a ng-click="ctrl.deletework(work.pkid,work.perId)">删除
+                            </a>
+                            <a ng-click="ctrl.addWorkHistory(work,work.perId)">修改
+                            </a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="text-center text-center-xs">
+                        <pagination total-items="ctrl.totalCountWH" ng-model="ctrl.pageNoWH" ng-change="ctrl.pageChangedWH(ctrl.talent.pkid)"
+                                    items-per-page="ctrl.pageSizeWH" max-size="ctrl.maxSize" class="pagination-sm"
+                                    boundary-links="true" force-ellipses="true"></pagination>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    </div>
+
+</form>
+
+
+<script type="text/ng-template" id="workHistory.html">
+    <form class="form-horizontal" name="workForm" ng-submit="ctrl.workSave(ctrl.workHistory)" novalidate role="form">
+        <div class="modal-header">
+            <h4 class="modal-title">工作经历</h4>
+            <input type="hidden" class="form-control Rinput60" ng-model="ctrl.workHistory.perId" >
+        </div>
+
+        <div class="RuleCont">
+            <div class="panel-body">
+                <div class="form-group RuleInput">
+                    <label for="startDate" class="RuleName">开始时间：</label>
+                    <input type="text" id="startDate" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.workHistory.startDate" is-open="ctrl.startOpened"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="endDate" class="RuleName">结束时间：</label>
+                    <input type="text" id="endDate" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.workHistory.endDate" is-open="ctrl.endOpened"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+                <div class="form-group RuleInput">
+                    <label for="company" class="RuleName">公司：</label>
+                    <input type="text" class="form-control Rinput60" id="company" ng-model="ctrl.workHistory.company" >
+                </div>
+                <div class="form-group RuleInput">
+                    <label for="dept" class="RuleName">部门：</label>
+                    <input type="text" class="form-control Rinput60" id="dept" ng-model="ctrl.workHistory.dept" >
+                </div>
+                <div class="form-group RuleInput">
+                    <label for="post" class="RuleName">职位：</label>
+                    <input type="text" class="form-control Rinput60" id="post" ng-model="ctrl.workHistory.post" >
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="submit">保存</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>

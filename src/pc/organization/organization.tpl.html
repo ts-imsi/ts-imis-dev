@@ -1,0 +1,32 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <div class="col w-md bg-light dk b-r bg-auto">
+        <div class="wrapper b-b bg">
+            组织/机构列表
+        </div>
+
+        <div class="wrapper hidden-sm hidden-xs">
+            <div class="bg-light" ng-if="ctrl.success" >
+
+                <span ng-if="doing_async">...loading...</span>
+                <abn-tree
+                        tree-data         = "ctrl.my_data"
+                        tree-control      = "ctrl.my_tree"
+                        on-select         = "ctrl.my_tree_handler(branch)"
+                        expand-level      = "3"
+                        initial-selection = "ctrl.inittree"
+                        icon-leaf         = "fa fa-user"
+                        icon-expand       = "fa fa-folder"
+                        icon-collapse     = "fa fa-folder-open"
+                >
+                </abn-tree>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div ui-view >
+
+
+        </div>
+    </div>
+</div>
+

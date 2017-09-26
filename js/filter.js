@@ -293,3 +293,31 @@ app.filter('resordStatus',function(){
         return name;
     }
 });
+
+app.filter('TemplateColor',function(){
+    //colors = ['primary', 'info', 'success', 'warning', 'danger', 'dark'];
+    return function(result){
+        var color = "";
+        switch(result)
+        {
+            case '客户信息':
+                color = "danger";
+                break;
+            case '合同信息':
+                color = "info";
+                break;
+            case '实施要求':
+                color = "success";
+                break;
+            case '合同分解信息':
+                color = "warning";
+                break;
+            case '待定':
+                color = "dark";
+                break;
+            default:
+                color = "primary";
+        };
+        return color;
+    }
+});

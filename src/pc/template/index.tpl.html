@@ -10,7 +10,7 @@
     <div class="col w-lg lt b-r">
         <div class="vbox">
             <div class="wrapper">
-                <a href class="pull-right btn btn-sm btn-info m-t-n-xs" ng-click="ctrl.createNote()">New</a>
+                <!--<a href class="pull-right btn btn-sm btn-info m-t-n-xs" ng-click="ctrl.createNote()">New</a>-->
                 <div class="h4">模版元素</div>
             </div>
             <div class="wrapper b-t m-t-xxs">
@@ -23,10 +23,10 @@
                 <div class="cell scrollable hover">
                     <div class="cell-inner">
                         <div class="padder">
-                            <div class="list-group" dragula='"another-bag"' dragula-model='ctrl.zxh' style="min-height:100px">
-                                <a ng-repeat="note in ctrl.zxh | filter:query "
-                                   class="list-group-item b-l-{{note.color}} b-l-3x">
-                                    <span>{{note.content}}</span>
+                            <div class="list-group" dragula='"another-bag"' dragula-model='ctrl.items' style="min-height:100px">
+                                <a ng-repeat="item in ctrl.items | filter:query "
+                                   class="list-group-item b-l-{{item.module | TemplateColor}} b-l-3x">
+                                    <span>{{item.name}}</span>
                                 </a>
                             </div>
                         </div>
@@ -41,47 +41,49 @@
     <div class="col">
         <div class="vbox">
             <div class="wrapper bg-light lt b-b">
-                <span class="text-muted">Created on:</span> <span>这里可以添加备注</span>
-                <div class="m-l inline dropdown" dropdown>
+                <span class="text-muted">备注:</span> <span ng-bind="ctrl.template.remark"></span>
+                <!--<div class="m-l inline dropdown" dropdown>
                     <a class="v-middle pos-rlt inline bg-{{ctrl.note.color}}" dropdown-toggle style="width:16px;height:16px;top:-2px"></a>
                     <div class="dropdown-menu animated fadeInUp w wrapper">
                         <a ng-repeat="color in ctrl.colors" class="inline m-xs bg-{{color}}" style="width:18px;height:18px" ng-click=" ctrl.note.color = color "></a>
                     </div>
-                </div>
+                </div>-->
+                <a href class="pull-right btn btn-sm btn-info m-t-n-xs" ng-click="ctrl.saveTemplate()">保存模板</a>
             </div>
             <div class="row-row">
                 <div class="cell">
                     <div class="cell-inner">
 
-
-
-
-
-
-
-                        <!--<div dragula='"another-bag"' dragula-model='ctrl.zxh2'>
-                            <div ng-repeat='text in ctrl.zxh2' ng-bind='text.content'></div>
-                        </div>-->
                         <div class="panel panel-default">
-                            <div class="panel-heading font-bold">
-                                交接单模板
+                            <div class="panel-heading font-bold" ng-bind="ctrl.template.name">
+
                             </div>
                             <div class="panel-body">
-                                <div class="row" dragula='"another-bag"' dragula-model='ctrl.zxh2' style="min-height:100px">
-                                    <div class="form-group RuleInput" ng-repeat='text in ctrl.zxh2'>
-                                        <label class="RuleName" >{{text.content}}：</label>
-                                        <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.type==1" readonly>
+                                <div class="row" dragula='"another-bag"' dragula-model='ctrl.template.contentJson' style="min-height:100px">
+                                    <div class="form-group RuleInput" ng-repeat='text in ctrl.template.contentJson'>
+                                        <label class="RuleName130" >{{text.name}}：</label>
 
 
 
-                                        <label class="checkbox-inline i-checks" ng-if="text.type==2">
-                                            <input type="radio" name="person-birthdayType" value="1" ng-model="ctrl.birthdayType" readonly><i></i> 是
+                                        <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.input=='text'" readonly>
+
+
+
+                                        <label class="checkbox-inline i-checks" ng-if="text.input=='radio'">
+                                            <input type="radio"><i></i> 是
                                         </label>
-                                        <label class="checkbox-inline i-checks" ng-if="text.type==2">
-                                            <input type="radio" name="person-birthdayType" value="2" ng-model="ctrl.birthdayType" readonly><i></i> 否
+                                        <label class="checkbox-inline i-checks" ng-if="text.input=='radio'">
+                                            <input type="radio"><i></i> 否
                                         </label>
 
-                                        <textarea type="text" class="form-control Rinput60" cols="60" rows="4"  ng-if="text.type==3" readonly></textarea>
+
+
+                                        <textarea type="text" class="form-control Rinput{{text.length}}" cols="60" rows="4"  ng-if="text.input=='textarea'" readonly></textarea>
+
+
+
+                                        <input type="text" class="form-control Rinput{{text.length}}" ng-if="text.input=='date'" readonly/>
+                                        <button type="button" class="btn RSerBut" ng-if="text.input=='date'"><i class="glyphicon glyphicon-calendar"></i></button>
 
 
 

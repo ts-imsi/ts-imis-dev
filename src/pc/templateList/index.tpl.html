@@ -1,0 +1,56 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">模板列表</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="col-px-230 fl" style="position: relative;">
+                    <input type="text" class="form-control" placeholder="请输入模板名、模板类型" ng-model="ctrl.selectName">
+                </div>
+                <div class="col-px-140 fl" style="position: relative;">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.selectTemplate()">查询</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>模型名</th>
+                    <th>模板类型</th>
+                    <th>备注</th>
+                    <th>更新时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="template in ctrl.templateList">
+                    <td ng-bind="template.name"></td>
+                    <td ng-bind="template.type"></td>
+                    <td ng-bind="template.remark"></td>
+                    <td ng-bind="template.updated |  date:'yyyy-MM-dd'"></td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-default">修改
+                        </button>
+                        <button type="button"
+                                class="btn btn-default">删除
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>

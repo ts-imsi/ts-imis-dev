@@ -741,6 +741,29 @@ angular.module('app')
                           }]
                   }
               })
+
+              .state('app.ht_product', {
+                  url: '/ht_product',
+                  templateUrl: 'src/pc/ht_product/index.tpl.html',
+                  controller: 'htProductCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/ht_product/controller.js'] );
+                          }]
+                  }
+              })
+              .state('app.templateList', {
+                  url: '/templateList',
+                  templateUrl: 'src/pc/templateList/index.tpl.html',
+                  controller: 'TemplateListCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/templateList/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

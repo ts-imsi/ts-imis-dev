@@ -15,5 +15,6 @@ angular.module('app', [
     'ui.validate',
     'oc.lazyLoad',
     'pascalprecht.translate',
-    angularDragula(angular)
+    angularDragula(angular),
+    'mobile.utils'
 ]);

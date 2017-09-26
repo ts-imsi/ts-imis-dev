@@ -10,7 +10,7 @@
     <div class="col w-lg lt b-r">
         <div class="vbox">
             <div class="wrapper">
-                <a href class="pull-right btn btn-sm btn-info m-t-n-xs" ng-click="ctrl.createNote()">New</a>
+                <!--<a href class="pull-right btn btn-sm btn-info m-t-n-xs" ng-click="ctrl.createNote()">New</a>-->
                 <div class="h4">模版元素</div>
             </div>
             <div class="wrapper b-t m-t-xxs">
@@ -41,25 +41,26 @@
     <div class="col">
         <div class="vbox">
             <div class="wrapper bg-light lt b-b">
-                <span class="text-muted">Created on:</span> <span>这里可以添加备注</span>
-                <div class="m-l inline dropdown" dropdown>
+                <span class="text-muted">备注:</span> <span ng-bind="ctrl.template.remark"></span>
+                <!--<div class="m-l inline dropdown" dropdown>
                     <a class="v-middle pos-rlt inline bg-{{ctrl.note.color}}" dropdown-toggle style="width:16px;height:16px;top:-2px"></a>
                     <div class="dropdown-menu animated fadeInUp w wrapper">
                         <a ng-repeat="color in ctrl.colors" class="inline m-xs bg-{{color}}" style="width:18px;height:18px" ng-click=" ctrl.note.color = color "></a>
                     </div>
-                </div>
+                </div>-->
+                <a href class="pull-right btn btn-sm btn-info m-t-n-xs" ng-click="ctrl.saveTemplate()">保存模板</a>
             </div>
             <div class="row-row">
                 <div class="cell">
                     <div class="cell-inner">
 
                         <div class="panel panel-default">
-                            <div class="panel-heading font-bold">
-                                交接单模板
+                            <div class="panel-heading font-bold" ng-bind="ctrl.template.name">
+
                             </div>
                             <div class="panel-body">
-                                <div class="row" dragula='"another-bag"' dragula-model='ctrl.content' style="min-height:100px">
-                                    <div class="form-group RuleInput" ng-repeat='text in ctrl.content'>
+                                <div class="row" dragula='"another-bag"' dragula-model='ctrl.template.contentJson' style="min-height:100px">
+                                    <div class="form-group RuleInput" ng-repeat='text in ctrl.template.contentJson'>
                                         <label class="RuleName130" >{{text.name}}：</label>
 
 

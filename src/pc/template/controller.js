@@ -38,6 +38,13 @@ app.controller('TemplateCtrl', ['$http','utils', function($http,utils) {
 
     this.saveTemplate = function () {
         console.log(this.template);
+        $http.post("/ts-project/template/saveTemplate",angular.toJson(this.template)).success(function (result) {
+            if(result.success){
+                alert("模板保存成功!");
+            }else{
+                alert("模板保存失败!");
+            }
+        });
     }
 
 

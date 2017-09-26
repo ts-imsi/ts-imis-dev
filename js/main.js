@@ -66,6 +66,8 @@ angular.module('app')
         $translate.use(langKey);
         $scope.lang.isopen = !$scope.lang.isopen;
       };
+      //默认国际化中文
+      $translate.use('zh_ZH');
 
       function isSmartDevice( $window )
       {

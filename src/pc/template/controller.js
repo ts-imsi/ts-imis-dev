@@ -2,7 +2,7 @@ app.controller('TemplateCtrl', ['$http','utils', function($http,utils) {
     var selt = this;
     this.colors = ['primary', 'info', 'success', 'warning', 'danger', 'dark'];
 
-    var tid =  utils.getUrlVar('tid');
+    var type =  utils.getUrlVar('type');
 
     this.items = [];
 
@@ -10,8 +10,8 @@ app.controller('TemplateCtrl', ['$http','utils', function($http,utils) {
         "contentJson" : []
     };
 
-    if(tid){
-        $http.get("/ts-project/template/getTemplate/"+tid).success(function (result) {
+    if(type){
+        $http.get("/ts-project/template/getTemplate/"+type).success(function (result) {
             console.log(result);
             if(result.statusCode==1){
                 selt.template = result.object;
@@ -24,6 +24,13 @@ app.controller('TemplateCtrl', ['$http','utils', function($http,utils) {
                     console.log(result);
                     if(result.statusCode==1){
                         selt.items = result.object;
+                        angular.forEach(selt.template.contentJson, function(note) {
+                            angular.forEach(selt.items, function(item) {
+                                if(item.name==note.name){
+                                    selt.items.splice(selt.items.indexOf(item),1);
+                                }
+                            });
+                        });
                     }else{
                         selt.items = [];
                     }

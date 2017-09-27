@@ -46,6 +46,22 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
     };
 
+
+    this.outputValue=function(htProduct,size){
+        var outputValueInstance = $modal.open({
+            templateUrl: 'outputValue.html',
+            controller: 'outputValueCtrl as ctrl',
+            size: size,
+            resolve: {
+                data: function () {
+                    return htProduct;
+                }
+            }
+        });
+        outputValueInstance.result.then(function () {
+        });
+    }
+
     this.maxSize = 5;
     this.setPage(1);
 
@@ -99,3 +115,13 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     };
 
 }]);
+
+app.controller('outputValueCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
+    var seltSin=this;
+
+
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}])

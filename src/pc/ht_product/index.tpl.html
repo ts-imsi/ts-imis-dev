@@ -26,16 +26,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="htProduct in ctrl.htProductList">
+                <tr ng-repeat="htProduct in ctrl.htProductList" ng-click="ctrl.handoverView(htProduct)"
+                    ng-dblclick="ctrl.openPanel()">
                     <td ng-bind="htProduct.contractNo"></td>
                     <td ng-bind="htProduct.customerName"></td>
                     <td ng-bind="htProduct.contractName"></td>
                     <td ng-bind="htProduct.contractOwner"></td>
                     <td ng-bind="htProduct.createTime | date:'yyyy-MM-dd'"></td>
                     <td>
-                        <button type="button"
-                                class="btn btn-default">交接
-                        </button>
+                        <a ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()">修改
+                        </a>
                         <button type="button"
                                 class="btn btn-default">分解
                         </button>
@@ -56,3 +56,6 @@
                 </div>
             </div>
         </footer>
+</div>
+</div>
+<div data-ng-include=" 'src/pc/template/template.tpl.html' " ng-class="ctrl.panelClass"></div>

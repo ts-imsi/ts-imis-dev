@@ -1,0 +1,91 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.personSave(form.$valid,form.$invalid,ctrl.person)">
+    <!--标题-->
+    <div class="fl RuleTitTab">
+        <!--tab切换-->
+        <div  class="RulTab">
+            <ul id="tags">
+                <li ng-class="ctrl.tagclass01"><a ng-click="ctrl.selectTag('1')">交接单信息</a></li>
+                <li ng-class="ctrl.tagclass02"><a ng-click="ctrl.selectTag('2')">模块信息</a></li>
+                <li ng-class="ctrl.tagclass03"><a ng-click="ctrl.selectTag('3')">附件</a></li>
+            </ul>
+
+        </div>
+        <!--tab切换end-->
+        <div class="fr">
+            <input ng-show="ctrl.tag!=4" type="submit" ng-if="ctrl.showbutton" class="save fl" value="保存" />
+            <input ng-show="ctrl.tag!=4" type="submit" ng-if="!ctrl.showbutton" class="save fl" value="提交" />
+            <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
+        </div>
+    </div>
+
+
+
+
+    <div class="RuleCont">
+
+        <div class="panel-body">
+            <div class="row" ng-show="ctrl.tag==1">
+
+                <div class="form-group RuleInput" ng-repeat='text in ctrl.template.contentJson'>
+                    <label for="text.code" class="RuleName130" >{{text.name}}：</label>
+
+
+
+                    <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.input=='text'" id="text.code" name="text.code" ng-model="text.value">
+                    <span class="errorInput"
+                          ng-show="form.{{text.code}}.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+
+
+
+                    <label class="checkbox-inline i-checks" ng-if="text.input=='radio'">
+                        <input type="radio"><i></i> 是
+                    </label>
+                    <label class="checkbox-inline i-checks" ng-if="text.input=='radio'">
+                        <input type="radio"><i></i> 否
+                    </label>
+
+
+
+                    <textarea type="text" class="form-control Rinput{{text.length}}" cols="60" rows="4"  ng-if="text.input=='textarea'" readonly></textarea>
+
+
+
+                    <input type="text" class="form-control Rinput{{text.length}}" ng-if="text.input=='date'" readonly/>
+                    <button type="button" class="btn RSerBut" ng-if="text.input=='date'"><i class="glyphicon glyphicon-calendar"></i></button>
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+            <div class="row" ng-show="ctrl.tag==2">
+                模块信息
+
+            </div>
+
+
+            <div class="row" ng-show="ctrl.tag==3">
+                附件
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</form>
+

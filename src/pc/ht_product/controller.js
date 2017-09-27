@@ -49,13 +49,53 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     this.maxSize = 5;
     this.setPage(1);
 
+
+
+
+    //划出层样式
     this.panelClass = "contact panel panel-default";
 
     this.openPanel = function () {
         selt.panelClass = "contact panel panel-default active";
-    }
+    };
     this.closePanel = function () {
         selt.panelClass = "contact panel panel-default";
-    }
+        selt.selectTag('1');
+    };
+    //--tag切换
+    this.tagclass01 = "RuActive";
+    this.tagclass02 = "";
+    this.tagclass03 = "";
+    this.tag = 1;
+    this.selectTag = function (tag) {
+        selt.tag = tag;
+        if(tag==1){
+            selt.tagclass01="RuActive";
+            selt.tagclass02="";
+            selt.tagclass03="";
+            url = "/personnel/personnelSave";
+        }else if(tag==2){
+            selt.tagclass01="";
+            selt.tagclass02="RuActive";
+            selt.tagclass03="";
+            url = "/personnel/personnelBasicSave";
+        }else if(tag==3){
+            selt.tagclass01="";
+            selt.tagclass02="";
+            selt.tagclass03="RuActive";
+            url = "/personnel/personnelFileSave";
+        };
+
+    };
+
+    this.handoverView = function (htProduct) {
+
+        selt.showbutton=false;
+        selt.submitted=false;
+
+
+
+
+    };
 
 }]);

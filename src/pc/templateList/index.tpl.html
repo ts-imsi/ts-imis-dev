@@ -31,12 +31,7 @@
                     <td ng-bind="template.remark"></td>
                     <td ng-bind="template.updated |  date:'yyyy-MM-dd'"></td>
                     <td>
-                        <button type="button"
-                                class="btn btn-default">修改
-                        </button>
-                        <button type="button"
-                                class="btn btn-default">删除
-                        </button>
+                        <a href="#/apps/template?type={{template.type}}" class="btn btn-sm btn-info m-t-n-xs" >修改</a>
                     </td>
                 </tr>
                 </tbody>

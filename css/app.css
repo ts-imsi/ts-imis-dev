@@ -4542,6 +4542,11 @@ a.text-#000000:hover {
   margin-top: -5px;
 }
 
+.m-t-n-xs-left {
+  margin-top: -5px;
+  margin-left: 10px;
+}
+
 .m-t-n-sm {
   margin-top: -10px;
 }

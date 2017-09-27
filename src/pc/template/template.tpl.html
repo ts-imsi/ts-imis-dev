@@ -1,4 +1,4 @@
-<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.personSave(form.$valid,form.$invalid,ctrl.person)">
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.handoverSave()">
     <!--标题-->
     <div class="fl RuleTitTab">
         <!--tab切换-->
@@ -25,48 +25,32 @@
 
         <div class="panel-body">
             <div class="row" ng-show="ctrl.tag==1">
-
                 <div class="form-group RuleInput" ng-repeat='text in ctrl.template.contentJson'>
-                    <label for="text.code" class="RuleName130" >{{text.name}}：</label>
+                    <label class="RuleName130" >{{text.name}}：</label>
 
+                    <!-- 单行文本框 -->
+                    <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.input=='text'" ng-model="text.value">
 
-
-                    <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.input=='text'" id="text.code" name="text.code" ng-model="text.value">
-                    <span class="errorInput"
-                          ng-show="form.{{text.code}}.$error.required && ctrl.submitted">
-                              该选项框必填
-                        </span>
-
-
-
+                    <!-- 单选框 -->
                     <label class="checkbox-inline i-checks" ng-if="text.input=='radio'">
-                        <input type="radio"><i></i> 是
+                        <input type="radio" name="{{text.code}}" ng-model="text.value"  value="1"><i></i> 是
                     </label>
                     <label class="checkbox-inline i-checks" ng-if="text.input=='radio'">
-                        <input type="radio"><i></i> 否
+                        <input type="radio" name="{{text.code}}" ng-model="text.value" value="0"><i></i> 否
                     </label>
 
+                    <!-- 多行文本框 -->
+                    <textarea type="text" class="form-control Rinput{{text.length}}" cols="60" rows="4"  ng-if="text.input=='textarea'" ng-model="text.value"></textarea>
 
+                    <!-- 时间选择框 -->
+                    <input type="text" class="form-control Rinput{{text.length}}" datepicker-popup="{{ctrl.format}}" ng-model="text.value" is-open="ctrl.enterTime"  datepicker-options="ctrl.dateOptions" close-text="关闭"  ng-if="text.input=='date'&&text.code=='enterTime'" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openEnterTime($event)" ng-if="text.input=='date'&&text.code=='enterTime'"><i class="glyphicon glyphicon-calendar"></i></button>
 
-                    <textarea type="text" class="form-control Rinput{{text.length}}" cols="60" rows="4"  ng-if="text.input=='textarea'" readonly></textarea>
-
-
-
-                    <input type="text" class="form-control Rinput{{text.length}}" ng-if="text.input=='date'" readonly/>
-                    <button type="button" class="btn RSerBut" ng-if="text.input=='date'"><i class="glyphicon glyphicon-calendar"></i></button>
-
-
-
-
+                    <input type="text" class="form-control Rinput{{text.length}}" datepicker-popup="{{ctrl.format}}" ng-model="text.value" is-open="ctrl.finishTime"  datepicker-options="ctrl.dateOptions" close-text="关闭"  ng-if="text.input=='date'&&text.code=='finishTime'" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openFinishTime($event)" ng-if="text.input=='date'&&text.code=='finishTime'"><i class="glyphicon glyphicon-calendar"></i></button>
 
 
                 </div>
-
-
-
-
-
-
             </div>
 
 

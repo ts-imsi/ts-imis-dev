@@ -104,15 +104,78 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
     };
 
+    //--时间控件
+    this.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1,
+        class: 'datepicker'
+    };
+    this.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    this.format = this.formats[0];
+    // this.entryDate = $filter("date")(new Date(), "yyyy-MM-dd");
+    this.openEnterTime = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.enterTime = true;
+    };
+    this.openFinishTime=function($event){
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.finishTime = true;
+
+    };
+
     this.handoverView = function (htProduct) {
 
         selt.showbutton=false;
         selt.submitted=false;
 
+        $http.get("/ts-project/template/getTemplate/handover").success(function (result) {
+            console.log(result);
+            if(result.statusCode==1){
+                selt.template = result.object;
+                if(!selt.template.contentJson){
+                    selt.template.contentJson = [];
+                }
+            }else{
+                selt.template = {
+                    "contentJson":[]
+                };
+            }
+
+        });
+
 
 
 
     };
+
+    this.handoverSave = function () {
+        //非空校验和时间格式化
+        var keepGoing = true;
+        angular.forEach(selt.template.contentJson, function(note) {
+            if(note.input=='date'&&note.value){
+                note.value = $filter("date")(note.value, "yyyy-MM-dd");
+            }
+            if(keepGoing) {
+                if(note.isRequired==1&&!note.value){
+                    keepGoing = false;
+                    alert(note.name+"不为空");
+                }
+            }
+        });
+
+        if(keepGoing){
+            //保存交接单
+
+
+
+
+
+        }
+    }
 
 }]);
 

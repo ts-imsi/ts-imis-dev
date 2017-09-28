@@ -32,7 +32,7 @@
                     <td ng-bind="htProduct.customerName"></td>
                     <td ng-bind="htProduct.contractName"></td>
                     <td ng-bind="htProduct.contractOwner"></td>
-                    <td ng-bind="htProduct.createTime | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="htProduct.signDate | date:'yyyy-MM-dd'"></td>
                     <td>
                         <a ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()">修改
                         </a>
@@ -80,11 +80,21 @@
                             <th>总计</th>
                         </tr>
                         </thead>
+                        <tbody>
+                        <tr ng-repeat="product in ctrl.productlist">
+                            <td ng-bind="product.depName"></td>
+                            <td ng-bind="product.productMoreName"></td>
+                            <td ng-bind="product.productName"></td>
+                            <td  ng-dblclick="ctrl.showStandardPrice()"><span ng-show="!ctrl.showStandard" ng-bind="product.standardPrice"></span><div style="width:20px" ng-show="ctrl.showStandard"><input style="width:20px" ng-model="product.standardPrice" ng-blur="ctrl.udpateProduct(product)"></div></td>
+                            <td ng-bind="product.outputValue"></td>
+                            <td ng-bind="product.subtotal"></td>
+                            <td rowspan="{{ctrl.tdlength}}" ng-bind="ctrl.Price"></td>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-warning" type="submit">保存</button>
                 <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
             </div>
         </form>

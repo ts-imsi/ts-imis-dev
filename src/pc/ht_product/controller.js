@@ -128,34 +128,26 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     };
 
     this.handoverView = function (htProduct) {
-
         selt.showbutton=false;
         selt.submitted=false;
-
-        $http.get("/ts-project/template/getTemplate/handover").success(function (result) {
-            console.log(result);
-            if(result.statusCode==1){
-                selt.template = result.object;
-                if(!selt.template.contentJson){
-                    selt.template.contentJson = [];
+        $http.post("/ts-project/handover/getHandover",angular.toJson(htProduct)).success(function (result) {
+            if(result.success){
+                selt.handover = result.object;
+                if(!selt.handover.contentJson){
+                    selt.handover.contentJson = [];
                 }
             }else{
-                selt.template = {
+                selt.handover = {
                     "contentJson":[]
                 };
             }
-
         });
-
-
-
-
     };
 
     this.handoverSave = function () {
         //非空校验和时间格式化
         var keepGoing = true;
-        angular.forEach(selt.template.contentJson, function(note) {
+        angular.forEach(selt.handover.contentJson, function(note) {
             if(note.input=='date'&&note.value){
                 note.value = $filter("date")(note.value, "yyyy-MM-dd");
             }
@@ -168,13 +160,34 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         });
 
         if(keepGoing){
+            if(selt.handover.status&&selt.handover.status==1){
+                alert("该交接单已经提交,不能修改!");
+                return;
+            }
             //保存交接单
-
-
-
-
-
+            $http.post("/ts-project/handover/saveHandover",angular.toJson(selt.handover)).success(function (result) {
+                if(result.success){
+                    alert("交接单保存成功!");
+                }else{
+                    alert("交接单保存失败!");
+                }
+            });
         }
+    };
+
+    this.handoverSubmit = function () {
+        if(selt.handover.status&&selt.handover.status==1){
+            alert("该交接单已经提交,不能重复提交!");
+            return;
+        }
+        $http.post("/ts-project/handover/submitHandover",angular.toJson(selt.handover)).success(function (result) {
+            if(result.success){
+                selt.handover = result.object;
+                alert("交接单提交成功!");
+            }else{
+                alert("交接单提交失败!");
+            }
+        });
     }
 
 }]);

@@ -1,4 +1,4 @@
-<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.handoverSave()">
+<form class="form-horizontal" name="form" novalidate>
     <!--标题-->
     <div class="fl RuleTitTab">
         <!--tab切换-->
@@ -12,8 +12,8 @@
         </div>
         <!--tab切换end-->
         <div class="fr">
-            <input ng-show="ctrl.tag!=4" type="submit" ng-if="ctrl.showbutton" class="save fl" value="保存" />
-            <input ng-show="ctrl.tag!=4" type="submit" ng-if="!ctrl.showbutton" class="save fl" value="提交" />
+            <input ng-show="ctrl.tag!=4" type="submit"  ng-click="ctrl.handoverSave()" class="save fl" value="保存" />
+            <input ng-show="ctrl.tag!=4" type="submit" ng-click="ctrl.handoverSubmit()" class="save fl" value="提交" />
             <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
         </div>
     </div>
@@ -25,7 +25,7 @@
 
         <div class="panel-body">
             <div class="row" ng-show="ctrl.tag==1">
-                <div class="form-group RuleInput" ng-repeat='text in ctrl.template.contentJson'>
+                <div class="form-group RuleInput" ng-repeat='text in ctrl.handover.contentJson'>
                     <label class="RuleName130" >{{text.name}}：</label>
 
                     <!-- 单行文本框 -->

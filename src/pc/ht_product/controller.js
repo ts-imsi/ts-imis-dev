@@ -195,7 +195,43 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 app.controller('outputValueCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
     var seltSin=this;
 
+    seltSin.showStandard=false;
+    var parm={
+        contractNo:data.contractNo,
+        hospitalLevel:data.hospitalLevel,
+        contractPrice:(parseInt(data.contractPrice)*0.0001).toFixed(4)
+    }
+    seltSin.Price=(parseInt(data.contractPrice)*0.0001).toFixed(4);
+    $http.post("/ts-project/con_product/getProductByContract",angular.toJson(parm)).success(function (result) {
+        if(result.success){
+            seltSin.productlist = result.list;
+            seltSin.tdlength=result.list.length;
+        }else{
+            selt.productlist=[];
+        }
+    });
 
+    this.showStandardPrice=function(){
+        seltSin.showStandard=true;
+    }
+
+    this.udpateProduct=function(product){
+        seltSin.showStandard=false;
+        var param={
+            contractPrice:seltSin.Price,
+            pkid:product.pkid,
+            contractNo:product.htNo,
+            standardPrice:product.standardPrice
+        }
+        $http.post("/ts-project/con_product/updateProductByContract",angular.toJson(param)).success(function (result) {
+            if(result.success){
+                seltSin.productlist = result.list;
+                seltSin.tdlength=result.list.length;
+            }else{
+                selt.productlist=[];
+            }
+        });
+    }
 
     this.cancel = function () {
         $modalInstance.dismiss('cancel');

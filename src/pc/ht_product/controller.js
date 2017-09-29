@@ -47,18 +47,20 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     };
 
 
-    this.outputValue=function(htProduct,size){
+    this.showModuleList=function(item,size){
         var outputValueInstance = $modal.open({
-            templateUrl: 'outputValue.html',
-            controller: 'outputValueCtrl as ctrl',
+            templateUrl: 'htModuleList.html',
+            controller: 'htModuleListCtrl as ctrl',
             size: size,
             resolve: {
                 data: function () {
-                    return htProduct;
+                    return item;
                 }
             }
         });
-        outputValueInstance.result.then(function () {
+
+        outputValueInstance.result.then(function (score) {
+            selt.HtResolveList = score;
         });
     }
 
@@ -68,7 +70,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
 
 
-    //划出层样式
+    //交接单划出层样式
     this.panelClass = "contact panel panel-default";
 
     this.openPanel = function () {
@@ -78,6 +80,28 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         selt.panelClass = "contact panel panel-default";
         selt.selectTag('1');
     };
+
+    //产值分解划出层
+    this.opvPanelClass = "person panel panel-default";
+
+    this.openOPVPanel = function () {
+        selt.opvPanelClass = "person panel panel-default active";
+    };
+    this.closeOPVPanel = function () {
+        selt.opvPanelClass = "person panel panel-default";
+    };
+
+
+
+
+
+
+
+
+
+
+
+
     //--tag切换
     this.tagclass01 = "RuActive";
     this.tagclass02 = "";
@@ -188,51 +212,44 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 alert("交接单提交失败!");
             }
         });
-    }
+    };
 
-}]);
-
-app.controller('outputValueCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
-    var seltSin=this;
-
-    seltSin.showStandard=false;
-    var parm={
-        contractNo:data.contractNo,
-        hospitalLevel:data.hospitalLevel,
-        contractPrice:(parseInt(data.contractPrice)*0.0001).toFixed(4)
-    }
-    seltSin.Price=(parseInt(data.contractPrice)*0.0001).toFixed(4);
-    $http.post("/ts-project/con_product/getProductByContract",angular.toJson(parm)).success(function (result) {
-        if(result.success){
-            seltSin.productlist = result.list;
-            seltSin.tdlength=result.list.length;
-        }else{
-            selt.productlist=[];
+    this.queryHtResolve = function (htProduct) {
+        var parm={
+            contractNo:htProduct.contractNo,
+            hospitalLevel:htProduct.hospitalLevel,
+            contractPrice:(parseInt(htProduct.contractPrice)*0.0001).toFixed(4)
         }
-    });
-
-    this.showStandardPrice=function(){
-        seltSin.showStandard=true;
-    }
-
-    this.udpateProduct=function(product){
-        seltSin.showStandard=false;
-        var param={
-            contractPrice:seltSin.Price,
-            pkid:product.pkid,
-            contractNo:product.htNo,
-            standardPrice:product.standardPrice
-        }
-        $http.post("/ts-project/con_product/updateProductByContract",angular.toJson(param)).success(function (result) {
+        selt.htPrice=(parseInt(htProduct.contractPrice)*0.0001).toFixed(4);
+        $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
             if(result.success){
-                seltSin.productlist = result.list;
-                seltSin.tdlength=result.list.length;
+                selt.HtResolveList = result.object;
             }else{
-                selt.productlist=[];
+                selt.HtResolveList=[];
             }
         });
     }
 
+}]);
+
+app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
+    var selt=this;
+    console.log(data);
+    $http.post("/ts-project/con_product/queryHtModule",angular.toJson(data)).success(function (result) {
+        if(result.success){
+            selt.htModuleList = result.object;
+        }else{
+            selt.htModuleList=[];
+        }
+    });
+
+    this.updateModulePrice = function () {
+        $http.post("/ts-project/con_product/updateModulePrice",angular.toJson(selt.htModuleList)).success(function (result) {
+            if(result.success){
+                $modalInstance.close(result.object);
+            }
+        });
+    };
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };

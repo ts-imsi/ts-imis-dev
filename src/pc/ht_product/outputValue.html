@@ -1,0 +1,34 @@
+<div class="fl RuleTit">
+    <i>|</i>
+    分解产值 总额{{ctrl.htPrice}}万
+    <div class="fr">
+        <input type="button" class="CloseBut fl" ng-click="ctrl.closeOPVPanel()"/>
+    </div>
+</div>
+<div class="RuleCont">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light JG">
+                <thead class="bgJ">
+                <tr>
+                    <th>实施部门</th>
+                    <th>产品名</th>
+                    <th>标准总价</th>
+                    <th>合同占比</th>
+                    <th>小计(万)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in ctrl.HtResolveList" ng-dblclick="ctrl.showModuleList(item)">
+                    <td ng-bind="item.depName"></td>
+                    <td ng-bind="item.proName"></td>
+                    <td ng-bind="item.price"></td>
+                    <td ng-bind="item.outputValue"></td>
+                    <td ng-bind="item.subtotal"></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@
     <i>|</i>
     分解产值 总额{{ctrl.htPrice}}万
     <div class="fr">
+        <input type="button" class="save fl" ng-click="ctrl.updateResolveTotal()" value="更新" />
         <input type="button" class="CloseBut fl" ng-click="ctrl.closeOPVPanel()"/>
     </div>
 </div>
@@ -16,6 +17,7 @@
                     <th>标准总价</th>
                     <th>合同占比</th>
                     <th>小计(万)</th>
+                    <th>微调小计</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,6 +27,11 @@
                     <td ng-bind="item.price"></td>
                     <td ng-bind="item.outputValue"></td>
                     <td ng-bind="item.subtotal"></td>
+                    <td>
+                        <div style="width:40px">
+                            <input style="width:40px" ng-model="item.total" />
+                        </div>
+                    </td>
                 </tr>
 
                 </tbody>

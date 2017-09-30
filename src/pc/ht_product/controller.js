@@ -231,6 +231,19 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 selt.HtResolveList=[];
             }
         });
+    };
+
+    this.updateResolveTotal = function () {
+        var parm={
+            htResolveList:selt.HtResolveList
+        }
+        $http.post("/ts-project/con_product/updateResolveTotal",angular.toJson(parm)).success(function (result) {
+            if(result.success){
+                alert("产值修改成功!");
+            }else{
+                alert("产值修改失败!");
+            }
+        });
     }
 
 }]);

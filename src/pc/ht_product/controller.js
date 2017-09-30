@@ -47,7 +47,10 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     };
 
 
-    this.showModuleList=function(item,size){
+    this.showModuleList=function(item,htPrice,size){
+        if(htPrice){
+            item.htPrice = htPrice;
+        };
         var outputValueInstance = $modal.open({
             templateUrl: 'htModuleList.html',
             controller: 'htModuleListCtrl as ctrl',
@@ -235,6 +238,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
     var selt=this;
     console.log(data);
+
     $http.post("/ts-project/con_product/queryHtModule",angular.toJson(data)).success(function (result) {
         if(result.success){
             selt.htModuleList = result.object;
@@ -244,7 +248,11 @@ app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', 
     });
 
     this.updateModulePrice = function () {
-        $http.post("/ts-project/con_product/updateModulePrice",angular.toJson(selt.htModuleList)).success(function (result) {
+        var parm={
+            htModuleList:selt.htModuleList,
+            contractPrice:data.htPrice
+        }
+        $http.post("/ts-project/con_product/updateModulePrice",angular.toJson(parm)).success(function (result) {
             if(result.success){
                 $modalInstance.close(result.object);
             }

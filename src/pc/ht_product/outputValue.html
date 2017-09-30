@@ -19,7 +19,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in ctrl.HtResolveList" ng-dblclick="ctrl.showModuleList(item)">
+                <tr ng-repeat="item in ctrl.HtResolveList" ng-dblclick="ctrl.showModuleList(item,ctrl.htPrice)">
                     <td ng-bind="item.depName"></td>
                     <td ng-bind="item.proName"></td>
                     <td ng-bind="item.price"></td>

@@ -764,6 +764,17 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.handOverList', {
+                  url: '/handOverList',
+                  templateUrl: 'src/pc/handOver/index.tpl.html',
+                  controller: 'handOverCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/handOver/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

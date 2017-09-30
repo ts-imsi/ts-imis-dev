@@ -1,0 +1,69 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">合同项目交接</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="col-px-270 fl" style="position: relative;">
+                    <input type="text" class="form-control" placeholder="请输入合同号、客户名、合同名称" ng-model="ctrl.selectName">
+                </div>
+                <div class="col-px-100 fl" style="position: relative;">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.selectContract()">查询</button>
+                </div>
+                <div class="col-px-50 fl" style="text-align:center;padding: 7px"><label class="RuleName">类型:</label></div>
+                <div class="col-px-150 fl" style="position: relative;">
+                    <select ng-model="ctrl.selectType" class="form-control" ng-change="ctrl.selectChange()">
+                        <option value="">请选择</option>
+                        <option value="new">交接单</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>类型</th>
+                    <th>合同号</th>
+                    <th>客户名称</th>
+                    <th>合同名称</th>
+                    <th>交接时间</th>
+                    <th>分解状态</th>
+                    <th>确认状态</th>
+                    <th>安排状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="htHandOver in ctrl.htHandOverList">
+                    <td ng-bind="htHandOver.type |handOverType"></td>
+                    <td ng-bind="htHandOver.htNo"></td>
+                    <td ng-bind="htHandOver.customerName"></td>
+                    <td ng-bind="htHandOver.htName"></td>
+                    <td ng-bind="htHandOver.created | date:'yyyy-MM-dd'"></td>
+                    <td >{{htHandOver.isRecount==0 ? '否' : '是'}}</td>
+                    <td >{{htHandOver.isConfirm==0 ? '否' : '是'}}</td>
+                    <td >{{htHandOver.isArrange==0 ? '否' : '是'}}</td>
+                    <td>
+                        <a ng-click="">查看
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+</div>
+</div>

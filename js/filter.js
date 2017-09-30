@@ -321,3 +321,18 @@ app.filter('TemplateColor',function(){
         return color;
     }
 });
+
+app.filter('handOverType',function(){
+    return function(result){
+        var resultType = "";
+        switch(result)
+        {
+            case 'new':
+                resultType = "交接单";
+                break;
+            default:
+                resultType = result;
+        };
+        return resultType;
+    }
+});

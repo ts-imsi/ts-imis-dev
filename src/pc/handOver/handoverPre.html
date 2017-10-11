@@ -103,11 +103,11 @@
         <!--分块显示内容-->
         <div class="info" style="position: relative;" ng-repeat="module in ctrl.voList">
             <!--标题信息 程序传入高度获取infoRight div高度-->
-            <div class="infoLeft">
+            <div class="infoLeft" ng-if="module.voList.length>0">
                 <div class=" pos" ng-bind="module.name"></div>
             </div>
             <!--信息内容-->
-            <div class="infoRight">
+            <div class="infoRight" ng-if="module.length">
                 <ul>
                     <li ng-class="vo.length==5?'w50':'w100'" ng-repeat="vo in module.voList">
                         <span ng-bind="vo.name"></span>
@@ -116,16 +116,8 @@
                 </ul>
             </div>
 
-        </div>
-
-
-        <div class="info" style="position: relative;">
-            <!--标题信息 程序传入高度获取infoRight div高度-->
-            <div class="infoLeft">
-                <div class=" pos">合同分解信息</div>
-            </div>
             <!--信息内容-->
-            <div class="infoRight" style="position: relative;" >
+            <div class="infoRight" style="position: relative;" ng-if="module.name=='合同分解信息'&&module.voList.length>0">
                 <div class="infoTop">
                     <ul>
                         <li class="w25"><span>实施部门</span></li>
@@ -137,123 +129,15 @@
                 </div>
                 <div class="infoBot">
                     <div class="contleft">
-                        <div class="infoContBot" style="position: relative;">
+                        <div class="infoContBot" style="position: relative;" ng-repeat="vo in module.voList">
                             <div class="infoContLeft">
-                                <div class="pos2">HIS事业部</div>
+                                <div class="pos2" ng-bind="vo.name"></div>
                             </div>
                             <div class="infoContRight">
-                                <ul>
-                                    <li>
-                                        HIS
-                                    </li>
-                                    <li>
-                                        43%
-                                    </li>
-                                    <li>
-                                        51.5
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        EMR
-                                    </li>
-                                    <li>
-                                        23%
-                                    </li>
-                                    <li>
-                                        11.5
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        合理用药接口
-                                    </li>
-                                    <li>
-                                        3%
-                                    </li>
-                                    <li>
-                                        14
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="infoContBot" style="position: relative;">
-                            <div class="infoContLeft">
-                                <div class="pos2">平台事业部</div>
-                            </div>
-                            <div class="infoContRight">
-                                <ul>
-                                    <li>
-                                        院长查询
-                                    </li>
-                                    <li>
-                                        43%
-                                    </li>
-                                    <li>
-                                        51.5
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="infoContBot" style="position: relative;">
-                            <div class="infoContLeft">
-                                <div class="pos2">医技事业部</div>
-                            </div>
-                            <div class="infoContRight">
-                                <ul>
-                                    <li>
-                                        LIS
-                                    </li>
-                                    <li>
-                                        16%
-                                    </li>
-                                    <li>
-                                        25
-                                    </li>
-
-                                </ul>
-                                <ul>
-                                    <li>
-                                        LIS体验
-                                    </li>
-                                    <li>
-                                        8%
-                                    </li>
-                                    <li>
-                                        12.5
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="infoContBot" style="position: relative;">
-                            <div class="infoContLeft">
-                                <div class="pos2">大数据 </div>
-                            </div>
-                            <div class="infoContRight">
-                                <ul>
-                                    <li>
-                                        病案
-                                    </li>
-                                    <li>
-                                        16%
-                                    </li>
-                                    <li>
-                                        25
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        LIS体验
-                                    </li>
-                                    <li>
-                                        8%
-                                    </li>
-                                    <li>
-                                        12.5
-                                    </li>
+                                <ul ng-repeat="pro in vo.voList">
+                                    <li ng-bind="pro.name"></li>
+                                    <li ng-bind="pro.value"></li>
+                                    <li ng-bind="pro.total"></li>
                                 </ul>
                             </div>
                         </div>
@@ -262,47 +146,27 @@
 
                     <div class="contRight">
                         <div class="infoLeft">
-                            <div  class="posr">150</div>
+                            <div  class="posr" ng-bind="ctrl.total"></div>
                         </div>
                     </div>
 
                 </div>
             </div>
+
         </div>
 
 
 
+
+
+
         <div class="info">
-            <div class="allcont">
+            <div class="allcont" ng-repeat="vo in ctrl.signList">
                 <ul>
-                    <li>销售人员签字</li>
-                    <li class="w23">陈伟飞</li>
+                    <li ng-bind="vo.name"></li>
+                    <li class="w23">&nbsp</li>
                     <li class="w297">提交时间</li>
-                    <li class="w301">2017-06-30</li>
-                </ul>
-            </div>
-            <div class="allcont">
-                <ul>
-                    <li>销售人员签字</li>
-                    <li class="w23">陈伟飞</li>
-                    <li class="w297">提交时间</li>
-                    <li class="w301">2017-06-30</li>
-                </ul>
-            </div>
-            <div class="allcont">
-                <ul>
-                    <li>销售人员签字</li>
-                    <li class="w23">陈伟飞</li>
-                    <li class="w297">提交时间</li>
-                    <li class="w301">2017-06-30</li>
-                </ul>
-            </div>
-            <div class="allcont">
-                <ul>
-                    <li>销售人员签字</li>
-                    <li class="w23">陈伟飞</li>
-                    <li class="w297">提交时间</li>
-                    <li class="w301">2017-06-30</li>
+                    <li class="w301">&nbsp</li>
                 </ul>
             </div>
         </div>

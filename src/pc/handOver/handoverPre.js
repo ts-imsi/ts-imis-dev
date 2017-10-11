@@ -5,7 +5,9 @@ app.controller('HandoverPreCtrl', ['$scope', '$http','utils', function($scope, $
     $http.get("/ts-project/handover/getHandover/"+id).success(function (result) {
         if (result.success ) {
             console.log(result.object);
-            selt.voList = result.object;
+            selt.voList = result.object.tempDataVoList;
+            selt.total = result.object.total;
+            selt.signList = result.object.signList;
         }
 
     });

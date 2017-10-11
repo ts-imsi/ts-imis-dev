@@ -320,7 +320,7 @@ angular.module('app')
               })
               .state('access', {
                   url: '/access',
-                  template: '<div ui-view class="fade-in-right-big smooth"></div>'
+                  template: '<div ui-view class="fade-in-right-big smooth" auto-height></div>'
               })
               .state('access.signin', {
                   url: '/signin',
@@ -772,6 +772,17 @@ angular.module('app')
                       deps: ['uiLoad',
                           function( uiLoad ){
                               return uiLoad.load( ['src/pc/handOver/controller.js'] );
+                          }]
+                  }
+              })
+              .state('access.handover', {
+                  url: '/handover',
+                  templateUrl: 'src/pc/handOver/handoverPre.html',
+                  controller: 'HandoverPreCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/handOver/handoverPre.js'] );
                           }]
                   }
               })

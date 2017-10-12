@@ -1,0 +1,117 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">合同变更&增补列表</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="btn-group col-px-420" style="position: relative;float:left">
+                    <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">待审批</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">待提交</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(3)" class="btn btn-default">已完成</button>
+                </div>
+
+                <div class="col-px-250 fl" style="position: relative;">
+                    <input type="text" class="form-control" placeholder="请输入合同号、客户名、合同名称" ng-model="ctrl.selectName">
+                </div>
+                <div class="col-px-100 fl" style="position: relative;">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.selectContract()">查询</button>
+                </div>
+                <div class="col-px-50 fl" style="text-align:center;padding: 7px"><label class="RuleName">类型:</label></div>
+                <div class="col-px-150 fl" style="position: relative;">
+                    <select ng-model="ctrl.selectType" class="form-control" ng-change="ctrl.selectChange()">
+                        <option value="">请选择</option>
+                        <option value="变更">变更</option>
+                        <option value="增补">增补</option>
+                    </select>
+                </div>
+                <div class="col-px-180 fl" style="position: relative;">
+                    <button type="button" class="form-control" ng-click="ctrl.addHtChange()">申请</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>类型</th>
+                    <th>合同号</th>
+                    <th>客户名称</th>
+                    <th>合同名称</th>
+                    <th>合同所有者</th>
+                    <th>签约时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="htChange in ctrl.htChangeList" >
+                    <td ng-bind="htChange.type"></td>
+                    <td ng-bind="htChange.contractNo"></td>
+                    <td ng-bind="htChange.customerName"></td>
+                    <td ng-bind="htChange.contractName"></td>
+                    <td ng-bind="htChange.contractOwner"></td>
+                    <td ng-bind="htChange.signDate | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="htChange.status"></td>
+                    <td>
+                        <a >查看详细</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+</div>
+</div>
+
+
+
+
+
+
+<script type="text/ng-template" id="htModuleList.html">
+        <div class="modal-header">
+            <h4 class="modal-title" id="show-title">微调模块标准价</h4>
+        </div>
+        <form class="form-horizontal" name="outputValueForm"
+              novalidate role="form">
+            <div class="RuleCont">
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>软件模块</th>
+                            <th>标准价(万)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in ctrl.htModuleList">
+                            <td ng-bind="item.modName"></td>
+                            <td>
+                                <div style="width:40px">
+                                    <input style="width:40px" ng-model="item.price" />
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="ctrl.updateModulePrice()">确定</button>
+                <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+            </div>
+        </form>
+    </script>

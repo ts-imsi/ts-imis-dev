@@ -786,6 +786,17 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.htChange', {
+                  url: '/htChange',
+                  templateUrl: 'src/pc/ht_change/index.tpl.html',
+                  controller: 'htChangeCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/ht_change/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

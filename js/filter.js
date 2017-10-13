@@ -337,6 +337,28 @@ app.filter('handOverType',function(){
     }
 });
 
+
+app.filter('flowStatus',function(){
+    return function(status){
+        var resultType = "";
+        switch(status)
+        {
+            case 1:
+                resultType = "待审批";
+                break;
+            case 2:
+                resultType = "待提交";
+                break;
+            case 3:
+                resultType = "已完成";
+                break;
+            default:
+                resultType = status;
+        };
+        return resultType;
+    }
+});
+
 app.directive('resize', function ($window) {
     return function (scope, element) {
         var w = angular.element($window);

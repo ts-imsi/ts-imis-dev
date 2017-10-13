@@ -1,0 +1,72 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.applySubmit(form.$valid,form.$invalid)">
+<div class="fl RuleTit">
+    <div class="fr">
+        <input type="submit" class="save fl" ng-show="ctrl.submitApply" value="申请" />
+        <input type="button" class="CloseBut fl" ng-click="ctrl.closeOPVPanel()"/>
+    </div>
+</div>
+<div class="RuleCont">
+    <div class="panel-body">
+        <div class="form-group RuleInput">
+            <label class="RuleName">变更类型：</label>
+            <select class="form-control Rinput40" ng-model="ctrl.type" class="form-control" required name="type">
+                <option value="">请选择</option>
+                <option value="变更">变更</option>
+                <option value="增补">增补</option>
+            </select>
+            <span class="errorInput"
+                  ng-show="form.type.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+        </div>
+
+        <div class="form-group RuleInput" style="position: relative;">
+            <label class="RuleName">合同选择：</label>
+            <select class="form-control Rinput40" ng-model="ctrl.ht" ng-options="ht.contractNo  for ht in ctrl.htlist" ng-change="ctrl.showContractNo()" required name="htSelect"></select>
+            <span class="errorInput"
+                  ng-show="form.htSelect.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+        </div>
+        <div class="form-group RuleInput" style="position: relative;" ng-show="ctrl.showht">
+            <label class="RuleName">合同名称：</label>
+            <input type="text" class="form-control Rinput60"  ng-model="ctrl.htName" readonly>
+
+        </div>
+        <div class="form-group RuleInput" style="position: relative;" ng-show="ctrl.showht">
+            <label class="RuleName">客户名称：</label>
+            <input type="text" class="form-control Rinput60"  ng-model="ctrl.customerName" readonly >
+
+        </div>
+        <div class="form-group RuleInput" style="position: relative;" ng-show="ctrl.showht">
+            <label class="RuleName">合同签订时间：</label>
+            <input type="text" class="form-control Rinput60"  ng-model="ctrl.signDate" readonly>
+
+        </div>
+        <div class="form-group RuleInput" style="position: relative;">
+            <label class="RuleName">变更理由：</label>
+            <textarea type="text" class="form-control Rinput60" cols="60" rows="4" required name="changeContent"
+                      ng-model="ctrl.changeContent"></textarea>
+            <span class="errorInput"
+                  ng-show="form.changeContent.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+        </div>
+        <div class="form-group RuleInput" style="position: relative;" >
+            <label class="RuleName">申请人：</label>
+            <input type="text" class="form-control Rinput60"  ng-model="ctrl.createUser" readonly>
+
+        </div>
+        <div class="form-group RuleInput" style="position: relative;" >
+            <label class="RuleName">申请人部门：</label>
+            <input type="text" class="form-control Rinput60"  ng-model="ctrl.applicationDept" readonly >
+
+        </div>
+        <div class="form-group RuleInput" style="position: relative;" >
+            <label class="RuleName">申请人时间：</label>
+            <input type="text" class="form-control Rinput60"  ng-model="ctrl.created" readonly >
+
+        </div>
+    </div>
+</div>
+</form>

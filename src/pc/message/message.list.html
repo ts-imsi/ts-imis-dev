@@ -1,0 +1,31 @@
+
+<div>
+    <!-- header -->
+    <div class="wrapper bg-light lter">
+            <div class="col-sm-5 text-right text-right-xs" sytle="float:right;">
+                <pagination total-items="msgListctrl.totalCount" ng-model="msgListctrl.pageNo"
+                            ng-change="msgListctrl.pageChanged()"
+                            items-per-page="msgListctrl.pageSize" max-size="msgListctrl.maxSize" class="pagination-sm" style="height:0px;margin-top: 2px;"
+                            boundary-links="true" force-ellipses="true"></pagination>
+            </div>
+        <div class="btn-toolbar">
+
+        </div>
+    </div>
+    <!-- / header -->
+
+    <!-- list -->
+    <ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
+        <li ng-repeat="meg in msgListctrl.megList" ng-class="msgListctrl.labelClass(meg.type,meg.status)" class="list-group-item clearfix b-l-3x">
+            <div class="pull-right text-sm text-muted">
+                <span class="hidden-xs">{{ meg.updated | date:'yyyy-MM-dd' }}</span>
+                <i class="fa fa-paperclip ng-hide m-l-sm" ng-show="{{meg.type}}"></i>
+            </div>
+            <div class="clear">
+                <div><a ui-sref="app.message.detail({pkid:meg.pkid})" class="text-md">{{meg.title}}</a><span class="label bg-light m-l-sm">发送人:{{meg.sendName}}</span></div>
+                <div class="text-ellipsis m-t-xs">{{meg.msgContent | limitTo:100}}</div>
+            </div>
+        </li>
+    </ul>
+    <!-- / list -->
+</div>

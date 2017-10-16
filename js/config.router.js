@@ -797,6 +797,27 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.message', {
+                  url: '/message',
+                  templateUrl: 'src/pc/message/index.tpl.html',
+                  controller: 'messageCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/message/controller.js'] );
+                          }]
+                  }
+              })
+              .state('app.message.list', {
+                  url: '/messageList/{type}/{status}',
+                  templateUrl: 'src/pc/message/message.list.html',
+                  controller:'messageListCtrl as msgListctrl'
+              })
+              .state('app.message.detail', {
+                  url: '/messageDetail/{pkid}',
+                  templateUrl: 'src/pc/message/message.detail.html',
+                  controller:'messageDetailCtrl as detailCtrl'
+              })
       }
     ]
   );

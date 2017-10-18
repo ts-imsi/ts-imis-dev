@@ -85,4 +85,63 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
             alert(result.message);
         }
     });
+
+    //TODO 在流程中获取合同号
+    seltmsgDetail.htNo="B14011";
+
+    //操作信息
+    this.analyze = function (size) {
+        var analyzeInstance = $modal.open({
+            templateUrl: 'analyze.html',
+            controller: 'analyzeCtrl as ctrl',
+            size: size,
+            resolve: {
+                data: function () {
+                    return seltmsgDetail.htNo;
+                }
+            }
+        });
+        analyzeInstance.result.then(function () {
+        });
+
+    };
+
+
+
+
+}])
+
+
+
+
+app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
+    var seltAnaly=this;
+
+
+    $http.get("/ts-project/ht_analyze/selectAnalyzeList/"+data).success(function (result) {
+        if(result.success){
+            seltAnaly.analyzeList = result.object;
+        }else{
+            seltAnaly.analyzeList='';
+            alert(result.message);
+        }
+    });
+
+    this.saveAnalyze=function(){
+        console.log("=========");
+        //TODO 设置交接单ID
+        $http.post("/ts-project/ht_analyze/saveAnaly",angular.toJson(seltAnaly.analyzeList)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+            }else{
+                alert(result.message);
+            }
+
+        });
+    }
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
 }])

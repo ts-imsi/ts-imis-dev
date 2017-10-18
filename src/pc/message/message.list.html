@@ -18,7 +18,7 @@
     <ul class="list-group list-group-lg no-radius m-b-none m-t-n-xxs">
         <li ng-repeat="meg in msgListctrl.megList" ng-class="msgListctrl.labelClass(meg.type,meg.status)" class="list-group-item clearfix b-l-3x">
             <div class="pull-right text-sm text-muted">
-                <span class="hidden-xs">{{ meg.updated | date:'yyyy-MM-dd' }}</span>
+                <span class="hidden-xs">{{ meg.sentTime | date:'yyyy-MM-dd' }}</span>
                 <i class="fa fa-paperclip ng-hide m-l-sm" ng-show="{{meg.type}}"></i>
             </div>
             <div class="clear">

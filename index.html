@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="css/app.css" type="text/css" />
   <link rel="stylesheet" href="css/newStyle.css" type="text/css" />
   <link rel='stylesheet' href='css/dragula.css' type='text/css' />
+  <link rel="stylesheet" href="css/select2/select2.css">
+  <link rel="stylesheet" href="css/select2/select2-bootstrap.css">
+
 </head>
 <body ng-controller="AppCtrl">
   <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
@@ -49,6 +52,9 @@
   <!-- 拖拽 -->
   <script src="js/angularjs-dragula.js"></script>
 
+  <!--下拉框多选-->
+  <script src="js/select2.min.js"></script>
+
   <!-- 工具 -->
   <script src="src/app/mobile/utils.js"></script>
 
@@ -74,10 +80,14 @@
   <script src="js/directives/ui-validate.js"></script>
   <script src="js/controllers/bootstrap.js"></script>
 
+  <script src="js/directives/ui-select2.js"></script>
+
   <!-- Lazy loading -->
   <script src="src/app/searchAttList/controller.js"></script>
 
   <script src="js/filter.js"></script>
+
+
 
 </body>
 </html>

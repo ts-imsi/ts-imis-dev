@@ -86,7 +86,7 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
         }
     });
 
-    //TODO 在流程中获取合同号
+    //TODO 在流程中获取合同号和交接单号
     seltmsgDetail.htNo="B14011";
 
     //操作信息

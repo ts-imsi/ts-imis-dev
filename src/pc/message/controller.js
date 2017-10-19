@@ -87,7 +87,10 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
     });
 
     //TODO 在流程中获取合同号和交接单号
-    seltmsgDetail.htNo="B14011";
+    var param={
+        htNo:seltmsgDetail.msg.htNo,
+        handOverId:seltmsgDetail.msg.handOverId
+    }
 
     //操作信息
     this.analyze = function (size) {
@@ -97,7 +100,7 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
             size: size,
             resolve: {
                 data: function () {
-                    return seltmsgDetail.htNo;
+                    return param;
                 }
             }
         });
@@ -106,7 +109,34 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
 
     };
 
+    this.submitFlow=function(){
+        $http.post("/ts-project/tb_message/submitFlow",angular.toJson(seltmsgDetail.msg)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+            }else{
+                alert(result.message);
+            }
+        });
+    };
+    this.returnFlow=function(){
+        $http.post("/ts-project/tb_message/returnFlow",angular.toJson(seltmsgDetail.msg)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+            }else{
+                alert(result.message);
+            }
+        });
+    }
 
+    this.pdConfirm=function(){
+        $http.post("/ts-project/tb_message/pdConfirm",angular.toJson(seltmsgDetail.msg)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+            }else{
+                alert(result.message);
+            }
+        });
+    }
 
 
 }])
@@ -118,7 +148,7 @@ app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', funct
     var seltAnaly=this;
 
 
-    $http.get("/ts-project/ht_analyze/selectAnalyzeList/"+data).success(function (result) {
+    $http.get("/ts-project/ht_analyze/selectAnalyzeList/"+data.htNo).success(function (result) {
         if(result.success){
             seltAnaly.analyzeList = result.object;
         }else{

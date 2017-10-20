@@ -77,20 +77,21 @@ app.controller('messageListCtrl',['$scope', '$modal', '$http', '$log','$statePar
 app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateParams', function ($scope, $modal, $http, $log,$stateParams){
     var seltmsgDetail=this;
     seltmsgDetail.pkid = $stateParams.pkid;
+    var param;
     $http.get("/ts-project/tb_message/getTbMsgById/"+seltmsgDetail.pkid).success(function (result) {
         if(result.success){
             seltmsgDetail.msg = result.object;
+            //TODO 在流程中获取合同号和交接单号
+            param={
+                htNo:seltmsgDetail.msg.htNo,
+                handOverId:seltmsgDetail.msg.handOverId
+            }
         }else{
             seltmsgDetail.msg='';
             alert(result.message);
         }
     });
 
-    //TODO 在流程中获取合同号和交接单号
-    var param={
-        htNo:seltmsgDetail.msg.htNo,
-        handOverId:seltmsgDetail.msg.handOverId
-    }
 
     //操作信息
     this.analyze = function (size) {

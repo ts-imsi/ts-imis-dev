@@ -3,7 +3,7 @@
     <div class="wrapper bg-light lter b-b">
         <a ui-sref="app.message.list({type:detailCtrl.msg.type,status:detailCtrl.msg.status})" class="btn btn-sm btn-default w-xxs m-r-sm" tooltip="Back to Inbox"><i class="fa fa-long-arrow-left">返回</i></a>
         <div class="btn-group m-r-sm" ng-if="detailCtrl.msg.type=='todo'&&detailCtrl.msg.status=='0'">
-            <button class="btn btn-sm btn-default w-xxs w-auto-xs" tooltip="submit" ng-click="detailCtrl.submitFlow()"><i class="fa fa-archive">提交</i></button>
+            <button class="btn btn-sm btn-default w-xxs w-auto-xs" tooltip="submit" ng-click="detailCtrl.submitFlow()" ng-show="detailCtrl.msg.productStatus!=1"><i class="fa fa-archive">提交</i></button>
             <button class="btn btn-sm btn-default w-xxs w-auto-xs" ng-show="detailCtrl.msg.returnStatus==1" tooltip="rebut" ng-click="detailCtrl.returnFlow()"><i class="fa fa-exclamation-circle">驳回</i></button>
             <button class="btn btn-sm btn-default w-xxs w-auto-xs" ng-show="detailCtrl.msg.resolveStatus==1" tooltip="resolve" ng-click="detailCtrl.analyze()"><i class="fa fa-pencil-square">分解</i></button>
             <button class="btn btn-sm btn-default w-xxs w-auto-xs" ng-show="detailCtrl.msg.productStatus==1" tooltip="resolve" ng-click="detailCtrl.pdConfirm()"><i class="fa fa-pencil-square">生产部门确认</i></button>
@@ -13,13 +13,13 @@
     </div>
     <!-- / header -->
     <div class="wrapper b-b">
-        <h2 class="font-thin m-n">{{detailCtrl.msg.title}}</h2>
+        <h2 class="font-thin m-n" ng-bind="detailCtrl.msg.title"></h2>
     </div>
     <div class="wrapper b-b">
-        发送人 <a href>{{detailCtrl.msg.sendName}}</a>   发送时间：{{detailCtrl.msg.sendTime | date:'yyyy-MM-dd'}}
+        发送人 <span ng-bind="detailCtrl.msg.sendName"></span>   发送时间：<span ng-bind="detailCtrl.msg.sendTime | date:'yyyy-MM-dd'"></span> <a ng-show="detailCtrl.msg.handOverId" href="#/access/handover?id={{detailCtrl.msg.handOverId}}" target="_blank">查看交接单</a>
     </div>
     <div class="wrapper">
-        {{detailCtrl.msg.msgContent}}
+        <span ng-bind="detailCtrl.msg.msgContent"></span>
     </div>
     <div class="wrapper">
         <div class="panel b-a">

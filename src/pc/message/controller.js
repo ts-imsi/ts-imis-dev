@@ -84,7 +84,8 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
             //TODO 在流程中获取合同号和交接单号
             param={
                 htNo:seltmsgDetail.msg.htNo,
-                handOverId:seltmsgDetail.msg.handOverId
+                handOverId:seltmsgDetail.msg.handOverId,
+                processId:seltmsgDetail.msg.processId
             }
         }else{
             seltmsgDetail.msg='';
@@ -160,7 +161,10 @@ app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', funct
 
     this.saveAnalyze=function(){
         console.log("=========");
-        //TODO 设置交接单ID
+        angular.forEach(seltAnaly.analyzeList,function(item){
+            item.handoverId=data.handOverId;
+            item.processId=data.processId;
+        })
         $http.post("/ts-project/ht_analyze/saveAnaly",angular.toJson(seltAnaly.analyzeList)).success(function (result) {
             if(result.success){
                 alert(result.message);

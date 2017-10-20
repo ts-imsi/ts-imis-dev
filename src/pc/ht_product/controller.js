@@ -194,6 +194,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
             //保存交接单
             $http.post("/ts-project/handover/saveHandover",angular.toJson(selt.handover)).success(function (result) {
                 if(result.success){
+                    selt.handover = result.object;
                     alert("交接单保存成功!");
                 }else{
                     alert("交接单保存失败!");

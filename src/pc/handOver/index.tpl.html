@@ -36,7 +36,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="htHandOver in ctrl.htHandOverList">
+                <tr ng-repeat="htHandOver in ctrl.htHandOverList" ng-click="ctrl.openTimeLine(htHandOver.processId)"
+                    ng-dblclick="ctrl.openPanel()">
                     <td ng-bind="htHandOver.type |handOverType"></td>
                     <td ng-bind="htHandOver.htNo"></td>
                     <td ng-bind="htHandOver.customerName"></td>
@@ -66,4 +67,5 @@
             </div>
         </footer>
 </div>
+    <div data-ng-include=" 'src/pc/handOver/handoverTimeline.html' " ng-class="ctrl.panelClass"></div>
 </div>

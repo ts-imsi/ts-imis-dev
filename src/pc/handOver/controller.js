@@ -58,4 +58,24 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     this.maxSize = 5;
     this.setPage(1);
 
+
+    this.panelClass = "contact panel panel-default";
+
+    this.openPanel = function () {
+        selt.panelClass = "contact panel panel-default active";
+    };
+    this.closePanel = function () {
+        selt.panelClass = "contact panel panel-default";
+    };
+
+    this.openTimeLine = function (processId) {
+        $http.get("ts-project/handover/timeLine/"+processId).success(function (result) {
+            if (result.success) {
+                selt.timeLineList = result.object;
+            } else {
+                selt.timeLineList = [];
+            }
+        });
+    };
+
 }]);

@@ -1,0 +1,39 @@
+<div class="wrapper bg b-b">
+    <button class="btn btn-sm btn-success pull-right" ui-toggle-class="timeline-center" target=".timeline">Center</button>
+    <h3 class="m-n font-thin">Timeline</h3>
+</div>
+<div class="col">
+    <div class="wrapper">
+        <ul class="timeline">
+            <li class="tl-header">
+                <div class="btn btn-info">Now</div>
+            </li>
+
+
+
+            <li ng-class="$index%2==1?'tl-item tl-left':'tl-item'" ng-repeat="timeline in ctrl.timeLineList">
+                <div class="tl-wrap b-{{timeline.colour}}">
+                    <span class="tl-date" ng-bind="timeline.time"></span>
+                    <div class="tl-content panel  bg-{{timeline.colour}} padder b-a">
+                        <span ng-if="$index%2==1" class="arrow arrow-{{timeline.colour}} left pull-up hidden-left"></span>
+                        <span ng-if="$index%2==1" class="arrow arrow-{{timeline.colour}} right pull-up visible-left"></span>
+                        <span ng-if="$index%2==0" class="arrow arrow-{{timeline.colour}} left pull-up"></span>
+                        <div class="text-lt m-b-sm" ng-bind="timeline.taskName"></div>
+                        <div class="panel-body pull-in b-t b-light" ng-bind="timeline.remark">
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+
+
+
+
+            <li class="tl-header">
+                <div class="btn btn-sm btn-default btn-rounded">开始</div>
+            </li>
+        </ul>
+    </div>
+</div>

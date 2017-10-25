@@ -34,68 +34,30 @@
   <!-- 业务代码 -->
   <!-- 权限菜单测试========start======= -->
   <li ng-repeat="menu in menus">
-    <a href class="auto">
+  <a href class="auto">
       <span class="pull-right text-muted">
         <i class="fa fa-fw fa-angle-right text"></i>
         <i class="fa fa-fw fa-angle-down text-active"></i>
       </span>
-      <i ng-class="menu.icon"></i><!-- 图标样式不同 -->
-      <span class="font-bold"  ng-bind="menu.name"></span><!-- 国际化 -->
-    </a>
-    <ul class="nav nav-sub dk">
-      <li class="nav-sub-header">
-        <a href>
-          <span  ng-bind="menu.name"></span><!-- 国际化 -->
-        </a>
-      </li>
-      <li ui-sref-active="active" ng-repeat="child in menu.childrens">
-        <a href="{{child.url}}">
-          <span ng-bind="child.name"></span>
-        </a>
-      </li>
+    <i ng-class="menu.icon"></i><!-- 图标样式不同 -->
+    <span class="font-bold"  ng-bind="menu.name"></span><!-- 国际化 -->
+  </a>
+  <ul class="nav nav-sub dk">
+    <li class="nav-sub-header">
+      <a href>
+        <span  ng-bind="menu.name"></span><!-- 国际化 -->
+      </a>
+    </li>
+    <li ui-sref-active="active" ng-repeat="child in menu.childrens">
+      <a href="{{child.url}}">
+        <span ng-bind="child.name"></span>
+      </a>
+    </li>
 
-    </ul>
-  </li>
+  </ul>
+</li>
+
   <!-- 权限菜单测试========end======= -->
-
-  <li>
-    <a href class="auto">
-      <span class="pull-right text-muted">
-        <i class="fa fa-fw fa-angle-right text"></i>
-        <i class="fa fa-fw fa-angle-down text-active"></i>
-      </span>
-      <i class="glyphicon icon-clock icon text-danger"></i>
-      <span class="font-bold">项目管理</span>
-    </a>
-    <ul class="nav nav-sub dk">
-      <li class="nav-sub-header">
-        <a href>
-          <span>项目管理</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.htChange">
-          <span>合同变更</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.message">
-          <span>消息列表</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.handOverList">
-          <span>交接单列表</span>
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.ht_product">
-          <span>合同列表</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-
   <!--<li>
     <a href class="auto">
       <span class="pull-right text-muted">

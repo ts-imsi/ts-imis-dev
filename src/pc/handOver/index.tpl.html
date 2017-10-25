@@ -28,10 +28,12 @@
                     <th>合同号</th>
                     <th>客户名称</th>
                     <th>合同名称</th>
+                    <th>拥有者</th>
                     <th>交接时间</th>
-                    <th>分解状态</th>
-                    <th>确认状态</th>
-                    <th>安排状态</th>
+                    <th>分解</th>
+                    <th>审批</th>
+                    <th>步骤</th>
+                    <th>安排</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -42,9 +44,11 @@
                     <td ng-bind="htHandOver.htNo"></td>
                     <td ng-bind="htHandOver.customerName"></td>
                     <td ng-bind="htHandOver.htName"></td>
+                    <td ng-bind="htHandOver.htOwner"></td>
                     <td ng-bind="htHandOver.created | date:'yyyy-MM-dd'"></td>
                     <td >{{htHandOver.isRecount==0 ? '否' : '是'}}</td>
                     <td >{{htHandOver.isConfirm==0 ? '否' : '是'}}</td>
+                    <td ng-bind="htHandOver.nowStep"></td>
                     <td >{{htHandOver.isArrange==0 ? '否' : '是'}}</td>
                     <td>
                         <a href="#/access/handover?id={{htHandOver.pkid}}" target="_blank">查看

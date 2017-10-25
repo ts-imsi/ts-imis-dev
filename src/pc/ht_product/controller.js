@@ -225,6 +225,8 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
             contractPrice:(parseInt(htProduct.contractPrice)*0.0001).toFixed(4)
         }
         selt.htPrice=(parseInt(htProduct.contractPrice)*0.0001).toFixed(4);
+        selt.htNo=htProduct.contractNo;
+        selt.hosLevel=htProduct.hospitalLevel;
         $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
             if(result.success){
                 selt.HtResolveList = result.object;
@@ -247,6 +249,38 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         });
     }
 
+    this.addProModule=function(size){
+        var pro={
+            htNo:selt.htNo,
+            htPrice:selt.htPrice,
+            hosLevel:selt.hosLevel
+        }
+        var proModuleInstance = $modal.open({
+            templateUrl: 'pro_module.html',
+            controller: 'proModuleCtrl as ctrl',
+            size: size,
+            resolve: {
+                data: function () {
+                    return pro;
+                }
+            }
+        });
+
+        proModuleInstance.result.then(function (module) {
+            var parm={
+                contractNo:module.htNo,
+                hospitalLevel:module.hosLevel,
+                contractPrice:module.htPrice
+            }
+            $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
+                if(result.success){
+                    selt.HtResolveList = result.object;
+                }else{
+                    selt.HtResolveList=[];
+                }
+            });
+        });
+    }
 }]);
 
 app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
@@ -275,4 +309,64 @@ app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', 
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
+}])
+
+app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', function($scope,$modalInstance,$http,data) {
+    var product=this;
+    this.oneAtATime = true;
+    $http.post("/ts-project/product/getTbProductList/"+data.htNo).success(function (result) {
+        if(result.success){
+            product.proModuleList = result.object;
+            product.selected=result.checkList;
+        }else{
+            product.proModuleList=[];
+            alert(result.message);
+        }
+    });
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+    var updateSelected = function (action, modId) {
+        if (action == 'add' && product.selected.indexOf(modId) == -1) {
+            product.selected.push(modId);
+        }
+        if (action == 'remove' && product.selected.indexOf(modId) != -1) {
+            var idx = product.selected.indexOf(modId);
+            product.selected.splice(idx, 1);
+        }
+    }
+
+    this.updateSelection = function ($event, modId) {
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+        updateSelected(action, modId);
+    }
+
+    this.isSelected = function (modId) {
+        return product.selected.indexOf(modId) != -1;
+    }
+
+    this.addModule=function() {
+        var param_module = {
+            htNo: data.htNo,
+            htPrice: data.htPrice,
+            hosLevel:data.hosLevel,
+            moduleList: product.selected
+        };
+        $http.post("/ts-project/product/saveTbProductModule",angular.toJson(param_module)).success(function (result) {
+            if(result.success){
+                alert(result.message)
+            }else{
+                alert(result.message);
+            }
+        });
+        $modalInstance.close(param_module);
+    }
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+
 }])

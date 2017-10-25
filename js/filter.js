@@ -87,6 +87,9 @@ app.filter('contractType',function(){
             case 4:
                 name = "培训协议";
                 break;
+            case 5:
+                name = "劳动合同,保密协议";
+                break;
             default:
                 name = "";
         };

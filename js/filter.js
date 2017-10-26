@@ -350,7 +350,7 @@ app.filter('flowStatus',function(){
                 resultType = "待审批";
                 break;
             case 2:
-                resultType = "待提交";
+                resultType = "审批中";
                 break;
             case 3:
                 resultType = "已完成";

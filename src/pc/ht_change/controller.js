@@ -141,6 +141,105 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         }
     }
 
+    //--tag切换
+    this.tagclass01 = "RuActive";
+    this.tagclass02 = "";
+    this.tagclass03 = "";
+    this.tag = 1;
+    this.selectTag = function (tag) {
+        selt.tag = tag;
+        if(tag==1){
+            selt.tagclass01="RuActive";
+            selt.tagclass02="";
+            selt.tagclass03="";
+            url = "/personnel/personnelSave";
+        }else if(tag==2){
+            selt.tagclass01="";
+            selt.tagclass02="RuActive";
+            selt.tagclass03="";
+            url = "/personnel/personnelBasicSave";
+        }else if(tag==3){
+            selt.tagclass01="";
+            selt.tagclass02="";
+            selt.tagclass03="RuActive";
+            url = "/personnel/personnelFileSave";
+        };
+
+    };
+
+
+    this.handoverView = function (htNo) {
+        selt.showbutton=false;
+        selt.submitted=false;
+        $http.post("/ts-project/htChange/getContractByHtNo/"+htNo).success(function (result) {
+            if(result.success){
+                $http.post("/ts-project/handover/getHandover",angular.toJson(result.object)).success(function (result) {
+                    if(result.success){
+                        selt.handover = result.object;
+                        if(!selt.handover.contentJson){
+                            selt.handover.contentJson = [];
+                        }
+                    }else{
+                        selt.handover = {
+                            "contentJson":[]
+                        };
+                    }
+                });
+            }else{
+                selt.handover = {
+                    "contentJson":[]
+                };
+            }
+        });
+    };
+
+    this.handoverSave = function () {
+        //非空校验和时间格式化
+        var keepGoing = true;
+        angular.forEach(selt.handover.contentJson, function(note) {
+            if(note.input=='date'&&note.value){
+                note.value = $filter("date")(note.value, "yyyy-MM-dd");
+            }
+            if(keepGoing) {
+                if(note.isRequired==1&&!note.value){
+                    keepGoing = false;
+                    alert(note.name+"不为空");
+                }
+            }
+        });
+
+        if(keepGoing){
+            if(selt.handover.status&&selt.handover.status==1){
+                alert("该交接单已经提交,不能修改!");
+                return;
+            }
+            //保存交接单
+            $http.post("/ts-project/handover/saveHandover",angular.toJson(selt.handover)).success(function (result) {
+                if(result.success){
+                    selt.handover = result.object;
+                    alert("交接单保存成功!");
+                }else{
+                    alert("交接单保存失败!");
+                }
+            });
+        }
+    };
+
+    this.handoverSubmit = function () {
+        if(selt.handover.status&&selt.handover.status==1){
+            alert("该交接单已经提交,不能重复提交!");
+            return;
+        }
+        $http.post("/ts-project/handover/submitHandover",angular.toJson(selt.handover)).success(function (result) {
+            if(result.success){
+                selt.handover = result.object;
+                alert("交接单提交成功!");
+            }else{
+                alert("交接单提交失败!");
+            }
+        });
+    };
+
     //划出层
     this.opvPanelClass = "person panel panel-default";
 
@@ -149,5 +248,16 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     };
     this.closeOPVPanel = function () {
         selt.opvPanelClass = "person panel panel-default";
+    };
+
+    //交接单划出层样式
+    this.panelClass = "contact panel panel-default";
+
+    this.openPanel = function () {
+        selt.panelClass = "contact panel panel-default active";
+    };
+    this.closePanel = function () {
+        selt.panelClass = "contact panel panel-default";
+        selt.selectTag('1');
     };
 }]);

@@ -8,7 +8,7 @@
                 <div class="btn-group col-px-420" style="position: relative;float:left">
                     <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
                     <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">待审批</button>
-                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">待提交</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">审批中</button>
                     <button type="button" ng-click="ctrl.selectByStatus(3)" class="btn btn-default">已完成</button>
                 </div>
 
@@ -55,7 +55,7 @@
                     <td ng-bind="htChange.signDate | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="htChange.status | flowStatus"></td>
                     <td>
-                        <a >查看详细</a>
+                        <a ng-show="htChange.status==3" ng-click="ctrl.handoverView(htChange.htNo);ctrl.openPanel()">生成交接单</a>
                     </td>
                 </tr>
                 </tbody>
@@ -76,3 +76,4 @@
 </div>
 </div>
 <div data-ng-include=" 'src/pc/ht_change/apply.html' " ng-class="ctrl.opvPanelClass"></div>
+<div data-ng-include=" 'src/pc/template/template.tpl.html' " ng-class="ctrl.panelClass"></div>

@@ -156,7 +156,8 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
                     htchange:tbHtChange,
                     oldModuleList:selt.oldModuleList,
                     newModuleList:selt.newModuleList,
-                    hosLevel:selt.ht.hospitalGrade
+                    hosLevel:selt.ht.hospitalGrade,
+                    price:(parseInt(selt.ht.contractPrice)*0.0001).toFixed(4)
 
                 }
                 $http.post("/ts-project/htChange/applySubmit",angular.toJson(param)).success(function (result) {
@@ -339,22 +340,28 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         }
     };
 
-    this.queryHtResolve = function (htProduct) {
-        var parm={
-            contractNo:htProduct.contractNo,
-            hospitalLevel:htProduct.hospitalLevel,
-            contractPrice:(parseInt(htProduct.contractPrice)*0.0001).toFixed(4)
-        }
-        selt.htPrice=(parseInt(htProduct.contractPrice)*0.0001).toFixed(4);
-        selt.htNo=htProduct.contractNo;
-        selt.hosLevel=htProduct.hospitalLevel;
-        $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
+    this.queryHtResolve = function (htChange) {
+
+        $http.post("/ts-project/htChange/getContractByHtNo/"+htChange.htNo).success(function (result) {
             if(result.success){
-                selt.HtResolveList = result.object;
-            }else{
-                selt.HtResolveList=[];
+
+                var parm={
+                    contractNo:htChange.type+"_"+htChange.pkid,
+                    hospitalLevel:result.object.hospitalLevel,
+                    contractPrice:(parseInt(result.object.contractPrice)*0.0001).toFixed(4)
+                }
+                selt.conPrice=(parseInt(result.object.contractPrice)*0.0001).toFixed(4);
+                $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
+                    if(result.success){
+                        selt.HtResolveList = result.object;
+                    }else{
+                        selt.HtResolveList=[];
+                    }
+                });
             }
+
         });
+
     };
 
     this.updateResolveTotal = function () {
@@ -368,6 +375,26 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
                 alert("产值修改失败!");
             }
         });
+    };
+
+    this.showModuleList=function(item,htPrice,size){
+        if(htPrice){
+            item.htPrice = htPrice;
+        };
+        var outputValueInstance = $modal.open({
+            templateUrl: 'htModuleList.html',
+            controller: 'htModuleListCtrl as ctrl',
+            size: size,
+            resolve: {
+                data: function () {
+                    return item;
+                }
+            }
+        });
+
+        outputValueInstance.result.then(function (score) {
+            selt.HtResolveList = score;
+        });
     }
 
 
@@ -379,6 +406,16 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     };
     this.closeAppyVPanel = function () {
         selt.opAppyPanelClass = "person panel panel-default";
+    };
+
+    //产值分解划出层
+    this.opvPanelClass = "person panel panel-default";
+
+    this.openOPVPanel = function () {
+        selt.opvPanelClass = "person panel panel-default active";
+    };
+    this.closeOPVPanel = function () {
+        selt.opvPanelClass = "person panel panel-default";
     };
 
 
@@ -394,6 +431,34 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         selt.selectTag('1');
     };
 }]);
+
+app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
+    var selt=this;
+    console.log(data);
+
+    $http.post("/ts-project/con_product/queryHtModule",angular.toJson(data)).success(function (result) {
+        if(result.success){
+            selt.htModuleList = result.object;
+        }else{
+            selt.htModuleList=[];
+        }
+    });
+
+    this.updateModulePrice = function () {
+        var parm={
+            htModuleList:selt.htModuleList,
+            contractPrice:data.htPrice
+        }
+        $http.post("/ts-project/con_product/updateModulePrice",angular.toJson(parm)).success(function (result) {
+            if(result.success){
+                $modalInstance.close(result.object);
+            }
+        });
+    };
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}])
 
 app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', function($scope,$modalInstance,$http,data) {
     var product=this;

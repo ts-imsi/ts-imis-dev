@@ -103,6 +103,29 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     }
 
+    //--时间控件
+    this.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1,
+        class: 'datepicker'
+    };
+    this.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    this.format = this.formats[0];
+    // this.entryDate = $filter("date")(new Date(), "yyyy-MM-dd");
+    this.openEnterTime = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.enterTime = true;
+    };
+    this.openFinishTime=function($event){
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.finishTime = true;
+
+    };
+
     this.showContractNo=function(){
         selt.showht=true;
         selt.customerName=selt.ht.customerName;
@@ -314,18 +337,51 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         }else{
             selt.showOldModule=false;
         }
+    };
+
+    this.queryHtResolve = function (htProduct) {
+        var parm={
+            contractNo:htProduct.contractNo,
+            hospitalLevel:htProduct.hospitalLevel,
+            contractPrice:(parseInt(htProduct.contractPrice)*0.0001).toFixed(4)
+        }
+        selt.htPrice=(parseInt(htProduct.contractPrice)*0.0001).toFixed(4);
+        selt.htNo=htProduct.contractNo;
+        selt.hosLevel=htProduct.hospitalLevel;
+        $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
+            if(result.success){
+                selt.HtResolveList = result.object;
+            }else{
+                selt.HtResolveList=[];
+            }
+        });
+    };
+
+    this.updateResolveTotal = function () {
+        var parm={
+            htResolveList:selt.HtResolveList
+        }
+        $http.post("/ts-project/con_product/updateResolveTotal",angular.toJson(parm)).success(function (result) {
+            if(result.success){
+                alert("产值修改成功!");
+            }else{
+                alert("产值修改失败!");
+            }
+        });
     }
 
 
-    //划出层
-    this.opvPanelClass = "person panel panel-default";
+    //申请
+    this.opAppyPanelClass = "person panel panel-default";
 
-    this.openOPVPanel = function () {
-        selt.opvPanelClass = "person panel panel-default active";
+    this.openAppyPanel = function () {
+        selt.opAppyPanelClass = "person panel panel-default active";
     };
-    this.closeOPVPanel = function () {
-        selt.opvPanelClass = "person panel panel-default";
+    this.closeAppyVPanel = function () {
+        selt.opAppyPanelClass = "person panel panel-default";
     };
+
+
 
     //交接单划出层样式
     this.panelClass = "contact panel panel-default";

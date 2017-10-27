@@ -157,6 +157,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     this.handoverView = function (htProduct) {
         selt.showbutton=false;
         selt.submitted=false;
+        htProduct.type='new';
         $http.post("/ts-project/handover/getHandover",angular.toJson(htProduct)).success(function (result) {
             if(result.success){
                 selt.handover = result.object;

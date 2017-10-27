@@ -362,6 +362,24 @@ app.filter('flowStatus',function(){
     }
 });
 
+app.filter('changType',function(){
+    return function(type){
+        var resultType = "";
+        switch(type)
+        {
+            case 'BG':
+                resultType = "变更";
+                break;
+            case 'ZB':
+                resultType = "增补";
+                break;
+            default:
+                resultType = type;
+        };
+        return resultType;
+    }
+});
+
 app.directive('resize', function ($window) {
     return function (scope, element) {
         var w = angular.element($window);

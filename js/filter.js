@@ -350,13 +350,31 @@ app.filter('flowStatus',function(){
                 resultType = "待审批";
                 break;
             case 2:
-                resultType = "待提交";
+                resultType = "审批中";
                 break;
             case 3:
                 resultType = "已完成";
                 break;
             default:
                 resultType = status;
+        };
+        return resultType;
+    }
+});
+
+app.filter('changType',function(){
+    return function(type){
+        var resultType = "";
+        switch(type)
+        {
+            case 'BG':
+                resultType = "变更";
+                break;
+            case 'ZB':
+                resultType = "增补";
+                break;
+            default:
+                resultType = type;
         };
         return resultType;
     }

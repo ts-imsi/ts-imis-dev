@@ -157,6 +157,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     this.handoverView = function (htProduct) {
         selt.showbutton=false;
         selt.submitted=false;
+        htProduct.type='new';
         $http.post("/ts-project/handover/getHandover",angular.toJson(htProduct)).success(function (result) {
             if(result.success){
                 selt.handover = result.object;
@@ -249,7 +250,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         });
     }
 
-    this.addProModule=function(size){
+    this.addProModule=function(){
         var pro={
             htNo:selt.htNo,
             htPrice:selt.htPrice,
@@ -258,7 +259,6 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         var proModuleInstance = $modal.open({
             templateUrl: 'pro_module.html',
             controller: 'proModuleCtrl as ctrl',
-            size: size,
             resolve: {
                 data: function () {
                     return pro;
@@ -357,12 +357,13 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
         };
         $http.post("/ts-project/product/saveTbProductModule",angular.toJson(param_module)).success(function (result) {
             if(result.success){
-                alert(result.message)
+                alert(result.message);
+                $modalInstance.close(param_module);
             }else{
                 alert(result.message);
             }
         });
-        $modalInstance.close(param_module);
+
     }
     this.cancel = function () {
         $modalInstance.dismiss('cancel');

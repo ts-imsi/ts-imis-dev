@@ -80,6 +80,18 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     this.addHtChange=function(){
         console.log("===========ceshi");
+
+        selt.submitApply=true;
+        selt.submitted=false;
+        selt.type="";
+        selt.showht="";
+        selt.customerName="";
+        selt.signDate="";
+        selt.changeContent="";
+        selt.remark="";
+        selt.oldModuleList=[];
+        selt.newModuleList=[];
+
         $http.post("/ts-project/htChange/selectTbPersonnel").success(function (result) {
             if(result.success){
                 selt.personnel = result.object;

@@ -84,7 +84,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         selt.submitApply=true;
         selt.submitted=false;
         selt.type="";
-        selt.showht="";
+        selt.showht=false;
         selt.customerName="";
         selt.signDate="";
         selt.changeContent="";
@@ -347,6 +347,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     this.showModule=function(){
         if(selt.type=="BG"){
             selt.showOldModule=true;
+            selt.showNewModule=true;
         }else{
             selt.showOldModule=false;
         }
@@ -407,6 +408,55 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         outputValueInstance.result.then(function (score) {
             selt.HtResolveList = score;
         });
+    }
+
+    this.htChangeView=function(htChange){
+        selt.submitApply=false;
+        selt.type=htChange.type;
+        selt.showht=true;
+        selt.htName=htChange.htName;
+        selt.customerName=htChange.customerName;
+        selt.signDate=htChange.signDate;
+        selt.changeContent=htChange.changeContent;
+        selt.remark=htChange.remark;
+        selt.showNewModule=false;
+        $http.post("/ts-project/htChange/getHtChangeView/"+htChange.type+"/"+htChange.pkid).success(function (result) {
+            if(result.success){
+                selt.oldModuleList = result.oldModule;
+                selt.newModuleList=result.newModule;
+            }else{
+                selt.oldModuleList=[];
+                selt.newModuleList=[];
+            }
+        });
+
+        $http.post("/ts-project/htChange/getOaContractListByOwner").success(function (result) {
+            if(result.success){
+                selt.htlist = result.object;
+                angular.forEach(selt.htlist,function(item){
+                    if(item.contractNo==htChange.htNo){
+                        selt.ht=item;
+                    }
+                });
+            }else{
+                selt.htlist=[];
+                alert(result.message);
+            }
+        });
+
+        $http.post("/ts-project/htChange/selectTbPersonnel").success(function (result) {
+            if(result.success){
+                selt.personnel = result.object;
+                selt.createUser=selt.personnel.name;
+                selt.applicationDept=selt.personnel.depName;
+                selt.created=$filter("date")(new Date(), "yyyy-MM-dd")
+            }else{
+                selt.personnel=[];
+                alert(result.message);
+            }
+        });
+
+
     }
 
 

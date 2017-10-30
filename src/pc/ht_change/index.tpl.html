@@ -46,7 +46,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="htChange in ctrl.htChangeList" >
+                <tr ng-repeat="htChange in ctrl.htChangeList" ng-click="ctrl.htChangeView(htChange)"
+                    ng-dblclick="ctrl.openAppyPanel()">
                     <td ng-bind="htChange.type | changType"></td>
                     <td ng-bind="htChange.htNo"></td>
                     <td ng-bind="htChange.customerName"></td>

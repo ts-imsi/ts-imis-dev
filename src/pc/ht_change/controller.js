@@ -412,6 +412,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     this.htChangeView=function(htChange){
         selt.submitApply=false;
+        selt.showOldModule=false;
         selt.type=htChange.type;
         selt.showht=true;
         selt.htName=htChange.htName;

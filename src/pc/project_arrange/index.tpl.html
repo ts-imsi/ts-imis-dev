@@ -5,7 +5,7 @@
     <div class="panel panel-default">
         <div class="row NKwrapper Nkinput">
             <div class="fr">
-                <div class="btn-group col-px-420" style="position: relative;float:left">
+                <div class="btn-group col-px-700" style="position: relative;float:left">
                     <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">待安排</button>
                     <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">已安排</button>
                 </div>
@@ -13,7 +13,7 @@
                     <input type="text" class="form-control" placeholder="请输入关键字" ng-model="ctrl.selectName">
                 </div>
                 <div class="col-px-140 fl" style="position: relative;">
-                    <button type="button" class="btn btn-default" ng-click="ctrl.selectContract()">查询</button>
+                    <button type="button" class="btn btn-default" ng-click="ctrl.selectArrange()">查询</button>
                 </div>
             </div>
         </div>
@@ -28,16 +28,22 @@
                     <th>交接时间</th>
                     <th>分解时间</th>
                     <th>项目经理</th>
+                    <th ng-if="ctrl.isArrange==1">初步计划</th>
+                    <th ng-if="ctrl.isArrange==1">进度</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="handOver in ctrl.handOverList">
-                    <td ng-bind="handOver.contractNo"></td>
+                    <td ng-bind="handOver.htNo"></td>
                     <td ng-bind="handOver.customerName"></td>
-                    <td ng-bind="handOver.contractName"></td>
-                    <td ng-bind="handOver.contractOwner"></td>
-                    <td ng-bind="handOver.created | data:'yyyy-MM-dd'"></td>
-                    <td ng-bind="handOver.contractOwner"></td>
+                    <td ng-bind="handOver.htName"></td>
+                    <td ng-bind="handOver.htOwner"></td>
+                    <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
+                    <td ng-if="ctrl.isArrange==1" ng-bind="handOver.proManager"> </td>
+                    <td ng-if="ctrl.isArrange==0"><select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name as xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter()"></select><button type="button" ng-click="ctrl.ctreadLetter()" ng-show="ctrl.showLetter">生成任命书</button></td>
+                    <th ng-if="ctrl.isArrange==1"><a href="#">初步计划</a></th>
+                    <th ng-if="ctrl.isArrange==1"><a href="#">进度</a></th>
                 </tr>
                 </tbody>
             </table>

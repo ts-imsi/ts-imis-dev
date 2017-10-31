@@ -25,338 +25,347 @@
 
     <div class="RuleCont">
 
-    <div class="panel-body">
-        <div class="row" ng-show="ctrl.tag==1">
+        <div class="panel-body">
+            <div class="row" ng-show="ctrl.tag==1">
 
-            <div class="selePepcont fl">
-                <div class="form-group RuleInput">
-                    <label for="workNum" class="RuleName">工号：</label>
-                    <input type="text" class="form-control Rinput60" id="workNum" ng-model="ctrl.person.workNum" required="required" name="workNum"  ng-blur="ctrl.findWorkNumRepeat()">
-                    <span class="errorInput" ng-show="ctrl.findworkNum" ng-bind="ctrl.message"></span>
-                    <span class="errorInput"
-                          ng-show="form.workNum.$error.required && ctrl.submitted">
+                <div class="selePepcont fl">
+                    <div class="form-group RuleInput">
+                        <label for="workNum" class="RuleName">工号：</label>
+                        <input type="text" class="form-control Rinput60" id="workNum" ng-model="ctrl.person.workNum" required="required" name="workNum"  ng-blur="ctrl.findWorkNumRepeat()">
+                        <span class="errorInput" ng-show="ctrl.findworkNum" ng-bind="ctrl.message"></span>
+                        <span class="errorInput"
+                              ng-show="form.workNum.$error.required && ctrl.submitted">
                               该选项框必填
                         </span>
-                </div>
+                    </div>
 
-                <div class="form-group RuleInput">
-                    <label for="name" class="RuleName">姓名：</label>
-                    <input type="text" class="form-control Rinput60" id="name" ng-model="ctrl.person.name"  required="required"  name="name"  maxlength="50" placeholder="请输入名称" ng-pattern="ctrl.nameReg">
-                    <span class="errorInput" ng-show="form.name.$error.pattern" >
+                    <div class="form-group RuleInput">
+                        <label for="name" class="RuleName">姓名：</label>
+                        <input type="text" class="form-control Rinput60" id="name" ng-model="ctrl.person.name"  required="required"  name="name"  maxlength="50" placeholder="请输入名称" ng-pattern="ctrl.nameReg">
+                        <span class="errorInput" ng-show="form.name.$error.pattern" >
                         请输入中文，英文，数字，下划线
                     </span>
-                    <span class="errorInput"
-                          ng-show="form.name.$error.required && ctrl.submitted">
+                        <span class="errorInput"
+                              ng-show="form.name.$error.required && ctrl.submitted">
                               该选项框必填
                     </span>
-                </div>
-                <div class="form-group RuleInput">
-                    <label class="RuleName">性别：</label>
-                    <label class="checkbox-inline i-checks">
-                        <input type="radio" name="person-sex" value="1" ng-model="ctrl.sex" ><i></i> 男
-                    </label>
-                    <label class="checkbox-inline i-checks">
-                        <input type="radio" name="person-sex" value="2" ng-model="ctrl.sex"><i></i> 女
-                    </label>
-                </div>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">性别：</label>
+                        <label class="checkbox-inline i-checks">
+                            <input type="radio" name="person-sex" value="1" ng-model="ctrl.sex" ><i></i> 男
+                        </label>
+                        <label class="checkbox-inline i-checks">
+                            <input type="radio" name="person-sex" value="2" ng-model="ctrl.sex"><i></i> 女
+                        </label>
+                    </div>
 
 
-                <div class="form-group RuleInput">
-                    <label class="RuleName">入职时间：</label>
-                    <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.entryDate" is-open="ctrl.opened" name="entryDate"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" ng-required="true" close-text="关闭" readonly/>
-                    <button type="button" class="btn RSerBut" ng-click="ctrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                    <span class="errorInput"
-                          ng-show="form.entryDate.$error.required && ctrl.submitted">
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">入职时间：</label>
+                        <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.entryDate" is-open="ctrl.opened" name="entryDate"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" ng-required="true" close-text="关闭" readonly/>
+                        <button type="button" class="btn RSerBut" ng-click="ctrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <span class="errorInput"
+                              ng-show="form.entryDate.$error.required && ctrl.submitted">
                               该选项框必填
                     </span>
+                    </div>
+
                 </div>
-
-            </div>
-            <div class="selePepPhon fr">
-                <!--照片-->
-                <div class="PepPhon">
-                    <img ng-if="!ctrl.person.picture" src="../img/a0.jpg"  ng-click="ctrl.addImage()"/>
-                    <img ng-if="ctrl.person.picture" ng-src="{{ctrl.person.picture}}"  ng-click="ctrl.addImage()"/>
-                </div>
-                <!--工龄-->
-                <div class="WorkingYears">
-                    在职时长：<span ng-bind="ctrl.person.entryDate|incumbency"></span>
-                </div>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label class="RuleName">手机号码：</label>
-                <input type="text" class="form-control Rinput60" id="phone" ng-model="ctrl.person.phone"  required="required"  name="phone" ng-pattern="ctrl.phoneReg" >
-                <span class="errorInput"
-                      ng-show="form.phone.$error.pattern">
-                        手机号码不合法
-                    </span>
-                <span class="errorInput"
-                      ng-show="form.phone.$error.required && ctrl.submitted">
-                              该选项框必填
-                    </span>
-            </div>
-
-
-            <div class="form-group RuleInput" >
-                <label class="RuleName">所属部门：</label>
-                <input type="hidden"  id="depId" ng-model="ctrl.person.depId"  name="depId"/>
-                <input type="text" class="form-control Rinput50" id="depName" ng-model="ctrl.person.depName"  required="required"  name="depName"  maxlength="100" readonly>
-                <button type="button"  class="NkSearBut RSerBut" ng-click="ctrl.findDeptperson()" ></button>
-                <span class="errorInput"
-                      ng-show="form.depName.$error.required && ctrl.submitted">
-                              该选项框必填
-                    </span>
-            </div>
-
-
-            <div class="form-group RuleInput">
-                <label class="RuleName">岗位名称：</label>
-                <!--<input type="text" class="form-control Rinput" id="position" ng-model="ctrl.person.position"  required="required"  name="position"  maxlength="100" ng-pattern="ctrl.nameReg">-->
-                <select  class="form-control Rinput60"  ng-model="ctrl.twfDictgw" ng-options="twfDictgw.name for twfDictgw in ctrl.twfDictgwList" required name="namegw"><option value="">请选择</option></select>
-                <span class="errorInput"
-                      ng-show="form.namegw.$error.required && ctrl.submitted">
-                              该选项框必填
-                    </span>
-            </div>
-
-            <div class="form-group RuleInput NkTab">
-                <label class="RuleName">标签：</label>
-                <ul ng-repeat="tag in ctrl.tagList">
-                    <li class="TabBul">
-                        <span ng-bind="tag.tagName"></span>
-                    </li>
-                </ul>
-                <input type="button" value="标签" ng-click="ctrl.addTagName()"/>
-            </div>
-
-        </div>
-
-
-        <div class="row" ng-show="ctrl.tag==2">
-            <div class="form-group RuleInput">
-                <label for="idCard" class="RuleName">身份证号：</label>
-                <input type="text" class="form-control Rinput60" id="idCard" ng-model="ctrl.person.idCard" name="idCard"  ng-pattern="ctrl.idCardReg">
-                <span class="errorInput"
-                       ng-show="form.idCard.$error.pattern">
-                        身份证号码不合法
-                </span>
-            </div>
-            <div class="form-group RuleInput">
-                <label for="idCardFile" class="RuleName">身份证附件：</label>
-                <input type="text" class="form-control Rinput60" id="idCardFile" ng-model="ctrl.person.idCardFile" readonly >
-                <button ng-show="ctrl.fileItem" type="button" class="btn RSerBut" ng-click="ctrl.fileItem.upload()"
-                        ng-disabled="ctrl.fileItem.isReady
-                        || ctrl.fileItem.isUploading
-                        || ctrl.fileItem.isSuccess">
-                    上传
-                </button>
-                <input type="file" nv-file-select="" uploader="uploader" />
-            </div>
-            <div class="form-group RuleInput">
-                <label  class="RuleName">生日：</label>
-                <!--<input type="text" class="form-control Rinput40" id="birthday" ng-model="ctrl.person.birthday"  >-->
-                <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.birthday" is-open="ctrl.biropen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
-                <button type="button" class="btn RSerBut" ng-click="ctrl.openbir($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </div>
-            <div class="form-group RuleInput">
-                <label class="RuleName">生日类别：</label>
-                <label class="checkbox-inline i-checks">
-                    <input type="radio" name="person-birthdayType" value="1" ng-model="ctrl.birthdayType"><i></i> 公历
-                </label>
-                <label class="checkbox-inline i-checks">
-                    <input type="radio" name="person-birthdayType" value="2" ng-model="ctrl.birthdayType" ><i></i> 农历
-                </label>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="householdRegiste" class="RuleName">户籍：</label>
-                <input type="text" class="form-control Rinput60" id="householdRegiste" ng-model="ctrl.person.householdRegiste"  >
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="houseAddress" class="RuleName">家庭住址：</label>
-                <input type="text" class="form-control Rinput60" id="houseAddress" ng-model="ctrl.person.houseAddress"  >
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="school" class="RuleName">毕业院校：</label>
-                <input type="text" class="form-control Rinput60" id="school" ng-model="ctrl.person.school"  >
-            </div>
-            <div class="form-group RuleInput">
-                <label for="SchoolFile" class="RuleName">毕业证明：</label>
-                <input type="text" class="form-control Rinput60" id="SchoolFile" ng-model="ctrl.person.schoolFile" readonly >
-                <button ng-show="ctrl.fileSchoolItem" type="button" class="btn RSerBut" ng-click="ctrl.fileSchoolItem.upload()"
-                        ng-disabled="ctrl.fileSchoolItem.isReady
-                        || ctrl.fileSchoolItem.isUploading
-                        || ctrl.fileSchoolItem.isSuccess">
-                    上传
-                </button>
-                <input type="file" nv-file-select="" uploader="uploaderSchool" />
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="major" class="RuleName">专业：</label>
-                <input type="text" class="form-control Rinput60" id="major" ng-model="ctrl.person.major"  >
-            </div>
-
-            <div class="form-group RuleInput">
-                <label class="RuleName">学历：</label>
-                <select  class="form-control Rinput60"  ng-model="ctrl.twfDictxl" ng-options="obj.code as obj.name for obj in ctrl.twfDictxlList" name="namexl"><option value="">请选择</option></select>
-                <!--<input type="text" class="form-control Rinput40" id="education" ng-model="ctrl.person.education"  >-->
-            </div>
-
-            <div class="form-group RuleInput">
-                <label  class="RuleName">毕业时间：</label>
-                <!--<input type="text" class="form-control Rinput40" id="graduateDate" ng-model="ctrl.person.graduateDate"  >-->
-                <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.graduateDate" is-open="ctrl.graopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
-                <button type="button" class="btn RSerBut" ng-click="ctrl.opengra($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="linkman" class="RuleName">紧急联系人：</label>
-                <input type="text" class="form-control Rinput60" id="linkman" name="linkman" ng-model="ctrl.person.linkman"  >
-                <span class="errorInput" ng-show="form.linkman.$error.pattern" >
-                        请输入中文，英文，数字，下划线
-                </span>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="linkPhone" class="RuleName">联系人电话：</label>
-                <input type="text" class="form-control Rinput60" id="linkPhone" ng-model="ctrl.person.linkPhone" name="linkPhone" ng-pattern="ctrl.phoneReg">
-                <span class="errorInput"
-                       ng-show="form.linkPhone.$error.pattern">
-                        手机号码不合法
-                </span>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="SeparationFile" class="RuleName">离职证明：</label>
-                <input type="text" class="form-control Rinput60" id="SeparationFile" ng-model="ctrl.person.separationFile" readonly >
-                <button ng-show="ctrl.fileSeparationItem" type="button" class="btn RSerBut" ng-click="ctrl.fileSeparationItem.upload()"
-                        ng-disabled="ctrl.fileSeparationItem.isReady
-                        || ctrl.fileSeparationItem.isUploading
-                        || ctrl.fileSeparationItem.isSuccess">
-                    上传
-                </button>
-                <input type="file" nv-file-select="" uploader="uploaderSeparation" />
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="remark" class="RuleName">备注：</label>
-                <input type="text" class="form-control Rinput60" id="remark" ng-model="ctrl.person.remark"  >
-            </div>
-
-        </div>
-
-
-        <div class="row" ng-show="ctrl.tag==3">
-            <div class="form-group RuleInput">
-                <label  class="RuleName">职级：</label>
-                <select class="form-control Rinput60" ng-model="ctrl.twfDict" ng-options="twfDict.name  for twfDict in ctrl.twfDictList"></select>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label class="RuleName">是否重复入职：</label>
-                <label class="checkbox-inline i-checks">
-                    <input type="radio" name="person-reEntry" value="1" ng-model="ctrl.reEntry"><i></i> 是
-                </label>
-                <label class="checkbox-inline i-checks">
-                    <input type="radio" name="person-reEntry" value="0" ng-model="ctrl.reEntry"><i></i> 否
-                </label>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="regularDate" class="RuleName">转正时间：</label>
-                <input type="text" class="form-control Rinput50" id="regularDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.regularDate" is-open="ctrl.reguopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
-                <button type="button" class="btn RSerBut" ng-click="ctrl.openregu($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="quitDate" class="RuleName">离职时间：</label>
-                <!--<input type="text" class="form-control Rinput40" id="quitDate" ng-model="ctrl.person.quitDate" >-->
-                <input type="text" class="form-control Rinput50" id="quitDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.quitDate" is-open="ctrl.quiopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
-                <button type="button" class="btn RSerBut" ng-click="ctrl.openqui($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="trySalary" class="RuleName">试用期薪资：</label>
-                <input type="text" class="form-control Rinput60" id="trySalary" name="trySalary" ng-model="ctrl.person.trySalary" ng-pattern="ctrl.xzReg">
-                <span class="errorInput" ng-show="form.trySalary.$error.pattern" >
-                        请输入正整数
-                </span>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="salary" class="RuleName">正式薪资：</label>
-                <input type="text" class="form-control Rinput60" id="salary" name="salary" ng-model="ctrl.person.salary" ng-pattern="ctrl.xzReg">
-                <span class="errorInput" ng-show="form.salary.$error.pattern" >
-                        请输入正整数
-                </span>
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="salaryRemark" class="RuleName">薪资福利说明：</label>
-                <input type="text" class="form-control Rinput60" id="salaryRemark" ng-model="ctrl.person.salaryRemark" >
-            </div>
-
-            <div class="form-group RuleInput">
-                <label for="shbDate" class="RuleName">社保购买时间：</label>
-                <!--<input type="text" class="form-control Rinput60" id="shbDate" ng-model="ctrl.person.shbDate" >-->
-                <input type="text" class="form-control Rinput50" id="shbDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.shbDate" is-open="ctrl.shbopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
-                <button type="button" class="btn RSerBut" ng-click="ctrl.openshb($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </div>
-            <div class="form-group RuleInput">
-                <label for="gjjDate" class="RuleName">公积金购买时间：</label>
-                <!--<input type="text" class="form-control Rinput60" id="gjjDate" ng-model="ctrl.person.gjjDate" >-->
-                <input type="text" class="form-control Rinput50" id="gjjDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.gjjDate" is-open="ctrl.gjjopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
-                <button type="button" class="btn RSerBut" ng-click="ctrl.opengjj($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </div>
-        </div>
-
-        <div class="row" ng-show="ctrl.tag==4">
-
-            <div class="table-responsive">
-                <table class="table table-striped b-t b-light">
-                    <thead>
-                    <tr>
-                        <th>原部门</th>
-                        <th>原岗位</th>
-                        <th>新部门</th>
-                        <th>新岗位</th>
-                        <th>调岗日期</th>
-                        <th>生效日期</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="log in ctrl.deptLogList" >
-                        <td ng-bind="log.oldDept"></td>
-                        <td ng-bind="log.oldPosition"></td>
-                        <td ng-bind="log.newDept"></td>
-                        <td ng-bind="log.newPosition"></td>
-                        <td ng-bind="log.changeDate"></td>
-                        <td ng-bind="log.exeDate"></td>
-                    </tr>
-
-                    </tbody>
-                </table>
-            </div>
-            <footer class="panel-footer">
-                <div class="row">
-                    <div class="text-center text-center-xs">
-                        <pagination total-items="ctrl.totalCountLog" ng-model="ctrl.pageNoLog" ng-change="ctrl.pageChangedLog(ctrl.person.perId)"
-                                    items-per-page="ctrl.pageSizeLog" max-size="ctrl.maxSize" class="pagination-sm"
-                                    boundary-links="true" force-ellipses="true"></pagination>
+                <div class="selePepPhon fr">
+                    <!--照片-->
+                    <div class="PepPhon">
+                        <img ng-if="!ctrl.person.picture" src="../img/a0.jpg"  ng-click="ctrl.addImage()"/>
+                        <img ng-if="ctrl.person.picture" ng-src="{{ctrl.person.picture}}"  ng-click="ctrl.addImage()"/>
+                    </div>
+                    <!--工龄-->
+                    <div class="WorkingYears">
+                        在职时长：<span ng-bind="ctrl.person.entryDate|incumbency"></span>
                     </div>
                 </div>
-            </footer>
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">手机号码：</label>
+                    <input type="text" class="form-control Rinput60" id="phone" ng-model="ctrl.person.phone"  required="required"  name="phone" ng-pattern="ctrl.phoneReg" >
+                    <span class="errorInput"
+                          ng-show="form.phone.$error.pattern">
+                        手机号码不合法
+                    </span>
+                    <span class="errorInput"
+                          ng-show="form.phone.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+                </div>
+
+
+                <div class="form-group RuleInput" >
+                    <label class="RuleName">所属部门：</label>
+                    <input type="hidden"  id="depId" ng-model="ctrl.person.depId"  name="depId"/>
+                    <input type="text" class="form-control Rinput50" id="depName" ng-model="ctrl.person.depName"  required="required"  name="depName"  maxlength="100" readonly>
+                    <button type="button"  class="NkSearBut RSerBut" ng-click="ctrl.findDeptperson()" ></button>
+                    <span class="errorInput"
+                          ng-show="form.depName.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+                </div>
+
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">岗位名称：</label>
+                    <!--<input type="text" class="form-control Rinput" id="position" ng-model="ctrl.person.position"  required="required"  name="position"  maxlength="100" ng-pattern="ctrl.nameReg">-->
+                    <select  class="form-control Rinput60"  ng-model="ctrl.twfDictgw" ng-options="twfDictgw.name for twfDictgw in ctrl.twfDictgwList" required name="namegw"><option value="">请选择</option></select>
+                    <span class="errorInput"
+                          ng-show="form.namegw.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+                </div>
+
+                <div class="form-group RuleInput NkTab">
+                    <label class="RuleName">标签：</label>
+                    <ul ng-repeat="tag in ctrl.tagList">
+                        <li class="TabBul">
+                            <span ng-bind="tag.tagName"></span>
+                        </li>
+                    </ul>
+                    <input type="button" value="标签" ng-click="ctrl.addTagName()"/>
+                </div>
+
+            </div>
+
+
+            <div class="row" ng-show="ctrl.tag==2">
+                <div class="form-group RuleInput">
+                    <label for="idCard" class="RuleName">身份证号：</label>
+                    <input type="text" class="form-control Rinput60" id="idCard" ng-model="ctrl.person.idCard" name="idCard"  ng-pattern="ctrl.idCardReg">
+                    <span class="errorInput"
+                          ng-show="form.idCard.$error.pattern">
+                        身份证号码不合法
+                </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label for="idCardFile" class="RuleName">身份证附件：</label>
+                    <input type="text" class="form-control Rinput60" id="idCardFile" ng-model="ctrl.person.idCardFile" readonly >
+                    <button  type="button" class="btn RSerBut" ng-click="ctrl.fileItem.upload()"
+                             ng-disabled="ctrl.fileItem.isReady
+                        || ctrl.fileItem.isUploading
+                        || ctrl.fileItem.isSuccess">
+                        上传
+                    </button>
+                    <button  type="button" class="btn RSerBut" ng-show="ctrl.person.idCardFile">
+                        <a href="/download/file?filePath={{ctrl.person.idCardFile}}&isOnLine=true" target="_blank">查看</a>
+                    </button>
+                    <input type="file" nv-file-select="" uploader="uploader" />
+                </div>
+                <div class="form-group RuleInput">
+                    <label  class="RuleName">生日：</label>
+                    <!--<input type="text" class="form-control Rinput40" id="birthday" ng-model="ctrl.person.birthday"  >-->
+                    <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.birthday" is-open="ctrl.biropen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openbir($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">生日类别：</label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="person-birthdayType" value="1" ng-model="ctrl.birthdayType"><i></i> 公历
+                    </label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="person-birthdayType" value="2" ng-model="ctrl.birthdayType" ><i></i> 农历
+                    </label>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="householdRegiste" class="RuleName">户籍：</label>
+                    <input type="text" class="form-control Rinput60" id="householdRegiste" ng-model="ctrl.person.householdRegiste"  >
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="houseAddress" class="RuleName">家庭住址：</label>
+                    <input type="text" class="form-control Rinput60" id="houseAddress" ng-model="ctrl.person.houseAddress"  >
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="school" class="RuleName">毕业院校：</label>
+                    <input type="text" class="form-control Rinput60" id="school" ng-model="ctrl.person.school"  >
+                </div>
+                <div class="form-group RuleInput">
+                    <label for="SchoolFile" class="RuleName">毕业证明：</label>
+                    <input type="text" class="form-control Rinput60" id="SchoolFile" ng-model="ctrl.person.schoolFile" readonly >
+                    <button  type="button" class="btn RSerBut" ng-click="ctrl.fileSchoolItem.upload()"
+                             ng-disabled="ctrl.fileSchoolItem.isReady
+                        || ctrl.fileSchoolItem.isUploading
+                        || ctrl.fileSchoolItem.isSuccess">
+                        上传
+                    </button>
+                    <button  type="button" class="btn RSerBut" ng-show="ctrl.person.schoolFile">
+                        <a href="/download/file?filePath={{ctrl.person.idCardFile}}&isOnLine=true" target="_blank">查看</a>
+                    </button>
+                    <input type="file" nv-file-select="" uploader="uploaderSchool" />
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="major" class="RuleName">专业：</label>
+                    <input type="text" class="form-control Rinput60" id="major" ng-model="ctrl.person.major"  >
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">学历：</label>
+                    <select  class="form-control Rinput60"  ng-model="ctrl.twfDictxl" ng-options="obj.code as obj.name for obj in ctrl.twfDictxlList" name="namexl"><option value="">请选择</option></select>
+                    <!--<input type="text" class="form-control Rinput40" id="education" ng-model="ctrl.person.education"  >-->
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label  class="RuleName">毕业时间：</label>
+                    <!--<input type="text" class="form-control Rinput40" id="graduateDate" ng-model="ctrl.person.graduateDate"  >-->
+                    <input type="text" class="form-control Rinput50" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.graduateDate" is-open="ctrl.graopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.opengra($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="linkman" class="RuleName">紧急联系人：</label>
+                    <input type="text" class="form-control Rinput60" id="linkman" name="linkman" ng-model="ctrl.person.linkman"  >
+                    <span class="errorInput" ng-show="form.linkman.$error.pattern" >
+                        请输入中文，英文，数字，下划线
+                </span>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="linkPhone" class="RuleName">联系人电话：</label>
+                    <input type="text" class="form-control Rinput60" id="linkPhone" ng-model="ctrl.person.linkPhone" name="linkPhone" ng-pattern="ctrl.phoneReg">
+                    <span class="errorInput"
+                          ng-show="form.linkPhone.$error.pattern">
+                        手机号码不合法
+                </span>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="SeparationFile" class="RuleName">离职证明：</label>
+                    <input type="text" class="form-control Rinput60" id="SeparationFile" ng-model="ctrl.person.separationFile" readonly >
+                    <button  type="button" class="btn RSerBut" ng-click="ctrl.fileSeparationItem.upload()"
+                             ng-disabled="ctrl.fileSeparationItem.isReady
+                        || ctrl.fileSeparationItem.isUploading
+                        || ctrl.fileSeparationItem.isSuccess">
+                        上传
+                    </button>
+                    <button  type="button" class="btn RSerBut" ng-show="ctrl.person.separationFile">
+                        <a href="/download/file?filePath={{ctrl.person.idCardFile}}&isOnLine=true" target="_blank">查看</a>
+                    </button>
+                    <input type="file" nv-file-select="" uploader="uploaderSeparation" />
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="remark" class="RuleName">备注：</label>
+                    <input type="text" class="form-control Rinput60" id="remark" ng-model="ctrl.person.remark"  >
+                </div>
+
+            </div>
+
+
+            <div class="row" ng-show="ctrl.tag==3">
+                <div class="form-group RuleInput">
+                    <label  class="RuleName">职级：</label>
+                    <select class="form-control Rinput60" ng-model="ctrl.twfDict" ng-options="twfDict.name  for twfDict in ctrl.twfDictList"></select>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">是否重复入职：</label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="person-reEntry" value="1" ng-model="ctrl.reEntry"><i></i> 是
+                    </label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="person-reEntry" value="0" ng-model="ctrl.reEntry"><i></i> 否
+                    </label>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="regularDate" class="RuleName">转正时间：</label>
+                    <input type="text" class="form-control Rinput50" id="regularDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.regularDate" is-open="ctrl.reguopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openregu($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="quitDate" class="RuleName">离职时间：</label>
+                    <!--<input type="text" class="form-control Rinput40" id="quitDate" ng-model="ctrl.person.quitDate" >-->
+                    <input type="text" class="form-control Rinput50" id="quitDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.quitDate" is-open="ctrl.quiopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openqui($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="trySalary" class="RuleName">试用期薪资：</label>
+                    <input type="text" class="form-control Rinput60" id="trySalary" name="trySalary" ng-model="ctrl.person.trySalary" ng-pattern="ctrl.xzReg">
+                    <span class="errorInput" ng-show="form.trySalary.$error.pattern" >
+                        请输入正整数
+                </span>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="salary" class="RuleName">正式薪资：</label>
+                    <input type="text" class="form-control Rinput60" id="salary" name="salary" ng-model="ctrl.person.salary" ng-pattern="ctrl.xzReg">
+                    <span class="errorInput" ng-show="form.salary.$error.pattern" >
+                        请输入正整数
+                </span>
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="salaryRemark" class="RuleName">薪资福利说明：</label>
+                    <input type="text" class="form-control Rinput60" id="salaryRemark" ng-model="ctrl.person.salaryRemark" >
+                </div>
+
+                <div class="form-group RuleInput">
+                    <label for="shbDate" class="RuleName">社保购买时间：</label>
+                    <!--<input type="text" class="form-control Rinput60" id="shbDate" ng-model="ctrl.person.shbDate" >-->
+                    <input type="text" class="form-control Rinput50" id="shbDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.shbDate" is-open="ctrl.shbopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.openshb($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+                <div class="form-group RuleInput">
+                    <label for="gjjDate" class="RuleName">公积金购买时间：</label>
+                    <!--<input type="text" class="form-control Rinput60" id="gjjDate" ng-model="ctrl.person.gjjDate" >-->
+                    <input type="text" class="form-control Rinput50" id="gjjDate" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.person.gjjDate" is-open="ctrl.gjjopen"  datepicker-options="ctrl.dateOptions" date-disabled="ctrl.disabled(date, mode)" close-text="关闭" readonly/>
+                    <button type="button" class="btn RSerBut" ng-click="ctrl.opengjj($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+            </div>
+
+            <div class="row" ng-show="ctrl.tag==4">
+
+                <div class="table-responsive">
+                    <table class="table table-striped b-t b-light">
+                        <thead>
+                        <tr>
+                            <th>原部门</th>
+                            <th>原岗位</th>
+                            <th>新部门</th>
+                            <th>新岗位</th>
+                            <th>调岗日期</th>
+                            <th>生效日期</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="log in ctrl.deptLogList" >
+                            <td ng-bind="log.oldDept"></td>
+                            <td ng-bind="log.oldPosition"></td>
+                            <td ng-bind="log.newDept"></td>
+                            <td ng-bind="log.newPosition"></td>
+                            <td ng-bind="log.changeDate"></td>
+                            <td ng-bind="log.exeDate"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="text-center text-center-xs">
+                            <pagination total-items="ctrl.totalCountLog" ng-model="ctrl.pageNoLog" ng-change="ctrl.pageChangedLog(ctrl.person.perId)"
+                                        items-per-page="ctrl.pageSizeLog" max-size="ctrl.maxSize" class="pagination-sm"
+                                        boundary-links="true" force-ellipses="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+
+
+
 
         </div>
-
-
-
-
-    </div>
 
     </div>
 

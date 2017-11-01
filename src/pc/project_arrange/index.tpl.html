@@ -41,7 +41,7 @@
                     <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                     <td ng-if="ctrl.isArrange==1" ng-bind="handOver.proManager"> </td>
-                    <td ng-if="ctrl.isArrange==0"><select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name as xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter()"></select><button type="button" ng-click="ctrl.ctreadLetter()" ng-show="ctrl.showLetter">生成任命书</button></td>
+                    <td ng-if="ctrl.isArrange==0"><select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name as xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select><button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button></td>
                     <th ng-if="ctrl.isArrange==1"><a href="#">初步计划</a></th>
                     <th ng-if="ctrl.isArrange==1"><a href="#">进度</a></th>
                 </tr>
@@ -62,3 +62,30 @@
         </footer>
     </div>
 </div>
+
+<script type="text/ng-template" id="Letter.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">任命书模板</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div calss="btn-group" style="width:700px;margin:0 auto;position: relative;" >
+                <button style="float: right" type="button" ng-click="letterCtrl.printLetter()" class="btn btn-default">打印</button>
+                <button style="float: right" type="button" ng-click="" class="btn btn-default">发送</button>
+            </div>
+            <div id="letterPrint">
+            <div style="width:700px;margin:0 auto;">
+                <h3 style="text-align: center;margin-top:35px">{{letterCtrl.handOver.customerName}}项目经理人民书</h3>
+            </div>
+            <table  border="1" bordercolor="#000000" style="border-collapse: collapse;width:700px" align="center">
+                <tr ><td style="width:30%;height: 45px;text-align: center">项目名称</td><td style="width:70%;height: 45px;text-align: center">{{letterCtrl.handOver.customerName}}{{letterCtrl.handOver.htName}}</td></tr>
+                <tr ><td style="width:30%;height: 45px;text-align: center">生效日期</td><td style="width:70%;height: 45px;text-align: center">{{letterCtrl.newDate | date:'yyyy年MM月dd日'}}</td></tr>
+                <tr ><td style="width:30%;height: 45px;text-align: center">有效日期</td><td style="width:70%;height: 45px;text-align: center">至项目交付成功</td></tr>
+                <tr><td colspan="2" style="height:650px">为实现{{letterCtrl.handOver.htName}}的成功交付，经生产部门提议、项目管理组审议、总经理批准，<br/>对该项目团队任命决定：
+
+                </td></tr>
+            </table>
+            </div>
+        </div>
+    </div>
+</script>

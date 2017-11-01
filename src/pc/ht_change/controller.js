@@ -221,7 +221,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         selt.htChange=htChange;
         $http.post("/ts-project/htChange/getContractByHtNo/"+htChange.htNo).success(function (result) {
             if(result.success){
-                result.object.changeNo=selt.htChange.type+"_"+selt.htChange.pkid;
+                result.object.changeNo=selt.htChange.type+"-"+selt.htChange.pkid;
                 result.object.type=selt.htChange.type;
                 $http.post("/ts-project/handover/getHandover",angular.toJson(result.object)).success(function (result) {
                     if(result.success){
@@ -264,8 +264,6 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
                 return;
             }
 
-            selt.handover.changeNo=selt.htChange.type+"_"+selt.htChange.pkid;
-            selt.handover.type=selt.htChange.type;
             //保存交接单
             $http.post("/ts-project/handover/saveHandover",angular.toJson(selt.handover)).success(function (result) {
                 if(result.success){
@@ -359,7 +357,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             if(result.success){
 
                 var parm={
-                    contractNo:htChange.type+"_"+htChange.pkid,
+                    contractNo:htChange.type+"-"+htChange.pkid,
                     hospitalLevel:result.object.hospitalLevel,
                     contractPrice:(parseInt(result.object.contractPrice)*0.0001).toFixed(4)
                 }

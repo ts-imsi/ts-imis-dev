@@ -56,7 +56,7 @@
                     <td ng-bind="htChange.signDate | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="htChange.status | flowStatus"></td>
                     <td>
-                        <a ng-show="htChange.status==3" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">生成交接单</a>
+                        <a ng-show="htChange.status==1" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">生成交接单</a>
                         <a  ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解产值</a>
                     </td>
                 </tr>

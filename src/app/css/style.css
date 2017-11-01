@@ -25,6 +25,7 @@ ul,li{list-style:none;}
 .blue{color: #221fba !important;}
 .red{color: #E55516 !important;}
 .org{color: #FF8800 !important;}
+.zxh{color: #3D9970 !important;}
 .boxs{box-shadow: #ddd 1px 1px 1px;}
 
 /**************************通讯录************************************/
@@ -72,12 +73,13 @@ ul,li{list-style:none;}
 /*签到情况显示*/
 .sign{}
 .sign ul li{background-color: #fff;float: left;width: 100%;border-bottom: 1px #ddd solid;padding: 5px 0;}
-.sign ul li i{height: 60px;line-height: 60px;width: 12%;text-align: center;display: block;font-style: normal;float: left;}
+.sign ul li i{height: 61px;line-height: 60px;width: 12%;text-align: center;display: block;font-style: normal;float: left;}
 .signCont{width: 92%; margin: 0 1%;}
 .signCont span{display: block;width: 43%;padding: 0;float: left;height: 30px;line-height: 30px;}
 .signCont b{color: #666;font-weight: normal;}
 .signCont p{width: 100%;color: #999;padding: 5px 0;}
-.signCont p b{width: 64%;display: block;float: right; text-align: left;}
+.signCont p b{width: 67%;display: block;float: right; text-align: left;}
+.thisspan{width: 21%!important;}
 /*公司考勤*/
 .checkWork{margin-bottom: 50px}
 .checkDay{line-height: 46px;background-color: #FFFFFF;padding: 0 10px;border-bottom: 1px #EFEFEF solid;color: #333;}

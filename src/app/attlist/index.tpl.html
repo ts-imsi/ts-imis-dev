@@ -40,7 +40,10 @@
 							<b class="red" ng-show="attLog.type=='inEx'">迟到</b>
 							<b class="red" ng-show="attLog.type=='outEx'">早退</b>
 						</span>
-						<p>签到地点：<b ng-bind="attLog.address"> </b></p>
+						<p>
+							<span class="thisspan">签到地点：</span><b ng-bind="attLog.address"> </b></p>
+						<p ng-show="attLog.remark">
+							<span class="thisspan">外出事由：</span><b ng-bind="attLog.remark"> </b></p>
 					</div>
 				</li>
 				<!--<li>

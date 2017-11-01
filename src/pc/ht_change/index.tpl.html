@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="col-px-180 fl" style="position: relative;">
-                    <button type="button" class="form-control" ng-click="ctrl.addHtChange();ctrl.openOPVPanel()">申请</button>
+                    <button type="button" class="form-control" ng-click="ctrl.addHtChange();ctrl.openAppyPanel()">申请</button>
                 </div>
             </div>
         </div>
@@ -46,7 +46,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="htChange in ctrl.htChangeList" >
+                <tr ng-repeat="htChange in ctrl.htChangeList" ng-click="ctrl.htChangeView(htChange)"
+                    ng-dblclick="ctrl.openAppyPanel()">
                     <td ng-bind="htChange.type | changType"></td>
                     <td ng-bind="htChange.htNo"></td>
                     <td ng-bind="htChange.customerName"></td>
@@ -56,7 +57,7 @@
                     <td ng-bind="htChange.status | flowStatus"></td>
                     <td>
                         <a ng-show="htChange.status==3" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">生成交接单</a>
-                        <a ng-show="htChange.status==3" ng-click="#">分解产值</a>
+                        <a  ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解产值</a>
                     </td>
                 </tr>
                 </tbody>
@@ -76,8 +77,46 @@
         </footer>
 </div>
 </div>
-<div data-ng-include=" 'src/pc/ht_change/apply.html' " ng-class="ctrl.opvPanelClass"></div>
+<div data-ng-include=" 'src/pc/ht_change/apply.html' " ng-class="ctrl.opAppyPanelClass"></div>
 <div data-ng-include=" 'src/pc/template/template.tpl.html' " ng-class="ctrl.panelClass"></div>
+<div data-ng-include=" 'src/pc/ht_change/outputValue.html' " ng-class="ctrl.opvPanelClass"></div>
+
+
+<script type="text/ng-template" id="htModuleList.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">微调模块标准价</h4>
+    </div>
+    <form class="form-horizontal" name="outputValueForm"
+          novalidate role="form">
+        <div class="RuleCont">
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>软件模块</th>
+                        <th>标准价(万)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in ctrl.htModuleList">
+                        <td ng-bind="item.modName"></td>
+                        <td>
+                            <div style="width:40px">
+                                <input style="width:40px" ng-model="item.price" />
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="ctrl.updateModulePrice()">确定</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>
+
 
 <script type="text/ng-template" id="pro_module.html">
     <div class="modal-header">

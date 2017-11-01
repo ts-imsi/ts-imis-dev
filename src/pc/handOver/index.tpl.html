@@ -31,9 +31,10 @@
                     <th>拥有者</th>
                     <th>交接时间</th>
                     <th>分解</th>
-                    <th>审批</th>
+                    <th>确认</th>
                     <th>步骤</th>
                     <th>安排</th>
+                    <th>审批</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -50,6 +51,7 @@
                     <td >{{htHandOver.isConfirm==0 ? '否' : '是'}}</td>
                     <td ng-bind="htHandOver.nowStep"></td>
                     <td >{{htHandOver.isArrange==0 ? '否' : '是'}}</td>
+                    <td >{{htHandOver.status==2 ? '是' : '否'}}</td>
                     <td>
                         <a href="#/access/handover?id={{htHandOver.pkid}}" target="_blank">查看
                         </a>

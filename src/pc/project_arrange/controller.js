@@ -84,19 +84,44 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
         });
 
         letterInstance.result.then(function () {
+            this.setPage(1);
         });
     }
 }]);
 
 
-app.controller('LetterCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
+app.controller('LetterCtrl', ['$scope', '$modalInstance','$http','$filter', 'data', function($scope,$modalInstance,$http,$filter,data) {
     var seltLetter=this;
     seltLetter.handOver=data;
-    seltLetter.newDate=new Date();
+    seltLetter.manage=data.proManager;
 
-    this.close=function () {
-        $modalInstance.close();
-    };
+    seltLetter.newDate=new Date();
+    seltLetter.sendButton=true;
+    this.sendLetter=function(){
+        seltLetter.handOver.proManager=seltLetter.manage.name;
+        seltLetter.handOver.proPhone=seltLetter.manage.phone;
+        seltLetter.handOver.created=$filter("date")(seltLetter.handOver.created, "yyyy-MM-dd");
+        seltLetter.handOver.updated=$filter("date")(seltLetter.handOver.updated, "yyyy-MM-dd");
+        seltLetter.handOver.recountTime=$filter("date")(seltLetter.handOver.recountTime, "yyyy-MM-dd");
+        seltLetter.handOver.confirmTime=$filter("date")(seltLetter.handOver.confirmTime, "yyyy-MM-dd");
+        seltLetter.handOver.arrangeTime=$filter("date")(new Date(), "yyyy-MM-dd");
+
+        seltLetter.manage.created=$filter("date")(seltLetter.manage.created, "yyyy-MM-dd");
+        var param={
+            handOver:seltLetter.handOver,
+            projectManage:seltLetter.manage
+        }
+        $http.post("/ts-project/arrange/sendLetter",angular.toJson(param)).success(function (result) {
+            if(result.success){
+                seltLetter.sendButton=false;
+                alert(result.message);
+                $modalInstance.close();
+            }else{
+                alert(result.message);
+            }
+
+        });
+    }
 
     this.cancel = function () {
         $modalInstance.dismiss('cancel');

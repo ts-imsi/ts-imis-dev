@@ -829,6 +829,17 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.projectActualizeArrange', {
+                  url: '/actualize',
+                  templateUrl: 'src/pc/project_actualize_arrange/index.tpl.html',
+                  controller: 'projectActualizeArrangeCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/project_actualize_arrange/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

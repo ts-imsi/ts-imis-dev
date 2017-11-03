@@ -22,7 +22,7 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody ng-if="ctrl.showButton">
                 <tr ng-repeat="projectPlan in ctrl.projectPlanList">
                     <td ng-bind="projectPlan.proName"></td>
                     <td>
@@ -54,10 +54,22 @@
                         <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
                     </td>
                     <td>
-                        <a ng-click="ctrl.updatePlanTime(projectPlan)">修改</a>
                     </td>
 
+                </tr>
+                </tbody>
+                <tbody ng-if="!ctrl.showButton">
+                <tr ng-repeat="projectPlan in ctrl.projectPlanList">
+                    <td ng-bind="projectPlan.proName"></td>
+                    <td ng-bind="projectPlan.actualizeManager"></td>
 
+                    <td ng-bind="projectPlan.surveyTime | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="projectPlan.approachTime | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="projectPlan.onlineTime | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="projectPlan.checkTime | date:'yyyy-MM-dd'"></td>
+                    <td>
+                        <a ng-click="ctrl.updatePlanTime(projectPlan)">修改</a>
+                    </td>
                 </tr>
 
                 </tbody>

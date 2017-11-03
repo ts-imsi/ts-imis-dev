@@ -169,6 +169,18 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
         });
     }
 
+    this.showActualizePlan=function(handOver){
+        selt.showButton=false;
+        $http.post("/ts-project/plan/queryProjectPlanList/"+handOver.pkid).success(function (result) {
+            if(result.success){
+                selt.projectPlanList=result.object;
+            }else{
+                selt.projectPlanList=[];
+                alert(result.message);
+            }
+        });
+    }
+
     this.sentProjectPlan=function(){
         var actualiz=false;
         var surveyTime=false;

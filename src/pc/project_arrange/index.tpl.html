@@ -47,7 +47,7 @@
                     </td>
                     <td ng-if="ctrl.isArrange==1">
                         <a ng-if="handOver.isProPlan==0" ng-click="ctrl.createActualizePlan(handOver);ctrl.openPanel()">制定计划</a>
-                        <a ng-if="handOver.isProPlan==1" ng-click="">查看计划</a>
+                        <a ng-if="handOver.isProPlan==1" ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()">查看计划</a>
                     </td>
                     <td ng-if="ctrl.isArrange==1"><a href="#">进度</a></td>
                 </tr>

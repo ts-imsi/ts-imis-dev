@@ -42,8 +42,8 @@
                     <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                     <td ng-if="ctrl.isArrange==1" ng-bind="handOver.proManager"> </td>
                     <td ng-if="ctrl.isArrange==0"><select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select><button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button></td>
-                    <th ng-if="ctrl.isArrange==1"><a href="#">初步计划</a></th>
-                    <th ng-if="ctrl.isArrange==1"><a href="#">进度</a></th>
+                    <span ng-if="ctrl.isArrange==1"><span ng-show="handOver.isProjectPlan"> <a ng-click="ctrl.createActualizePlan(handOver);ctrl.openPanel()">制定计划</a></span><span ng-show="handOver.isProjectPlan"><a ng-click="">查看计划</a></span></td>
+                    <td ng-if="ctrl.isArrange==1"><a href="#">进度</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -62,7 +62,7 @@
         </footer>
     </div>
 </div>
-
+<div data-ng-include=" 'src/pc/project_arrange/actualize_arrange.html' " ng-class="ctrl.panelClass"></div>
 <script type="text/ng-template" id="Letter.html">
     <div class="modal-header">
         <h4 class="modal-title" id="show-title">任命书模板</h4>

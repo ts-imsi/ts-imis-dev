@@ -207,6 +207,10 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
                 item.actualizeManager=item.manage.name;
                 item.workNum=item.manage.workNum;
             }
+            item.surveyTime = $filter("date")(item.surveyTime, "yyyy-MM-dd");
+            item.approachTime = $filter("date")(item.approachTime, "yyyy-MM-dd");
+            item.onlineTime = $filter("date")(item.onlineTime, "yyyy-MM-dd");
+            item.checkTime = $filter("date")(item.checkTime, "yyyy-MM-dd");
         });
         if(actualiz){
             alert("实施经理不能为空");
@@ -234,7 +238,7 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
                 alert(result.message);
                 selt.showButton=false;
                 selt.closePanel();
-                this.setPage(1);
+                selt.setPage(1);
             }else{
                 alert(result.message);
             }

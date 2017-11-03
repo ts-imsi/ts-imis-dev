@@ -86,6 +86,23 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
         letterInstance.result.then(function () {
             selt.setPage(1);
         });
+    };
+
+
+    this.updatePlanTime=function(projectPlan){
+        var projectPlanInstance = $modal.open({
+            templateUrl: 'projectPlan.html',
+            controller: 'ProjectPlanCtrl as planCtrl',
+            resolve: {
+                data: function () {
+                    return projectPlan;
+                }
+            }
+        });
+
+        projectPlanInstance.result.then(function () {
+            //this.setPage(1);
+        });
     }
 
     //制定计划划出层样式
@@ -153,63 +170,68 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
     }
 
     this.sentProjectPlan=function(){
-            var actualiz=false;
-            var surveyTime=false;
-            var approachTime=false;
-            var onlineTime=false;
-            var checkTime=false;
-            angular.forEach(selt.projectPlanList,function(item){
-                if(item.actualizeManager==undefined||item.actualizeManager==''){
-                    actualiz=true;
-                }
-                if(item.surveyTime==undefined||item.surveyTime==''){
-                    surveyTime=true;
-                }
-                if(item.approachTime==undefined||item.approachTime==''){
-                    approachTime=true;
-                }
-                if(item.onlineTime==undefined||item.onlineTime==''){
-                    onlineTime=true;
-                }
-                if(item.checkTime==undefined||item.checkTime==''){
-                    checkTime=true;
-                }
-                if(!actualiz){
-                    selt.manage=item.actualizeManager;
-                    item.actualizeManager=selt.manage.name;
-                    item.workNum=selt.manage.workNum;
-                }
-            });
-            if(actualiz){
-                alert("实施经理不能为空");
-                return;
+        var actualiz=false;
+        var surveyTime=false;
+        var approachTime=false;
+        var onlineTime=false;
+        var checkTime=false;
+        angular.forEach(selt.projectPlanList,function(item){
+            if(item.actualizeManager==undefined||item.actualizeManager==''){
+                actualiz=true;
             }
-            if(surveyTime){
-                alert("调研时间不能为空");
-                return;
+            if(item.surveyTime==undefined||item.surveyTime==''){
+                surveyTime=true;
             }
-            if(approachTime){
-                alert("计划进场时间不能为空");
-                return;
+            if(item.approachTime==undefined||item.approachTime==''){
+                approachTime=true;
             }
-            if(onlineTime){
-             alert("计划上线时间不能为空");
-             return;
+            if(item.onlineTime==undefined||item.onlineTime==''){
+                onlineTime=true;
             }
-            if(checkTime){
-                alert("计划验收时间不能为空");
-                return;
+            if(item.checkTime==undefined||item.checkTime==''){
+                checkTime=true;
             }
-            $http.post("/ts-project/plan/saveProjectActualizePlan",angular.toJson(selt.projectPlanList)).success(function (result) {
-                if(result.success){
-                    alert(result.message);
-                    selt.showButton=false;
-                    selt.panelClass = "projectPlan panel panel-default";
-                    selt.setPage(1);
-                }else{
-                    alert(result.message);
-                }
-            });
+            if(!actualiz){
+                selt.manage=item.actualizeManager;
+                item.actualizeManager=selt.manage.name;
+                item.workNum=selt.manage.workNum;
+            }
+        });
+        if(actualiz){
+            alert("实施经理不能为空");
+            return;
+        }
+        if(surveyTime){
+            alert("调研时间不能为空");
+            return;
+        }
+        if(approachTime){
+            alert("计划进场时间不能为空");
+            return;
+        }
+        if(onlineTime){
+            alert("计划上线时间不能为空");
+            return;
+        }
+        if(checkTime){
+            alert("计划验收时间不能为空");
+            return;
+        }
+
+        angular.forEach(selt.projectPlanList,function(item){
+            item.actualizeManager=item.manage.name;
+            item.workNum=item.manage.workNum;
+        });
+        $http.post("/ts-project/plan/saveProjectActualizePlan",angular.toJson(selt.projectPlanList)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+                selt.showButton=false;
+                selt.closePanel();
+                this.setPage(1);
+            }else{
+                alert(result.message);
+            }
+        });
     }
 
 }]);
@@ -263,4 +285,99 @@ app.controller('LetterCtrl', ['$scope', '$modalInstance','$http','$filter', 'dat
             formValues: false
         });
     }
+}]);
+
+app.controller('ProjectPlanCtrl', ['$scope', '$modalInstance','$http', '$filter','data', function($scope,$modalInstance,$http,$filter,data) {
+    var selt=this;
+    console.log(data);
+    selt.plan = data;
+
+
+    this.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1,
+        class: 'datepicker'
+    };
+    this.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    this.format = this.formats[0];
+    // this.entryDate = $filter("date")(new Date(), "yyyy-MM-dd");
+    this.openSurveyTime = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.surveyTimeOpen = true;
+        selt.approachTimeOpen = false;
+        selt.onlineTimeOpen = false;
+        selt.checkTimeOpen = false;
+    };
+
+    this.openApproachTime = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.surveyTimeOpen = false;
+        selt.approachTimeOpen = true;
+        selt.onlineTimeOpen = false;
+        selt.checkTimeOpen = false;
+    };
+
+    this.openOnlineTime = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.surveyTimeOpen = false;
+        selt.approachTimeOpen = false;
+        selt.onlineTimeOpen = true;
+        selt.checkTimeOpen = false;;
+    };
+
+    this.openCheckTime = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        selt.surveyTimeOpen = false;
+        selt.approachTimeOpen = false;
+        selt.onlineTimeOpen = false;
+        selt.checkTimeOpen = true;
+    };
+
+
+
+
+
+
+
+
+    $http.post("/ts-project/arrange/getManageByType/"+"2").success(function (result) {
+        if(result.success){
+            selt.xmssjlList=result.object;
+            angular.forEach(selt.xmssjlList,function(item){
+                if(selt.plan.workNum=item.workNum){
+                    selt.manage = item;
+                }
+            });
+        }else{
+            selt.xmssjlList=[];
+        }
+
+    });
+
+    this.savePlan = function (plan) {
+
+        plan.surveyTime = $filter("date")(plan.surveyTime, "yyyy-MM-dd");
+        plan.approachTime = $filter("date")(plan.approachTime, "yyyy-MM-dd");
+        plan.onlineTime = $filter("date")(plan.onlineTime, "yyyy-MM-dd");
+        plan.checkTime = $filter("date")(plan.checkTime, "yyyy-MM-dd");
+
+        $http.post("/ts-project/plan/updatePlanTime",angular.toJson(plan)).success(function (result) {
+            if(result.success){
+                $modalInstance.close(result.object);
+            }
+        });
+    };
+
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 }])

@@ -41,8 +41,14 @@
                     <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                     <td ng-if="ctrl.isArrange==1" ng-bind="handOver.proManager"> </td>
-                    <td ng-if="ctrl.isArrange==0"><select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select><button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button></td>
-                    <td ng-if="ctrl.isArrange==1"><a ng-if="handOver.isProjectPlan==0" ng-click="ctrl.createActualizePlan(handOver);ctrl.openPanel()">制定计划</a><a ng-if="handOver.isProjectPlan==1" ng-click="ctrl.createActualizePlan(handOver)">查看计划</a></td>
+                    <td ng-if="ctrl.isArrange==0">
+                        <select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select>
+                        <button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button>
+                    </td>
+                    <td ng-if="ctrl.isArrange==1">
+                        <a ng-click="ctrl.createActualizePlan(handOver);ctrl.openPanel()">制定计划</a>
+                        <!--<a ng-if="handOver.isProjectPlan==1" ng-click="ctrl.createActualizePlan(handOver)">查看计划</a>-->
+                    </td>
                     <td ng-if="ctrl.isArrange==1"><a href="#">进度</a></td>
                 </tr>
                 </tbody>
@@ -87,5 +93,53 @@
             </table>
             </div>
         </div>
+    </div>
+</script>
+<script type="text/ng-template" id="projectPlan.html">
+    <div class="modal-header">
+        <h4 class="modal-title">修改项目初步计划</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput">
+                <label class="RuleName">实施经理：</label>
+                <select class="form-control Rinput60" ng-model="planCtrl.manage" ng-options="xmssjl.name for xmssjl in planCtrl.xmssjlList"></select>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">计划调研：</label>
+                <input type="text" class="form-control Rinput50" datepicker-popup="{{planCtrl.format}}" ng-model="planCtrl.plan.surveyTime" is-open="planCtrl.surveyTimeOpen"  datepicker-options="planCtrl.dateOptions" date-disabled="planCtrl.disabled(date, mode)" close-text="关闭" readonly/>
+                <button type="button" class="btn RSerBut" ng-click="planCtrl.openSurveyTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">计划进场：</label>
+                <input type="text" class="form-control Rinput50" datepicker-popup="{{planCtrl.format}}" ng-model="planCtrl.plan.approachTime" is-open="planCtrl.approachTimeOpen"  datepicker-options="planCtrl.dateOptions" date-disabled="planCtrl.disabled(date, mode)" close-text="关闭" readonly/>
+                <button type="button" class="btn RSerBut" ng-click="planCtrl.openApproachTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">计划上线：</label>
+                <input type="text" class="form-control Rinput50" datepicker-popup="{{planCtrl.format}}" ng-model="planCtrl.plan.onlineTime" is-open="planCtrl.onlineTimeOpen"  datepicker-options="planCtrl.dateOptions" date-disabled="planCtrl.disabled(date, mode)" close-text="关闭" readonly/>
+                <button type="button" class="btn RSerBut" ng-click="planCtrl.openOnlineTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">计划验收：</label>
+                <input type="text" class="form-control Rinput50" datepicker-popup="{{planCtrl.format}}" ng-model="planCtrl.plan.checkTime" is-open="planCtrl.checkTimeOpen"  datepicker-options="planCtrl.dateOptions" date-disabled="planCtrl.disabled(date, mode)" close-text="关闭" readonly/>
+                <button type="button" class="btn RSerBut" ng-click="planCtrl.openCheckTime($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">修改原因：</label>
+                <textarea type="text" class="form-control Rinput60" cols="60" rows="4" required name="remark"
+                          ng-model="planCtrl.plan.remark"></textarea>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="planCtrl.savePlan(planCtrl.plan)">保存</button>
+        <button class="btn btn-warning" type="button" ng-click="planCtrl.cancel()">取消</button>
     </div>
 </script>

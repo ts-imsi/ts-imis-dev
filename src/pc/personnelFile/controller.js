@@ -237,12 +237,7 @@ app.controller('PersonnelFile', ['$scope','$http','$log','$modal','$filter','Fil
         selt.reguopen = true;
     };
 
-    this.openregu=function($event){
-        $event.preventDefault();
-        $event.stopPropagation();
 
-        selt.reguopen = true;
-    };
 
     this.openqui=function($event){
         $event.preventDefault();

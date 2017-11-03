@@ -2324,9 +2324,9 @@ fieldset[disabled] .btn-black.active {
 .projectPlan {
   position: fixed;
   top: 50px;
-  right: -1100px;
-  z-index: 1100;
-  width:1100px;
+  right: -67%;
+  z-index: 1050;
+  width:67%;
   -webkit-transition: right 0.2s;
   transition: right 0.2s;
   overflow-y: scroll;

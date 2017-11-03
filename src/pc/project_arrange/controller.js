@@ -84,7 +84,7 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
         });
 
         letterInstance.result.then(function () {
-            this.setPage(1);
+            selt.setPage(1);
         });
     }
 
@@ -153,22 +153,63 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
     }
 
     this.sentProjectPlan=function(){
-
-        angular.forEach(selt.projectPlanList,function(item){
-            selt.manage=item.actualizeManager;
-            item.actualizeManager=selt.manage.name;
-            item.workNum=selt.manage.workNum;
-        });
-        $http.post("/ts-project/plan/saveProjectActualizePlan",angular.toJson(selt.projectPlanList)).success(function (result) {
-            if(result.success){
-                alert(result.message);
-                selt.showButton=false;
-                selt.panelClass = "projectPlan panel panel-default";
-                this.setPage(1);
-            }else{
-                alert(result.message);
+            var actualiz=false;
+            var surveyTime=false;
+            var approachTime=false;
+            var onlineTime=false;
+            var checkTime=false;
+            angular.forEach(selt.projectPlanList,function(item){
+                if(item.actualizeManager==undefined||item.actualizeManager==''){
+                    actualiz=true;
+                }
+                if(item.surveyTime==undefined||item.surveyTime==''){
+                    surveyTime=true;
+                }
+                if(item.approachTime==undefined||item.approachTime==''){
+                    approachTime=true;
+                }
+                if(item.onlineTime==undefined||item.onlineTime==''){
+                    onlineTime=true;
+                }
+                if(item.checkTime==undefined||item.checkTime==''){
+                    checkTime=true;
+                }
+                if(!actualiz){
+                    selt.manage=item.actualizeManager;
+                    item.actualizeManager=selt.manage.name;
+                    item.workNum=selt.manage.workNum;
+                }
+            });
+            if(actualiz){
+                alert("实施经理不能为空");
+                return;
             }
-        });
+            if(surveyTime){
+                alert("调研时间不能为空");
+                return;
+            }
+            if(approachTime){
+                alert("计划进场时间不能为空");
+                return;
+            }
+            if(onlineTime){
+             alert("计划上线时间不能为空");
+             return;
+            }
+            if(checkTime){
+                alert("计划验收时间不能为空");
+                return;
+            }
+            $http.post("/ts-project/plan/saveProjectActualizePlan",angular.toJson(selt.projectPlanList)).success(function (result) {
+                if(result.success){
+                    alert(result.message);
+                    selt.showButton=false;
+                    selt.panelClass = "projectPlan panel panel-default";
+                    selt.setPage(1);
+                }else{
+                    alert(result.message);
+                }
+            });
     }
 
 }]);

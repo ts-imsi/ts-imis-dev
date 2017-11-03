@@ -132,6 +132,8 @@ app.controller('projectActualizeArrangeCtrl', ['$scope', '$modal', '$http', '$fi
             if(result.success){
                 alert(result.message);
                 selt.showButton=false;
+                selt.panelClass = "projectPlan panel panel-default";
+                this.setPage(1);
             }else{
                 alert(result.message);
             }

@@ -25,17 +25,21 @@
                 <tr ng-repeat="projectPlan in ctrl.projectPlanList">
                     <td ng-bind="projectPlan.proName"></td>
                     <td ><select class="form-control Rinput60" ng-model="projectPlan.actualizeManager" ng-options="xijl.name for xijl in ctrl.xmjlList"></select></td>
-                    <td ><input  name="surveyTime" ng-dblclick="ctrl.showDate(projectPlan,0)" value="{{projectPlan.surveyTime|date:'yyyy-MM-dd'}}"><input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.surveyTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'surveyTime'==ctrl.name"  readonly/>
+                    <td ><input class="form-control Rinput29" name="surveyTime" ng-dblclick="ctrl.showDate(projectPlan,0)" value="{{projectPlan.surveyTime|date:'yyyy-MM-dd'}}" readonly>
+                        <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.surveyTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'surveyTime'==ctrl.name"  readonly/>
                         <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'surveyTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button></td>
 
 
-                    <td ><input  name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,1)" value="{{projectPlan.approachTime|date:'yyyy-MM-dd'}}"><input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.approachTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'approachTime'==ctrl.name"  readonly/>
+                    <td ><input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,1)" value="{{projectPlan.approachTime|date:'yyyy-MM-dd'}}" readonly>
+                         <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.approachTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'approachTime'==ctrl.name"  readonly/>
                         <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'approachTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button></td>
 
-                    <td ><input  name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,2)" value="{{projectPlan.onlineTime|date:'yyyy-MM-dd'}}"><input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.onlineTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'onlineTime'==ctrl.name"  readonly/>
+                    <td ><input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,2)" value="{{projectPlan.onlineTime|date:'yyyy-MM-dd'}}" readonly>
+                         <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.onlineTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'onlineTime'==ctrl.name"  readonly/>
                         <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'onlineTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button></td>
 
-                    <td ><input  name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,3)" value="{{projectPlan.checkTime|date:'yyyy-MM-dd'}}"><input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.checkTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"  readonly/>
+                    <td ><input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,3)" value="{{projectPlan.checkTime|date:'yyyy-MM-dd'}}" readonly>
+                        <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.checkTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"  readonly/>
                         <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button></td>
                 </tr>
 

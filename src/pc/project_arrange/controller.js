@@ -176,7 +176,7 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
         var onlineTime=false;
         var checkTime=false;
         angular.forEach(selt.projectPlanList,function(item){
-            if(item.actualizeManager==undefined||item.actualizeManager==''){
+            if(item.manage==undefined||item.manage==''){
                 actualiz=true;
             }
             if(item.surveyTime==undefined||item.surveyTime==''){
@@ -192,9 +192,8 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
                 checkTime=true;
             }
             if(!actualiz){
-                selt.manage=item.actualizeManager;
-                item.actualizeManager=selt.manage.name;
-                item.workNum=selt.manage.workNum;
+                item.actualizeManager=item.manage.name;
+                item.workNum=item.manage.workNum;
             }
         });
         if(actualiz){
@@ -218,10 +217,6 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
             return;
         }
 
-        angular.forEach(selt.projectPlanList,function(item){
-            item.actualizeManager=item.manage.name;
-            item.workNum=item.manage.workNum;
-        });
         $http.post("/ts-project/plan/saveProjectActualizePlan",angular.toJson(selt.projectPlanList)).success(function (result) {
             if(result.success){
                 alert(result.message);

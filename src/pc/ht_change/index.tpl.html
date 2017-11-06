@@ -5,10 +5,9 @@
     <div class="panel panel-default">
         <div class="row NKwrapper Nkinput">
             <div class="fr">
-                <div class="btn-group col-px-420" style="position: relative;float:left">
+                <div class="btn-group col-px-560" style="position: relative;float:left">
                     <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
                     <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">待审批</button>
-                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">审批中</button>
                     <button type="button" ng-click="ctrl.selectByStatus(3)" class="btn btn-default">已完成</button>
                 </div>
 
@@ -26,9 +25,9 @@
                         <option value="ZB">增补</option>
                     </select>
                 </div>
-                <div class="col-px-180 fl" style="position: relative;">
+<!--                <div class="col-px-180 fl" style="position: relative;">
                     <button type="button" class="form-control" ng-click="ctrl.addHtChange();ctrl.openAppyPanel()">申请</button>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="table-responsive">
@@ -56,7 +55,7 @@
                     <td ng-bind="htChange.signDate | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="htChange.status | flowStatus"></td>
                     <td>
-                        <a ng-show="htChange.status==1" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">生成交接单</a>
+                        <a ng-show="htChange.status==1" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">填写交接单</a>
                         <a  ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解产值</a>
                     </td>
                 </tr>

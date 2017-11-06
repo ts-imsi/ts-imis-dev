@@ -34,9 +34,11 @@
                     <td ng-bind="htProduct.contractOwner"></td>
                     <td ng-bind="htProduct.signDate | date:'yyyy-MM-dd'"></td>
                     <td>
-                        <a ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()">修改
+                        <a ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()">填写交接单
                         </a>
                         <a ng-click="ctrl.queryHtResolve(htProduct);ctrl.openOPVPanel()">分解产值
+                        </a>
+                        <a ng-click="ctrl.addHtChange();ctrl.openAppyPanel()">申请
                         </a>
                     </td>
                 </tr>

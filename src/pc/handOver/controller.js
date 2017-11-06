@@ -10,12 +10,17 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         this.setPage(1);
     };
 
+    this.selectNowStepChange=function(){
+        this.setPage(1);
+    }
+
     this.setPage = function (pageNo) {
         var parm={
             page:pageNo,
             rows:10,
             selectName:selt.selectName,
-            selectType:selt.selectType
+            selectType:selt.selectType,
+            nowStep:selt.nowStep
         };
         console.log(parm);
         $http.post("/ts-project/handover/getHtHandoverList",angular.toJson(parm)).success(function (result) {
@@ -39,7 +44,8 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             page:this.pageNo,
             rows:10,
             selectName:selt.selectName,
-            selectType:selt.selectType
+            selectType:selt.selectType,
+            nowStep:selt.nowStep
         };
         $http.post("/ts-project/handover/getHtHandoverList",angular.toJson(parm)).success(function (result) {
             if(result.success){

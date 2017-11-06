@@ -330,8 +330,14 @@ app.filter('handOverType',function(){
         var resultType = "";
         switch(result)
         {
-            case 'new':
+            case 'NEW':
                 resultType = "交接单";
+                break;
+            case 'BG':
+                resultType = "变更单";
+                break;
+            case 'ZB':
+                resultType = "增补单";
                 break;
             default:
                 resultType = result;
@@ -346,17 +352,14 @@ app.filter('flowStatus',function(){
         var resultType = "";
         switch(status)
         {
-            case 1:
-                resultType = "待审批";
-                break;
-            case 2:
+            case 0:
                 resultType = "审批中";
                 break;
-            case 3:
+            case 1:
                 resultType = "已完成";
                 break;
             default:
-                resultType = status;
+                resultType = "";
         };
         return resultType;
     }

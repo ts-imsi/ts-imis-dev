@@ -818,6 +818,28 @@ angular.module('app')
                   templateUrl: 'src/pc/message/message.detail.html',
                   controller:'messageDetailCtrl as detailCtrl'
               })
+              .state('app.projectArrange', {
+                  url: '/arrange',
+                  templateUrl: 'src/pc/project_arrange/index.tpl.html',
+                  controller: 'projectArrangeCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/project_arrange/controller.js'] );
+                          }]
+                  }
+              })
+              .state('app.projectActualizeArrange', {
+                  url: '/actualize',
+                  templateUrl: 'src/pc/project_actualize_arrange/index.tpl.html',
+                  controller: 'projectActualizeArrangeCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/project_actualize_arrange/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

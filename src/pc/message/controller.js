@@ -20,6 +20,7 @@ app.controller('messageListCtrl',['$scope', '$modal', '$http', '$log','$statePar
     }
 
     this.setPage = function (pageNo) {
+        console.log("1");
         var param={
             page:pageNo,
             rows:10,

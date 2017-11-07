@@ -272,3 +272,17 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .LoginLable{font-weight: normal; color: #999;}
 .LoginBorder{border: 1px solid #efefef;}
 .ImgTit{color: rgba(255, 255, 255, 0.6);font-size: 16px;position: absolute;left: 20px;bottom: 10px;}
+
+/*任命书*/
+.RenForm{width:100%;background: #fff;padding-bottom: 40px; float: left;margin-top: -4px;border-top: 1px solid #e5e5e5;}
+.FormTable{outline: double 3px;width: 90%;margin: 5% }
+.FormTable .Tit{font-weight: bold;font-size: 22px;text-align: center;padding: 20px 0;}
+.tableCont{width:100%;}
+.tableCont table{width: 100%;}
+.tableCont table td{padding: 15px 20px; border-top: 1px solid #0a1015;border-left: 1px solid #0a1015;font-size: 16px;}
+.tableCont table tr td:first-child{border-left: none}
+.TableCo{border-top:1px solid #0a1015;width: 100%;padding: 20px;line-height: 30px; }
+.TableCo h3{margin-bottom: 20px}
+.TableCo h5{text-indent: 60px;font-weight: bold;}
+.TableCo p{text-indent: 30px;font-size: 16px}
+.TableCo span{text-decoration: underline;font-size: 16px}

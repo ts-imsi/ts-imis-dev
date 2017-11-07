@@ -274,6 +274,7 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .ImgTit{color: rgba(255, 255, 255, 0.6);font-size: 16px;position: absolute;left: 20px;bottom: 10px;}
 
 /*任命书*/
+.btn-RenForm .btn{margin-right:10px }
 .RenForm{width:100%;background: #fff;padding-bottom: 40px; float: left;margin-top: -4px;border-top: 1px solid #e5e5e5;}
 .FormTable{outline: double 3px;width: 90%;margin: 5% }
 .FormTable .Tit{font-weight: bold;font-size: 22px;text-align: center;padding: 20px 0;}
@@ -286,3 +287,4 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .TableCo h5{text-indent: 60px;font-weight: bold;}
 .TableCo p{text-indent: 30px;font-size: 16px}
 .TableCo span{text-decoration: underline;font-size: 16px}
+

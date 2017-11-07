@@ -73,6 +73,10 @@
     <div class="modal-header Nkcol-lg-12">
         <h4 class="modal-title" id="show-title">任命书模板</h4>
     </div>
+    <div calss="btn-group btn-RenForm" style="width:700px;margin:0 auto;position: absolute; top: 10px;right: 24px;" >
+        <button style="float: right" type="button" ng-click="letterCtrl.printLetter()" class="btn btn-default">打印</button>
+        <button style="float: right" type="button" ng-click="letterCtrl.sendLetter()" class="btn btn-default">发送</button>
+    </div>
     <div class="RenForm">
         <!--div class="panel-body">
             <div calss="btn-group" style="width:700px;margin:0 auto;position: relative;" >
@@ -95,16 +99,16 @@
             </div>
         </div-->
         <div class="FormTable fl">
-            <div class="Tit">会同县妇幼保健院项目经理任命书</div>
+            <div class="Tit">{{letterCtrl.handOver.customerName}}项目经理任命书</div>
             <div class="tableCont">
                 <table>
                     <tr>
                         <td class="font-bold Nkcol-xs-3">项目名称</td>
-                        <td>数字化信息管理系统</td>
+                        <td>{{letterCtrl.handOver.customerName}}{{letterCtrl.handOver.htName}}</td>
                     </tr>
                     <tr>
                         <td class="font-bold Nkcol-xs-3">生效日期</td>
-                        <td>2017年 10 月 10 日</td>
+                        <td>{{letterCtrl.newDate | date:'yyyy年MM月dd日'}}</td>
                     </tr>
                     <tr>
                         <td class="font-bold Nkcol-xs-3">有效日期</td>

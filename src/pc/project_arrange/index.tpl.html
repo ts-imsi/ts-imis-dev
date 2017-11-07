@@ -77,27 +77,7 @@
         <button style="float: right" type="button" ng-click="letterCtrl.printLetter()" class="btn btn-default">打印</button>
         <button style="float: right" type="button" ng-click="letterCtrl.sendLetter()" class="btn btn-default">发送</button>
     </div>
-    <div class="RenForm">
-        <!--div class="panel-body">
-            <div calss="btn-group" style="width:700px;margin:0 auto;position: relative;" >
-                <button style="float: right" type="button" ng-click="letterCtrl.printLetter()" class="btn btn-default">打印</button>
-                <button style="float: right" type="button" ng-click="letterCtrl.sendLetter()" class="btn btn-default">发送</button>
-            </div>
-            <div id="letterPrint">
-            <div style="width:700px;margin:0 auto;">
-                <h3 style="text-align: center;margin-top:35px">{{letterCtrl.handOver.customerName}}项目经理人民书</h3>
-            </div>
-            <table  border="1" bordercolor="#000000" style="border-collapse: collapse;width:700px" align="center">
-                <tr ><td style="width:30%;height: 45px;text-align: center">项目名称</td><td style="width:70%;height: 45px;text-align: center">{{letterCtrl.handOver.customerName}}{{letterCtrl.handOver.htName}}</td></tr>
-                <tr ><td style="width:30%;height: 45px;text-align: center">生效日期</td><td style="width:70%;height: 45px;text-align: center">{{letterCtrl.newDate | date:'yyyy年MM月dd日'}}</td></tr>
-                <tr ><td style="width:30%;height: 45px;text-align: center">有效日期</td><td style="width:70%;height: 45px;text-align: center">至项目交付成功</td></tr>
-                <tr><td colspan="2" style="height:650px">为实现{{letterCtrl.handOver.htName}}的成功交付123123123123132，经生产部门提议、项目管理组审议、总经理批准，<br/>对该项目团队任命决定：
-
-                </td></tr>
-            </table>
-
-            </div>
-        </div-->
+    <div class="RenForm" id="letterPrint">
         <div class="FormTable fl">
             <div class="Tit">{{letterCtrl.handOver.customerName}}项目经理任命书</div>
             <div class="tableCont">
@@ -119,7 +99,7 @@
                     <p>为实现数字化信息管理系统的成功交付，经生产部门提议、项目管理组审议、总经理批准，对该项目团队任命决定：</p>
                     <H3>一、项目经理任命</H3>
                         <h5>1.项目经理</h5>
-                    <p>1) 任命<span> 曾余丰</span> 先生（联系电话：18390213102，邮箱：1017783270@qq.com）为项目经理，是项目的直接责任人，也是第一责任人，负责执行项目管理具体工作；</p>
+                    <p>1) 任命<span> {{letterCtrl.manage.name}}</span> 先生（联系电话：{{letterCtrl.manage.phone}}，邮箱：{{letterCtrl.manage.eMail}}）为项目经理，是项目的直接责任人，也是第一责任人，负责执行项目管理具体工作；</p>
                           <h5>  2.项目经理权责</h5>
                 <p>1) 按规范的项目管理方法论，负责管理和控制项目的全过程目标、质量、成本、进度，专业、务实、高效能推进项目；</p>
                 <p>2) 制定项目管理计划和所有与项目相关的子计划；</p>
@@ -127,7 +107,7 @@
                 <p>4) 按进度要求，将符合质量标准的可交付成果和客户书面正式确认，并将确认单提交项目管理组；</p>
                 <p>项目管理组负责人：刘宥均，联系电话：18607356830，邮箱：liuyj@trasen.cn</p>
                     <p class="text-right">湖南创星科技股份有限公司 项目管理组（PMO）</p>
-                    <p class="text-right">日期：2017年 10 月 10日</p>
+                    <p class="text-right">日期：{{letterCtrl.newDate | date:'yyyy年MM月dd日'}}</p>
                 </div>
             </div>
         </div>

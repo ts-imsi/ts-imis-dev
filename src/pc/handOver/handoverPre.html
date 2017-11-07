@@ -164,9 +164,11 @@
             <div class="allcont" ng-repeat="vo in ctrl.signList">
                 <ul>
                     <li ng-bind="vo.name"></li>
-                    <li class="w23">&nbsp</li>
+                    <li ng-if="vo.module=='nbsp'" class="w23">&nbsp;</li>
+                    <li ng-if="vo.module!='nbsp'" class="w23" ng-bind="vo.module"></li>
                     <li class="w297">提交时间</li>
-                    <li class="w301">&nbsp</li>
+                    <li ng-if="vo.value=='nbsp'" class="w301">&nbsp;</li>
+                    <li ng-if="vo.value!='nbsp'" class="w301" ng-bind="vo.value"></li>
                 </ul>
             </div>
         </div>

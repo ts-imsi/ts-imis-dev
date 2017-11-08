@@ -291,7 +291,14 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .Btn-renm{height: 34px;margin-left: 10px;}
 
 /*查看计划*/
-.TableSF{width: 100%;padding-left: 4%;max-height: 220px;overflow-y: scroll; background: #fafbfc;}
+.TabFimte{}
+.TabFimte table tr td:first-child{width: 1%}
+.TabFimte tbody td{padding: 0}
+.TableSF{width: 100%;padding-left: 7%;max-height: 220px;overflow-y: scroll; background: #fafbfc;}
+.TableSF tbody th{font-weight: normal;padding: 8px 15px}
+.TableSF table.table{background: #fafbfc !important;}
+.TableSF > tbody > tr > td, .table > tfoot > tr > td{padding: 0}
+.TableSF .table > thead > tr > th{padding: 8px}
 .CliTab{background-color: #eae7ff;}
 
 

@@ -22,7 +22,7 @@
                 <thead>
                 <tr>
                     <td ng-if="ctrl.isArrange==1">~</td>
-                    <th>合同号</th>
+                    <th style="padding:5px 25px;">合同号</th>
                     <th>医院名称</th>
                     <th>合同名称</th>
                     <th>合同所有者</th>
@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <!--点击加号在tr中添加样式 CliTab， 点减号移除样式 CliTab-->
-                <tbody>
+                <tbody  ng-if="ctrl.isArrange==0" >
                 <tr ng-repeat="handOver in ctrl.handOverList">
                     <td ng-if="ctrl.isArrange==1" style="padding: 10px; width: 1%;"  ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()"> <i class="fa fa-plus fa-fw m-r-xs"></i></td>
                     <!--减号
@@ -57,74 +57,110 @@
                     <td ng-if="ctrl.isArrange==1"><a href="#">进度</a></td>
                 </tr>
                 </tbody>
-            </table>
-
-            <div class="TableSF"  ng-if="ctrl.isArrange==1" >
-                <table class="table table-striped b-t b-light">
-                    <thead>
+              <tbody  ng-if="ctrl.isArrange==1">
                     <tr>
-                        <th>项目名称</th>
-                        <th>实施经理</th>
-                        <th>计划调研</th>
-                        <th>计划进场</th>
-                        <th>计划上线</th>
-                        <th>计划验收</th>
-                        <th>操作</th>
+                        <td> <i class="fa fa-plus fa-fw m-r-xs"></i></td>
+                        <!--减号
+                        <td ng-if="ctrl.isArrange==1" style="padding: 10px; width: 1%;"  ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()"> <i class="fa fa-minus fa-fw m-r-xs"></i></td-->
+                        <td>JYBXY2016025</td>
+                        <td>衡阳县中医院</td>
+                        <td>诊疗卡3万张</td>
+                        <td>邓文灿</td>
+                        <td>2017-10-27</td>
+                        <td>2017-10-27</td>
+                        <td>邓文灿</td>
+                        <td>进度</td>
                     </tr>
-                    </thead>
-                    <tbody ng-if="ctrl.showButton">
-                    <tr ng-repeat="projectPlan in ctrl.projectPlanList">
-                        <td ng-bind="projectPlan.proName"></td>
-                        <td>
-                            <select class="form-control Rinput60" ng-model="projectPlan.manage" ng-options="xmssjl.name for xmssjl in ctrl.xmssjlList"></select>
-                        </td>
+                    <div>
+                      <tr>
+                          <td colspan="9" style="padding: 0;">
+                              <div class="TableSF">
+                              <table class="table table-striped b-t b-light">
+                                  <thead>
+                                  <tr>
+                                      <th>项目名称</th>
+                                      <th>实施经理</th>
+                                      <th>计划调研</th>
+                                      <th>计划进场</th>
+                                      <th>计划上线</th>
+                                      <th>计划验收</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody >
+                                  <tr>
+                                      <th>衡阳县中医院</th>
+                                      <th>邓文灿</th>
+                                      <th>文灿</th>
+                                      <th>2017-10-27</th>
+                                      <th>2017-12-27</th>
+                                      <th>2017-10-27</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  <tr>
+                                      <th>衡阳县中医院</th>
+                                      <th>邓文灿</th>
+                                      <th>文灿</th>
+                                      <th>2017-10-27</th>
+                                      <th>2017-12-27</th>
+                                      <th>2017-10-27</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  <tr>
+                                      <th>衡阳县中医院</th>
+                                      <th>邓文灿</th>
+                                      <th>文灿</th>
+                                      <th>2017-10-27</th>
+                                      <th>2017-12-27</th>
+                                      <th>2017-10-27</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  <tr>
+                                      <th>衡阳县中医院</th>
+                                      <th>邓文灿</th>
+                                      <th>文灿</th>
+                                      <th>2017-10-27</th>
+                                      <th>2017-12-27</th>
+                                      <th>2017-10-27</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  <tr>
+                                      <th>衡阳县中医院</th>
+                                      <th>邓文灿</th>
+                                      <th>文灿</th>
+                                      <th>2017-10-27</th>
+                                      <th>2017-12-27</th>
+                                      <th>2017-10-27</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  <tr>
+                                      <th>衡阳县中医院</th>
+                                      <th>邓文灿</th>
+                                      <th>文灿</th>
+                                      <th>2017-10-27</th>
+                                      <th>2017-12-27</th>
+                                      <th>2017-10-27</th>
+                                      <th>操作</th>
+                                  </tbody>
+                              </table>
+                              </div>
+                          </td>
+                      </tr>
+                      </div>
 
-                        <td>
-                            <input class="form-control Rinput29" name="surveyTime" ng-dblclick="ctrl.showDate(projectPlan,0)" value="{{projectPlan.surveyTime|date:'yyyy-MM-dd'}}" readonly>
-                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.surveyTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'surveyTime'==ctrl.name"  readonly/>
-                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'surveyTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </td>
-
-
-                        <td>
-                            <input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,1)" value="{{projectPlan.approachTime|date:'yyyy-MM-dd'}}" readonly>
-                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.approachTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'approachTime'==ctrl.name"  readonly/>
-                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'approachTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </td>
-
-                        <td>
-                            <input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,2)" value="{{projectPlan.onlineTime|date:'yyyy-MM-dd'}}" readonly>
-                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.onlineTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'onlineTime'==ctrl.name"  readonly/>
-                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'onlineTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </td>
-
-                        <td>
-                            <input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,3)" value="{{projectPlan.checkTime|date:'yyyy-MM-dd'}}" readonly>
-                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.checkTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"  readonly/>
-                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </td>
-                        <td>
-                        </td>
-
+                    <tr>
+                        <td> <i class="fa fa-minus fa-fw m-r-xs"></i></td>
+                        <td>JYBXY2016025</td>
+                        <td>衡阳县中医院</td>
+                        <td>诊疗卡3万张</td>
+                        <td>邓文灿</td>
+                        <td>2017-10-27</td>
+                        <td>2017-10-27</td>
+                        <td>邓文灿</td>
+                        <td>进度</td>
                     </tr>
-                    </tbody>
-                    <tbody ng-if="!ctrl.showButton">
-                    <tr ng-repeat="projectPlan in ctrl.projectPlanList">
-                        <td ng-bind="projectPlan.proName"></td>
-                        <td ng-bind="projectPlan.actualizeManager"></td>
-
-                        <td ng-bind="projectPlan.surveyTime | date:'yyyy-MM-dd'"></td>
-                        <td ng-bind="projectPlan.approachTime | date:'yyyy-MM-dd'"></td>
-                        <td ng-bind="projectPlan.onlineTime | date:'yyyy-MM-dd'"></td>
-                        <td ng-bind="projectPlan.checkTime | date:'yyyy-MM-dd'"></td>
-                        <td>
-                            <a ng-click="ctrl.updatePlanTime(projectPlan)">修改</a>
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-            </div>
+              </tbody>
+            </table>
 
 
         </div>

@@ -288,6 +288,13 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .TableCo h5{text-indent: 60px;font-weight: bold;}
 .TableCo p{text-indent: 30px;font-size: 16px}
 .TableCo span{text-decoration: underline;font-size: 16px}
+.Btn-renm{height: 34px;margin-left: 10px;}
+
+/*查看计划*/
+.TableSF{width: 100%;padding-left: 4%;max-height: 220px;overflow-y: scroll; background: #fafbfc;}
+.CliTab{background-color: #eae7ff;}
+
+
 /*合同变更*/
 .fisJi{width: 19.5%;float: left;border: 1px solid #eeeeee; margin-right: 5px;height: 300px;overflow-y: scroll;padding: 5px}
 .LastBg{background-color: #eeeeee;}

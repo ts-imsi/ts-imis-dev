@@ -21,6 +21,7 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                 <tr>
+                    <td ng-if="ctrl.isArrange==1">~</td>
                     <th>合同号</th>
                     <th>医院名称</th>
                     <th>合同名称</th>
@@ -28,12 +29,16 @@
                     <th>交接时间</th>
                     <th>分解时间</th>
                     <th>项目经理</th>
-                    <th ng-if="ctrl.isArrange==1">初步计划</th>
+                    <!--th ng-if="ctrl.isArrange==1">初步计划</th-->
                     <th ng-if="ctrl.isArrange==1">进度</th>
                 </tr>
                 </thead>
+                <!--点击加号在tr中添加样式 CliTab， 点减号移除样式 CliTab-->
                 <tbody>
                 <tr ng-repeat="handOver in ctrl.handOverList">
+                    <td ng-if="ctrl.isArrange==1" style="padding: 10px; width: 1%;"  ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()"> <i class="fa fa-plus fa-fw m-r-xs"></i></td>
+                    <!--减号
+                    <td ng-if="ctrl.isArrange==1" style="padding: 10px; width: 1%;"  ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()"> <i class="fa fa-minus fa-fw m-r-xs"></i></td-->
                     <td ng-bind="handOver.htNo"></td>
                     <td ng-bind="handOver.customerName"></td>
                     <td ng-bind="handOver.htName"></td>
@@ -42,17 +47,86 @@
                     <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                     <td ng-if="ctrl.isArrange==1" ng-bind="handOver.proManager"> </td>
                     <td ng-if="ctrl.isArrange==0">
-                        <select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select>
-                        <button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button>
+                        <select class="form-control Rinput60 fl" style="width: 55%" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select>
+                        <button class="Btn-renm" type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button>
                     </td>
-                    <td ng-if="ctrl.isArrange==1">
+                    <!--td ng-if="ctrl.isArrange==1">
                         <a ng-if="handOver.isProPlan==0" ng-click="ctrl.createActualizePlan(handOver);ctrl.openPanel()">制定计划</a>
                         <a ng-if="handOver.isProPlan==1" ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()">查看计划</a>
-                    </td>
+                    </td-->
                     <td ng-if="ctrl.isArrange==1"><a href="#">进度</a></td>
                 </tr>
                 </tbody>
             </table>
+
+            <div class="TableSF"  ng-if="ctrl.isArrange==1" >
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>实施经理</th>
+                        <th>计划调研</th>
+                        <th>计划进场</th>
+                        <th>计划上线</th>
+                        <th>计划验收</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-if="ctrl.showButton">
+                    <tr ng-repeat="projectPlan in ctrl.projectPlanList">
+                        <td ng-bind="projectPlan.proName"></td>
+                        <td>
+                            <select class="form-control Rinput60" ng-model="projectPlan.manage" ng-options="xmssjl.name for xmssjl in ctrl.xmssjlList"></select>
+                        </td>
+
+                        <td>
+                            <input class="form-control Rinput29" name="surveyTime" ng-dblclick="ctrl.showDate(projectPlan,0)" value="{{projectPlan.surveyTime|date:'yyyy-MM-dd'}}" readonly>
+                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.surveyTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'surveyTime'==ctrl.name"  readonly/>
+                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'surveyTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </td>
+
+
+                        <td>
+                            <input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,1)" value="{{projectPlan.approachTime|date:'yyyy-MM-dd'}}" readonly>
+                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.approachTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'approachTime'==ctrl.name"  readonly/>
+                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'approachTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </td>
+
+                        <td>
+                            <input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,2)" value="{{projectPlan.onlineTime|date:'yyyy-MM-dd'}}" readonly>
+                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.onlineTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'onlineTime'==ctrl.name"  readonly/>
+                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'onlineTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </td>
+
+                        <td>
+                            <input  class="form-control Rinput29" name="approachTime" ng-dblclick="ctrl.showDate(projectPlan,3)" value="{{projectPlan.checkTime|date:'yyyy-MM-dd'}}" readonly>
+                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="projectPlan.checkTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"  readonly/>
+                            <button type="button" class="btn RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==projectPlan.planId&&'checkTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </td>
+                        <td>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                    <tbody ng-if="!ctrl.showButton">
+                    <tr ng-repeat="projectPlan in ctrl.projectPlanList">
+                        <td ng-bind="projectPlan.proName"></td>
+                        <td ng-bind="projectPlan.actualizeManager"></td>
+
+                        <td ng-bind="projectPlan.surveyTime | date:'yyyy-MM-dd'"></td>
+                        <td ng-bind="projectPlan.approachTime | date:'yyyy-MM-dd'"></td>
+                        <td ng-bind="projectPlan.onlineTime | date:'yyyy-MM-dd'"></td>
+                        <td ng-bind="projectPlan.checkTime | date:'yyyy-MM-dd'"></td>
+                        <td>
+                            <a ng-click="ctrl.updatePlanTime(projectPlan)">修改</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
         <footer class="panel-footer">
             <div class="row">

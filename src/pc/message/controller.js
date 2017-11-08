@@ -113,6 +113,7 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
     };
 
     this.submitFlow=function(){
+        seltmsgDetail.msg.remark="审批通过";
         $http.post("/ts-project/tb_message/submitFlow",angular.toJson(seltmsgDetail.msg)).success(function (result) {
             if(result.success){
                 alert(result.message);
@@ -122,16 +123,25 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
         });
     };
     this.returnFlow=function(){
-        $http.post("/ts-project/tb_message/returnFlow",angular.toJson(seltmsgDetail.msg)).success(function (result) {
-            if(result.success){
-                alert(result.message);
-            }else{
-                alert(result.message);
+        var returnFlowInstance = $modal.open({
+            templateUrl: 'returnFlow.html',
+            controller: 'ReturnFlowCtrl as returnCtrl',
+            resolve: {
+                data: function () {
+                    return seltmsgDetail.msg;
+                }
             }
         });
+
+        returnFlowInstance.result.then(function () {
+        });
+
+
+
     }
 
     this.pdConfirm=function(){
+        seltmsgDetail.msg.remark="已确认";
         $http.post("/ts-project/tb_message/pdConfirm",angular.toJson(seltmsgDetail.msg)).success(function (result) {
             if(result.success){
                 alert(result.message);
@@ -180,4 +190,24 @@ app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', funct
         $modalInstance.dismiss('cancel');
     };
 
+}]);
+app.controller('ReturnFlowCtrl', ['$scope', '$modalInstance','$http', '$filter','data', function($scope,$modalInstance,$http,$filter,data) {
+    var selt=this;
+    selt.msg = data;
+
+    this.saveMsg = function (msg) {
+        $http.post("/ts-project/tb_message/returnFlow",angular.toJson(msg)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+            }else{
+                alert(result.message);
+            }
+        });
+        $modalInstance.dismiss('cancel');
+    };
+
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 }])

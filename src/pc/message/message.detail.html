@@ -19,9 +19,29 @@
         发送人 <span ng-bind="detailCtrl.msg.sendName"></span>   发送时间：<span ng-bind="detailCtrl.msg.sendTime | date:'yyyy-MM-dd'"></span> <a ng-show="detailCtrl.msg.handOverId" href="#/access/handover?id={{detailCtrl.msg.handOverId}}" target="_blank">查看交接单</a>
     </div>
     <div class="wrapper">
+        <div class="table-responsive" ng-if="detailCtrl.msg.handover">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>合同编号</th>
+                    <th>合同名称</th>
+                    <th>客户名称</th>
+                    <th>合同拥有人</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ng-bind="detailCtrl.msg.handover.htNo"></td>
+                    <td ng-bind="detailCtrl.msg.handover.htName"></td>
+                    <td ng-bind="detailCtrl.msg.handover.customerName"></td>
+                    <td ng-bind="detailCtrl.msg.handover.htOwner"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <span ng-bind="detailCtrl.msg.msgContent"></span>
-    </div>
-    <div class="wrapper">
+
+    <!--<div class="wrapper">
         <div class="panel b-a">
             <div>
                 <div class="m-b-lg" ng-if="detailCtrl.msg.type=='todo'&&detailCtrl.msg.status=='0'">
@@ -31,9 +51,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
-
+</div>
 <script type="text/ng-template" id="analyze.html">
     <div class="modal-header">
         <h4 class="modal-title" id="show-title">合同分解接收人选择</h4>
@@ -69,4 +89,45 @@
             <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
         </div>
     </form>
+</script>
+
+
+<script type="text/ng-template" id="returnFlow.html">
+    <div class="modal-header">
+        <h4 class="modal-title">驳回</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label class="RuleName">项目编号：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.htNo" readonly/>
+            </div>
+
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label  class="RuleName">项目名称：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.htName" readonly/>
+            </div>
+
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label  class="RuleName">客户名称：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.customerName" readonly/>
+            </div>
+
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label  class="RuleName">合同拥有人：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.htOwner" readonly/>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">驳回理由：</label>
+                <textarea type="text" class="form-control Rinput60" cols="60" rows="4" required name="remark"
+                          ng-model="returnCtrl.msg.remark"></textarea>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="returnCtrl.saveMsg(returnCtrl.msg)">提交</button>
+        <button class="btn btn-warning" type="button" ng-click="returnCtrl.cancel()">取消</button>
+    </div>
 </script>

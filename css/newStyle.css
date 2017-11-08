@@ -174,7 +174,7 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 /*新规则弹出-*/
 .NkNewRule{position: fixed; overflow-y:scroll; top: 52px; bottom: 0;width: 50%;display: block;right: 0;background-color: #fff;z-index: 12;}
 .RuleTit{height: 35px;line-height: 35px;background-image: linear-gradient(-180deg, #FFFFFF 3%, #F5F5F5 98%);padding-left: 10px;width: 100%;box-shadow: 0px 0px 2px #ddd;border-left: 1px solid #e7e7e7;}
-.RuleCont{padding: 40px 15px 0 30px;}
+.RuleCont{padding: 40px 15px 0 30px;overflow-x: hidden;}
 .RuleForm{margin-top: 30px;}
 .RuleInput{float: left;width: 100%;}
 .RuleInput .RuleName{float: left; width: 110px;padding: 10px 0px;text-align: right;padding-right: 10px;}
@@ -288,4 +288,11 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .TableCo h5{text-indent: 60px;font-weight: bold;}
 .TableCo p{text-indent: 30px;font-size: 16px}
 .TableCo span{text-decoration: underline;font-size: 16px}
-
+/*合同变更*/
+.fisJi{width: 19.5%;float: left;border: 1px solid #eeeeee; margin-right: 5px;height: 300px;overflow-y: scroll;padding: 5px}
+.LastBg{background-color: #eeeeee;}
+.LastBg ul li{padding-bottom: 10px}
+.fisJi ul li .checkbox{width: 100%;}
+.fisJi .i-checks{padding-left: 27px;}
+.fisJi .i-checks > i{margin-left: -26px;}
+/*.fisJi::-webkit-scrollbar{width: 0;}*/

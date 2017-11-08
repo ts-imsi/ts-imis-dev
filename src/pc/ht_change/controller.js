@@ -138,14 +138,6 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     };
 
-    this.showContractNo=function(){
-        selt.showht=true;
-        selt.customerName=selt.ht.customerName;
-        selt.htName=selt.ht.contractName;
-        selt.signDate=$filter("date")(selt.ht.signDate, "yyyy-MM-dd");
-
-    }
-
     this.applySubmit=function(valid,invalid){
         if (valid) {
             if (!invalid) {
@@ -542,6 +534,7 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
+
 
     var updateSelected = function (action, name) {
         if (action == 'add' && product.selected.indexOf(name) == -1) {

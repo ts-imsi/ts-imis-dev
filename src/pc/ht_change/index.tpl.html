@@ -40,7 +40,7 @@
                     <th>合同名称</th>
                     <th>合同所有者</th>
                     <th>签约时间</th>
-                    <th>状态</th>
+                    <th>步骤</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -53,7 +53,7 @@
                     <td ng-bind="htChange.htName"></td>
                     <td ng-bind="htChange.htOwner"></td>
                     <td ng-bind="htChange.signDate | date:'yyyy-MM-dd'"></td>
-                    <td ng-bind="htChange.status | flowStatus"></td>
+                    <td ng-bind="htChange.nowStep"></td>
                     <td>
                         <a ng-show="htChange.status==1" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">填写交接单</a>
                         <a  ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解产值</a>
@@ -76,7 +76,6 @@
         </footer>
 </div>
 </div>
-<div data-ng-include=" 'src/pc/ht_change/apply.html' " ng-class="ctrl.opAppyPanelClass"></div>
 <div data-ng-include=" 'src/pc/template/template.tpl.html' " ng-class="ctrl.panelClass"></div>
 <div data-ng-include=" 'src/pc/ht_change/outputValue.html' " ng-class="ctrl.opvPanelClass"></div>
 
@@ -114,45 +113,4 @@
             <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
         </div>
     </form>
-</script>
-
-
-<script type="text/ng-template" id="pro_module.html">
-    <div class="modal-header">
-        <h4 class="modal-title" id="show-title">产品模块</h4>
-    </div>
-    <div class="RuleCont">
-        <div class="panel-body">
-            <accordion close-others="ctrl.oneAtATime">
-                <accordion-group heading="{{proModule.proName}}" ng-repeat="proModule in ctrl.proModuleList">
-                    <div class="list-group m-t">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>选择</th>
-                                <th>部门名称</th>
-                                <th>模块名称</th>
-                                <th>模块编号</th>
-                                <th>版本</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="item in proModule.proModuleList">
-                                <td><input type="checkbox" ng-checked="ctrl.isSelected(item)" ng-click="ctrl.updateSelection($event,item)"/></td>
-                                <td ng-bind="proModule.depName"></td>
-                                <td ng-bind="item.modName"></td>
-                                <td ng-bind="item.modNo"></td>
-                                <td ng-bind="item.version"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </accordion-group>
-            </accordion>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-warning" type="button" ng-click="ctrl.addModule()">保存</button>
-        <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
-    </div>
 </script>

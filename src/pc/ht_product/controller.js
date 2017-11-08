@@ -94,13 +94,156 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         selt.opvPanelClass = "person panel panel-default";
     };
 
+    //申请
+    this.opAppyPanelClass = "person panel panel-default";
+
+    this.openAppyPanel = function () {
+        selt.opAppyPanelClass = "person panel panel-default active";
+    };
+    this.closeAppyVPanel = function () {
+        selt.opAppyPanelClass = "person panel panel-default";
+    };
 
 
 
+    this.addHtChange=function(htProduct){
+        console.log("===========ceshi");
+
+        selt.submitApply=true;
+        selt.submitted=false;
+        selt.type="";
+        selt.customerName="";
+        selt.signDate="";
+        selt.changeContent="";
+        selt.remark="";
+        selt.oldModuleList=[];
+        selt.newModuleList=[];
+
+        selt.htName=htProduct.contractName;
+        selt.customerName=htProduct.customerName;
+        selt.signDate=htProduct.signDate;
+        $http.post("/ts-project/htChange/selectTbPersonnel").success(function (result) {
+            if(result.success){
+                selt.personnel = result.object;
+                selt.createUser=selt.personnel.name;
+                selt.applicationDept=selt.personnel.depName;
+                selt.created=$filter("date")(new Date(), "yyyy-MM-dd")
+            }else{
+                selt.personnel=[];
+                alert(result.message);
+            }
+        });
+
+        $http.post("/ts-project/product/queryTbProductList").success(function (result) {
+            if(result.success){
+                selt.proList = result.object;
+            }else{
+                selt.proList=[];
+                alert(result.message);
+            }
+        });
+    };
+
+    //老模块合计
+    selt.oldWaitModuleList=[];
+    selt.oldPModuleList=[];
+    this.updateSelection = function ($event, item) {
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+
+        if (action == 'add' && selt.oldWaitModuleList.indexOf(item.proCode) == -1) {
+            selt.oldWaitModuleList.push(item.proCode);
+        }
+        if (action == 'remove' && selt.oldWaitModuleList.indexOf(item.proCode) != -1) {
+            var idx = selt.oldWaitModuleList.indexOf(item.proCode);
+            selt.oldWaitModuleList.splice(idx, 1);
+        }
+        $http.post("/ts-project/product/queryProModuleList",angular.toJson(selt.oldWaitModuleList)).success(function (result) {
+            if(result.success){
+                selt.oldPModuleList = result.object;
+            }else{
+                selt.oldPModuleList=[];
+                alert(result.message);
+            }
+        });
+    }
+
+    this.isSelected = function (item) {
+        return selt.oldWaitModuleList.indexOf(item.proCode) != -1;
+    }
+
+    //老模块选中
+    selt.oldModuleList=[];
+    this.isOldSelected = function (item) {
+        var name=item.modId+":"+item.modName;
+        return selt.oldModuleList.indexOf(name) != -1;
+    }
+
+    this.updateOldSelection = function ($event, item) {
+        var name=item.modId+":"+item.modName;
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+
+        if (action == 'add' && selt.oldModuleList.indexOf(name) == -1) {
+            selt.oldModuleList.push(name);
+        }
+        if (action == 'remove' && selt.oldModuleList.indexOf(name) != -1) {
+            var idx = selt.oldModuleList.indexOf(name);
+            selt.oldModuleList.splice(idx, 1);
+        }
+    }
 
 
 
+    //新模块合计
+    selt.newProModuleList=[];
+    selt.newPModuleList=[];
+    this.updateNewProSelection = function ($event, item) {
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
 
+        if (action == 'add' && selt.newProModuleList.indexOf(item.proCode) == -1) {
+            selt.newProModuleList.push(item.proCode);
+        }
+        if (action == 'remove' && selt.newProModuleList.indexOf(item.proCode) != -1) {
+            var idx = selt.newProModuleList.indexOf(item.proCode);
+            selt.newProModuleList.splice(idx, 1);
+        }
+        $http.post("/ts-project/product/queryProModuleList",angular.toJson(selt.newProModuleList)).success(function (result) {
+            if(result.success){
+                selt.newPModuleList = result.object;
+            }else{
+                selt.newPModuleList=[];
+                alert(result.message);
+            }
+        });
+    }
+
+    this.isNewProSelected = function (item) {
+        return selt.newProModuleList.indexOf(item.proCode) != -1;
+    }
+
+
+    //新模块选中
+    selt.newModuleList=[];
+    this.isNewSelected = function (item) {
+        var name=item.modId+":"+item.modName;
+        return selt.newModuleList.indexOf(item.proCode) != -1;
+    }
+
+    this.updateNewSelection = function ($event, item) {
+        var name=item.modId+":"+item.modName;
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+
+        if (action == 'add' && selt.newModuleList.indexOf(name) == -1) {
+            selt.newModuleList.push(name);
+        }
+        if (action == 'remove' && selt.newModuleList.indexOf(name) != -1) {
+            var idx = selt.newModuleList.indexOf(name);
+            selt.newModuleList.splice(idx, 1);
+        }
+    }
 
 
 

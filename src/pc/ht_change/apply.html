@@ -19,26 +19,17 @@
                               该选项框必填
                     </span>
         </div>
-
         <div class="form-group RuleInput" style="position: relative;">
-            <label class="RuleName">合同选择：</label>
-            <select class="form-control Rinput40" ng-model="ctrl.ht" ng-options="ht.contractNo  for ht in ctrl.htlist" ng-change="ctrl.showContractNo()" required name="htSelect"></select>
-            <span class="errorInput"
-                  ng-show="form.htSelect.$error.required && ctrl.submitted">
-                              该选项框必填
-                    </span>
-        </div>
-        <div class="form-group RuleInput" style="position: relative;" ng-show="ctrl.showht">
             <label class="RuleName">合同名称：</label>
             <input type="text" class="form-control Rinput60"  ng-model="ctrl.htName" readonly>
 
         </div>
-        <div class="form-group RuleInput" style="position: relative;" ng-show="ctrl.showht">
+        <div class="form-group RuleInput" style="position: relative;">
             <label class="RuleName">客户名称：</label>
             <input type="text" class="form-control Rinput60"  ng-model="ctrl.customerName" readonly >
 
         </div>
-        <div class="form-group RuleInput" style="position: relative;" ng-show="ctrl.showht">
+        <div class="form-group RuleInput" style="position: relative;">
             <label class="RuleName">合同签订时间：</label>
             <input type="text" class="form-control Rinput60"  ng-model="ctrl.signDate" readonly>
 
@@ -78,54 +69,9 @@
              <div style="width: 135%">
                  <div class="fisJi">
                     <ul>
-                        <li>
+                        <li ng-repeat="pro in ctrl.proList">
                             <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>HIS接口
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>移动医护
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>临床模块
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>LIS
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>LIS接口
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>PACS
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>BS产品
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>HIS
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>平台部其他产品产品
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>LIS接口
+                                <input type="checkbox"  ng-checked="ctrl.isSelected(pro)" ng-click="ctrl.updateSelection($event,pro)"><i></i>{{pro.proName}}
                             </label>
                         </li>
                     </ul>
@@ -133,14 +79,9 @@
                  <div class="fisJi">
                      <ul>
 
-                         <li>
+                         <li ng-repeat="oldPMod in ctrl.oldPModuleList">
                              <label class="checkbox-inline i-checks">
-                                 <input type="checkbox" value="option1"><i></i>医技事业部
-                             </label>
-                         </li>
-                         <li>
-                             <label class="checkbox-inline i-checks">
-                                 <input type="checkbox" value="option1"><i></i>HIS临床事业部
+                                 <input type="checkbox"  ng-checked="ctrl.isOldSelected(oldPMod)" ng-click="ctrl.updateOldSelection($event,oldPMod)"><i></i>{{oldPMod.modName}}
                              </label>
                          </li>
                      </ul>
@@ -148,9 +89,7 @@
                  </div>
                  <div class="fisJi LastBg">
                      <ul>
-                         <li>临床检验系统（LIS）</li>
-                         <li>条形码管理系统</li>
-                         <li>输血管理系统</li>
+                         <li ng-repeat="oldMod in ctrl.oldModuleList">{{oldMod}}</li>
                      </ul>
 
                  </div>
@@ -163,54 +102,10 @@
             <div style="width: 135%">
                 <div class="fisJi">
                     <ul>
-                        <li>
+
+                        <li ng-repeat="pro in ctrl.proList">
                             <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>HIS接口
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>移动医护
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>临床模块
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>LIS
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>LIS接口
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>PACS
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>BS产品
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>HIS
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>平台部其他产品产品
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>LIS接口
+                                <input type="checkbox"  ng-checked="ctrl.isNewProSelected(pro)" ng-click="ctrl.updateNewProSelection($event,pro)"><i></i>{{pro.proName}}
                             </label>
                         </li>
                     </ul>
@@ -218,14 +113,9 @@
                 <div class="fisJi">
                     <ul>
 
-                        <li>
+                        <li ng-repeat="newProMod in ctrl.newPModuleList">
                             <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>医技事业部
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-inline i-checks">
-                                <input type="checkbox" value="option1"><i></i>HIS临床事业部
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>{{newProMod.modName}}
                             </label>
                         </li>
                     </ul>
@@ -233,38 +123,12 @@
                 </div>
                 <div class="fisJi LastBg">
                     <ul>
-                        <li>临床检验系统（LIS）</li>
-                        <li>条形码管理系统</li>
-                        <li>输血管理系统</li>
+                        <li ng-repeat="newMod in ctrl.newModuleList">{{newMod}}</li>
                     </ul>
 
                 </div>
 
             </div>
-        </div>
-
-
-
-        <div class="form-group RuleInput row-fluid" >
-            <div class="col-md-6">
-                <button type="button" ng-show="ctrl.showOldModule" ng-click="ctrl.addoldModule()">老模块</button>
-            </div>
-
-            <div class="col-md-6" >
-                <button type="button" ng-show="ctrl.showNewModule" ng-click="ctrl.addNewModule()">修改模块</button>
-            </div>
-
-        </div>
-        <div class="form-group RuleInput row-fluid">
-
-            <div class="col-md-6">
-                <span style="display:inline-block;width:60%;word-wrap:break-word;white-space:normal;" ng-repeat="oldItem in ctrl.oldModuleList" ng-bind="oldItem"></span><br/>
-            </div>
-
-            <div class="col-md-6" >
-                <span style="display:inline-block;width:60%;word-wrap:break-word;white-space:normal;" ng-repeat="newItem in ctrl.newModuleList" ng-bind="newItem"></span><br/>
-            </div>
-
         </div>
     </div>
 </div>

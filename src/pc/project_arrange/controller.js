@@ -287,8 +287,8 @@ app.controller('LetterCtrl', ['$scope', '$modalInstance','$http','$filter', 'dat
     this.printLetter=function(){
         $("#letterPrint").printThis({
             debug: false,
-            importCSS: false,
-            importStyle: false,
+            importCSS: true,
+            importStyle: true,
             printContainer: true,
             removeInline: false,
             printDelay: 333,

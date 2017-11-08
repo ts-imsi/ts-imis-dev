@@ -38,7 +38,7 @@
                         </a>
                         <a ng-click="ctrl.queryHtResolve(htProduct);ctrl.openOPVPanel()">分解产值
                         </a>
-                        <a ng-click="ctrl.addHtChange();ctrl.openAppyPanel()">合同变更
+                        <a ng-click="ctrl.addHtChange(htProduct);ctrl.openAppyPanel()">合同变更
                         </a>
                     </td>
                 </tr>
@@ -59,6 +59,7 @@
         </footer>
 </div>
 </div>
+<div data-ng-include=" 'src/pc/ht_change/apply.html' " ng-class="ctrl.opAppyPanelClass"></div>
 <div data-ng-include=" 'src/pc/template/template.tpl.html' " ng-class="ctrl.panelClass"></div>
 <div data-ng-include=" 'src/pc/ht_product/outputValue.html' " ng-class="ctrl.opvPanelClass"></div>
 

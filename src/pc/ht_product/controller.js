@@ -119,15 +119,19 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         selt.oldModuleList=[];
         selt.newModuleList=[];
 
+        selt.htNo=htProduct.contractNo;
         selt.htName=htProduct.contractName;
         selt.customerName=htProduct.customerName;
-        selt.signDate=htProduct.signDate;
+        selt.signDate=$filter("date")(htProduct.signDate, "yyyy-MM-dd");
+        selt.hospitalGrade=htProduct.hospitalGrade;
+        selt.contractPrice=htProduct.contractPrice;
+        selt.contractOwner=htProduct.contractOwner;
         $http.post("/ts-project/htChange/selectTbPersonnel").success(function (result) {
             if(result.success){
                 selt.personnel = result.object;
                 selt.createUser=selt.personnel.name;
                 selt.applicationDept=selt.personnel.depName;
-                selt.created=$filter("date")(new Date(), "yyyy-MM-dd")
+                selt.created=$filter("date")(new Date(), "yyyy-MM-dd");
             }else{
                 selt.personnel=[];
                 alert(result.message);
@@ -228,7 +232,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     selt.newModuleList=[];
     this.isNewSelected = function (item) {
         var name=item.modId+":"+item.modName;
-        return selt.newModuleList.indexOf(item.proCode) != -1;
+        return selt.newModuleList.indexOf(name) != -1;
     }
 
     this.updateNewSelection = function ($event, item) {
@@ -242,6 +246,70 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         if (action == 'remove' && selt.newModuleList.indexOf(name) != -1) {
             var idx = selt.newModuleList.indexOf(name);
             selt.newModuleList.splice(idx, 1);
+        }
+        if(selt.type=="BG"){
+            selt.newModule_name="合同"+selt.htNo+"由"+selt.oldModuleList+"模块变更为"+selt.newModuleList+"模块";
+            selt.remark=selt.newModule_name;
+        }
+        if(selt.type=="ZB"){
+            selt.newModule_name="合同"+selt.htNo+"新增模块"+selt.newModuleList;
+            selt.remark=selt.newModule_name;
+        }
+    }
+
+
+
+
+    this.showModule=function(){
+        if(selt.type=="BG"){
+            selt.showOldModule=true;
+            selt.showNewModule=true;
+        }else{
+            selt.showOldModule=false;
+            selt.showNewModule=true;
+        }
+    };
+
+
+    this.applySubmit=function(valid,invalid){
+        if (valid) {
+            if (!invalid) {
+                var tbHtChange={
+                    htNo:selt.htNo,
+                    htName:selt.htName,
+                    customerName:selt.customerName,
+                    type:selt.type,
+                    status:0,
+                    htOwner:selt.contractOwner,
+                    signDate:$filter("date")(selt.signDate, "yyyy-MM-dd"),
+                    changeContent:selt.changeContent,
+                    workNum:selt.personnel.workNum,
+                    applicationDept:selt.applicationDept,
+                    createUser:selt.createUser,
+                    created:selt.created,
+                    remark:selt.remark
+                }
+                var param={
+                    htchange:tbHtChange,
+                    oldModuleList:selt.oldModuleList,
+                    newModuleList:selt.newModuleList,
+                    hosLevel:selt.hospitalGrade,
+                    price:(parseInt(selt.contractPrice)*0.0001).toFixed(4)
+
+                }
+                $http.post("/ts-project/htChange/applySubmit",angular.toJson(param)).success(function (result) {
+                    if(result.success){
+                        alert(result.message);
+                        selt.submitApply=false;
+                        this.setPage(1);
+                    }else{
+                        alert(result.message);
+                    }
+                });
+
+            }
+        }else{
+            selt.submitted=true;
         }
     }
 

@@ -6,9 +6,9 @@
         <div class="row NKwrapper Nkinput">
             <div class="fr">
                 <div class="btn-group col-px-560" style="position: relative;float:left">
-                    <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
-                    <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">待审批</button>
-                    <button type="button" ng-click="ctrl.selectByStatus(3)" class="btn btn-default">已完成</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">全部</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">待审批</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">已完成</button>
                 </div>
 
                 <div class="col-px-250 fl" style="position: relative;">
@@ -76,6 +76,7 @@
         </footer>
 </div>
 </div>
+<div data-ng-include=" 'src/pc/ht_change/apply.html' " ng-class="ctrl.opAppyPanelClass"></div>
 <div data-ng-include=" 'src/pc/template/template.tpl.html' " ng-class="ctrl.panelClass"></div>
 <div data-ng-include=" 'src/pc/ht_change/outputValue.html' " ng-class="ctrl.opvPanelClass"></div>
 

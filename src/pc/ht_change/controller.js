@@ -14,15 +14,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         this.setPage(1);
     };
     this.selectByStatus=function(status){
-        /*switch (status){
-            case '0':
-                selt.status=status;
-                break;
-            case '1':
-                selt.status=status;
-                break;
-        }*/
-        if(status==0){
+        if(status==2){
             selt.status='';
         }else{
             selt.status=status;
@@ -76,45 +68,6 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     this.maxSize = 5;
     this.setPage(1);
-
-
-    this.addHtChange=function(){
-        console.log("===========ceshi");
-
-        selt.submitApply=true;
-        selt.submitted=false;
-        selt.type="";
-        selt.showht=false;
-        selt.customerName="";
-        selt.signDate="";
-        selt.changeContent="";
-        selt.remark="";
-        selt.oldModuleList=[];
-        selt.newModuleList=[];
-
-        $http.post("/ts-project/htChange/selectTbPersonnel").success(function (result) {
-            if(result.success){
-                selt.personnel = result.object;
-                selt.createUser=selt.personnel.name;
-                selt.applicationDept=selt.personnel.depName;
-                selt.created=$filter("date")(new Date(), "yyyy-MM-dd")
-            }else{
-                selt.personnel=[];
-                alert(result.message);
-            }
-        });
-
-        $http.post("/ts-project/htChange/getOaContractListByOwner").success(function (result) {
-            if(result.success){
-                selt.htlist = result.object;
-            }else{
-                selt.htlist=[];
-                alert(result.message);
-            }
-        });
-
-    }
-
     //--时间控件
     this.dateOptions = {
         formatYear: 'yy',
@@ -137,48 +90,6 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         selt.finishTime = true;
 
     };
-
-    this.applySubmit=function(valid,invalid){
-        if (valid) {
-            if (!invalid) {
-                var tbHtChange={
-                    htNo:selt.ht.contractNo,
-                    htName:selt.ht.contractName,
-                    customerName:selt.ht.customerName,
-                    type:selt.type,
-                    status:1,
-                    htOwner:selt.ht.contractOwner,
-                    signDate:$filter("date")(selt.ht.signDate, "yyyy-MM-dd"),
-                    changeContent:selt.changeContent,
-                    workNum:selt.personnel.workNum,
-                    applicationDept:selt.applicationDept,
-                    createUser:selt.createUser,
-                    created:selt.created,
-                    remark:selt.remark
-                }
-                var param={
-                    htchange:tbHtChange,
-                    oldModuleList:selt.oldModuleList,
-                    newModuleList:selt.newModuleList,
-                    hosLevel:selt.ht.hospitalGrade,
-                    price:(parseInt(selt.ht.contractPrice)*0.0001).toFixed(4)
-
-                }
-                $http.post("/ts-project/htChange/applySubmit",angular.toJson(param)).success(function (result) {
-                    if(result.success){
-                        alert(result.message);
-                        selt.submitApply=false;
-                        this.setPage(1);
-                    }else{
-                        alert(result.message);
-                    }
-                });
-
-            }
-        }else{
-            selt.submitted=true;
-        }
-    }
 
     //--tag切换
     this.tagclass01 = "RuActive";
@@ -284,65 +195,6 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     };
 
 
-    this.addNewModule=function(){
-        var proModuleInstance = $modal.open({
-            templateUrl: 'pro_module.html',
-            controller: 'proModuleCtrl as ctrl',
-            resolve: {
-                data: function () {
-                    return selt.newModuleList;
-                }
-            }
-        });
-
-        proModuleInstance.result.then(function (module) {
-            selt.newModuleList=module;
-            selt.newModule="";
-            angular.forEach(selt.newModuleList,function(item){
-                selt.newModule=selt.newModule+item+";";
-            });
-            if(selt.type=="BG"){
-                selt.newModule_name="合同"+selt.ht.contractNo+"由"+selt.oldModule+"模块变更为"+selt.newModule+"模块";
-                selt.remark=selt.newModule_name;
-            }
-            if(selt.type=="ZB"){
-                selt.newModule_name="合同"+selt.ht.contractNo+"新增模块"+selt.newModule;
-                selt.remark=selt.newModule_name;
-            }
-
-        });
-    }
-
-    this.addoldModule=function(){
-        var proModuleInstance = $modal.open({
-            templateUrl: 'pro_module.html',
-            controller: 'proModuleCtrl as ctrl',
-            resolve: {
-                data: function () {
-                    return selt.oldModuleList;
-                }
-            }
-        });
-
-        proModuleInstance.result.then(function (module) {
-            selt.oldModuleList=module;
-            selt.oldModule="";
-            angular.forEach(selt.oldModuleList,function(item){
-                  selt.oldModule=selt.oldModule+item+";";
-            });
-
-        });
-    }
-
-    this.showModule=function(){
-        if(selt.type=="BG"){
-            selt.showOldModule=true;
-            selt.showNewModule=true;
-        }else{
-            selt.showOldModule=false;
-        }
-    };
-
     this.queryHtResolve = function (htChange) {
 
         $http.post("/ts-project/htChange/getContractByHtNo/"+htChange.htNo).success(function (result) {
@@ -411,7 +263,19 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         selt.changeContent=htChange.changeContent;
         selt.remark=htChange.remark;
         selt.showNewModule=false;
-        $http.post("/ts-project/htChange/getHtChangeView/"+htChange.type+"/"+htChange.pkid).success(function (result) {
+        selt.createUser=htChange.createUser;
+        selt.applicationDept=htChange.applicationDept;
+        selt.created=htChange.created;
+        selt.showfj=false;
+        if(selt.type=="BG"){
+            selt.showOldModule=true;
+            selt.showNewModule=true;
+        }else{
+            selt.showOldModule=false;
+            selt.showNewModule=true;
+        }
+
+        $http.post("/ts-project/htChange/getHtChangeView/"+htChange.type+"-"+htChange.pkid).success(function (result) {
             if(result.success){
                 selt.oldModuleList = result.oldModule;
                 selt.newModuleList=result.newModule;
@@ -421,46 +285,15 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             }
         });
 
-        $http.post("/ts-project/htChange/getOaContractListByOwner").success(function (result) {
+        $http.post("/ts-project/product/queryTbProductList").success(function (result) {
             if(result.success){
-                selt.htlist = result.object;
-                angular.forEach(selt.htlist,function(item){
-                    if(item.contractNo==htChange.htNo){
-                        selt.ht=item;
-                    }
-                });
+                selt.proList = result.object;
             }else{
-                selt.htlist=[];
+                selt.proList=[];
                 alert(result.message);
             }
         });
-
-        $http.post("/ts-project/htChange/selectTbPersonnel").success(function (result) {
-            if(result.success){
-                selt.personnel = result.object;
-                selt.createUser=selt.personnel.name;
-                selt.applicationDept=selt.personnel.depName;
-                selt.created=$filter("date")(new Date(), "yyyy-MM-dd")
-            }else{
-                selt.personnel=[];
-                alert(result.message);
-            }
-        });
-
-
     }
-
-
-    //申请
-    this.opAppyPanelClass = "person panel panel-default";
-
-    this.openAppyPanel = function () {
-        selt.opAppyPanelClass = "person panel panel-default active";
-    };
-    this.closeAppyVPanel = function () {
-        selt.opAppyPanelClass = "person panel panel-default";
-    };
-
     //产值分解划出层
     this.opvPanelClass = "person panel panel-default";
 
@@ -482,6 +315,16 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     this.closePanel = function () {
         selt.panelClass = "contact panel panel-default";
         selt.selectTag('1');
+    };
+
+    //申请
+    this.opAppyPanelClass = "person panel panel-default";
+
+    this.openAppyPanel = function () {
+        selt.opAppyPanelClass = "person panel panel-default active";
+    };
+    this.closeAppyVPanel = function () {
+        selt.opAppyPanelClass = "person panel panel-default";
     };
 }]);
 
@@ -511,59 +354,4 @@ app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', 
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-}])
-
-app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', function($scope,$modalInstance,$http,data) {
-    var product=this;
-    this.oneAtATime = true;
-    $http.post("/ts-project/product/getNewTbProductList").success(function (result) {
-        if(result.success){
-            product.proModuleList = result.object;
-            if(data=='undefined'||data==null){
-                product.selected=[];
-            }else{
-                product.selected=data;
-            }
-
-        }else{
-            product.proModuleList=[];
-            alert(result.message);
-        }
-    });
-
-    this.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-
-
-    var updateSelected = function (action, name) {
-        if (action == 'add' && product.selected.indexOf(name) == -1) {
-            product.selected.push(name);
-        }
-        if (action == 'remove' && product.selected.indexOf(name) != -1) {
-            var idx = product.selected.indexOf(name);
-            product.selected.splice(idx, 1);
-        }
-    }
-
-    this.updateSelection = function ($event, item) {
-        var name=item.modId+":"+item.modName;
-        var checkbox = $event.target;
-        var action = (checkbox.checked ? 'add' : 'remove');
-        updateSelected(action, name);
-    }
-
-    this.isSelected = function (item) {
-        var name=item.modId+":"+item.modName;
-        return product.selected.indexOf(name) != -1;
-    }
-
-    this.addModule=function() {
-        $modalInstance.close(product.selected);
-    }
-    this.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-
-
 }])

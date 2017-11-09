@@ -5,6 +5,11 @@
     <div class="panel panel-default">
         <div class="row NKwrapper Nkinput">
             <div class="fr">
+                <div class="btn-group col-px-700" style="position: relative;float:left">
+                    <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">待交接</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">已交接</button>
+                </div>
                 <div class="col-px-230 fl" style="position: relative;">
                     <input type="text" class="form-control" placeholder="请输入合同号、客户名、合同名" ng-model="ctrl.selectName">
                 </div>
@@ -34,7 +39,7 @@
                     <td ng-bind="htProduct.contractOwner"></td>
                     <td ng-bind="htProduct.signDate | date:'yyyy-MM-dd'"></td>
                     <td>
-                        <a ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()">填写交接单
+                        <a ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()" ng-show="ctrl.status!='2'">填写交接单
                         </a>
                         <a ng-click="ctrl.queryHtResolve(htProduct);ctrl.openOPVPanel()">分解产值
                         </a>

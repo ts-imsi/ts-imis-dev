@@ -5,11 +5,16 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
         this.setPage(1);
     }
+    this.selectByStatus=function(status){
+        selt.status=status;
+        this.setPage(1);
+    }
     this.setPage = function (pageNo) {
         var parm={
             page:pageNo,
             rows:10,
-            selectName:selt.selectName
+            selectName:selt.selectName,
+            status:selt.status
         };
         console.log(parm);
         $http.post("/ts-project/con_product/getcontractTransenList",angular.toJson(parm)).success(function (result) {
@@ -31,7 +36,8 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         var parm={
             page:this.pageNo,
             rows:10,
-            selectName:selt.selectName
+            selectName:selt.selectName,
+            status:selt.status
         };
         $http.post("/ts-project/con_product/getcontractTransenList",angular.toJson(parm)).success(function (result) {
             if(result.success){

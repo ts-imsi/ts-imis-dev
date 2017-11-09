@@ -87,10 +87,24 @@
                                       <tr ng-repeat="projectPlan in handOver.planList">
                                           <td ng-bind="projectPlan.proName"></td>
                                           <td ng-bind="projectPlan.actualizeManager"></td>
-                                          <td ng-class="projectPlan.isSurvey==1?'text-blue':''" ng-bind="projectPlan.surveyTime | date:'yyyy-MM-dd'"></td>
-                                          <td ng-class="projectPlan.isApproach==1?'text-blue':''" ng-bind="projectPlan.approachTime | date:'yyyy-MM-dd'"></td>
-                                          <td ng-class="projectPlan.isOnline==1?'text-blue':''" ng-bind="projectPlan.onlineTime | date:'yyyy-MM-dd'"></td>
-                                          <td ng-class="projectPlan.isCheck==1?'text-blue':''" ng-bind="projectPlan.checkTime | date:'yyyy-MM-dd'"></td>
+
+                                          <td ng-if="projectPlan.isSurvey==0" ng-bind="projectPlan.surveyTime"></td>
+                                          <td ng-if="projectPlan.isSurvey==1"  ng-dblclick="ctrl.showHistoryLog(projectPlan.planId,'survey')"><a class="text-blue" ng-bind="projectPlan.surveyTime"></a></td>
+
+
+
+
+                                          <td ng-if="projectPlan.isApproach==0" ng-bind="projectPlan.approachTime"></td>
+                                          <td ng-if="projectPlan.isApproach==1"  ng-dblclick="ctrl.showHistoryLog(projectPlan.planId,'approac')"><a class="text-blue" ng-bind="projectPlan.approachTime"></a></td>
+
+
+
+                                          <td ng-if="projectPlan.isOnline==0" ng-bind="projectPlan.onlineTime"></td>
+                                          <td ng-if="projectPlan.isOnline==1"  ng-dblclick="ctrl.showHistoryLog(projectPlan.planId,'online')"><a class="text-blue" ng-bind="projectPlan.onlineTime"></a></td>
+
+
+                                          <td ng-if="projectPlan.isCheck==0" ng-bind="projectPlan.checkTime"></td>
+                                          <td ng-if="projectPlan.isCheck==1"  ng-dblclick="ctrl.showHistoryLog(projectPlan.planId,'check')"><a class="text-blue" ng-bind="projectPlan.checkTime"></a></td>
                                           <td>
                                               <a ng-click="ctrl.updatePlanTime(projectPlan)">修改</a>
                                           </td>
@@ -213,5 +227,44 @@
     <div class="modal-footer">
         <button class="btn btn-warning" type="button" ng-click="planCtrl.savePlan(planCtrl.plan)">保存</button>
         <button class="btn btn-warning" type="button" ng-click="planCtrl.cancel()">取消</button>
+    </div>
+</script>
+<script type="text/ng-template" id="historyLog.html">
+    <div class="modal-header">
+        <h4 class="modal-title">计划修改历史记录</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="table-responsive">
+
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                    <tr>
+                        <th>变更后时间</th>
+                        <th>变更前时间</th>
+                        <th>变更时间</th>
+                        <th>变更事由</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="log in logCtrl.historyList">
+                        <td ng-bind="log.newTime"></td>
+                        <td ng-bind="log.oldTime"></td>
+                        <td ng-bind="log.created  | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                        <td ng-bind="log.remark"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="logCtrl.cancel()">关闭</button>
     </div>
 </script>

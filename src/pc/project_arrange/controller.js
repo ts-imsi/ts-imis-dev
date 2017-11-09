@@ -121,12 +121,36 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
                 if(item.pkid == plan.handoverId){
                     angular.forEach(item.planList, function(proPlan) {
                         if(proPlan.planId == plan.planId){
-                            proPlan = plan;
+                            proPlan.isSurvey = plan.isSurvey;
+                            proPlan.isApproach = plan.isApproach;
+                            proPlan.isOnline = plan.isOnline;
+                            proPlan.isCheck = plan.isCheck;
                         }
                     });
                 }
             });
         });
+    };
+
+    this.showHistoryLog = function (planId,code) {
+        var hisLog = {
+            'planId':planId,
+            'code':code
+        };
+        var historyLogInstance = $modal.open({
+            templateUrl: 'historyLog.html',
+            controller: 'HistoryLogCtrl as logCtrl',
+            resolve: {
+                data: function () {
+                    return hisLog;
+                }
+            }
+        });
+
+        historyLogInstance.result.then(function () {
+
+        });
+
     };
 
 
@@ -388,12 +412,28 @@ app.controller('ProjectPlanCtrl', ['$scope', '$modalInstance','$http', '$filter'
 
         $http.post("/ts-project/plan/updatePlanTime",angular.toJson(plan)).success(function (result) {
             if(result.success){
-                $modalInstance.close(plan);
+                $modalInstance.close(result.object);
             }
         });
     };
 
 
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}]);
+
+
+app.controller('HistoryLogCtrl', ['$scope', '$modalInstance','$http', '$filter','data', function($scope,$modalInstance,$http,$filter,data) {
+    var selt=this;
+    console.log(data);
+    $http.post("/ts-project/plan/"+data.code+"/updateLog/"+data.planId).success(function (result) {
+        if(result.success){
+            selt.historyList=result.object;
+        }else{
+            selt.historyList=[];
+        }
+    });
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };

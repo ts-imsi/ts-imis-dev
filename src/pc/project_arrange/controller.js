@@ -32,6 +32,22 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
         });
     };
 
+    this.openDiv = function (pkid) {
+        angular.forEach(selt.handOverList, function(item) {
+            if(item.pkid == pkid){
+                item.ifOpen = true;
+            }
+        });
+    };
+
+    this.closeDiv = function (pkid) {
+        angular.forEach(selt.handOverList, function(item) {
+            if(item.pkid == pkid){
+                item.ifOpen = false;
+            }
+        });
+    };
+
 
     this.pageChanged = function () {
         $log.log('Page changed to: ' + this.pageNo);
@@ -103,17 +119,9 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
         projectPlanInstance.result.then(function () {
             //this.setPage(1);
         });
-    }
-
-    //制定计划划出层样式
-    this.panelClass = "projectPlan panel panel-default";
-
-    this.openPanel = function () {
-        selt.panelClass = "projectPlan panel panel-default active";
     };
-    this.closePanel = function () {
-        selt.panelClass = "projectPlan panel panel-default";
-    };
+
+
 
     this.dateOptions = {
         formatYear: 'yy',
@@ -145,9 +153,9 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
             selt.name="checkTime";
         }
 
-    }
+    };
 
-    this.createActualizePlan=function(handOver){
+    this.showActualizePlan=function(handOver){
         selt.showButton=true;
         $http.post("/ts-project/plan/queryProjectPlanList/"+handOver.pkid).success(function (result) {
             if(result.success){
@@ -167,19 +175,9 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
             }
 
         });
-    }
+    };
 
-    this.showActualizePlan=function(handOver){
-        selt.showButton=false;
-        $http.post("/ts-project/plan/queryProjectPlanList/"+handOver.pkid).success(function (result) {
-            if(result.success){
-                selt.projectPlanList=result.object;
-            }else{
-                selt.projectPlanList=[];
-                alert(result.message);
-            }
-        });
-    }
+
 
     this.sentProjectPlan=function(){
         var actualiz=false;

@@ -64,7 +64,7 @@
                       <td ng-bind="handOver.htOwner"></td>
                       <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
                       <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
-                      <td>邓文灿</td>
+                      <td ng-bind="handOver.proManager"></td>
                       <td>进度</td>
                   </tr>
                   <div>
@@ -87,10 +87,10 @@
                                       <tr ng-repeat="projectPlan in handOver.planList">
                                           <td ng-bind="projectPlan.proName"></td>
                                           <td ng-bind="projectPlan.actualizeManager"></td>
-                                          <td ng-bind="projectPlan.surveyTime | date:'yyyy-MM-dd'"></td>
-                                          <td ng-bind="projectPlan.approachTime | date:'yyyy-MM-dd'"></td>
-                                          <td ng-bind="projectPlan.onlineTime | date:'yyyy-MM-dd'"></td>
-                                          <td ng-bind="projectPlan.checkTime | date:'yyyy-MM-dd'"></td>
+                                          <td ng-class="projectPlan.isSurvey==1?'text-blue':''" ng-bind="projectPlan.surveyTime | date:'yyyy-MM-dd'"></td>
+                                          <td ng-class="projectPlan.isApproach==1?'text-blue':''" ng-bind="projectPlan.approachTime | date:'yyyy-MM-dd'"></td>
+                                          <td ng-class="projectPlan.isOnline==1?'text-blue':''" ng-bind="projectPlan.onlineTime | date:'yyyy-MM-dd'"></td>
+                                          <td ng-class="projectPlan.isCheck==1?'text-blue':''" ng-bind="projectPlan.checkTime | date:'yyyy-MM-dd'"></td>
                                           <td>
                                               <a ng-click="ctrl.updatePlanTime(projectPlan)">修改</a>
                                           </td>

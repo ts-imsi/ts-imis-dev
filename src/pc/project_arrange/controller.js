@@ -116,8 +116,16 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
             }
         });
 
-        projectPlanInstance.result.then(function () {
-            //this.setPage(1);
+        projectPlanInstance.result.then(function (plan) {
+            angular.forEach(selt.handOverList, function(item) {
+                if(item.pkid == plan.handoverId){
+                    angular.forEach(item.planList, function(proPlan) {
+                        if(proPlan.planId == plan.planId){
+                            proPlan = plan;
+                        }
+                    });
+                }
+            });
         });
     };
 
@@ -380,7 +388,7 @@ app.controller('ProjectPlanCtrl', ['$scope', '$modalInstance','$http', '$filter'
 
         $http.post("/ts-project/plan/updatePlanTime",angular.toJson(plan)).success(function (result) {
             if(result.success){
-                $modalInstance.close(result.object);
+                $modalInstance.close(plan);
             }
         });
     };

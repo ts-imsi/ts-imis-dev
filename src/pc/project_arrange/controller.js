@@ -403,12 +403,14 @@ app.controller('ProjectPlanCtrl', ['$scope', '$modalInstance','$http', '$filter'
 
     });
 
-    this.savePlan = function (plan) {
+    this.savePlan = function (plan,manage) {
 
         plan.surveyTime = $filter("date")(plan.surveyTime, "yyyy-MM-dd");
         plan.approachTime = $filter("date")(plan.approachTime, "yyyy-MM-dd");
         plan.onlineTime = $filter("date")(plan.onlineTime, "yyyy-MM-dd");
         plan.checkTime = $filter("date")(plan.checkTime, "yyyy-MM-dd");
+        plan.actualizeManager=manage.name;
+        plan.workNum=manage.workNum;
 
         $http.post("/ts-project/plan/updatePlanTime",angular.toJson(plan)).success(function (result) {
             if(result.success){

@@ -265,7 +265,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         selt.showNewModule=false;
         selt.createUser=htChange.createUser;
         selt.applicationDept=htChange.applicationDept;
-        selt.created=htChange.created;
+        selt.created=$filter("date")(htChange.created, "yyyy-MM-dd");
         selt.showfj=false;
         if(selt.type=="BG"){
             selt.showOldModule=true;

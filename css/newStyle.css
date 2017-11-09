@@ -310,3 +310,7 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .fisJi .i-checks{padding-left: 27px;}
 .fisJi .i-checks > i{margin-left: -26px;}
 /*.fisJi::-webkit-scrollbar{width: 0;}*/
+
+
+/*日期按钮*/
+.datBut{position: absolute;right: 10px; top:9px;background-color: #eee;padding: 5px}

@@ -2,7 +2,7 @@
     <i>|</i>
     初步计划表
     <div class="fr">
-        <input type="button" class="save fl" ng-if="ctrl.showButton" value="发送" ng-click="ctrl.sentProjectPlan()"/>
+        <input type="button" class="save fl" value="发送" ng-click="ctrl.sentProjectPlan()"/>
         <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
     </div>
 </div>
@@ -22,7 +22,7 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <tbody ng-if="ctrl.showButton">
+                <tbody>
                 <tr ng-repeat="projectPlan in ctrl.projectPlanList">
                     <td ng-bind="projectPlan.proName"></td>
                     <td>
@@ -57,21 +57,6 @@
                     </td>
 
                 </tr>
-                </tbody>
-                <tbody ng-if="!ctrl.showButton">
-                <tr ng-repeat="projectPlan in ctrl.projectPlanList">
-                    <td ng-bind="projectPlan.proName"></td>
-                    <td ng-bind="projectPlan.actualizeManager"></td>
-
-                    <td ng-bind="projectPlan.surveyTime | date:'yyyy-MM-dd'"></td>
-                    <td ng-bind="projectPlan.approachTime | date:'yyyy-MM-dd'"></td>
-                    <td ng-bind="projectPlan.onlineTime | date:'yyyy-MM-dd'"></td>
-                    <td ng-bind="projectPlan.checkTime | date:'yyyy-MM-dd'"></td>
-                    <td>
-                        <a ng-click="ctrl.updatePlanTime(projectPlan)">修改</a>
-                    </td>
-                </tr>
-
                 </tbody>
             </table>
         </div>

@@ -42,8 +42,8 @@
                     <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                     <td>
-                        <select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select>
-                        <button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button>
+                        <select class="form-control Rinput60 fl Nkcol-xs-4" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select>
+                        <button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid" class="Btn-renm">生成任命书</button>
                     </td>
                 </tr>
                 </tbody>

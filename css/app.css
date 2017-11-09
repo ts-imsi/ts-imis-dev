@@ -2334,7 +2334,7 @@ fieldset[disabled] .btn-black.active {
 }
 
 .projectPlan.active {
-  right: -1px;
+  right: -16px;
 }
 
 .projectPlan > .btn {

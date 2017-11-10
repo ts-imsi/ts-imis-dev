@@ -273,6 +273,15 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
                 alert(result.message);
             }
         });
+    };
+    //制定计划划出层样式
+    this.panelClass = "projectPlan panel panel-default";
+
+    this.openPanel = function () {
+        selt.panelClass = "projectPlan panel panel-default active";
+    };
+    this.closePanel = function () {
+        selt.panelClass = "projectPlan panel panel-default";
     }
 
 }]);
@@ -393,7 +402,7 @@ app.controller('ProjectPlanCtrl', ['$scope', '$modalInstance','$http', '$filter'
         if(result.success){
             selt.xmssjlList=result.object;
             angular.forEach(selt.xmssjlList,function(item){
-                if(selt.plan.workNum=item.workNum){
+                if(selt.plan.workNum==item.workNum){
                     selt.manage = item;
                 }
             });

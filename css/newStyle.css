@@ -242,6 +242,7 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 /*假期设置*/
 .Nkcol-xs-2{width: 10%;}
 .Nkcol-xs-3{width: 30%;}
+.Nkcol-xs-4{width: 44%;}
 .Nkcol-xs-5{width: 60%;}
 .NKcol-xs-10{width: 100%;}
 .Nkcol-lg-12{width: 98%;margin-left: 1%;margin-right: 1%;}
@@ -288,7 +289,7 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .TableCo h5{text-indent: 60px;font-weight: bold;}
 .TableCo p{text-indent: 30px;font-size: 16px}
 .TableCo span{text-decoration: underline;font-size: 16px}
-.Btn-renm{height: 34px;margin-left: 10px;}
+.Btn-renm{height: 34px;margin-left: 10px; float: left;}
 
 /*查看计划*/
 .TabFimte{}
@@ -319,3 +320,7 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .newfisJi .i-checks{padding-left: 27px;}
 .newfisJi .i-checks > i{margin-left: -26px;}
 /*.fisJi::-webkit-scrollbar{width: 0;}*/
+
+
+/*日期按钮*/
+.datBut{position: absolute;right: 10px; top:9px;background-color: #eee;padding: 5px}

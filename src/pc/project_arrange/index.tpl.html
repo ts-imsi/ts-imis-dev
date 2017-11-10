@@ -42,10 +42,9 @@
                     <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                     <td>
-                        <select class="form-control Rinput60" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select>
-                        <button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid">生成任命书</button>
+                        <select class="form-control Rinput60 fl Nkcol-xs-4" ng-model="handOver.proManager" ng-options="xijl.name for xijl in ctrl.xmjlList" ng-change="ctrl.changeLetter(handOver)"></select>
+                        <button type="button" ng-click="ctrl.ctreadLetter(handOver)" ng-show="ctrl.pkid==handOver.pkid" class="Btn-renm">生成任命书</button>
                     </td>
-
                 </tr>
                 </tbody>
 
@@ -65,10 +64,13 @@
                       <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
                       <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                       <td ng-bind="handOver.proManager"></td>
-                      <td>进度</td>
+                      <td>
+                          进度
+                          <a ng-if="handOver.isProPlan==0" ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()">制定计划</a>
+                      </td>
                   </tr>
                   <div>
-                      <tr ng-if="handOver.ifOpen">
+                      <tr ng-if="handOver.ifOpen&&handOver.isProPlan==1">
                           <td colspan="9" style="padding: 0;">
                               <div class="TableSF">
                                   <table class="table table-striped b-t b-light">
@@ -135,6 +137,7 @@
         </footer>
     </div>
 </div>
+<div data-ng-include=" 'src/pc/project_arrange/actualize_arrange.html' " ng-class="ctrl.panelClass"></div>
 <script type="text/ng-template" id="Letter.html">
     <div class="modal-header Nkcol-lg-12">
         <h4 class="modal-title" id="show-title">任命书模板</h4>

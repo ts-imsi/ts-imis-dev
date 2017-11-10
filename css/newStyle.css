@@ -309,4 +309,13 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 .fisJi ul li .checkbox{width: 100%;}
 .fisJi .i-checks{padding-left: 27px;}
 .fisJi .i-checks > i{margin-left: -26px;}
+
+
+/*合同变更*/
+.newfisJi{width: 25%;float: left;border: 1px solid #eeeeee; margin-right: 5px;height: 300px;overflow-y: scroll;padding: 5px}
+.newLastBg{background-color: #eeeeee;}
+.newLastBg ul li{padding-bottom: 10px}
+.newfisJi ul li .checkbox{width: 100%;}
+.newfisJi .i-checks{padding-left: 27px;}
+.newfisJi .i-checks > i{margin-left: -26px;}
 /*.fisJi::-webkit-scrollbar{width: 0;}*/

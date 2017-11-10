@@ -532,38 +532,70 @@ app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', 
 app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', function($scope,$modalInstance,$http,data) {
     var product=this;
     this.oneAtATime = true;
-    $http.post("/ts-project/product/getTbProductList/"+data.htNo).success(function (result) {
+    product.newProModuleList=[];
+    product.newPModuleList=[];
+    product.newModuleList=[];
+
+    $http.post("/ts-project/product/getAddModuleView/"+data.htNo).success(function (result) {
         if(result.success){
-            product.proModuleList = result.object;
-            product.selected=result.checkList;
+            product.proList = result.proList;
+            product.newProModuleList=result.newProModuleList;
+            product.newPModuleList = result.newPModuleList;
+            product.newModuleList = result.newModuleList;
         }else{
-            product.proModuleList=[];
-            alert(result.message);
+            product.htModuleList=[];
         }
     });
 
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-
-    var updateSelected = function (action, modId) {
-        if (action == 'add' && product.selected.indexOf(modId) == -1) {
-            product.selected.push(modId);
-        }
-        if (action == 'remove' && product.selected.indexOf(modId) != -1) {
-            var idx = product.selected.indexOf(modId);
-            product.selected.splice(idx, 1);
-        }
-    }
-
-    this.updateSelection = function ($event, modId) {
+    //新模块合计
+    this.updateNewProSelection = function ($event, item) {
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
-        updateSelected(action, modId);
+
+        if (action == 'add' && product.newProModuleList.indexOf(item.proCode) == -1) {
+            product.newProModuleList.push(item.proCode);
+        }
+        if (action == 'remove' && product.newProModuleList.indexOf(item.proCode) != -1) {
+            var idx = product.newProModuleList.indexOf(item.proCode);
+            product.newProModuleList.splice(idx, 1);
+        }
+        $http.post("/ts-project/product/queryProModuleList",angular.toJson(product.newProModuleList)).success(function (result) {
+            if(result.success){
+                product.newPModuleList = result.object;
+            }else{
+                product.newPModuleList=[];
+                alert(result.message);
+            }
+        });
     }
 
-    this.isSelected = function (modId) {
-        return product.selected.indexOf(modId) != -1;
+    this.isNewProSelected = function (item) {
+        return product.newProModuleList.indexOf(item.proCode) != -1;
+    }
+
+
+    //新模块选中
+
+    this.isNewSelected = function (item) {
+        var name=item.modId+":"+item.modName;
+        return product.newModuleList.indexOf(name) != -1;
+    }
+
+    this.updateNewSelection = function ($event, item) {
+        var name=item.modId+":"+item.modName;
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+
+        if (action == 'add' && product.newModuleList.indexOf(name) == -1) {
+            product.newModuleList.push(name);
+        }
+        if (action == 'remove' && product.newModuleList.indexOf(name) != -1) {
+            var idx = product.newModuleList.indexOf(name);
+            product.newModuleList.splice(idx, 1);
+        }
     }
 
     this.addModule=function() {
@@ -571,7 +603,7 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
             htNo: data.htNo,
             htPrice: data.htPrice,
             hosLevel:data.hosLevel,
-            moduleList: product.selected
+            moduleList: product.newModuleList
         };
         $http.post("/ts-project/product/saveTbProductModule",angular.toJson(param_module)).success(function (result) {
             if(result.success){

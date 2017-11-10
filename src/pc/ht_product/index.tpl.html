@@ -112,36 +112,44 @@
     <div class="modal-header">
         <h4 class="modal-title" id="show-title">产品模块</h4>
     </div>
+    <form class="form-horizontal" name="form" novalidate>
         <div class="RuleCont">
             <div class="panel-body">
-                <accordion close-others="ctrl.oneAtATime">
-                <accordion-group heading="{{proModule.proName}}" ng-repeat="proModule in ctrl.proModuleList">
-                    <div class="list-group m-t">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>选择</th>
-                                <th>部门名称</th>
-                                <th>模块名称</th>
-                                <th>模块编号</th>
-                                <th>版本</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="item in proModule.proModuleList">
-                                <td><input type="checkbox" ng-checked="ctrl.isSelected(item.modId)" ng-click="ctrl.updateSelection($event,item.modId)"/></td>
-                                <td ng-bind="proModule.depName"></td>
-                                <td ng-bind="item.modName"></td>
-                                <td ng-bind="item.modNo"></td>
-                                <td ng-bind="item.version"></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <div class="form-group RuleInput" style="position: relative;">
+                    <div style="width: 135%">
+                        <div class="newfisJi">
+                            <ul>
+
+                                <li ng-repeat="pro in ctrl.proList">
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox"  ng-checked="ctrl.isNewProSelected(pro)" ng-click="ctrl.updateNewProSelection($event,pro)"><i></i>{{pro.proName}}
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="newfisJi">
+                            <ul>
+
+                                <li ng-repeat="newProMod in ctrl.newPModuleList">
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>{{newProMod.modName}}
+                                    </label>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="newfisJi newLastBg">
+                            <ul>
+                                <li ng-repeat="newMod in ctrl.newModuleList">{{newMod}}</li>
+                            </ul>
+
+                        </div>
+
                     </div>
-                </accordion-group>
-                </accordion>
+                </div>
             </div>
         </div>
+    </form>
         <div class="modal-footer">
             <button class="btn btn-warning" type="button" ng-click="ctrl.addModule()">保存</button>
             <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>

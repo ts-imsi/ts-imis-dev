@@ -18,13 +18,16 @@
                     <span class="input-group-addon input-sm"><i class="fa fa-search"></i></span>
                     <input type="text" class="form-control input-sm" placeholder="search" ng-model="query">
                 </div>
+                <div>
+                    <input type="button" value="增加" ng-click="ctrl.addElement()">
+                </div>
             </div>
             <div class="row-row">
                 <div class="cell scrollable hover">
                     <div class="cell-inner">
                         <div class="padder">
                             <div class="list-group" dragula='"another-bag"' dragula-model='ctrl.items' style="min-height:100px">
-                                <a ng-repeat="item in ctrl.items | filter:query "
+                                <a ng-dblclick="ctrl.updateElement(item)" ng-repeat="item in ctrl.items | filter:query "
                                    class="list-group-item b-l-{{item.module | TemplateColor}} b-l-3x">
                                     <span>{{item.name}}</span>
                                 </a>
@@ -123,3 +126,93 @@
     <!-- /column -->
 </div>
 <!-- /hbox layout -->
+
+<script type="text/ng-template" id="element.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">模板数据</h4>
+    </div>
+    <form class="form-horizontal" name="form"
+          ng-submit="ctrl.saveTemplateItem(form.$valid,form.$invalid,ctrl.templateItem)"
+          novalidate role="form">
+        <div class="RuleCont">
+            <div class="panel-body">
+                <div class="form-group RuleInput">
+                    <label class="RuleName">名称：</label>
+                    <input type="text" class="form-control Rinput60" ng-model="ctrl.templateItem.name" name="name">
+                    <span class="errorInput"
+                          ng-show="form.name.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">CODE：</label>
+                    <input type="text" class="form-control Rinput60" name="code" ng-model="ctrl.templateItem.code">
+                    <span class="errorInput"
+                          ng-show="form.code.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">元素模板：</label>
+                    <select  class="form-control Rinput60"  name="elementModule" ng-model="ctrl.templateItem.type" required>
+                        <option value="">请选择</option>
+                        <option value="handover">交接单</option>
+                    </select>
+                    <span class="errorInput"
+                          ng-show="form.elementModule.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">模块类型：</label>
+                    <select  class="form-control Rinput60"  name="elementType" ng-model="ctrl.templateItem.input"  required>
+                        <option value="">请选择</option>
+                        <option value="text">文本框</option>
+                        <option value="radio">单选框</option>
+                        <option value="date">日期框</option>
+                        <option value="textarea">多文本</option>
+                    </select>
+                    <span class="errorInput"
+                          ng-show="form.elementType.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">显示样式：</label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="templateItem-style" value="1" ng-model="ctrl.level" ><i></i> 一排一个
+                    </label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="templateItem-style" value="2" ng-model="ctrl.level"><i></i> 一排两个
+                    </label>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">模块：</label>
+                    <select  class="form-control Rinput60"  name="showModule" ng-model="ctrl.templateItem.module" required>
+                        <option value="">请选择</option>
+                        <option value="客户信息">客户信息</option>
+                        <option value="合同信息">合同信息</option>
+                        <option value="实施要求">实施要求</option>
+                    </select>
+                    <span class="errorInput"
+                          ng-show="form.showModule.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">是否必填：</label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="isRequired" value="0" ng-model="ctrl.isRequired" ><i></i>否
+                    </label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="isRequired" value="1" ng-model="ctrl.isRequired"><i></i>是
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="submit">保存</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>

@@ -543,7 +543,7 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
             product.newPModuleList = result.newPModuleList;
             product.newModuleList = result.newModuleList;
         }else{
-            product.htModuleList=[];
+            product.proList=[];
         }
     });
 

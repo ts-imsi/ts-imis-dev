@@ -87,14 +87,14 @@ angular.module('app')
       });
 
 
-      //测试websocket代码
+      //-----webSocket代码-------------------
       var initStompClient = function(userId) {
 
         ChatSocket.init('/ts-project/tsWebSocket');
         ChatSocket.connect(userId,function(frame) {
 
           // 注册推送时间回调
-          ChatSocket.subscribe("/user/queue/notifications", function(r) {
+          ChatSocket.subscribe("/user/topic/message", function(r) {
             var message = angular.fromJson(r.body)
 
             $scope.msgCount = message.msgCount;
@@ -110,22 +110,6 @@ angular.module('app')
         });
       };
 
-      //  /msg/sendcommuser
-      /*var stompClient = null;
-
-      function connect(userId) {
-        var socket = new SockJS('/ts-project/tsWebSocket');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({login:userId}, function (frame) {
-          console.log('Connected: ' + frame);
-          stompClient.subscribe('/user/queue/notifications', function (greeting) {
-
-          });
-        });
-      }*/
-
-
-
       $http.get("/ts-project/tb_message/getMsgCount").success(function (result) {
         if (result.success) {
           $scope.msgCount = result.object.msgCount;
@@ -136,43 +120,10 @@ angular.module('app')
           }
           if(result.object.userId){
             initStompClient(result.object.userId);
-            //connect(result.object.userId);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           }
         }
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      //----webSocket--end----------
 
 
   }]);

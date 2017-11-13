@@ -195,17 +195,22 @@
       <a href class="dropdown-toggle" dropdown-toggle>
         <i class="icon-bell fa-fw"></i>
         <span class="visible-xs-inline">Notifications</span>
+
+
+
+
+
         <!--todo 消息提示-->
-        <!--<span class="badge badge-sm up bg-danger pull-right-xs">2</span>-->
+        <span class="badge badge-sm up bg-danger pull-right-xs" ng-bind="msgCount"></span>
       </a>
       <!-- dropdown -->
       <div class="dropdown-menu w-xl animated fadeInUp">
         <div class="panel bg-white">
           <div class="panel-heading b-light bg-light">
-            <strong>You have <span>2</span> notifications</strong>
+            <strong>您有<span ng-bind="msgCount"></span>条待办消息</strong>
           </div>
           <div class="list-group">
-            <a href class="media list-group-item">
+            <!--<a href class="media list-group-item">
                     <span class="pull-left thumb-sm">
                       <img src="img/a0.jpg" alt="..." class="img-circle">
                     </span>
@@ -213,21 +218,36 @@
                       Use awesome animate.css<br>
                       <small class="text-muted">10 minutes ago</small>
                     </span>
-            </a>
-            <a href class="media list-group-item">
+            </a>-->
+            <a href="#/app/message/messageDetail/{{msg.pkid}}" class="media list-group-item" ng-repeat="msg in msgList">
                     <span class="media-body block m-b-none">
-                      1.0 initial released<br>
-                      <small class="text-muted">1 hour ago</small>
+                      {{msg.title}}<br>
+                      <small class="text-muted">{{ msg.sendTime | date:'yyyy-MM-dd' }}</small>
                     </span>
             </a>
+
           </div>
           <div class="panel-footer text-sm">
-            <a href class="pull-right"><i class="fa fa-cog"></i></a>
-            <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
+            <!--<a href class="pull-right"><i class="fa fa-cog"></i></a>-->
+            <a href="#/app/message/messageList/todo/0" data-toggle="class:show animated fadeInRight">查看更多消息</a>
           </div>
         </div>
       </div>
       <!-- / dropdown -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </li>
     <li class="dropdown" dropdown>
       <a href class="dropdown-toggle clear" dropdown-toggle>

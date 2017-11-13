@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', '$http',
-    function(              $scope,   $translate,   $localStorage,   $window ,$http) {
+  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', '$http','ChatSocket',
+    function(              $scope,   $translate,   $localStorage,   $window ,$http,ChatSocket) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       isIE && angular.element($window.document.body).addClass('ie');
@@ -85,5 +85,94 @@ angular.module('app')
           alert(result.message);
         }
       });
+
+
+      //测试websocket代码
+      var initStompClient = function(userId) {
+
+        ChatSocket.init('/ts-project/tsWebSocket');
+        ChatSocket.connect(userId,function(frame) {
+
+          // 注册推送时间回调
+          ChatSocket.subscribe("/user/queue/notifications", function(r) {
+            var message = angular.fromJson(r.body)
+
+            $scope.msgCount = message.msgCount;
+            if(message.msgList){
+              $scope.msgList = message.msgList;
+            }else{
+              $scope.msgList = [];
+            }
+
+          });
+
+        }, function(error) {
+        });
+      };
+
+      //  /msg/sendcommuser
+      /*var stompClient = null;
+
+      function connect(userId) {
+        var socket = new SockJS('/ts-project/tsWebSocket');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({login:userId}, function (frame) {
+          console.log('Connected: ' + frame);
+          stompClient.subscribe('/user/queue/notifications', function (greeting) {
+
+          });
+        });
+      }*/
+
+
+
+      $http.get("/ts-project/tb_message/getMsgCount").success(function (result) {
+        if (result.success) {
+          $scope.msgCount = result.object.msgCount;
+          if(result.object.msgList){
+            $scope.msgList = result.object.msgList;
+          }else{
+            $scope.msgList = [];
+          }
+          if(result.object.userId){
+            initStompClient(result.object.userId);
+            //connect(result.object.userId);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          }
+        }
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   }]);

@@ -16,5 +16,6 @@ angular.module('app', [
     'oc.lazyLoad',
     'pascalprecht.translate',
     angularDragula(angular),
-    'mobile.utils'
+    'mobile.utils',
+    'springChat.services'
 ]);

@@ -1,5 +1,5 @@
 {
   "scripts":{
-    "start":"json-mock-kuitos -s / --proxy-host localhost --proxy-port 9095"
+    "start":"json-mock-kuitos -s / --proxy-host plattesting09.trasen.cn --proxy-port 80"
   }
 }

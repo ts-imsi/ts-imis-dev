@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello MUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="css/mui.min.css" />
+    <link rel="stylesheet" href="css/mobileCss.css" />
+    <link rel="stylesheet" href="css/iconfont.css" />
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav headerBG">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
+    <h1 class="mui-title headerA">个人中心</h1>
+</header>
+<!--底部导航-->
+<nav class="mui-bar mui-bar-tab BG-with">
+    <a class="mui-tab-item mui-active" href="#tabbar">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-chat">
+        <span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+        <span class="mui-tab-label">消息中心</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-contact">
+        <span class="mui-icon mui-icon-contact"></span>
+        <span class="mui-tab-label">待办事项</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-map">
+        <span class="mui-icon mui-icon-gear"></span>
+        <span class="mui-tab-label">个人中心</span>
+    </a>
+</nav>
+<!--个人信息-->
+<div class="mui-content">
+    <div class="doctorTop">
+        <dl>
+            <dd>
+                <img src="../../img/u1268.png" class="borderRad100">
+                <p>某某某<span>超级管理员</span> </p>
+                <p>财务部　<span>财务总监</span></p>
+            </dd>
+        </dl>
+    </div>
+
+    <div class="TextStyle fl">
+        <div class="TextStyleTit">快捷服务</div>
+        <div class="mui-table-view font16">
+            <div class="indexFunc">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="borderRad100 Square50 marginCenter">
+                                <i class="indexFuncIcon MHiconfont icon-mobile--chanzhinenghao buleFont"></i>
+                            </div>
+                            <span>部门产值</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="borderRad100 Square50 marginCenter">
+                                <i class="mui-icon MHiconfont icon-mobile--daiban1 redWarnFont  font40"></i>
+                            </div>
+                            <span>待办</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="borderRad100 Square50 marginCenter">
+                                <i class="indexFuncIcon MHiconfont icon-mobile--jiaojie orgFont"></i>
+                            </div>
+                            <span>交接进度</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="borderRad100 Square50 marginCenter">
+                                <i class="indexFuncIcon MHiconfont icon-mobile--xiangmu greenFont"></i>
+                            </div>
+                            <span>项目管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="borderRad100 Square50 marginCenter">
+                                <i class="indexFuncIcon MHiconfont icon-mobile--xiaoxizhongxin buleFont"></i>
+                            </div>
+                            <span>消息中心</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

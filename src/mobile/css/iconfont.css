@@ -1,0 +1,27 @@
+@font-face {font-family: "MHiconfont";
+  src:url('../fonts/iconfont.ttf') format('truetype'); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+
+.MHiconfont {
+  font-family:"MHiconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-mobile--chanzhinenghao:before { content: "\e6fb"; }
+
+.icon-mobile--daiban1:before { content: "\e6a8"; }
+
+.icon-mobile--xiaoxizhongxin:before { content: "\e617"; }
+
+.icon-mobile--jiaojie:before { content: "\e66a"; }
+
+.icon-mobile--xiangmu:before { content: "\e662"; }
+
+.icon-mobile--xiaoxizhongxin1:before { content: "\e622"; }
+
+.icon-mobile--daiban2:before { content: "\e637"; }
+

@@ -1,0 +1,174 @@
+/*************************公共样式***********************************/
+/*通用属性*/
+
+body{font-family: "微软雅黑";min-width: 320px;}
+ul,ol{list-style:none}
+.fr {float: right;}
+.fl{float: left;}
+em{font-style: normal;}
+img{width: 100%; border: none;}
+i{font-style: normal;}
+.DNone{display: none;}
+.marginCenter{margin: 0 auto;}
+.fontBol{font-weight: bold;}
+.font12{font-size: 12px !important;}
+.font14{font-size: 14px !important;}
+.font16{font-size: 16px !important;}
+.font18{font-size: 18px !important;}
+.font20{font-size: 20px !important;}
+.font24{font-size: 24px !important;}
+.font40{font-size: 40px !important;}
+.font100{font-size: 100px !important;}
+a{color: #333;}
+/*宽度*/
+.w20{width: 20%;}
+.w25{width: 25%;}
+.w30{width: 30%;}
+.w40{width: 40%;}
+.w50{width: 50%;}
+.w60{width: 60%;}
+.w70{width: 70%;}
+.w75{width: 75%;}
+.w80{width: 80%;}
+.w100{width: 100% !important;}
+
+/*有底部的页面固定样式*/
+.FootBoot{ margin-bottom:50px !important;}
+
+/*圆形背景*/
+.circularBG{width: 50px;height: 50px;border-radius: 100%;}
+
+/*背景颜色*/
+.redBG{background-color: #F86161!important;}
+.buleBG{background-color: #3CB2EF!important;}
+.greenBG{background-color: #02BB00!important;}
+.orgBG{background-color: #F99D23!important;}
+.withBG{background-color: #fff!important;}
+.bg_lgray { background-color: #FAFAFA!important;}
+
+/*背景颜色(按钮)*/
+.redButBG{background-color: #FF3E3E !important;color: #FFFFFF;}
+.buleButBG{background-color: #19B5FD !important;color: #FFFFFF ;}
+.greenButBG{background-color: #09BB07;color: #FFFFFF;}
+.greenButBG02{background-color: #02BB00;color: #FFFFFF;}
+.grayButBG{background-color: #666666;color: #999;}
+.orgButBG{background-color: #FF8800;color: #FFFFFF;}
+.grayButNotBG{background-color: #F8F8F8;color: #999;}
+
+/*字体颜色*/
+.redFont{color: #F86161!important;}
+.redWarnFont{color: #FF3E3E!important;}
+.buleFont{color: #19B5FD !important;;}
+.greenFont{color: #02BB00!important;}
+.orgFont{color: #F99B00!important;}
+.yewfont{color: #FFFF00!important;}
+.withFont{color: #fff !important;}
+.violetFont{color: #df8bdd!important;}/*紫色*/
+.greeImgFont{color: #4adb49!important;}/*绿色图片文字*/
+.graufont3{color: #333!important;}
+.graufont6{color: #666!important;}
+.graufont9{color: #999!important;}
+
+
+/*边框颜色*/
+.redBorder{border: 1px solid #F86161;border-radius: 100px;}
+.buleBorder{border: 2px solid #19B5FD;border-radius: 100px;}
+.buleBorderOne{border: 1px solid #19B5FD;border-radius: 100px;}
+.greenBorder{border: 2px solid #44BB39;border-radius: 100px;}
+.grayBorder{border: 1px solid #E5E5E5;}
+.borderNone{border: none;}
+.borderRight{border-right: 1px solid #ddd;}
+.borderLeft{border-left: 1px solid #ddd;}
+
+/*内边距*/
+.padd3{padding: 3px;}
+
+
+/*正方形*/
+.Square20{width: 20px;height: 20px;}
+.Square30{width: 30px;height: 30px;}
+.Square40{width: 40px;height: 40px;}
+.Square50{width: 50px;height: 50px;}
+.Square80{width: 80px;height: 80px;}
+.Square100{width: 100px;height: 100px;}
+
+/*矩形*/
+.Rectangle50{height: 50px; width:160px; line-height: 50px; text-align: center;}
+.Rectangle30{height: 30px; width:80px; line-height: 30px; text-align: center;}
+.Rectangle25{height: 25px; width:80px; line-height: 25px; text-align: center;}
+.Rectangle{height: 30px; padding: 0 10px;}
+
+/*圆角*/
+.borderRadius10{border-radius: 10px;}
+.borderRadius100{border-radius: 100px;}
+.borderRad100{border-radius: 100%;}
+
+/*按钮*/
+/*不能使用*/
+.dontBut{background-color: #F8F8F8; color: #999999;border: 1px solid #dedede;}
+/*可以使用的按钮*/
+.DoBut{width: 92%;border-radius: 10px;margin: 0 auto; background-color: #19B5FD;border: 1px solid #19B5FD; color: #fff;height: 44px;padding: 0;}
+.zhipaiBut{width: 92%;border-radius: 100px;margin: 0 auto; background-color: #F86161;border: 1px solid #09BB07; color: #fff;height: 44px;padding: 0;}
+
+/*面板*/
+.Content{min-width: 320px;max-width: 640px;margin: 0 auto;}
+
+/*下边框*/
+.borderbott{border-bottom: 1px solid #ddd;}
+
+/*头部修改属性*/
+header.mui-bar{z-index: 999;}
+.headerBG{background-color: #19B5FD;}
+.headerOther{background-color: #0a86b2;}
+.headerA{color:#fff;}
+.UserOhter{height: 10.6rem;overflow: hidden;background-color: #0a86b2; width: 100%;position: relative;margin-top: -1px;}
+header .addWi{color: #ffffff !important; border: none;}
+header .EditWi{color: #ffffff !important; border: none; background: none;}
+.iconBg{border: 1px solid #fff;    border-radius: 100%;}
+/*有头部的页面固定样式*/
+.HeaTop{ margin-top: 44px;}
+/*底部样式修改*/
+.FooterBG{background-color: #19b5fd; color: #ffffff;}
+.FooterBG a.mui-tab-item.mui-active{background-color: #44b7ec; color: #fff;}
+.FooterBG a.mui-tab-item{color: #fff;}
+
+
+/*底部按钮样式*/
+.footerBut {bottom: 0;display: table; width: 100%;height: 50px; padding: 0;  table-layout: fixed; border-top: 0; border-bottom: 0;position: fixed;z-index: 10;right: 0; left: 0;}
+.footerBut  .footerbCont{display: table-cell; overflow: hidden;   width: 1%;height: 50px;  text-align: center;  vertical-align: middle;  white-space: nowrap; text-overflow: ellipsis; color: #929292;background-color: #fff;}
+
+
+/*底部导航*/
+#MailS .mui-iframe-wrapper{bottom: 0 !important;}
+footer {position: fixed;width: 100%;z-index: 2; bottom: -50px;}
+.fadeInUp {-webkit-animation-name: fadeInUp;animation-name: fadeInUp;}
+.animated {-webkit-animation-duration: 1s;animation-duration: 1s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+.delay3 {animation-delay: 300ms;-webkit-animation-delay: 300ms;}
+.tab {position: relative;display: table-cell;width: 1%;text-align: center;box-sizing: border-box;}
+.menubar{margin: 0;padding: 3px 0 0 0;position: fixed;bottom: 0; left: 0; background-color: #FFFFFF; color: #19B5FD; font-size: 14px;}
+.menubar .tab {border-width: 1px 0 0 0; border-color: inherit;}
+.menubar i{display: inline-block; vertical-align: middle;width: 100%;font-size: 20px;}
+
+
+/*个人信息*/
+.TextStyle{margin-top: 15px; background-color: #fff;width: 100%;}
+.TextStyleTit{border-bottom: 1px solid #ddd; width: 100%;padding: 11px 15px; color: #333333;font-size: 16px;margin-bottom: 0;font-weight: bold;}
+.TextStyle .TextCont{padding: 11px 15px; color: #999999;font-size: 16px; line-height: 25px;}
+.TextStyleTit span{float: right; color: #19B5FD;font-size: 16px;}
+.doctorTop{background:#fff; padding:20px 15px;}
+.doctorTop p, .doctorTop dl, .doctorTop dd, .doctorTop dt,.doctorTop button{ margin: 0; padding: 0; list-style: none;outline: none;color: #333;}
+.doctorTop dl{position:relative;}
+.doctorTop dl dd{width:80%; position:relative; height:60px; padding-left:70px;}
+.doctorTop dl dd img{width:60px; position:absolute; left:0;}
+.doctorTop dl dd p{font-size:16px; line-height:30px;height: 30px; overflow: hidden;}
+.doctorTop dl dd p span{font-size:14px; color:#666;padding-left: 10px; color: #19B5FD }
+.doctorTop dl dt{width:20%; position:absolute; right:0; top:0;}
+.doctorTop dl dt button{width:100%; height:30px; margin-bottom:5px;}
+.doctorTop dl dt .gz{border:1px solid #1AAD19; color:#1AAD19;}
+.doctorTop dl dt .gz span{margin-top:-5px; position:relative; top:1px;}
+.indexFunc{background-color: #fff; width: 100%; float:left;font-size: 14px;}
+.indexFunc a{color: #666;}
+.indexFunc ul{padding: 15px 0;margin: 0;}
+.indexFunc ul li{width: 25%;float: left;text-align: center;}
+.indexFunc span{padding: 5px 0; display: block;}
+.indexFuncIcon {line-height: 50px;font-size: 35px !important;}

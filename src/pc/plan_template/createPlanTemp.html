@@ -1,4 +1,10 @@
 <div class="RuleCont">
+    <!--按钮-->
+    <div class="col-lg-2-4" style="margin-left: 36%; margin-bottom: 10px">
+        <button class="btn m-b-xs w-xs btn-success">提交</button>
+        <button class="btn m-b-xs w-xs btn-default">返回列表</button>
+    </div>
+    <!--按钮end-->
     <div class="panel-body">
         <div class="form-group RuleInput">
             <label class="RuleName">计划模板类型：</label>
@@ -21,39 +27,169 @@
         </div>
         <div class="form-group RuleInput">
             <label class="RuleName">请选择：</label>
-            <div style="width: 135%">
-                <div class="fisJi">
-                    <ul>
 
-                        <li ng-repeat="stage in ctrl.twfStageList">
+            <div style="width: 135%">
+                <div class="fisJi bgwh">
+                    <ul>
+                        <li style="margin: 5px">
+                            <span class="labLiLe labCenter">阶段</span>
+                            <span class="labLiRi">进度</span>
+                        </li>
+
+                        <!--li ng-repeat="stage in ctrl.twfStageList">
                             <label class="checkbox-inline i-checks">
                                 <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>{{newProMod.modName}}
                             </label>
                             <label class="checkbox-inline i-checks">
                                 <i></i>进度设置:<input type="text" ng-module="stage.poit">
                             </label>
+                        </li-->
+
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)" alt=""><i></i>阶段一阶段一阶段一阶段一阶段一阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li>
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>阶段一
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
                         </li>
                     </ul>
                 </div>
-                <div class="fisJi">
+                <div class="fisJi bgwh">
                     <ul>
+                        <li style="margin: 5px">
+                            <span class="labLiLe labCenter">文档</span>
+                            <span class="labLiRi">进度</span>
+                        </li>
 
                         <li ng-repeat="newProMod in ctrl.newPModuleList">
-                            <label class="checkbox-inline i-checks">
+                            <label class="checkbox-inline i-checks labLiLe">
                                 <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>{{newProMod.modName}}
                             </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li >
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>ssssss
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li >
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>ssssss
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
+                        </li>
+                        <li >
+                            <label class="checkbox-inline i-checks labLiLe">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>ssssss
+                            </label>
+                            <span  class="labLiRi pt10">20%</span>
+                            <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18"/></span>
                         </li>
                     </ul>
 
                 </div>
                 <div class="fisJi LastBg">
                     <ul>
-                        <li ng-repeat="newMod in ctrl.newModuleList">{{newMod}}</li>
+                        <li style="margin: 5px">
+                            <span class="labLiLe labCenter">确认人</span>
+                        </li>
+                        <!--li ng-repeat="newMod in ctrl.newModuleList">{{newMod}}</li-->
+
+                        <li >
+                            <label class="checkbox-inline i-checks ">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>ssssss
+                            </label>
+                        </li>
+                        <li >
+                            <label class="checkbox-inline i-checks ">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>ssssss
+                            </label>
+                        </li>
+                        <li >
+                            <label class="checkbox-inline i-checks ">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>ssssss
+                            </label>
+                        </li>
+                        <li >
+                            <label class="checkbox-inline i-checks ">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>ssssss
+                            </label>
+                        </li>
                     </ul>
 
                 </div>
 
             </div>
+            <div class="fl thisBut">
+                <ul>
+                    <li>
+                        <div style="margin-top: 10px">
+                            <button class="btn btn-primary btn-addon btn-sm" style="margin-left: 25%"><i class="fa fa-plus"></i>添加阶段</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="margin-top: 10px">
+                            <button class="btn btn-primary btn-addon btn-sm" style="margin-left: 25%"><i class="fa fa-plus"></i>添加文档</button>
+                        </div>
+                    </li>
+                    <li>
+                    </li>
+                </ul>
+            </div>
         </div>
+
     </div>
 </div>

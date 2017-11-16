@@ -71,6 +71,7 @@ i{font-style: normal;}
 .bgRed{background-image:url(../img/ic_timer_off.png);background-color: #FF524D;border: 1px solid #FF524D;}
 .bgBu{background-image:url(../img/ic_add_alarm.png);background-color:#3683DB ;border: 1px solid #3683DB;}
 .bgYew{background-image:url(../img/ic_settings_backup_restore.png);background-color:#C4C400;border: 1px solid #C4C400;}
+.bgwh{background-color: #fff;;border: 1px solid #EFEFEF;}
 .CheckWorkbody{height: 58px;padding: 12px;width: 70%;background: #fff;}
 .CheckWorkbody i{width: 100%; display: block;font-size: 14px;font-weight: bold}
 .CheckWorkbody span{font-weight: bold;font-size: 16px;}
@@ -324,3 +325,14 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 
 /*日期按钮*/
 .datBut{position: absolute;right: 10px; top:9px;background-color: #eee;padding: 5px}
+/*计划模板*/
+.labLiLe{width: 65%; display: block; padding-left:5%;float: left}
+.labCenter{text-align: center;}
+.labLiRi{width:15%; display: block;text-align: center;float: left}
+.pt10{padding-top: 10px}
+.LastBg li:first-child{height: 20px}
+.pore{position: relative}
+.poabsBot{position: absolute;bottom: 0;width: 98%;}
+.thisBut{width: 100%;margin-left: 10%}
+.thisBut ul li{float: left;width: 26%;border-right: 1px solid #efefef}
+.thisBut ul li .panel-footer{width: 100%;height: 50px}

@@ -2,7 +2,11 @@
     <h1 class="m-n font-thin h3">制定计划</h1>
 </div>
 <div class="wrapper-md">
+    <button type="button" ng-click="ctrl.openPanel()" class="btn btn-default Nksx">
+        查看更改时间历史记录
+    </button>
 
 
 
 </div>
+<div data-ng-include=" 'src/pc/planDetail/timeUpdateLog.html' " ng-class="ctrl.panelClass"></div>

@@ -862,6 +862,18 @@ angular.module('app')
                           }]
                   }
               })
+
+              .state('app.planDetail', {
+                  url: '/planDetail',
+                  templateUrl: 'src/pc/planDetail/index.tpl.html',
+                  controller: 'planDetailCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/planDetail/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

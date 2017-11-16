@@ -853,7 +853,7 @@ angular.module('app')
               })
               .state('app.createPlanTemp', {
                   url: '/createPlanTemp',
-                  templateUrl: 'src/pc/plan_template/createPlanTemp.tpl.html',
+                  templateUrl: 'src/pc/plan_template/createPlanTemp.html',
                   controller: 'createPlanTempCtrl as ctrl',
                   resolve: {
                       deps: ['uiLoad',

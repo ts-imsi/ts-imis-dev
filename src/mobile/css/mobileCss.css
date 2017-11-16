@@ -172,3 +172,34 @@ footer {position: fixed;width: 100%;z-index: 2; bottom: -50px;}
 .indexFunc ul li{width: 25%;float: left;text-align: center;}
 .indexFunc span{padding: 5px 0; display: block;}
 .indexFuncIcon {line-height: 50px;font-size: 35px !important;}
+
+
+
+/*消息中心*/
+.reposfont{position: relative}
+.iabso{top:-10px !important; left: 78% !important;}
+.Mobl-icon{font-size: 35px !important; padding-right: 10px; margin-top: 5px;}
+.rightTime{float: right;font-size: 14px; color: #999999;}
+
+/*待办详情信息*/
+.dealDet{margin-bottom: 44px}
+.reject{line-height: 44px;}
+.approveBtn{position: fixed;width: 100%;height:40px;bottom: 0;left:0; background-color:#19B5FD;color: #fff;font-size: 16px; }
+.applicationInfo{background-color: #FFFFFF;}
+.applicationInfo label{width: 35%;}
+.applicationList{border-top: 1px solid #e4e4e4;}
+.application{clear: left;overflow: hidden;position: relative;color: #666;}
+.application label{line-height: 30px;font-size: 14px;color: #999; padding: 5px 15px;}
+.textTit{background-color: #FFFFFF;padding:11px 5px;font-size: 16px;color: #333;margin:0;}
+.application0per{margin-top: 15px; background-color: #fff;width: 100%;}
+.applicationInfoText{text-align: left; padding: 5px 15px 5px 0;font-size: 14px;width: 65%;}
+.application0per label{width: 35%;font-size: 16px;color: #666;}
+.operationList input{font-size: 16px; width: 65%;color: #666;padding: 11px 15px;}
+.operationList li{padding: 0;}
+.operationList p{padding: 5px 15px;font-size: 16px;}
+.backApp{display: none; position: fixed;height: 100%;z-index:999;width:100%;padding: 0;margin: 0;top:0;left: 0;bottom:0;overflow: scroll;margin-top: 44px;background-color: #fff;}
+.backAppInfo li{padding: 0;}
+.backAppInfo label{width: 35%;font-size: 16px;color: #666;}
+.backAppInfo input{width: 65%;font-size: 16px;color: #666;padding: 11px 15px;}
+.backAppBtn{width: 100%;height: 40px;background-color: #19B5FD;color: #fff;font-size: 16px;}
+textarea{color: #666;}

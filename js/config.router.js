@@ -840,6 +840,28 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.planTemplate', {
+                  url: '/planTemplate',
+                  templateUrl: 'src/pc/plan_template/index.tpl.html',
+                  controller: 'planTempCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/plan_template/controller.js'] );
+                          }]
+                  }
+              })
+              .state('app.createPlanTemp', {
+                  url: '/createPlanTemp',
+                  templateUrl: 'src/pc/plan_template/createPlanTemp.tpl.html',
+                  controller: 'createPlanTempCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/plan_template/createPlanTemp.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

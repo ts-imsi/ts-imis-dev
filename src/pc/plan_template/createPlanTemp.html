@@ -1,0 +1,59 @@
+<div class="RuleCont">
+    <div class="panel-body">
+        <div class="form-group RuleInput">
+            <label class="RuleName">计划模板类型：</label>
+            <select class="form-control Rinput60" ng-model="ctrl.type" class="form-control" required name="type" ng-change="ctrl.showModule()">
+                <option value="">请选择</option>
+                <option value="实施计划">实施计划</option>
+            </select>
+            <span class="errorInput"
+                  ng-show="form.type.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+        </div>
+        <div class="form-group RuleInput">
+            <label class="RuleName">产品类型：</label>
+            <select  class="form-control Rinput60"  ng-model="ctrl.twfpro" ng-options="twfpro.name for twfpro in ctrl.productList" required name="namepro"><option value="">请选择</option></select>
+            <span class="errorInput"
+                  ng-show="form.namepro.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+        </div>
+        <div class="form-group RuleInput">
+            <label class="RuleName">请选择：</label>
+            <div style="width: 135%">
+                <div class="fisJi">
+                    <ul>
+
+                        <li ng-repeat="stage in ctrl.twfStageList">
+                            <label class="checkbox-inline i-checks">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>{{newProMod.modName}}
+                            </label>
+                            <label class="checkbox-inline i-checks">
+                                <i></i>进度设置:<input type="text" ng-module="stage.poit">
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fisJi">
+                    <ul>
+
+                        <li ng-repeat="newProMod in ctrl.newPModuleList">
+                            <label class="checkbox-inline i-checks">
+                                <input type="checkbox"  ng-checked="ctrl.isNewSelected(newProMod)" ng-click="ctrl.updateNewSelection($event,newProMod)"><i></i>{{newProMod.modName}}
+                            </label>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="fisJi LastBg">
+                    <ul>
+                        <li ng-repeat="newMod in ctrl.newModuleList">{{newMod}}</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

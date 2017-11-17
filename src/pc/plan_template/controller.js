@@ -7,8 +7,8 @@ app.controller('planTempCtrl', ['$scope','$http','$log','$modal','$filter', func
             page:pageNo,
             rows:10
         };
-        $http.post("/planTemplate/queryPlanTemp",angular.toJson(parm)).success(function (result) {
-            if(result.code==1){
+        $http.post("/ts-project/planTemplate/queryPlanTemp",angular.toJson(parm)).success(function (result) {
+            if(result.success){
                 selt.planTempList = result.list;
                 selt.totalCount = result.totalCount;
                 selt.pageSize = result.pageSize;;
@@ -28,8 +28,8 @@ app.controller('planTempCtrl', ['$scope','$http','$log','$modal','$filter', func
             page:this.pageNo,
             rows:10
         };
-        $http.post("/planTemplate/queryPlanTemp",angular.toJson(parm)).success(function (result) {
-            if(result.code==1){
+        $http.post("/ts-project/planTemplate/queryPlanTemp",angular.toJson(parm)).success(function (result) {
+            if(result.success){
                 selt.planTempList = result.list;
                 selt.totalCount = result.totalCount;
                 selt.pageSize = result.pageSize;;

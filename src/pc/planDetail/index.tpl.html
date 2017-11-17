@@ -2,11 +2,231 @@
     <h1 class="m-n font-thin h3">制定计划</h1>
 </div>
 <div class="wrapper-md">
-    <button type="button" ng-click="ctrl.openPanel()" class="btn btn-default Nksx">
-        查看更改时间历史记录
-    </button>
+     <div class="row bawiMtop">
+         <div class="col-lg-8">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                         <label class="control-label fl pt10" for="input-id-1">项目实施过程总评分：</label>
+                         <div class="col-lg-9  fr">
+                             <input type="text" class="form-control" id="input-id-1">
+                         </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-lg-4">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                     <label class="control-label fl pt10" for="input-id-1">提成基准金额：</label>
+                     <div class="col-lg-8 fr">
+                         <input type="text" class="form-control" id="input-id-1">
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-lg-4">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                     <label class="control-label fl pt10" for="input-id-1">计划周期：</label>
+                     <div class="col-lg-8 fr">
+                         <input type="text" class="form-control" id="input-id-1">
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-lg-4">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                     <label class="control-label fl pt10" for="input-id-1">提成系数（初评）：</label>
+                     <div class="pw60  fr">
+                         <input type="text" class="form-control" id="input-id-1">
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-lg-4">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                     <label class="control-label fl pt10" for="input-id-1">难度系数（初评）：</label>
+                     <div class="pw60  fr">
+                         <input type="text" class="form-control" id="input-id-1">
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-lg-4">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                     <label class="control-label fl pt10" for="input-id-1">完成周期：</label>
+                     <div class="col-lg-8 fr">
+                         <input type="text" class="form-control" id="input-id-1">
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-lg-4">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                     <label class="control-label fl pt10" for="input-id-1">提成系数（终评）：</label>
+                     <div class=" pw60 fr">
+                         <input type="text" class="form-control" id="input-id-1">
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-lg-4">
+             <div class="panel-default">
+                 <div class="panel-body pad7-15">
+                     <label class="control-label fl pt10" for="input-id-1">难度系数（终评）：</label>
+                     <div class="fr pw60">
+                         <input type="text" class="form-control" id="input-id-1">
+                     </div>
+                 </div>
+             </div>
+         </div>
 
 
 
+
+    </div>
+
+     <div class="row" style="margin-top: 5px">
+             <!--按钮-->
+             <div class="fr  pt10">
+                 <button class="btn m-b-xs w-xs btn-success">确定</button>
+                 <button class="btn m-b-xs w-xs btn-warning">驳回</button>
+                 <button class="btn m-b-xs btn-default"  ng-click="ctrl.openPanel()" >查看更改时间历史记录</button>
+             </div>
+             <!--表格-->
+         <div class="panel-default fl">
+            <div class="table-responsive table-striped">
+                <table class="table table-striped b-t b-light JG">
+                    <thead class="bgJ">
+                    <tr>
+                        <th>项目阶段</th>
+                        <th>计划开始时间</th>
+                        <th>计划结束时间</th>
+                        <th>实际开始时间</th>
+                        <th>实际结束时间</th>
+                        <th>是否完成</th>
+                        <th>阶段需提交文档</th>
+                        <th>提交人</th>
+                        <th>是否提交</th>
+                        <th>组长确认部门确认</th>
+                        <th>质控确认</th>
+                        <th>售后确认</th>
+                        <th>客户确认</th>
+                        <th>项目组确认</th>
+                        <th>项目评分</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr role="row" class="odd">
+                        <td >项目调研</td>
+                        <td>2017-02-05</td>
+                        <td>2017-02-06</td>
+                        <td></td>
+                        <td></td>
+                        <td>是</td>
+                        <td>1.1实施客户告知书</td>
+                        <td>实施经理A</td>
+                        <td>是</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="Nkgreen">已确认</td>
+                        <td>待评分</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td >项目调研</td>
+                        <td>2017-02-05</td>
+                        <td>2017-02-06</td>
+                        <td></td>
+                        <td></td>
+                        <td>是</td>
+                        <td>1.1实施客户告知书</td>
+                        <td>实施经理A</td>
+                        <td>是</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="Nkgreen">已确认</td>
+                        <td>待评分</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td >项目调研</td>
+                        <td>2017-02-05</td>
+                        <td>2017-02-06</td>
+                        <td></td>
+                        <td></td>
+                        <td>是</td>
+                        <td>1.1实施客户告知书</td>
+                        <td>实施经理A</td>
+                        <td>是</td>
+                        <td class="Nkgreen">已确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="Nkgreen">已确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td>待评分</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td >项目调研</td>
+                        <td>2017-02-05</td>
+                        <td>2017-02-06</td>
+                        <td></td>
+                        <td></td>
+                        <td>是</td>
+                        <td>1.1实施客户告知书</td>
+                        <td>实施经理A</td>
+                        <td>是</td>
+                        <td class="Nkgreen">已确认</td>
+                        <td class="Nkgreen">已确认</td>
+                        <td class="Nkgreen">已确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td>待评分</td>
+                    </tr>
+                    <tr role="row" class="odd">
+                        <td >项目调研</td>
+                        <td>2017-02-05</td>
+                        <td>2017-02-06</td>
+                        <td></td>
+                        <td></td>
+                        <td>是</td>
+                        <td>1.1实施客户告知书</td>
+                        <td>实施经理A</td>
+                        <td>是</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td>待评分</td>
+                    </tr>
+                    <tr role="row" class="even">
+                        <td >项目调研</td>
+                        <td>2017-02-05</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>是</td>
+                        <td>1.1实施客户告知书</td>
+                        <td>实施经理A</td>
+                        <td>是</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td class="NkRed">待确认</td>
+                        <td>待评分</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+         </div>
+     </div>
 </div>
 <div data-ng-include=" 'src/pc/planDetail/timeUpdateLog.html' " ng-class="ctrl.panelClass"></div>

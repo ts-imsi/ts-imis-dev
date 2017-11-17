@@ -43,6 +43,29 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
             var idx = selt.stageModuleList.indexOf(item.pkid);
             selt.stageModuleList.splice(idx, 1);
             stagePkid='';
+            var stage=[];
+            var tag=[];
+            angular.forEach(selt.stageSaveList,function(sta){
+                stage.push(sta);
+            });
+            angular.forEach(selt.tagSaveList,function(ta){
+                tag.push(ta);
+            });
+
+            angular.forEach(stage,function(stageItem){
+                if(parseInt(stageItem.split(":")[0])==item.pkid){
+                    var idStage = selt.stageSaveList.indexOf(stageItem);
+                    selt.stageSaveList.splice(idStage, 1);
+
+                    angular.forEach(tag,function(tagItem){
+                        if(tagItem.split(":")[0]==stageItem.split(":")[1]){
+                            var idTag = selt.tagSaveList.indexOf(tagItem);
+                            selt.tagSaveList.splice(idTag, 1);
+                        }
+                    })
+                }
+            })
+
         }
 
         $http.post("/ts-project/planTemplate/getTwfStageDocList/"+item.pkid).success(function (result) {
@@ -65,6 +88,8 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
 
     //文档选择
     this.isDocSelected = function (item) {
+        var types=selt.docModuleList.indexOf(item.pkid) != -1
+        console.log("文档"+types);
         return selt.docModuleList.indexOf(item.pkid) != -1;
     }
 
@@ -86,13 +111,22 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
             var idx = selt.docModuleList.indexOf(item.pkid);
             selt.docModuleList.splice(idx, 1);
             stageDocPkid='';
-            if(stagePkid!=''&&stagePkid!=undefined){
-                var name=stagePkid+":"+item.pkid;
-                if(selt.stageSaveList.indexOf(name) != -1){
-                    var idxx = selt.stageSaveList.indexOf(item.pkid);
-                    selt.stageSaveList.splice(idxx, 1);
-                }
+            var name=stagePkid+":"+item.pkid;
+            if(selt.stageSaveList.indexOf(name) != -1){
+                var idxx = selt.stageSaveList.indexOf(item.pkid);
+                selt.stageSaveList.splice(idxx, 1);
             }
+            var tag=[];
+            angular.forEach(selt.tagSaveList,function(tags){
+                tag.push(tags);
+            });
+            angular.forEach(tag,function(tagItem){
+                if(parseInt(tagItem.split(":")[0])==item.pkid){
+                    var idTag = selt.tagSaveList.indexOf(tagItem);
+                    console.log("===="+idTag);
+                    selt.tagSaveList.splice(idTag, 1);
+                }
+            });
         }
 
 
@@ -119,14 +153,12 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
         }
         if (action == 'remove' && selt.tagModuleList.indexOf(item.pkid) != -1) {
             var idx = selt.tagModuleList.indexOf(item.pkid);
-            selt.tagModuleList.splice(idx, 1);
-            if(stageDocPkid!=''&&stageDocPkid!=undefined){
+                selt.tagModuleList.splice(idx, 1);
                 var name=stageDocPkid+":"+item.pkid;
                 if(selt.tagSaveList.indexOf(name) != -1){
-                    var idl = selt.tagSaveList.indexOf(item.pkid);
+                    var idl = selt.tagSaveList.indexOf(name);
                     selt.tagSaveList.splice(idl, 1);
                 }
-            }
         }
 
 
@@ -152,6 +184,43 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
             }
 
         });
+    }
+
+     ;
+    this.showStageSelect=function(stage){
+        selt.docModuleList=[];
+        stagePkid=stage.pkid;
+        $http.post("/ts-project/planTemplate/getTwfStageDocList/"+stagePkid).success(function (result) {
+            if(result.success){
+                selt.stageDocList = result.object;
+            }else{
+                selt.stageDocList = [];
+            }
+
+        });
+
+        angular.forEach(selt.stageSaveList,function(stageItem){
+            if(stageItem.split(":")[0]==stage.pkid){
+                if(stageItem.split(":")[1]!=''&&stageItem.split(":")[1]!=undefined) {
+                    selt.docModuleList.push(parseInt(stageItem.split(":")[1]));
+                }
+            }
+        })
+        console.log("文档"+selt.docModuleList);
+
+
+    }
+
+    this.showDocSelect=function(stageDoc){
+        selt.tagModuleList=[];
+        stageDocPkid=stageDoc.pkid;
+        angular.forEach(selt.tagSaveList,function(docItem){
+            if(docItem.split(":")[0]==stageDoc.pkid){
+                if(docItem.split(":")[1]!=''&&docItem.split(":")[1]!=undefined){
+                    selt.tagModuleList.push(parseInt(docItem.split(":")[1]));
+                }
+            }
+        })
     }
 
     this.stageTemp=function(size){

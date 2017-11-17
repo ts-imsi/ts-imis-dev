@@ -2,7 +2,7 @@
     <!--按钮-->
     <div class="col-lg-2-4" style="margin-left: 36%; margin-bottom: 10px">
         <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.savePlanTemp()">提交</button>
-        <button class="btn m-b-xs w-xs btn-default">返回列表</button>
+        <a href="#/app/planTemplate"><button class="btn m-b-xs w-xs btn-default">返回列表</button></a>
     </div>
     <!--按钮end-->
     <div class="panel-body">
@@ -47,7 +47,7 @@
 
                         <li ng-repeat="stage in ctrl.twfStageList">
                             <label class="checkbox-inline i-checks labLiLe">
-                                <input type="checkbox"  ng-checked="ctrl.isStageSelected(stage)" ng-click="ctrl.updateStageSelection($event,stage)"><i></i>{{stage.name}}
+                                <input type="checkbox"  ng-checked="ctrl.isStageSelected(stage)" ng-click="ctrl.updateStageSelection($event,stage)"/><i></i><a ng-click="ctrl.showStageSelect(stage)">{{stage.name}}</a>
                             </label>
                             <span  class="labLiRi pt10">{{stage.poit}}</span>
                             <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18" ng-click="ctrl.deleteStageTemp(stage.pkid)"/></span>
@@ -63,7 +63,7 @@
 
                         <li ng-repeat="stageDoc in ctrl.stageDocList">
                             <label class="checkbox-inline i-checks labLiLe">
-                                <input type="checkbox"  ng-checked="ctrl.isDocSelected(stageDoc)" ng-click="ctrl.updateDocSelection($event,stageDoc)"><i></i>{{stageDoc.name}}
+                                <input type="checkbox"  ng-checked="ctrl.isDocSelected(stageDoc)" ng-click="ctrl.updateDocSelection($event,stageDoc)"/><i></i><a ng-click="ctrl.showDocSelect(stageDoc)">{{stageDoc.name}}</a>
                             </label>
                             <span  class="labLiRi pt10">{{stageDoc.output}}</span>
                             <span  class="labLiRi pt10"> <img src="../../../img/Pagegh.png" height="20" width="18" ng-click="ctrl.deleteDocByPkid(stageDoc.pkid)"/></span>

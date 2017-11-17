@@ -1,7 +1,15 @@
 app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', function($scope, $http,utils,$modal) {
     var selt = this;
-    var pkid =  utils.getUrlVar('pkid');
 
+    selt.stageModuleList=[];
+    selt.docModuleList=[];
+    selt.tagModuleList=[];
+    selt.stageSaveList=[];
+    selt.tagSaveList=[];
+    var stageDocPkid;
+    var stagePkid;
+
+    var pkid =  utils.getUrlVar('pkid');
     $http.post("/ts-project/product/queryTbProductList").success(function (result) {
         if(result.success){
             selt.productList = result.object;
@@ -22,13 +30,29 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
 
     });
 
-    selt.stageModuleList=[];
-    selt.docModuleList=[];
-    selt.tagModuleList=[];
-    selt.stageSaveList=[];
-    selt.tagSaveList=[];
-    var stageDocPkid;
-    var stagePkid;
+    if(pkid!="0"){
+        $http.post("/ts-project/planTemplate/selectTempView/"+pkid).success(function (result) {
+            if(result.success){
+                selt.stageModuleList = result.stageModuleList;
+                selt.stageSaveList=result.stageSaveList;
+                selt.tagSaveList=result.tagSaveList;
+                selt.type=result.tbPlanTemplate.type;
+                angular.forEach(selt.productList,function(item){
+                    if(item.proCode=result.tbPlanTemplate.proCode){
+                        selt.twfpro=item;
+                    }
+                })
+            }else{
+                alert(result.message);
+            }
+
+        });
+    }
+
+
+
+
+
 
     //阶段选择
     this.updateStageSelection = function ($event, item) {

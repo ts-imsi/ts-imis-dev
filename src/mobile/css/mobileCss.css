@@ -176,37 +176,6 @@ footer {position: fixed;width: 100%;z-index: 2; bottom: -50px;}
 .indexFunc span{padding: 5px 0; display: block;}
 .indexFuncIcon {line-height: 50px;font-size: 35px !important;}
 
-
-
-/*消息中心*/
-.reposfont{position: relative}
-.iabso{top:-10px !important; left: 78% !important;}
-.Mobl-icon{font-size: 35px !important; padding-right: 10px; margin-top: 5px;}
-.rightTime{float: right;font-size: 14px; color: #999999;}
-
-/*待办详情信息*/
-.dealDet{margin-bottom: 44px}
-.reject{line-height: 44px;}
-.approveBtn{position: fixed;width: 100%;height:40px;bottom: 0;left:0; background-color:#19B5FD;color: #fff;font-size: 16px; }
-.applicationInfo{background-color: #FFFFFF;}
-.applicationInfo label{width: 35%;}
-.applicationList{border-top: 1px solid #e4e4e4;}
-.application{clear: left;overflow: hidden;position: relative;color: #666;}
-.application label{line-height: 30px;font-size: 14px;color: #999; padding: 5px 15px;}
-.textTit{background-color: #FFFFFF;padding:11px 5px;font-size: 16px;color: #333;margin:0;}
-.application0per{margin-top: 15px; background-color: #fff;width: 100%;}
-.applicationInfoText{text-align: left; padding: 5px 15px 5px 0;font-size: 14px;width: 65%;}
-.application0per label{width: 35%;font-size: 16px;color: #666;}
-.operationList input{font-size: 16px; width: 65%;color: #666;padding: 11px 15px;}
-.operationList li{padding: 0;}
-.operationList p{padding: 5px 15px;font-size: 16px;}
-.backApp{display: none; position: fixed;height: 100%;z-index:999;width:100%;padding: 0;margin: 0;top:0;left: 0;bottom:0;overflow: scroll;margin-top: 44px;background-color: #fff;}
-.backAppInfo li{padding: 0;}
-.backAppInfo label{width: 35%;font-size: 16px;color: #666;}
-.backAppInfo input{width: 65%;font-size: 16px;color: #666;padding: 11px 15px;}
-.backAppBtn{width: 100%;height: 40px;background-color: #19B5FD;color: #fff;font-size: 16px;}
-textarea{color: #666;}
-
 /*时间轴*/
 .thisDA{padding-left: 25px; background:url(../images/thisDA.png) 10px 0 no-repeat;}
 .mui-table-view-cell:after{left: 26px;}
@@ -243,3 +212,76 @@ footer .mui-bar{top: 45px;}
 .schedclose{right:10px; top:10px;}
 .noti {text-indent: 0;text-align: center;margin-top: 10px;}
 .soundactive{animation:soundac 1s infinite;-webkit-animation:soundac 1s infinite;}
+
+
+
+
+/*消息中心*/
+.reposfont{position: relative}
+.Mobl-icon{font-size: 35px !important; padding-right: 10px; margin-top: 5px;}
+.abso{top:-10px !important; left: 75% !important;}
+.rightTime{float: right;font-size: 14px; color: #999999;}
+/*待办列表*/
+.treatedFont{color:#666;}
+/*待办详情信息*/
+.dealDet{margin-bottom: 44px}
+.reject{line-height: 44px;}
+.approveBtn{position: fixed;width: 100%;height:40px;bottom: 0;left:0; background-color:#19B5FD;color: #fff;font-size: 16px; }
+.applicationInfo{background-color: #FFFFFF;}
+.applicationInfo label{width: 35%;}
+.applicationList{border-top: 1px solid #e4e4e4;}
+.application{clear: left;overflow: hidden;position: relative;color: #666;}
+.application label{line-height: 30px;font-size: 14px;color: #999; padding: 5px 15px;}
+.application0per{margin-top: 15px; background-color: #fff;width: 100%;}
+.textTit{background-color: #FFFFFF;padding:11px 5px;font-size: 16px;color: #333;margin:0;}
+.applicationInfoText{text-align: left; padding: 5px 15px 5px 0;font-size: 14px;width: 65%;}
+.application0per label{width: 35%;font-size: 16px;color: #666;}
+.operationList input{font-size: 16px; width: 65%;color: #666;padding: 11px 15px;}
+.operationList li{padding: 0;}
+.operationList p{padding: 5px 15px;font-size: 16px;}
+.backApp{display: none; position: fixed;height: 100%;z-index:999;width:100%;padding: 0;margin: 0;top:0;left: 0;bottom:0;overflow: scroll;margin-top: 44px;background-color: #fff;}
+.backAppInfo li{padding: 0;}
+.backAppInfo label{width: 35%;font-size: 16px;color: #666;}
+.backAppInfo input{width: 65%;font-size: 16px;color: #666;padding: 11px 15px;}
+.backAppBtn{width: 100%;height: 40px;background-color: #19B5FD;color: #fff;font-size: 16px;}
+textarea{color: #666;}
+/*已办详情*/
+.operaText{color: #666666;text-align: left;padding: 11px 15px 11px 0;width: 65%;font-size: 16px;line-height: 1.1;}
+/*阅读列表*/
+.Edit{color: #ffffff !important;border: none;background: none;line-height: 44px;}
+.iabso{top:-8px; left: 45%;background-color: red;padding: 6px;border-radius: 100%;margin: 2px;position: absolute;}
+.readInfoList .inLiTit{color: #666666;font-size: 16px; width: 90%; height: 25px; line-height: 25px; overflow: hidden;position: relative;}
+.readInfoList .inLiCont{color: #999;font-size: 14px; width: 90%; height: 20px; line-height: 20px; overflow: hidden;}
+.readInfoList .inLiTime{color: #999;font-size: 12px; width: 90%; height: 20px; line-height: 20px;}
+.readInfoList .weidu i{background-color:#F44336;padding:6px; border-radius: 100%;margin: 2px;position: absolute;top: 4px;left: 2px;}
+.readInfoList .weidu h5{font-weight: bold; padding-left: 20px;}
+.readInfoList  input.BianjiCheck{display: none;}
+.readInfoList .mui-checkbox.mui-left input.active{z-index: 999; width: 100%;padding-top: 30px; height: 100%;display: block !important;}
+.readInfoList .mui-table-view-cell.mui-checkbox.mui-left, .InfoList .mui-table-view-cell.mui-radio.mui-left{padding-left: 45px;}
+.readInfoList .mui-checkbox.mui-left input[type=checkbox], .InfoList .mui-radio.mui-left input[type=radio]{left: -35px;}
+.readInfoList .mui-table-view-cell.mui-checkbox input[type=checkbox], .InfoList .mui-table-view-cell.mui-radio input[type=radio]{top: -10px}
+.DNone { display: none;}
+footer{position: fixed;width: 100%;bottom: -44px;}
+.signList{margin: 0;padding: 3px 0 0 0;position: fixed;bottom: 0;left: 0;background-color: #19b5fd;color: #FFFFFF;font-size: 14px;width: 100%;}
+.signtab{float: left;height: 44px;line-height: 44px;width: 50%;text-align: center;}
+.signList li:first-child{border-right: 1px solid #fff;}
+/*阅读详情*/
+.readInfo{background-color: #FFFFFF;margin-top: 15px;}
+.readInfo label{width: 35%;}
+.readList{border-top: 1px solid #e4e4e4;}
+.read{clear: left;overflow: hidden;position: relative;color: #666;}
+.read label{line-height: 30px;font-size: 14px;color: #999; padding: 5px 15px;}
+.readInfoText{text-align: left; padding: 5px 15px 5px 0;font-size: 14px;width: 65%;}
+.readText{background-color: #fff;margin-top: 15px;}
+.readTextTit{padding: 4px 15px;border-bottom: 1px solid #ddd;background-color: #FFFFFF;}
+.readTextTit h4{color: #666666;font-size: 18px; line-height: 20px;font-weight: normal;}
+.readTextTit span{color: #999; font-size: 14px;line-height: 20px;}
+.readSendTime{margin-right: 20px;float: right;}
+.readTextCont{padding: 11px 18px;width: 100%;line-height: 20px;color: #999999; font-size: 14px;}
+.readTextCont p{text-indent: 2em;line-height: 25px;color: #999999;font-size: 14px;}
+
+/*交接单详情*/
+.delivertRecTit{background-color: #fff; padding: 11px 15px;}
+.delivertRecTit h4{color: #333;    font-size: 16px;}
+.delivertRecTit p{margin: 0;}
+

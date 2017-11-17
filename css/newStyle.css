@@ -18,6 +18,7 @@ ul,ol{padding: 0;margin: 0;}
 .NkYew{color: #C4C400;}
 .NkBu{color: #3683DB;}
 .NkGray{color: #4A4A4A;}
+.Font-graufont9{color:#999}
 i{font-style: normal;}
 /*考勤异常*/
 .Nk-tab-CheckWork em{position:absolute;bottom:-5px;left:50%;margin-left:-10px;width:20px;height:15px;border: 6px solid transparent;display:none}

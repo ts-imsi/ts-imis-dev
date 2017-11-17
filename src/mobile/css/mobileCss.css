@@ -34,6 +34,9 @@ a{color: #333;}
 
 /*有底部的页面固定样式*/
 .FootBoot{ margin-bottom:50px !important;}
+/*绝对定位*/
+.posRe{position: relative}
+.posAbs{position: absolute}
 
 /*圆形背景*/
 .circularBG{width: 50px;height: 50px;border-radius: 100%;}
@@ -48,8 +51,8 @@ a{color: #333;}
 
 /*背景颜色(按钮)*/
 .redButBG{background-color: #FF3E3E !important;color: #FFFFFF;}
-.buleButBG{background-color: #19B5FD !important;color: #FFFFFF ;}
-.greenButBG{background-color: #09BB07;color: #FFFFFF;}
+.buleButBG{background-color: #19B5FD !important;color: #FFFFFF ;border: 1px solid #19b5fd;}
+.greenButBG{background-color: #09BB07;color: #FFFFFF;border: 1px solid #09BB07;}
 .greenButBG02{background-color: #02BB00;color: #FFFFFF;}
 .grayButBG{background-color: #666666;color: #999;}
 .orgButBG{background-color: #FF8800;color: #FFFFFF;}
@@ -203,3 +206,40 @@ footer {position: fixed;width: 100%;z-index: 2; bottom: -50px;}
 .backAppInfo input{width: 65%;font-size: 16px;color: #666;padding: 11px 15px;}
 .backAppBtn{width: 100%;height: 40px;background-color: #19B5FD;color: #fff;font-size: 16px;}
 textarea{color: #666;}
+
+/*时间轴*/
+.thisDA{padding-left: 25px; background:url(../images/thisDA.png) 10px 0 no-repeat;}
+.mui-table-view-cell:after{left: 26px;}
+/*footer{top: 50px; bottom: auto;}
+footer .mui-bar{top: 45px;}
+.mui-content{padding-top: 90px !important;}*/
+.doct-date .doct-date-swiper-container{margin-left: 5px;}
+.doct-date .swiper-slide{width: 65px;}
+.timescr{display: none; position: fixed;z-index: 1;padding: 5px 0;background-color: #fff;}
+#jibin .doct-date{padding-top: 10px;}
+.doct-date .swiper-slide{width: auto;}
+.padd010{padding: 0 10px}
+
+/*交接单进度*/
+.traPor{font-size: 12px; right: 10px; top:0;}
+.traPor button{float: left;  width: 100%;  margin: 11px 0 2px 0!important;}
+.traBut{font-size: 12px; padding: 6px 3px;}
+
+/*项目管理*/
+.proMametJD{ right: 35px; width: 20%;top: 10px; border: 1px solid #ddd;   height: 25px;font-size: 12px;}
+.proSchedule{background-color: #19b5fd; height: 23px; padding-left: 1px; }
+
+
+/*项目管理详情*/
+.swiper-container { margin: 0 auto; position: relative;overflow: hidden; z-index: 1;}
+.rsquare{overflow-x: scroll;}
+.scheduling{ position: absolute;  left: -32px;top: -14px; font-size: 14px;color: #999; background: #fafafa; width: 74px;z-index: 99; border-right: 1px solid #efefef;}
+.scheduling ul li{ font-size: 14px; border-bottom: 1px solid #e9e9e9; width: 33px;  float: left; height: 43px; line-height: 42px;}
+.weektit{ -webkit-padding-start:0;border-top-left-radius: 8px; border-top-right-radius: 8px; color: #333;  margin: 0;  position: relative; width: 150%;  height: 100%; z-index: 1;  display: -webkit-box;  display: -moz-box; display: -ms-flexbox;  display: -webkit-flex;  display: flex;  -webkit-transform-style: preserve-3d; -moz-transform-style: preserve-3d; -ms-transform-style: preserve-3d;  transform-style: preserve-3d;  -webkit-transition-property: -webkit-transform; -moz-transition-property: -moz-transform;  -o-transition-property: -o-transform; -ms-transition-property: -ms-transform;   transition-property: transform; -webkit-box-sizing: content-box;  -moz-box-sizing: content-box; box-sizing: content-box;}
+.weektit li,.weektit span{ position:relative;float:left;width:20%; border-bottom: 1px solid #efefef; padding:5px; height: 55px;  text-align: center; font-size: 12px; display: inline-table;}
+.weektit li em{font-size: 10px;}
+.weektit li::before{content: ''; position: absolute;left: 0;top:0; height:100%; width: 1px; background: #e8e8e8}
+
+.schedclose{right:10px; top:10px;}
+.noti {text-indent: 0;text-align: center;margin-top: 10px;}
+.soundactive{animation:soundac 1s infinite;-webkit-animation:soundac 1s infinite;}

@@ -54,5 +54,13 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
 
     };
 
+    this.updatePlanDetail = function () {
+        $http.post("/ts-project/planDetail/savePlanDetail",angular.toJson(selt.detail)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+            }
+        });
+    };
+
 
 }]);

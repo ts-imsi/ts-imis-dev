@@ -95,7 +95,7 @@
      <div class="row" style="margin-top: 5px">
              <!--按钮-->
              <div class="fr  pt10">
-                 <button class="btn m-b-xs w-xs btn-success">确定</button>
+                 <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanDetail();">确定</button>
                  <button class="btn m-b-xs w-xs btn-warning">驳回</button>
                  <button class="btn m-b-xs btn-default"  ng-click="ctrl.openPanel()" >查看更改时间历史记录</button>
              </div>
@@ -108,42 +108,49 @@
                         <th>项目阶段</th>
                         <th>计划开始时间</th>
                         <th>计划结束时间</th>
-                        <th>实际开始时间</th>
-                        <th>实际结束时间</th>
+                        <!--<th>实际开始时间</th>
+                        <th>实际结束时间</th>-->
                         <th>是否完成</th>
                         <th>阶段需提交文档</th>
                         <th>提交人</th>
                         <th>是否提交</th>
-                        <th>组长确认部门确认</th>
+                        <!--<th>组长确认部门确认</th>
                         <th>质控确认</th>
                         <th>售后确认</th>
                         <th>客户确认</th>
                         <th>项目组确认</th>
-                        <th>项目评分</th>
+                        <th>项目评分</th>-->
                     </tr>
                     </thead>
 
                     <tbody>
                     <tr role="row" ng-class="$index%2==0?'even':'odd'" ng-repeat="item in ctrl.detail.tbPlanItems">
                         <td ng-bind="item.stageName"></td>
-                        <td style="position: relative; padding: 8px">
+                        <td style="position: relative; padding: 8px" ng-show="item.pkid">
                             <input class="form-control Rinput29" name="planStartTime" ng-mousemove="ctrl.showDate(item.pkid,0)" value="{{item.planStartTime|date:'yyyy-MM-dd'}}" readonly>
                             <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="item.planStartTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==item.pkid&&'planStartTime'==ctrl.name"  readonly/>
                             <button type="button" class="btn datBut RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==item.pkid&&'planStartTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
                         </td>
-                        <td ng-bind="item.planEndTime"></td>
-                        <td ng-bind="item.startTime"></td>
-                        <td ng-bind="item.endTime"></td>
+                        <td style="position: relative; padding: 8px" ng-show="item.pkid">
+                            <input class="form-control Rinput29" name="planEndTime" ng-mousemove="ctrl.showDate(item.pkid,1)" value="{{item.planEndTime|date:'yyyy-MM-dd'}}" readonly>
+                            <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="item.planEndTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==item.pkid&&'planEndTime'==ctrl.name"  readonly/>
+                            <button type="button" class="btn datBut RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==item.pkid&&'planEndTime'==ctrl.name"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </td>
+                        <td ng-bind="item.planStartTime |date:'yyyy-MM-dd'" ng-show="!item.pkid"></td>
+                        <td ng-bind="item.planEndTime |date:'yyyy-MM-dd'" ng-show="!item.pkid"></td>
+
+                        <!--<td ng-bind="item.startTime |date:'yyyy-MM-dd'"></td>
+                        <td ng-bind="item.endTime |date:'yyyy-MM-dd'"></td>-->
                         <td ng-bind="item.isComplete"></td>
                         <td ng-bind="item.docName"></td>
                         <td ng-bind="item.submitter"></td>
                         <td ng-bind="item.isSubmit"></td>
-                        <td class="NkRed">待确认</td>
+                        <!--<td class="NkRed">待确认</td>
                         <td class="NkRed">待确认</td>
                         <td class="NkRed">待确认</td>
                         <td class="NkRed">待确认</td>
                         <td class="Nkgreen">已确认</td>
-                        <td>待评分</td>
+                        <td>待评分</td>-->
                     </tr>
                     </tbody>
                 </table>

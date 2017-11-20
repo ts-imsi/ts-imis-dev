@@ -7,7 +7,7 @@
     <div class="panel panel-default">
         <div class="row NKwrapper Nkinput">
             <div  class="fr">
-                <div class="col-px-80 fl">
+                <div class="col-px-140 fl">
                         <a href="#/app/createPlanTemp?pkid=0"><button class="btn btn-default daochu Nksx">
                             新增模块</button></a>
                 </div>
@@ -31,7 +31,7 @@
                     <td ng-bind="plan.proName"></td>
                     <td ng-bind="plan.type"></td>
                     <td ng-bind="plan.created | date:'yyyy-MM-dd'"></td>
-                    <td>查看</td>
+                    <td><a href="#/app/createPlanTemp?pkid={{plan.pkid}}" class="btn btn-default daochu Nksx">查看</a></td>
                 </tr>
                 </tbody>
             </table>

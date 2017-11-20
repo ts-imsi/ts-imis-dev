@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mobileCss.css" rel="stylesheet" />
+    <link href="../css/iconfont.css" rel="stylesheet" />
+    <title>阅读</title>
+</head>
+<body>
+    <!--header-->
+    <header class="mui-bar mui-bar-nav headerBG">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
+        <h1 class="mui-title headerA">阅读</h1>
+        <a class="mui-icon-right-nav mui-pull-right headerA Edit" id="editCheck">编辑</a>
+    </header>
+    <!--header end-->
+    <div class="mui-content">
+        <!--阅读列表-->
+        <div class="readInfoList">
+            <ul class="mui-table-view" id="editCh">
+                <li class="mui-table-view-cell">
+                    <div class="mui-slider-handle">
+                        <!--判断是否未读，如果是未读的添加class：weidu-->
+                        <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="BianjiCheck active">
+                        <a class="mui-navigate-right weidu" >
+                            <h5 class="inLiTit">
+                                <i></i>
+                                1关于2017年上半年科研项目申请说明</h5>
+                            <p class="inLiCont">[科教工作]关于2017年上半年科研项目申请说明情况如下研项目申请说明情况如下...</p>
+                            <span class="inLiTime">2017-03-12 10:20</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="mui-table-view-cell">
+                    <div class="mui-slider-handle">
+                        <!--判断是否未读，如果是未读的添加class：weidu-->
+                        <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="BianjiCheck active">
+                        <a class="mui-navigate-right weidu" >
+                            <h5 class="inLiTit">
+                                <i></i>
+                                1关于2017年上半年科研项目申请说明</h5>
+                            <p class="inLiCont">[科教工作]关于2017年上半年科研项目申请说明情况如下研项目申请说明情况如下...</p>
+                            <span class="inLiTime">2017-03-12 10:20</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="mui-table-view-cell">
+                    <div class="mui-slider-handle">
+                        <!--判断是否未读，如果是未读的添加class：weidu-->
+                        <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="BianjiCheck active">
+                        <a class="mui-navigate-right weidu" >
+                            <h5 class="inLiTit">
+                                <i></i>
+                                1关于2017年上半年科研项目申请说明</h5>
+                            <p class="inLiCont">[科教工作]关于2017年上半年科研项目申请说明情况如下研项目申请说明情况如下...</p>
+                            <span class="inLiTime">2017-03-12 10:20</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--阅读列表end-->
+    </div>
+    <footer class="DNone" id="editDel">
+        <ul class="signList">
+            <li class="signtab">
+                <i class="MHiconfont icon-mobile--biaojiweidu"></i>
+                <label class="tab-label">标记未读</label>
+            </li>
+            <li class="signtab">
+                <i class="MHiconfont icon-mobile--biaojiyidu"></i>
+                <label class="tab-label">标记已读</label>
+            </li>
+        </ul>
+    </footer>
+    <script type="text/javascript">
+        //编辑左边划出选多选框，右上角编辑、取消字样切换
+        mui.ready(function(){
+            $("#editCheck").click(function(){
+                $("#editCh li").toggleClass("mui-checkbox");
+                $("#editCh li").toggleClass("mui-left");
+                $("#editDel").toggleClass("DNone");
+            });
+
+            $("#editCheck").toggle(function(){
+                $(this).text("取消");
+            },function(){
+                $(this).text("编辑");
+            });
+        });
+    </script>
+</body>
+</html>

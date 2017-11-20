@@ -77,12 +77,6 @@
                                     </a>
                                 </div>
                             </li>
-                            <p style="padding:11px 15px;color: #666;margin: 0;">
-                                意见建议
-                            </p>
-                            <div style="margin:0 15px 15px 15px">
-                                <textarea rows="5" placeholder="请填写建议意见"></textarea>
-                            </div>
                         </ul>
                     </div>
                 </div>
@@ -100,22 +94,13 @@
             <!--header end-->
             <div class="subBackApp">
                 <div class="backAppInfo">
-                    <ul class="mui-table-view">
-                        <li class="mui-table-view-cell">
-                            <div class="mui-input-row">
-                                <a class="mui-navigate-right">
-                                    <label>驳回的人员</label>
-                                    <input type="text" placeholder="请选择" id="lastMB">
-                                </a>
-                            </div>
-                        </li>
-                        <p style="padding:11px 15px;color: #666;margin: 0;font-size: 16px">
-                            驳回原因
-                        </p>
-                        <div style="margin:0 15px 15px 15px">
-                            <textarea rows="5" placeholder="请填写驳回原因"></textarea>
-                        </div>
-                    </ul>
+                    <p style="padding:11px 15px;color: #666;margin: 0;font-size: 16px">
+                        驳回原因
+                    </p>
+                    <div style="margin:0 15px 15px 15px">
+                        <textarea rows="5" placeholder="请填写驳回原因"></textarea>
+                    </div>
+
                     <button type="button" class="mui-btn backAppBtn">驳回</button>
                 </div>
             </div>
@@ -166,27 +151,6 @@
             showUserPickerBM.addEventListener('tap', function(event) {
                 userPickerNEBM.show(function(items) {
                     userResultBM.value = items[0].text;
-                    //返回 false 可以阻止选择框的关闭
-                    //return false;
-                });
-            }, false);
-
-            var userPickerLastMB = new $.PopPicker();
-            userPickerLastMB.setData([{
-                value: 'xsjl',
-                text: 'B销售'
-            }, {
-                value: 'fzjl',
-                text: 'C销售'
-            },  {
-                value: 'zjl',
-                text: 'D销售'
-            }]);
-            var showUserPickerLTBM = doc.getElementById('lastMB');
-            var userResultLTBM = doc.getElementById('lastMB');
-            showUserPickerLTBM.addEventListener('tap', function(event) {
-                userPickerLastMB.show(function(items) {
-                    userResultLTBM.value = items[0].text;
                     //返回 false 可以阻止选择框的关闭
                     //return false;
                 });

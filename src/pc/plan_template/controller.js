@@ -40,5 +40,7 @@ app.controller('planTempCtrl', ['$scope','$http','$log','$modal','$filter', func
 
         });
     };
+    this.maxSize=5;
+    this.setPage(1);
 
 }]);

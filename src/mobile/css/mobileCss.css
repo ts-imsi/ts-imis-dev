@@ -176,6 +176,10 @@ footer {position: fixed;width: 100%;z-index: 2; bottom: -50px;}
 .indexFunc span{padding: 5px 0; display: block;}
 .indexFuncIcon {line-height: 50px;font-size: 35px !important;}
 
+
+
+
+
 /*时间轴*/
 .thisDA{padding-left: 25px; background:url(../images/thisDA.png) 10px 0 no-repeat;}
 .mui-table-view-cell:after{left: 26px;}
@@ -213,6 +217,17 @@ footer .mui-bar{top: 45px;}
 .noti {text-indent: 0;text-align: center;margin-top: 10px;}
 .soundactive{animation:soundac 1s infinite;-webkit-animation:soundac 1s infinite;}
 
+/*产值*/
+.outPut span{display: block; float: left;padding-right: 5px;overflow: hidden; text-overflow: ellipsis;font-size: 14px}
+.outPutPor{font-size: 12px; right: 20px; top:-43px;}
+.outPutPor button{float: left;  width: 100%;  margin: 6px 0 2px 0!important;}
+.outPutBut{font-size: 12px; padding: 6px 10px;}
+.outPutList .mui-checkbox.mui-left input.active{z-index: 999; width: 100%;padding-top: 30px; height: 100%;display: block !important;}
+.outPutList .mui-table-view-cell.mui-checkbox.mui-left, .InfoList .mui-table-view-cell.mui-radio.mui-left{padding-left: 45px;}
+.outPutList .mui-checkbox.mui-left input[type=checkbox], .InfoList .mui-radio.mui-left input[type=radio]{left: -35px;}
+.outPutList .mui-checkbox input[type=checkbox], .mui-radio input[type=radio]{right: auto;left: 1px;top: 8px}
+.outPutList .mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{font-size: 26px}
+.barBot{line-height: 50px;background: #19b5fd;color: #fff;text-align: right;padding-right: 20px}
 
 
 

@@ -10,12 +10,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-mobile--11:before { content: "\e621"; }
 
 .icon-mobile--chanzhinenghao:before { content: "\e6fb"; }
+
+.icon-mobile--shape:before { content: "\e60f"; }
 
 .icon-mobile--daiban1:before { content: "\e6a8"; }
 
 .icon-mobile--xiaoxizhongxin:before { content: "\e617"; }
+
+.icon-mobile--tongguo:before { content: "\e72c"; }
 
 .icon-mobile--jiaojie:before { content: "\e66a"; }
 
@@ -25,10 +30,15 @@
 
 .icon-mobile--daiban2:before { content: "\e637"; }
 
-.icon-mobile--chakan:before { content: "\e7ba"; }
+.icon-mobile--jiaojie1:before { content: "\e60b"; }
 
-.icon-mobile--banli:before { content: "\e60d"; }
+.icon-mobile--chakan:before { content: "\e7ba"; }
 
 .icon-mobile--biaojiweidu:before { content: "\e69e"; }
 
 .icon-mobile--biaojiyidu:before { content: "\e69f"; }
+
+.icon-mobile--banli:before { content: "\e60d"; }
+
+
+

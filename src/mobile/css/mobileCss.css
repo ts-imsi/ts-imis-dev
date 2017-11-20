@@ -195,7 +195,7 @@ footer .mui-bar{top: 45px;}
 
 /*交接单进度*/
 .traPor{font-size: 12px; right: 10px; top:0;}
-.traPor button{float: left;  width: 100%;  margin: 11px 0 2px 0!important;}
+.traPor button{float: left;  width: 100%;  margin: 40px 27px 2px 0!important;}
 .traBut{font-size: 12px; padding: 6px 3px;}
 
 /*项目管理*/
@@ -300,3 +300,5 @@ footer{position: fixed;width: 100%;bottom: -44px;}
 .delivertRecTit h4{color: #333;    font-size: 16px;}
 .delivertRecTit p{margin: 0;}
 
+.proSea .mui-search{ position: relative; margin-top: 5px; margin-bottom: -10px;}
+.proSea .mui-search input{background-color: rgb(255, 255, 255); border: 1px solid #dedcdc;border-radius:100px;}

@@ -142,12 +142,9 @@
                                          </thead>
                                          <tbody>
                                          <tr ng-repeat="item in stage.tbPlanItems">
-                                             <td ng-bind="item.planTime|date:'yyyy-MM-dd'" class="tabLeft"></td>
-                                             <!--<td style="position: relative; padding: 8px">
-                                                 <input class="form-control Rinput29" name="planTime" ng-mousemove="ctrl.showDate(item.pkid)" value="{{item.planTime|date:'yyyy-MM-dd'}}" readonly>
-                                                 <input type="hidden" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="item.planStartTime" is-open="ctrl.isOpen"  datepicker-options="ctrl.dateOptions" close-text="关闭" ng-if="ctrl.isShow==item.pkid"  readonly/>
-                                                 <button type="button" class="btn datBut RSerBut" ng-click="ctrl.openTime($event)" ng-if="ctrl.isShow==item.pkid"><i class="glyphicon glyphicon-calendar"></i></button>
-                                             </td>-->
+                                             <td class="tabLeft">
+                                                 <input value="{{item.planTime|date:'yyyy-MM-dd'}}" onchange="angular.element(this).scope().changeTime()" readonly onClick="laydate()  ">
+                                             </td>
                                              <td ng-bind="item.isComplete" class="tabLeft"></td>
                                              <td ng-bind="item.docName" class="tabLeft"></td>
                                              <td ng-bind="item.isSubmit" class="tabLeft"></td>

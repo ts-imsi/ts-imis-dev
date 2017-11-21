@@ -66,5 +66,9 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         });
     };
 
+    $scope.changeTime = function () {
+        console.log("--------")
+    }
+
 
 }]);

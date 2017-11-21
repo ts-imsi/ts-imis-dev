@@ -37,20 +37,8 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         selt.isOpen = true;
     };
 
-    this.showDate=function(pkid,sz){
+    this.showDate=function(pkid){
         selt.isShow=pkid;
-        if(sz==0){
-            selt.name="planStartTime";
-        }
-        if(sz==1){
-            selt.name="planEndTime";
-        }
-        if(sz==2){
-            selt.name="startTime";
-        }
-        if(sz==3){
-            selt.name="endTime";
-        }
 
     };
 
@@ -58,6 +46,22 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         $http.post("/ts-project/planDetail/savePlanDetail",angular.toJson(selt.detail)).success(function (result) {
             if(result.success){
                 alert(result.message);
+            }
+        });
+    };
+
+    this.openDiv = function (stageName) {
+        angular.forEach(selt.detail.tbPlanStages, function(item) {
+            if(item.stageName == stageName){
+                item.ifOpen = true;
+            }
+        });
+    };
+
+    this.closeDiv = function (stageName) {
+        angular.forEach(selt.detail.tbPlanStages, function(item) {
+            if(item.stageName == stageName){
+                item.ifOpen = false;
             }
         });
     };

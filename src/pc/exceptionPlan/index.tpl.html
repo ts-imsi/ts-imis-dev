@@ -1,0 +1,138 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">异常监控列表</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="btn-group col-px-560" style="position: relative;float:left">
+                    <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">过期</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">超时</button>
+                </div>
+                <div class="col-px-80 fl" style="position: relative;" id="myShaix">
+                    <button class="btn btn-default saixuan Nksx"  ng-click="ctrl.toggShaix()">
+                        筛选</button>
+                    <!--筛选弹出-->
+                    <div class="shaixBox" style="display: block;" ng-show="ctrl.myShaix">
+                        <div  class="wixian"></div>
+
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-70 control-label fl NkSN">合同名称</label>
+                                <div class="col-px-230 fr">
+                                    <input type="text" class="form-control" placeholder="合同名称" ng-model="ctrl.htNo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-70 control-label fl NkSN">客户名称</label>
+                                <div class="col-px-230 fr">
+                                    <input type="text" class="form-control" placeholder="客户名称" ng-model="ctrl.customerName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <div class="form-group NkSerTit">
+                                <label class="col-px-70 control-label fl NkSN">产品名称</label>
+                                <div class="col-px-230 fr">
+                                    <input type="text" class="form-control" placeholder="产品名称" ng-model="ctrl.proName">
+                                </div>
+                            </div>
+                        </div>
+                        <!--部门-->
+                        <div class="brbotP NKwrapper Nkcont">
+                            <p>计划时间</p>
+                            <p class="input-group">
+                                <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.dtStart" is-open="ctrl.openedStart" min-date="minDate" datepicker-options="dateOptions" date-disabled="ctrl.disabled(date, mode)" ng-required="true" close-text="关闭" />
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="ctrl.openStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                            <p class="input-group">
+                                <input type="text" class="form-control" datepicker-popup="{{ctrl.format}}" ng-model="ctrl.dtEnd" is-open="ctrl.openedEnd" min-date="minDate" datepicker-options="dateOptions" date-disabled="ctrl.disabled(date, mode)" ng-required="true" close-text="关闭" />
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="ctrl.openEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <p>人员已确认</p>
+                            <ul>
+                                <li ng-repeat="Tag in ctrl.twfCheckTagList">
+                                    <div class="checkbox">
+                                        <label class="i-checks">
+                                            <input type="checkbox" ng-checked="ctrl.isSelected(Tag)" ng-click="ctrl.updateSelection($event,Tag)" ng-disabled="ctrl.show(Tag)">
+                                            <i></i>
+                                            {{Tag.name}}
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="brbotP NKwrapper Nkcont">
+                            <p>人员未确认</p>
+                            <ul>
+                                <li ng-repeat="Tag in ctrl.twfCheckTagList">
+                                    <div class="checkbox">
+                                        <label class="i-checks">
+                                            <input type="checkbox" ng-checked="ctrl.isWSelected(Tag)" ng-click="ctrl.updateWSelection($event,Tag)" ng-disabled="ctrl.showW(Tag)">
+                                            <i></i>
+                                            {{Tag.name}}
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!--重置按钮-->
+                        <div class="fr NKwrapper">
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.cancel()">清空</button>
+                            <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.submitSeach()">查询</button>
+                        </div>
+
+                    </div>
+                    <!--筛选弹出end-->
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>合同名称</th>
+                    <th>客户名称</th>
+                    <th>产品</th>
+                    <th>实施经理</th>
+                    <th>阶段名称</th>
+                    <th>计划时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="excePlan in ctrl.excePlanList">
+                    <td ng-bind="excePlan.htNo"></td>
+                    <td ng-bind="excePlan.customerName"></td>
+                    <td ng-bind="excePlan.proName"></td>
+                    <td ng-bind="excePlan.actualizeManager"></td>
+                    <td ng-bind="excePlan.stageName | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="excePlan.planTime | date:'yyyy-MM-dd'"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+</div>
+</div>

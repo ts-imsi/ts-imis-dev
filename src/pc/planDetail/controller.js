@@ -66,9 +66,31 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         });
     };
 
-    $scope.changeTime = function () {
-        console.log("--------")
-    }
+    this.updatePlanItem = function (detail) {
+        var planItemList = [];
+        var boo = true;
+        angular.forEach(detail.tbPlanStages, function(item) {
+            angular.forEach(item.tbPlanItems, function(i) {
+                planItemList.push(i);
+            });
+
+        });
+        angular.forEach(planItemList, function(item) {
+            var planTime = $('#id'+item.pkid).val();
+            if(planTime == undefined||planTime==''){
+                alert(item.docName+"未填写计划时间");
+                boo = false
+                return;
+            }
+            item.planTime = planTime;
+        });
+        if(boo){
+            $http.post("/ts-project/planDetail/updatePlanItemTime",angular.toJson(planItemList)).success(function (result) {
+                alert(result.message);
+            });
+        }
+    };
+
 
 
 }]);

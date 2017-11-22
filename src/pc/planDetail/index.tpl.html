@@ -95,6 +95,7 @@
      <div class="row" style="margin-top: 5px">
              <!--按钮-->
              <div class="fr  pt10">
+                 <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanItem(ctrl.detail);">保存</button>
                  <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanDetail();">确定</button>
                  <button class="btn m-b-xs w-xs btn-warning">驳回</button>
                  <button class="btn m-b-xs btn-default"  ng-click="ctrl.openPanel()" >查看更改时间历史记录</button>
@@ -143,7 +144,7 @@
                                          <tbody>
                                          <tr ng-repeat="item in stage.tbPlanItems">
                                              <td class="tabLeft">
-                                                 <input value="{{item.planTime|date:'yyyy-MM-dd'}}" onchange="angular.element(this).scope().changeTime()" readonly onClick="laydate()  ">
+                                                 <input ng-model="item.planTime" id="id{{item.pkid}}" onClick="laydate()" >{{item.planTime}}
                                              </td>
                                              <td ng-bind="item.isComplete" class="tabLeft"></td>
                                              <td ng-bind="item.docName" class="tabLeft"></td>

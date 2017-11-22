@@ -55,7 +55,10 @@ app.controller('ExceptionPlanCtrl', ['$scope', '$modal', '$http', '$filter','$lo
             dtStart:$filter("date")(selt.dtStart, "yyyy-MM-dd"),
             dtEnd:$filter("date")(selt.dtEnd, "yyyy-MM-dd"),
             checkTag:selt.selected,
-            noCheckTag:selt.selectedW
+            noCheckTag:selt.selectedW,
+            htNo:selt.htNo,
+            customerName:selt.customerName,
+            proName:selt.proName
         };
         console.log(parm);
         $http.post("/ts-project/exceptionPlan/selectExceptionPlan",angular.toJson(parm)).success(function (result) {
@@ -81,7 +84,10 @@ app.controller('ExceptionPlanCtrl', ['$scope', '$modal', '$http', '$filter','$lo
             dtStart:$filter("date")(selt.dtStart, "yyyy-MM-dd"),
             dtEnd:$filter("date")(selt.dtEnd, "yyyy-MM-dd"),
             checkTag:selt.selected,
-            noCheckTag:selt.selectedW
+            noCheckTag:selt.selectedW,
+            htNo:selt.htNo,
+            customerName:selt.customerName,
+            proName:selt.proName
         };
         $http.post("/ts-project/exceptionPlan/selectExceptionPlan",angular.toJson(parm)).success(function (result) {
             if(result.success){

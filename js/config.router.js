@@ -874,6 +874,17 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.excePlan', {
+                  url: '/excePlan',
+                  templateUrl: 'src/pc/exceptionPlan/index.tpl.html',
+                  controller: 'ExceptionPlanCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/exceptionPlan/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

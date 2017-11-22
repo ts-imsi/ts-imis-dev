@@ -5,7 +5,7 @@
     <div class="panel panel-default">
         <div class="row NKwrapper Nkinput">
             <div class="fr">
-                <div class="btn-group col-px-560" style="position: relative;float:left">
+                <div class="btn-group col-px-230" style="position: relative;float:left">
                     <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
                     <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">过期</button>
                     <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">超时</button>
@@ -116,8 +116,8 @@
                     <td ng-bind="excePlan.customerName"></td>
                     <td ng-bind="excePlan.proName"></td>
                     <td ng-bind="excePlan.actualizeManager"></td>
-                    <td ng-bind="excePlan.stageName | date:'yyyy-MM-dd'"></td>
-                    <td ng-bind="excePlan.planTime | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="excePlan.stageName"></td>
+                    <td ng-bind="excePlan.planTime"></td>
                 </tr>
                 </tbody>
             </table>

@@ -95,10 +95,10 @@
      <div class="row" style="margin-top: 5px">
              <!--按钮-->
              <div class="fr  pt10">
-                 <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanItem(ctrl.detail);">保存</button>
+                 <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanItem(ctrl.detail);" ng-show="ctrl.updateTimeBoo">保存</button>
                  <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanDetail();">确定</button>
                  <button class="btn m-b-xs w-xs btn-warning">驳回</button>
-                 <button class="btn m-b-xs btn-default"  ng-click="ctrl.openPanel()" >查看更改时间历史记录</button>
+                 <button class="btn m-b-xs btn-default"  ng-click="ctrl.openPanel();ctrl.queryPlanUpdateLog()" >查看更改时间历史记录</button>
              </div>
              <!--表格-->
          <div class="panel-default fl w100">
@@ -143,9 +143,15 @@
                                          </thead>
                                          <tbody>
                                          <tr ng-repeat="item in stage.tbPlanItems">
-                                             <td class="tabLeft">
-                                                 <input ng-model="item.planTime" id="id{{item.pkid}}" onClick="laydate()" >{{item.planTime}}
+                                             <td class="tabLeft" ng-show="ctrl.updateTimeBoo">
+                                                 <input ng-model="item.planTime" id="id{{item.pkid}}" onClick="laydate()">
                                              </td>
+
+                                             <td class="tabLeft" ng-show="!ctrl.updateTimeBoo">
+                                                 <a ng-show="item.isUpdate==1" class="text-blue" ng-bind="item.planTime" ng-dblclick="ctrl.updatePlanTime(item)"></a>
+                                                 <a ng-show="item.isUpdate==0" ng-bind="item.planTime" ng-dblclick="ctrl.updatePlanTime(item)"></a>
+                                             </td>
+
                                              <td ng-bind="item.isComplete" class="tabLeft"></td>
                                              <td ng-bind="item.docName" class="tabLeft"></td>
                                              <td ng-bind="item.isSubmit" class="tabLeft"></td>
@@ -163,4 +169,39 @@
          </div>
      </div>
 </div>
+<script type="text/ng-template" id="planTime.html">
+    <div class="modal-header">
+        <h4 class="modal-title">修改计划时间</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">阶段：</label>
+                <input type="text" class="form-control Rinput50" ng-model="itemCtrl.item.stageName" readonly>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">文档：</label>
+                <input type="text" class="form-control Rinput50" ng-model="itemCtrl.item.docName" readonly>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">修改时间为：</label>
+                <input type="text" class="form-control Rinput50" ng-model="itemCtrl.item.planTime" id="planTime" onClick="laydate()">
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">修改原因：</label>
+                <textarea type="text" class="form-control Rinput60" cols="60" rows="5" required name="remark"
+                          ng-model="itemCtrl.item.remark"></textarea>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="itemCtrl.savePlanTime(itemCtrl.item)">保存</button>
+        <button class="btn btn-warning" type="button" ng-click="itemCtrl.cancel()">取消</button>
+    </div>
+</script>
 <div data-ng-include=" 'src/pc/planDetail/timeUpdateLog.html' " ng-class="ctrl.panelClass"></div>

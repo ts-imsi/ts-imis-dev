@@ -14,33 +14,20 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
     };
 
 
-
-
-    $http.post("/ts-project/planDetail/queryPlanItems/"+planId).success(function (result) {
-        if(result.success){
-            selt.detail=result.object;
-        }
-    });
-
-
-    this.dateOptions = {
-        formatYear: 'yy',
-        startingDay: 1,
-        class: 'datepicker'
+    this.queryPlanItems = function () {
+        $http.post("/ts-project/planDetail/queryPlanItems/"+planId).success(function (result) {
+            if(result.success){
+                selt.detail=result.object;
+            }
+        });
     };
-    this.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    this.format = this.formats[0];
-    this.openTime = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
+    this.queryPlanItems();
 
-        selt.isOpen = true;
-    };
 
-    this.showDate=function(pkid){
-        selt.isShow=pkid;
 
-    };
+
+
+
 
     this.updatePlanDetail = function () {
         $http.post("/ts-project/planDetail/savePlanDetail",angular.toJson(selt.detail)).success(function (result) {
@@ -66,6 +53,8 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         });
     };
 
+    this.updateTimeBoo = false;
+
     this.updatePlanItem = function (detail) {
         var planItemList = [];
         var boo = true;
@@ -79,18 +68,69 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
             var planTime = $('#id'+item.pkid).val();
             if(planTime == undefined||planTime==''){
                 alert(item.docName+"未填写计划时间");
-                boo = false
+                boo = false;
                 return;
             }
             item.planTime = planTime;
         });
         if(boo){
-            $http.post("/ts-project/planDetail/updatePlanItemTime",angular.toJson(planItemList)).success(function (result) {
+            $http.post("/ts-project/planDetail/savePlanItemTime",angular.toJson(planItemList)).success(function (result) {
                 alert(result.message);
+                if(result.success){
+                    selt.queryPlanItems();
+                    selt.updateTimeBoo = false;
+                }
             });
         }
     };
 
+    this.updatePlanTime=function(planItem){
+        var PlanItemInstance = $modal.open({
+            templateUrl: 'planTime.html',
+            controller: 'PlanItemCtrl as itemCtrl',
+            resolve: {
+                data: function () {
+                    return planItem;
+                }
+            }
+        });
+
+        PlanItemInstance.result.then(function () {
+            selt.queryPlanItems();
+        });
+    };
+
+    this.queryPlanUpdateLog = function () {
+        $http.post("/ts-project/planDetail/doc/updateLog/"+selt.detail.planId).success(function (result) {
+            if(result.success){
+                selt.historyList=result.object;
+            }else{
+                selt.historyList=[];
+            }
+        });
+    }
 
 
+
+}]);
+
+app.controller('PlanItemCtrl', ['$scope', '$modalInstance','$http', '$filter','data', function($scope,$modalInstance,$http,$filter,data) {
+    var selt=this;
+    selt.item = data;
+
+    this.savePlanTime = function (planItem) {
+        var planTime = $('#planTime').val();
+        planItem.planTime = planTime;
+        $http.post("/ts-project/planDetail/updatePlanTime",angular.toJson(planItem)).success(function (result) {
+            if(result.success){
+                alert("计划时间修改成功!");
+                $modalInstance.close(result.object);
+            }
+        });
+    };
+
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 }]);

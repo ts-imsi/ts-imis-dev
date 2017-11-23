@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link href="../css/mobileCss.css" rel="stylesheet" />
-    <link href="../css/iconfont.css" rel="stylesheet" />
+    <script src="mobile/js/mui.min.js"></script>
+    <link href="mobile/css/mui.min.css" rel="stylesheet"/>
+    <link href="mobile/css/mobileCss.css" rel="stylesheet" />
+    <link href="mobile/css/iconfont.css" rel="stylesheet" />
     <script type="text/javascript" charset="utf-8">
         mui.init();
     </script>
@@ -15,7 +15,7 @@
 <body>
 <!--header-->
 <header class="mui-bar mui-bar-nav headerBG">
-    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA" href="#/user"></a>
     <h1 class="mui-title headerA">办理</h1>
 </header>
 <!--header end-->
@@ -24,105 +24,45 @@
     <!--tab选项卡-->
     <div class="tabBg withBG">
         <div class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary">
-            <a class="mui-control-item mui-active" href="#treated">已办</a>
-            <a class="mui-control-item" href="#untreated">待办</a>
+            <a ng-class="$ctrl.treatedTagClass"  ng-click="$ctrl.selectTag('1')">已办</a>
+            <a ng-class="$ctrl.untreatedTagClass"  ng-click="$ctrl.selectTag('2')">待办</a>
         </div>
     </div>
     <!--tab选项卡end-->
     <div>
         <!--选项卡下的内容-->
-        <div id="treated" class="mui-control-content mui-active">
+        <div id="treated"  ng-show="$ctrl.tagS==1" ng-class="$ctrl.treatedClass">
             <div class="treatList">
                 <ul class="mui-table-view">
-                    <li class="mui-table-view-cell">
-                        <a href="../treatedDet/treatedDet.html">
+                    <li class="mui-table-view-cell" ng-repeat="transactMsg in $ctrl.transactMsgList">
+                        <a href="#/treatedDet?pkid={{transactMsg.pkid}}">
                             <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont">
                                 <!--<span class="mui-badge iabso">3</span>-->
                             </i>
 
                             <div class="treatedFont">
-                                办理1
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="mui-table-view-cell">
-                        <a href="#">
-                            <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont"></i>
-                            <div class="treatedFont">
-                                办理2
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="mui-table-view-cell">
-                        <a href="#">
-                            <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont"></i>
-                            <div class="treatedFont">
-                                办理3
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="mui-table-view-cell">
-                        <a href="#">
-                            <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont"></i>
-                            <div class="treatedFont">
-                                办理2
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="mui-table-view-cell">
-                        <a href="#">
-                            <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont"></i>
-                            <div class="treatedFont">
-                                办理3
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
+                                {{transactMsg.title}}
+                                <span class="rightTime">{{transactMsg.sendTime | date:'yyyy-MM-dd'}}</span>
+                                <p class="Font-graufont9">{{transactMsg.sendName}}</p>
                             </div>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div id="untreated" class="mui-control-content">
+        <div id="untreated"  ng-show="$ctrl.tagS==2" ng-class="$ctrl.untreatedClass">
             <div class="treatList">
                 <ul class="mui-table-view">
-                    <li class="mui-table-view-cell">
-                        <a href="../untreatedDet/untreatedDet.html">
+                    <li class="mui-table-view-cell" ng-repeat="transactMsg in $ctrl.transactMsgList">
+                        <a href="#/untreatedDet?pkid={{transactMsg.pkid}}">
                             <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont">
                                <!-- <span class="mui-badge iabso">3</span>-->
                             </i>
 
                             <div>
-                                办理5
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="mui-table-view-cell">
-                        <a href="#">
-                            <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont"></i>
-                            <div>
-                                办理6
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="mui-table-view-cell">
-                        <a href="#">
-                            <i class="MHiconfont icon-mobile--banli fl orgFont Mobl-icon mui-icon reposfont"></i>
-                            <div>
-                                办理7
-                                <span class="rightTime">2017-11-12</span>
-                                <p class="Font-graufont9">转正申请-彭开</p>
+                                {{transactMsg.title}}
+                                <span class="rightTime">{{transactMsg.sendTime | date:'yyyy-MM-dd'}}</span>
+                                <p class="Font-graufont9">{{transactMsg.sendName}}</p>
                             </div>
                         </a>
                     </li>

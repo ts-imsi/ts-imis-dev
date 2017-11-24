@@ -1,19 +1,17 @@
 (function() {
     angular
-        .module('WEBAPP.TRANSACT.CONTROLLER', ['ui.bootstrap'])
+        .module('MOBILEAPP.TRANSACT.CONTROLLER', ['ui.bootstrap'])
         .controller('transactCtrl', ['$http','$uibModal','$log','$document',function($http,$uibModal, $log, $document) {
             var selt = this;
 
             this.selectTransactList=function(){
-                //todo 测试openId
-                var openId="o8qZCwdhpNkRkSwlNLC1WOwB37bE";
                 var status;
                 if(selt.tagS==1){
                     status=1;
                 }else{
                     status=0;
                 }
-                $http.post("/ts-project/mobileTransact/queryMobileTransactList/"+openId+"/"+status).success(function (result) {
+                $http.post("/ts-project/mobileTransact/queryMobileTransactList/"+"/"+status).success(function (result) {
                     if (result.success) {
                         selt.transactMsgList=result.object;
                     } else {

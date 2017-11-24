@@ -1,11 +1,9 @@
 (function() {
     angular
-        .module('WEBAPP.UNTREATEDDET.CONTROLLER', ['ui.bootstrap'])
+        .module('MOBILEAPP.UNTREATEDDET.CONTROLLER', ['ui.bootstrap'])
         .controller('untreatedDetCtrl', ['$http','$uibModal','$log','$document','utils',function($http,$uibModal, $log, $document,utils) {
             var selt = this;
             var pkid=utils.getUrlVar("pkid");
-            //todo 测试openId
-            var openId="o8qZCwdhpNkRkSwlNLC1WOwB37bE";
             $http.post("/ts-project/mobileTransact/queryMobileTreatedByPkid/"+pkid).success(function (result) {
                 if (result.success) {
                     if(result.type=="addChange"){

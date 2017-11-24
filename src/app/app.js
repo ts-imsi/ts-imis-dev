@@ -12,17 +12,14 @@
             'WEBAPP.SUBATT.CONTROLLER',
             'WEBAPP.PROMOTION.CONTROLLER',
             'WEBAPP.JFRECORD.CONTROLLER',
-            'WEBAPP.TRANSACT.CONTROLLER',
-            'WEBAPP.TREATEDDET.CONTROLLER',
-            'WEBAPP.UNTREATEDDET.CONTROLLER',
+            'WEBAPP.IMITATIONLOGIN.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider', '$compileProvider', '$locationProvider'];
-    function config($stateProvider, $urlRouterProvider, $compileProvider, $locationProvider) {
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$compileProvider', '$locationProvider','$httpProvider'];
+    function config($stateProvider, $urlRouterProvider, $compileProvider, $locationProvider,$httpProvider) {
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
-
         /**
          * 定义路由
          */
@@ -86,24 +83,10 @@
                 templateUrl: window.rootSrc + 'app/jfrecord/index.tpl.html',
                 controller: 'JfRecordCtrl as $ctrl'
             })
-            .state('user', {
-            url: '/user',
-            templateUrl: window.rootSrc + 'mobile/user.html',
-            })
-            .state('transact', {
-            url: '/transact',
-            templateUrl: window.rootSrc + 'mobile/transact/transact.html',
-            controller: 'transactCtrl as $ctrl'
-            })
-            .state('treatedDet', {
-            url: '/treatedDet',
-            templateUrl: window.rootSrc + 'mobile/treatedDet/treatedDet.html',
-            controller: 'treatedDetCtrl as $ctrl'
-            })
-            .state('untreatedDet', {
-                url: '/untreatedDet',
-                templateUrl: window.rootSrc + 'mobile/untreatedDet/untreatedDet.html',
-                controller: 'untreatedDetCtrl as $ctrl'
+            .state('imitation', {
+            url: '/imitation',
+            templateUrl: window.rootSrc + 'app/imitationLogin/index.tpl.html',
+            controller: 'imitationCtrl as $ctrl'
             });
 
 

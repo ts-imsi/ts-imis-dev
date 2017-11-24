@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('WEBAPP.TREATEDDET.CONTROLLER', ['ui.bootstrap'])
+        .module('MOBILEAPP.TREATEDDET.CONTROLLER', ['ui.bootstrap'])
         .controller('treatedDetCtrl', ['$http','$uibModal','$log','$document','utils',function($http,$uibModal, $log, $document,utils) {
             var selt = this;
             var pkid=utils.getUrlVar("pkid");

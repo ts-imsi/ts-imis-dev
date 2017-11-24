@@ -100,6 +100,22 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         });
     };
 
+    this.fileUploader=function(planItem){
+        var FileUploaderInstance = $modal.open({
+            templateUrl: 'fileUploader.html',
+            controller: 'FileUploaderCtrl as fileCtrl',
+            resolve: {
+                data: function () {
+                    return planItem;
+                }
+            }
+        });
+
+        FileUploaderInstance.result.then(function () {
+            selt.queryPlanItems();
+        });
+    };
+
     this.queryPlanUpdateLog = function () {
         $http.post("/ts-project/planDetail/doc/updateLog/"+selt.detail.planId).success(function (result) {
             if(result.success){
@@ -108,8 +124,7 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
                 selt.historyList=[];
             }
         });
-    }
-
+    };
 
 
 }]);
@@ -127,6 +142,42 @@ app.controller('PlanItemCtrl', ['$scope', '$modalInstance','$http', '$filter','d
                 $modalInstance.close(result.object);
             }
         });
+    };
+
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}]);
+
+app.controller('FileUploaderCtrl', ['$scope', '$modalInstance','$http', '$filter','data','FileUploader', function($scope,$modalInstance,$http,$filter,data,FileUploader) {
+    var selt=this;
+    selt.item = data;
+
+    var uploader = $scope.uploader = new FileUploader({
+        url: '/ts-project/fileUpload/file?id='+selt.item.pkid+'&name='+selt.item.docName,
+        headers:undefined
+    });
+
+    /*// 过滤器 只能上传注册格式的文件
+    uploader.filters.push({
+        name: 'customFilter',
+        fn: function(item /!*{File|FileLikeObject}*!/, options) {
+            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+            return '|doc|xls|docx|xlsx|'.indexOf(type) !== -1;
+        }
+    });*/
+
+    this.fileItem = "";
+    uploader.onAfterAddingFile = function(fileItem) {
+        console.log(uploader.queue.length);
+        console.log(uploader.queue[uploader.queue.length-1].file.name);
+        console.log(fileItem.file.name);
+        selt.fileItem = fileItem;
+    };
+
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        alert(response.message);
     };
 
 

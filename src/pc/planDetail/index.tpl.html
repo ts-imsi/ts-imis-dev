@@ -153,7 +153,7 @@
                                              </td>
 
                                              <td ng-bind="item.isComplete" class="tabLeft"></td>
-                                             <td ng-bind="item.docName" class="tabLeft"></td>
+                                             <td ng-bind="item.docName" class="tabLeft" ng-dblclick="ctrl.fileUploader(item)"></td>
                                              <td ng-bind="item.isSubmit" class="tabLeft"></td>
                                              <td ng-bind="item.submitter" class="tabLeft"></td>
                                          </tr>
@@ -204,4 +204,52 @@
         <button class="btn btn-warning" type="button" ng-click="itemCtrl.cancel()">取消</button>
     </div>
 </script>
+
+
+<script type="text/ng-template" id="fileUploader.html">
+    <div class="modal-header">
+        <h4 class="modal-title">文件上传</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">阶段：</label>
+                <input type="text" class="form-control Rinput50" ng-model="fileCtrl.item.stageName" readonly>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">文档：</label>
+                <input type="text" class="form-control Rinput50" ng-model="fileCtrl.item.docName" readonly>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">文件：</label>
+                <input type="text" class="form-control Rinput60" ng-model="fileCtrl.item.fileUrl" readonly >
+                <button  type="button" class="btn RSerBut" ng-click="fileCtrl.fileItem.upload()"
+                         ng-disabled="fileCtrl.fileItem.isReady
+                        || fileCtrl.fileItem.isUploading
+                        || fileCtrl.fileItem.isSuccess">
+                    上传
+                </button>
+                <button  type="button" class="btn RSerBut" ng-show="fileCtrl.item.fileUrl">
+                    <a href="/download/file?filePath={{fileCtrl.item.fileUrl}}&isOnLine=true" target="_blank">查看</a>
+                </button>
+                <input type="file" nv-file-select="" uploader="uploader" />
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</script>
+
+
+
 <div data-ng-include=" 'src/pc/planDetail/timeUpdateLog.html' " ng-class="ctrl.panelClass"></div>

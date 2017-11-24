@@ -868,12 +868,24 @@ angular.module('app')
                   templateUrl: 'src/pc/planDetail/index.tpl.html',
                   controller: 'planDetailCtrl as ctrl',
                   resolve: {
-                      deps: ['uiLoad',
-                          function( uiLoad ){
-                              return uiLoad.load( ['src/pc/planDetail/controller.js'] );
-                          }]
+                      load: ['$ocLazyLoad', function ($ocLazyLoad) {
+                          return $ocLazyLoad.load([
+                              'angularBootstrapNavTree',
+                              'angularFileUpload',
+                              'ngImgCrop'
+                          ]).then(
+                              function () {
+                                  return $ocLazyLoad.load('src/pc/planDetail/controller.js');
+                              }
+                          );
+                      }]
                   }
               })
+
+
+
+
+
               .state('app.excePlan', {
                   url: '/excePlan',
                   templateUrl: 'src/pc/exceptionPlan/index.tpl.html',

@@ -153,7 +153,15 @@
                                              </td>
 
                                              <td ng-bind="item.isComplete" class="tabLeft"></td>
-                                             <td ng-bind="item.docName" class="tabLeft" ng-dblclick="ctrl.fileUploader(item)"></td>
+                                             <td class="tabLeft">
+                                                 <a ng-dblclick="ctrl.fileUploader(item)">{{item.docName}}</a>
+                                                 <a ng-show="item.fileName" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fview%3ffileName%3d{{item.fileName}}" target="_blank">
+                                                     查看
+                                                 </a>
+                                                 <a ng-show="item.fileName" href="/ts-project/download/file?fileName={{item.fileName}}" target="_blank">下载
+                                                 </a>
+
+                                             </td>
                                              <td ng-bind="item.isSubmit" class="tabLeft"></td>
                                              <td ng-bind="item.submitter" class="tabLeft"></td>
                                          </tr>
@@ -246,6 +254,9 @@
 
 
         </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="fileCtrl.cancel()">关闭</button>
     </div>
 
 </script>

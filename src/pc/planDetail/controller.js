@@ -178,6 +178,7 @@ app.controller('FileUploaderCtrl', ['$scope', '$modalInstance','$http', '$filter
 
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
         alert(response.message);
+        $modalInstance.close();
     };
 
 

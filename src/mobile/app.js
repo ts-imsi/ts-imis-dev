@@ -2,6 +2,7 @@
     angular
         .module('MOBILEAPP', [
             'ui.router',
+            'MOBILEAPP.USER.CONTROLLER',
             'MOBILEAPP.TRANSACT.CONTROLLER',
             'MOBILEAPP.TREATEDDET.CONTROLLER',
             'MOBILEAPP.UNTREATEDDET.CONTROLLER',
@@ -20,6 +21,7 @@
             .state('user', {
                 url: '/user',
                 templateUrl: window.rootSrc + 'mobile/user.html',
+                controller: 'userCtrl as $ctrl'
             })
             .state('transact', {
                 url: '/transact',

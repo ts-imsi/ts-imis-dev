@@ -13,11 +13,20 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         selt.panelClass = "contact panel panel-default";
     };
 
+    //权限控制
+    this.updateTimeBoo = false;
+    this.test1 = function () {
+        selt.updateTimeBoo = true;
+        selt.detail.checkRole="";
+    };
+
+
 
     this.queryPlanItems = function () {
         $http.post("/ts-project/planDetail/queryPlanItems/"+planId).success(function (result) {
             if(result.success){
                 selt.detail=result.object;
+                //selt.test1();
             }
         });
     };
@@ -53,7 +62,8 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         });
     };
 
-    this.updateTimeBoo = false;
+
+
 
     this.updatePlanItem = function (detail) {
         var planItemList = [];
@@ -125,6 +135,78 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
             }
         });
     };
+    
+    this.isShowCheck = function (checkRole,tagId) {
+        return checkRole.indexOf(tagId) >= 0;
+    }
+
+    this.isRoleCheck = function (planChecks,tagId) {
+        var result = "--"
+        angular.forEach(planChecks, function(item) {
+            if(item.checkTag == tagId){
+                var status =  item.status
+                if(status==0){
+                    result = "待确认";
+                }else if(status==1){
+                    result = "已确认";
+                }else if(status==2){
+                    result = "驳回";
+                }
+            }
+        });
+        return result;
+    }
+
+    this.isRoleClass = function (planChecks,tagId) {
+        var result = "tabLeft"
+        angular.forEach(planChecks, function(item) {
+            if(item.checkTag == tagId){
+                var status =  item.status
+                if(status==0){
+                    result = "NkBu tabLeft";
+                }else if(status==1){
+                    result = "Nkgreen tabLeft";
+                }else if(status==2){
+                    result = "NkRed tabLeft";
+                }
+            }
+        });
+        return result;
+    };
+
+    this.isCheckPermission = function (planChecks,tagId,perm) {
+        var  permission = "";
+        angular.forEach(planChecks, function(item) {
+            if(item.checkTag == tagId){
+                permission = item.permission;
+            }
+        });
+        return permission.indexOf(perm) >= 0;
+
+
+    };
+
+    this.checkOk = function (item,userRole) {
+        item.userRole = userRole;
+        $http.post("/ts-project/planDetail/check/ok",angular.toJson(item)).success(function (result) {
+            alert(result.message);
+            if(result.success){
+                selt.queryPlanItems();
+            }
+        });
+    };
+
+    this.checkBack = function (item,userRole) {
+        item.userRole = userRole;
+        $http.post("/ts-project/planDetail/check/back",angular.toJson(item)).success(function (result) {
+            alert(result.message);
+            if(result.success){
+                selt.queryPlanItems();
+            }
+        });
+    }
+
+
 
 
 }]);

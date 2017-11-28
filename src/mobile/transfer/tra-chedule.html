@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>交接单进度</title>
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link href="../css/mobileCss.css" rel="stylesheet" />
-    <link href="../css/iconfont.css" rel="stylesheet" />
+    <script src="./js/mui.min.js"></script>
+    <link href="./css/mui.min.css" rel="stylesheet"/>
+    <link href="./css/mobileCss.css" rel="stylesheet" />
+    <link href="./css/iconfont.css" rel="stylesheet" />
     <script type="text/javascript" charset="utf-8">
         mui.init();
     </script>
@@ -15,7 +15,7 @@
 <body>
 <!--header-->
 <header class="mui-bar mui-bar-nav headerBG">
-    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA" href="#/transfer"></a>
     <h1 class="mui-title headerA">交接单进度</h1>
 </header>
 <!--header end-->
@@ -43,79 +43,51 @@
     <!--标题栏-->
     <div class="delivertRecTit">
         <h4>项目交接单</h4>
-        <p>长沙市中医医院（长沙市第八医院）</p>
-        <p>合同号：B3239</p>
-        <p>2017-12-21</p>
+        <p ng-bind="$ctrl.handover.customerName"></p>
+        <p>合同号：{{$ctrl.handover.htNo}}</p>
+        <p ng-bind="$ctrl.handover.created | date:'yyyy-MM-dd'"></p>
     </div>
     <!--交接单信息-->
      <div class="applicationInfo"  style="margin-top: 15px; margin-bottom: 15px">
             <p class="textTit">办理信息</p>
             <div class="applicationList">
-                <div class="application">
-                    <label>类型</label><span class="mui-pull-right applicationInfoText">合同变更</span>
+                <div class="application" ng-show="$ctrl.handover.type=='NEW'">
+                    <label>类型</label><span class="mui-pull-right applicationInfoText">合同交接</span>
+                </div>
+                <div class="application" ng-show="$ctrl.handover.type=='BG'">
+                    <label>类型</label><span class="mui-pull-right applicationInfoText">合同变更交接</span>
+                </div>
+                <div class="application" ng-show="$ctrl.handover.type=='ZB'">
+                    <label>类型</label><span class="mui-pull-right applicationInfoText">合同增补交接</span>
                 </div>
                 <div class="application">
-                    <label>合同号</label><span class="mui-pull-right applicationInfoText">B17013</span>
+                    <label>合同号</label><span class="mui-pull-right applicationInfoText" ng-bind="$ctrl.handover.htNo"></span>
                 </div>
                 <div class="application">
-                    <label>客户名称</label><span class="mui-pull-right applicationInfoText">澧县人民医院</span>
+                    <label>客户名称</label><span class="mui-pull-right applicationInfoText" ng-bind="$ctrl.handover.customerName"></span>
                 </div>
                 <div class="application">
-                    <label>合同名称</label><span class="mui-pull-right applicationInfoText">触摸屏查询系统</span>
-                </div>
-                <div class="application">
-                    <label>申请部门</label><span class="mui-pull-right applicationInfoText">销售部</span>
-                </div>
-                <div class="application">
-                    <label>申请人</label><span class="mui-pull-right applicationInfoText">A销售</span>
-                </div>
-                <div class="application">
-                    <label>申请时间</label><span class="mui-pull-right applicationInfoText">2017-06-23 09:23:11</span>
-                </div>
-                <div class="application">
-                    <label>上个审批人</label><span class="mui-pull-right applicationInfoText">A组长</span>
+                    <label>合同名称</label><span class="mui-pull-right applicationInfoText" ng-bind="$ctrl.handover.htName"></span>
                 </div>
             </div>
         </div>
     <!--交接单进度-->
     <ul class="mui-table-view fl w100" style="margin-top: 0;" id="contSet">
-        <li class="mui-table-view-cell mui-media thisDA">
+        <li class="mui-table-view-cell mui-media thisDA" ng-repeat="timeLine in $ctrl.timeLineVos">
             <div class="mui-media-body padd010">
-                <span class="graufont9 font12">2017-03-05</span>
+                <span class="graufont9 font12" ng-bind="timeLine.time"></span>
                 <span class="greenFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile--tongguo" style="padding-right: 5px;"></i>通过</span>
-                <h5 class="graufont9 font16">节点名节点名 <span style="padding-left: 10px;" class="font12">张三</span></h5>
+                <h5 class="graufont9 font16">{{timeLine.taskName}}</h5>
             </div>
         </li>
-        <li class="mui-table-view-cell mui-media thisDA">
+        <!--<li class="mui-table-view-cell mui-media thisDA">
             <div class="mui-media-body padd010">
                 <span class="graufont9 font12">2017-03-05</span>
-                <span class="redFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile--shape" style="padding-right: 5px;"></i>被驳回</span>
+                <span class="redFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile&#45;&#45;shape" style="padding-right: 5px;"></i>被驳回</span>
                 <h5 class="graufont9 font16">节点名节点名 <span style="padding-left: 10px;" class="font12">张三</span></h5>
                 <p class="MemListTime mui-ellipsis2">驳回理由驳回理由驳回理由驳回理由驳回理由驳回理由</p>
             </div>
-        </li>
-        <li class="mui-table-view-cell mui-media thisDA">
-            <div class="mui-media-body padd010">
-                <span class="graufont9 font12">2017-03-05</span>
-                <span class="greenFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile--tongguo" style="padding-right: 5px;"></i>通过</span>
-                <h5 class="graufont9 font16">节点名节点名 <span style="padding-left: 10px;" class="font12">张三</span></h5>
-            </div>
-        </li>
-        <li class="mui-table-view-cell mui-media thisDA">
-            <div class="mui-media-body padd010">
-                <span class="graufont9 font12">2017-03-05</span>
-                <span class="greenFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile--tongguo" style="padding-right: 5px;"></i>通过</span>
-                <h5 class="graufont9 font16">节点名节点名 <span style="padding-left: 10px;" class="font12">张三</span></h5>
-            </div>
-        </li>
-        <li class="mui-table-view-cell mui-media thisDA">
-            <div class="mui-media-body padd010">
-                <span class="graufont9 font12">2017-03-05</span>
-                <span class="redFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile--shape" style="padding-right: 5px;"></i>被驳回</span>
-                <h5 class="graufont9 font16">节点名节点名 <span style="padding-left: 10px;" class="font12">张三</span></h5>
-                <p class="MemListTime mui-ellipsis2">驳回理由驳回理由驳回理由驳回理由驳回理由驳回理由</p>
-            </div>
-        </li>
+        </li>-->
     </ul>
 </div>
 

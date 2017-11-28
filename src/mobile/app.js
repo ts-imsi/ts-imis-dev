@@ -6,6 +6,8 @@
             'MOBILEAPP.TRANSACT.CONTROLLER',
             'MOBILEAPP.TREATEDDET.CONTROLLER',
             'MOBILEAPP.UNTREATEDDET.CONTROLLER',
+            'MOBILEAPP.TRANSFER.CONTROLLER',
+            'MOBILEAPP.TRACHEDULE.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
@@ -37,6 +39,16 @@
                 url: '/untreatedDet',
                 templateUrl: window.rootSrc + 'mobile/untreatedDet/untreatedDet.html',
                 controller: 'untreatedDetCtrl as $ctrl'
+            })
+            .state('transfer', {
+            url: '/transfer',
+            templateUrl: window.rootSrc + 'mobile/transfer/transfer.html',
+            controller: 'transferCtrl as $ctrl'
+            })
+            .state('traChedule', {
+                url: '/traChedule',
+                templateUrl: window.rootSrc + 'mobile/transfer/tra-chedule.html',
+                controller: 'traCheduleCtrl as $ctrl'
             });
 
 

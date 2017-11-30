@@ -421,3 +421,18 @@ app.directive('autoHeight',function ($window) {
         }
     };
 });
+
+app.filter('templateType',function(){
+    return function(type){
+        var resultType = "";
+        switch(type)
+        {
+            case 'actualize':
+                resultType = "实施计划";
+                break;
+            default:
+                resultType = type;
+        };
+        return resultType;
+    }
+});

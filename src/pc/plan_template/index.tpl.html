@@ -29,7 +29,7 @@
                 <tr ng-repeat="plan in ctrl.planTempList">
                     <td ng-bind="plan.tempName"></td>
                     <td ng-bind="plan.proName"></td>
-                    <td ng-bind="plan.type"></td>
+                    <td ng-bind="plan.type | templateType"></td>
                     <td ng-bind="plan.created | date:'yyyy-MM-dd'"></td>
                     <td><a href="#/app/createPlanTemp?pkid={{plan.pkid}}" class="btn btn-default daochu Nksx">查看</a></td>
                 </tr>

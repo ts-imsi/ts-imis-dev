@@ -38,7 +38,7 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
                 selt.tagSaveList=result.tagSaveList;
                 selt.type=result.tbPlanTemplate.type;
                 angular.forEach(selt.productList,function(item){
-                    if(item.proCode=result.tbPlanTemplate.proCode){
+                    if(item.proCode==result.tbPlanTemplate.proCode){
                         selt.twfpro=item;
                     }
                 })

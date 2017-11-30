@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>项目管理</title>
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link href="../css/mobileCss.css" rel="stylesheet" />
-    <link href="../css/iconfont.css" rel="stylesheet" />
+    <script src="./js/mui.min.js"></script>
+    <link href="./css/mui.min.css" rel="stylesheet"/>
+    <link href="./css/mobileCss.css" rel="stylesheet" />
+    <link href="./css/iconfont.css" rel="stylesheet" />
     <script type="text/javascript" charset="utf-8">
         mui.init();
     </script>
@@ -15,7 +15,7 @@
 <body>
 <!--header-->
 <header class="mui-bar mui-bar-nav headerBG">
-    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA" href="#/user"></a>
     <h1 class="mui-title headerA">项目管理</h1>
 </header>
 <!--header end-->
@@ -44,73 +44,16 @@
         <input type="search" class="mui-input-clear" placeholder="请输入搜索内容">
     </div>
     <ul class="mui-table-view mui-table-view-chevron" style="margin-top: 0">
-        <li class="mui-table-view-cell mui-collapse   mui-active"><a class="mui-navigate-right" href="#">长沙市中医医院（长沙市第八医院）</a>
+        <li  ng-class="{'mui-table-view-cell mui-collapse':!$ctrl.objtype[{{$index}}],'mui-table-view-cell mui-collapse mui-active':$ctrl.objtype[{{$index}}]}" ng-click="$ctrl.chickClassMui($index)"  ng-repeat="handover in $ctrl.handOverList"><a class="mui-navigate-right">{{handover.htName}}</a>
             <ul class="mui-table-view mui-table-view-chevron">
-                <li class="mui-table-view-cell posRe">
-                    <a class="mui-navigate-right" href="project-details.html">项目名称
+                <li class="mui-table-view-cell posRe" ng-repeat="pro in handover.planList">
+                    <a class="mui-navigate-right" href="#/projectDetails?planId={{pro.planId}}">{{pro.proName}}
                        <div class="fr posAbs proMametJD">
                           <div class="posRe proSchedule" style="width: 80%">
                               <span class="posAbs" >80%</span>
                           </div>
                        </div>
                     </a>
-                </li>
-                <li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">磁卡读卡器
-                    <div class="fr posAbs proMametJD">
-                        <div class="posRe proSchedule" style="width: 60%">
-                            <span class="posAbs" >60%</span>
-                        </div>
-                    </div></a>
-                </li>
-                <li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">身份证识别器
-                    <div class="fr posAbs proMametJD">
-                        <div class="posRe proSchedule" style="width: 20%">
-                            <span class="posAbs" >20%</span>
-                        </div>
-                    </div></a>
-                </li>
-            </ul>
-        </li>
-        <li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">方案</a>
-            <ul class="mui-table-view mui-table-view-chevron">
-                <li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">PC方案
-                    <div class="fr posAbs proMametJD">
-                        <div class="posRe proSchedule" style="width: 80%">
-                            <span class="posAbs" >80%</span>
-                        </div>
-                    </div></a>
-                </li>
-                <li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">手机方案
-                    <div class="fr posAbs proMametJD">
-                        <div class="posRe proSchedule" style="width: 90%">
-                            <span class="posAbs" >90%</span>
-                        </div>
-                    </div></a>
-                </li>
-                <li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">TV方案
-                    <div class="fr posAbs proMametJD">
-                        <div class="posRe proSchedule" style="width: 10%">
-                            <span class="posAbs" >10%</span>
-                        </div>
-                    </div></a>
-                </li>
-            </ul>
-        </li>
-        <li class="mui-table-view-cell mui-collapse"><a class="mui-navigate-right" href="#">新闻</a>
-            <ul class="mui-table-view mui-table-view-chevron">
-                <li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">公司新闻
-                    <div class="fr posAbs proMametJD">
-                        <div class="posRe proSchedule" style="width: 20%">
-                            <span class="posAbs" >20%</span>
-                        </div>
-                    </div></a>
-                </li>
-                <li class="mui-table-view-cell"><a class="mui-navigate-right" href="#">行业新闻
-                    <div class="fr posAbs proMametJD">
-                        <div class="posRe proSchedule" style="width: 0">
-                            <span class="posAbs" >0%</span>
-                        </div>
-                    </div></a>
                 </li>
             </ul>
         </li>

@@ -8,6 +8,8 @@
             'MOBILEAPP.UNTREATEDDET.CONTROLLER',
             'MOBILEAPP.TRANSFER.CONTROLLER',
             'MOBILEAPP.TRACHEDULE.CONTROLLER',
+            'MOBILEAPP.PROJECTMENT.CONTROLLER',
+            'MOBILEAPP.PROJECTDETAILS.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
@@ -49,6 +51,16 @@
                 url: '/traChedule',
                 templateUrl: window.rootSrc + 'mobile/transfer/tra-chedule.html',
                 controller: 'traCheduleCtrl as $ctrl'
+            })
+            .state('projectMent', {
+            url: '/projectMent',
+            templateUrl: window.rootSrc + 'mobile/project-mament/project-ment.html',
+            controller: 'projectMentCtrl as $ctrl'
+            })
+            .state('projectDetails', {
+                url: '/projectDetails',
+                templateUrl: window.rootSrc + 'mobile/project-mament/project-details.html',
+                controller: 'projectDetailsCtrl as $ctrl'
             });
 
 

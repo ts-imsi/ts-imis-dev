@@ -897,6 +897,18 @@ angular.module('app')
                           }]
                   }
               })
+
+              .state('app.outputValue', {
+                  url: '/outputValue',
+                  templateUrl: 'src/pc/outputValue/index.tpl.html',
+                  controller: 'OutputValueCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/outputValue/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

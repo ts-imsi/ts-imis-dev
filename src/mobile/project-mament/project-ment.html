@@ -44,7 +44,7 @@
         <input type="search" class="mui-input-clear" placeholder="请输入搜索内容">
     </div>
     <ul class="mui-table-view mui-table-view-chevron" style="margin-top: 0">
-        <li  ng-class="{'mui-table-view-cell mui-collapse':!$ctrl.objtype[{{$index}}],'mui-table-view-cell mui-collapse mui-active':$ctrl.objtype[{{$index}}]}" ng-click="$ctrl.chickClassMui($index)"  ng-repeat="handover in $ctrl.handOverList"><a class="mui-navigate-right">{{handover.htName}}</a>
+        <li  ng-class="{'mui-table-view-cell mui-collapse':!$ctrl.objtype[{{$index}}],'mui-table-view-cell mui-collapse mui-active':$ctrl.objtype[{{$index}}]}"   ng-repeat="handover in $ctrl.handOverList"><a class="mui-navigate-right" ng-click="$ctrl.chickClassMui($index)">{{handover.htName}}</a>
             <ul class="mui-table-view mui-table-view-chevron">
                 <li class="mui-table-view-cell posRe" ng-repeat="pro in handover.planList">
                     <a class="mui-navigate-right" href="#/projectDetails?planId={{pro.planId}}">{{pro.proName}}

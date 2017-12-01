@@ -53,8 +53,8 @@
                     <div class="swiper-slide swiper-slide-active outPutList" style="position: relative;">
 
                         <ul class="mui-table-view" style="margin-top: 0">
-                            <li ng-class="{'mui-table-view-cell mui-collapse':!$ctrl.objTypeDetail[{{$index}}],'mui-table-view-cell mui-collapse mui-active':$ctrl.objTypeDetail[{{$index}}]}" ng-click="$ctrl.chickClassMui($index)" ng-repeat="planStage in $ctrl.planDetail.tbPlanStages">
-                                <a class="mui-navigate-right posRe">
+                            <li ng-class="{'mui-table-view-cell mui-collapse':!$ctrl.objTypeDetail[{{$index}}],'mui-table-view-cell mui-collapse mui-active':$ctrl.objTypeDetail[{{$index}}]}"  ng-repeat="planStage in $ctrl.planDetail.tbPlanStages">
+                                <a class="mui-navigate-right posRe" ng-click="$ctrl.chickClassMui($index)">
                                     <span class="w60 fl" ng-bind="planStage.stageName"></span>
                                     <span class="fl font12 graufont9">{{planStage.planStartTime}}至{{planStage.planEndTime}}</span>
                                 </a>
@@ -63,7 +63,16 @@
                                         <div class="mui-media-body">
                                             <p class="font14 mui-ellipsis-2 graufont3" ng-bind="planItem.docName"></p>
                                             <p class="font12 graufont9" ng-bind="planItem.planTime"></p>
-                                            <p class="graufont9 font12">文档提交：{{planItem.submitTime | date:'yyyy-MM-dd'}}<span class="buleFont" style="padding-left: 5px" ng-bind="planItem.submitter"></span><span ng-show="planItem.isSubmit==1"> <button type="button" class="mui-btn traBut buleButBG fr" style="padding: 4px 15px">确认</button></span></p>
+                                            <a class="graufont9 font12" ng-show="planItem.fileName" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fview%3ffileName%3d{{planItem.fileName}}" target="_blank">
+                                                查看文档
+                                            </a>
+                                            <p class="graufont9 font12">文档提交：{{planItem.submitTime | date:'yyyy-MM-dd'}}
+                                                <span class="buleFont" style="padding-left: 5px" ng-bind="planItem.submitter"></span>
+                                                <span ng-show="planItem.isSubmit==1">
+                                                    <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole)" class="mui-btn traBut buleButBG fr" ng-click="$ctrl.checkOk(planItem,$ctrl.planDetail.userRole)" style="padding: 4px 15px">确认</button>
+                                                    <span ng-show="!$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole)" style="color: #30be00;float: right;">已确认</span>
+                                                </span>
+                                            </p>
                                         </div>
                                     </li>
                                 </ul>

@@ -42,7 +42,7 @@
                     selt.handover=result.handover;
                     selt.planDetail=result.planDetail;
                     angular.forEach(selt.planDetail.tbPlanStages,function(item){
-                        selt.objTypeDetail.push(false);
+                        selt.objTypeDetail.push(true);
                     })
                 } else {
                     selt.handover='';
@@ -60,5 +60,43 @@
                 }
 
             }
+
+            this.checkOk = function (item,userRole) {
+                item.userRole = userRole;
+                $http.post("/ts-project/planDetail/check/ok",angular.toJson(item)).success(function (result) {
+                    alert(result.message);
+                    if(result.success){
+                        $http.post("/ts-project/mobileProject/selectMobilePlanItems/"+planId).success(function (result) {
+                            if (result.success) {
+
+                                selt.handover=result.handover;
+                                selt.planDetail=result.planDetail;
+                                angular.forEach(selt.planDetail.tbPlanStages,function(item){
+                                    selt.objTypeDetail.push(true);
+                                })
+                            } else {
+                                selt.handover='';
+                                selt.planDetail='';
+                                alert(result.message);
+                            }
+                        });
+                    }
+                });
+            };
+
+            this.showButton = function (planCheck,role) {
+                var show
+                angular.forEach(planCheck,function(item){
+                    if(item.checkTag==role&&item.status==1){
+                        show=true;
+                    }
+                });
+                if(show){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
         }]);
 })();

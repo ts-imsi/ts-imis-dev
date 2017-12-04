@@ -1,0 +1,212 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">确认产值</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+
+
+        <div>
+
+
+            <tabset class="tab-container">
+                <tab heading="未确认产值" ng-click="ctrl.selectByStatus(0)">
+                    <div class="row NKwrapper Nkinput">
+                        <div class="fr">
+                            <div class="btn-group col-px-700" style="position: relative;float:left">
+                                <button type="button" ng-click="ctrl.selectByType('dept')" class="btn btn-default">按部门</button>
+                                <button type="button" ng-click="ctrl.selectByType('ht')" class="btn btn-default">按合同</button>
+                            </div>
+                            <div class="col-px-230 fl" style="position: relative;">
+                                <input type="text" class="form-control" placeholder="请输入关键字" ng-model="ctrl.name">
+                            </div>
+                            <div class="col-px-140 fl" style="position: relative;">
+                                <button type="button" class="btn btn-default" ng-click="ctrl.selectOutput()">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped b-t b-light">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th ng-if="ctrl.type=='dept'">部门</th>
+                                <th ng-if="ctrl.type=='ht'">合同</th>
+                                <th>待确认产值</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody ng-repeat="vo in ctrl.voList">
+                            <tr>
+                                <td>
+                                    <a ng-if="!vo.ifOpen" ng-click="ctrl.openDiv(vo.id)"><i class="fa fa-plus fa-fw m-r-xs"></i></a>
+                                    <a ng-if="vo.ifOpen" ng-click="ctrl.closeDiv(vo.id)"><i class="fa fa-minus fa-fw m-r-xs"></i></a>
+                                </td>
+                                <td ng-bind="vo.name"></td>
+                                <td ng-bind="vo.totle"></td>
+                                <td><button class="btn btn-rounded btn-sm btn-info" ng-click="ctrl.checkOutputValue(vo)">确定</button></td>
+                            </tr>
+                            <div>
+                                <tr ng-if="vo.ifOpen">
+                                    <td colspan="4" style="padding: 0;">
+                                        <div class="TableSF">
+                                            <table class="table table-striped b-t b-light">
+                                                <thead>
+                                                <tr>
+                                                    <th style="width:20px;">
+                                                        <label class="i-checks m-b-none">
+                                                            <input type="checkbox" ng-checked="vo.checked" ng-click="ctrl.isSelectedAll(vo)"><i></i>
+                                                        </label>
+                                                    </th>
+                                                    <th>序号</th>
+                                                    <th>合同号</th>
+                                                    <th>医院名称</th>
+                                                    <th>合同名称</th>
+                                                    <th>产品</th>
+                                                    <th>阶段报告</th>
+                                                    <th>核算比例(%)</th>
+                                                    <th>分配合同额(万)</th>
+                                                    <th>本次产值</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="output in vo.outputValueList">
+                                                    <td>
+                                                        <label class="i-checks m-b-none">
+                                                            <input type="checkbox" ng-checked="output.checked"  ng-click="ctrl.isSelected(output)" name="post[]"><i></i>
+                                                        </label>
+                                                    </td>
+                                                    <td ng-bind="output.pkid"></td>
+                                                    <td ng-bind="output.htNo"></td>
+                                                    <td ng-bind="output.customerName"></td>
+                                                    <td ng-bind="output.htName"></td>
+                                                    <td ng-bind="output.proName"></td>
+                                                    <td ng-bind="output.docName"></td>
+                                                    <td ng-bind="output.output"></td>
+                                                    <td ng-bind="output.total"></td>
+                                                    <td ng-bind="output.subtotal"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <footer class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-3 hidden-xs">
+                            </div>
+                            <div class="col-sm-5 text-right text-center-xs">
+                                <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                            ng-change="ctrl.pageChanged()"
+                                            items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                            boundary-links="true" force-ellipses="true"></pagination>
+                            </div>
+                        </div>
+                    </footer>
+                </tab>
+                <tab heading="已确认产值" ng-click="ctrl.selectByStatus(1)">
+                    <div class="row NKwrapper Nkinput">
+                        <div class="fr">
+                            <div class="btn-group col-px-700" style="position: relative;float:left">
+                                <button type="button" ng-click="ctrl.selectByType('dept')" class="btn btn-default">按部门</button>
+                                <button type="button" ng-click="ctrl.selectByType('ht')" class="btn btn-default">按合同</button>
+                            </div>
+                            <div class="col-px-230 fl" style="position: relative;">
+                                <input type="text" class="form-control" placeholder="请输入关键字" ng-model="ctrl.name">
+                            </div>
+                            <div class="col-px-140 fl" style="position: relative;">
+                                <button type="button" class="btn btn-default" ng-click="ctrl.selectOutput()">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped b-t b-light">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th ng-if="ctrl.type=='dept'">部门</th>
+                                <th ng-if="ctrl.type=='ht'">合同</th>
+                                <th>待确认产值</th>
+                            </tr>
+                            </thead>
+
+                            <tbody ng-repeat="vo in ctrl.voList">
+                            <tr>
+                                <td>
+                                    <a ng-if="!vo.ifOpen" ng-click="ctrl.openDiv(vo.id)"><i class="fa fa-plus fa-fw m-r-xs"></i></a>
+                                    <a ng-if="vo.ifOpen" ng-click="ctrl.closeDiv(vo.id)"><i class="fa fa-minus fa-fw m-r-xs"></i></a>
+                                </td>
+                                <td ng-bind="vo.name"></td>
+                                <td ng-bind="vo.totle"></td>
+                            </tr>
+                            <div>
+                                <tr ng-if="vo.ifOpen">
+                                    <td colspan="3" style="padding: 0;">
+                                        <div class="TableSF">
+                                            <table class="table table-striped b-t b-light">
+                                                <thead>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <th>合同号</th>
+                                                    <th>医院名称</th>
+                                                    <th>合同名称</th>
+                                                    <th>产品</th>
+                                                    <th>阶段报告</th>
+                                                    <th>核算比例(%)</th>
+                                                    <th>分配合同额(万)</th>
+                                                    <th>本次产值</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="output in vo.outputValueList">
+                                                    <td ng-bind="output.pkid"></td>
+                                                    <td ng-bind="output.htNo"></td>
+                                                    <td ng-bind="output.customerName"></td>
+                                                    <td ng-bind="output.htName"></td>
+                                                    <td ng-bind="output.proName"></td>
+                                                    <td ng-bind="output.docName"></td>
+                                                    <td ng-bind="output.output"></td>
+                                                    <td ng-bind="output.total"></td>
+                                                    <td ng-bind="output.subtotal"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <footer class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-3 hidden-xs">
+                            </div>
+                            <div class="col-sm-5 text-right text-center-xs">
+                                <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                            ng-change="ctrl.pageChanged()"
+                                            items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                            boundary-links="true" force-ellipses="true"></pagination>
+                            </div>
+                        </div>
+                    </footer>
+                </tab>
+
+            </tabset>
+
+
+
+
+        </div>
+
+
+    </div>
+</div>

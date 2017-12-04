@@ -13,15 +13,24 @@ app.controller('imitation', ['$scope', '$http','utils',function ($scope, $http,u
             window.location.href = url;
         } else {
             //todo openId设置
-            var openId = "o8qZCwdhpNkRkSwlNLC1WOwB37bE";
-            $http.post("/ts-project/mobileImitation/imitationLogin/" + openId).success(function (result) {
-                if (!result.success) {
+            //var openId = "o8qZCwdhpNkRkSwlNLC1WOwB37bE";
+            $http.get("/ts-project/mobileImitation/oauth2/"+code).success(function(result){
+                if(result.success){
+                    var openId=result.openId;
+
+                    $http.post("/ts-project/mobileImitation/imitationLogin/" + openId).success(function (result) {
+                        if (!result.success) {
+                            alert(result.message);
+                            console.log($scope.authError);
+                        } else {
+                            sessionStorage.setItem("X-TOKEN", result.object.xtoken);
+                            window.location.href = "/src/mobile/index.html#/user";
+                        }
+                    });
+                }else{
                     alert(result.message);
-                    console.log($scope.authError);
-                } else {
-                    sessionStorage.setItem("X-TOKEN", result.object.xtoken);
-                    window.location.href = "/src/mobile/index.html#/user";
                 }
-            });
+            })
+
         }
     }]);

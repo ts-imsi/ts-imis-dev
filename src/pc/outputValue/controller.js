@@ -3,8 +3,16 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
 
     this.type = 'dept';
 
-    this.selectByType=function(status){
-        selt.type=status;
+
+    this.selectByStatus = function (status) {
+        selt.status = status;
+        selt.type='dept';
+        this.setPage(1);
+
+    }
+
+    this.selectByType=function(type){
+        selt.type=type;
         this.setPage(1);
     };
 
@@ -52,7 +60,8 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
             page:pageNo,
             rows:10,
             name:selt.name,
-            type:selt.type
+            type:selt.type,
+            status:selt.status
         };
         console.log(parm);
         $http.post("/ts-project/outputValue/queryOutputValue",angular.toJson(parm)).success(function (result) {
@@ -74,7 +83,8 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
             page:this.pageNo,
             rows:10,
             name:selt.name,
-            type:selt.type
+            type:selt.type,
+            status:selt.status
         };
         $http.post("/ts-project/outputValue/queryOutputValue",angular.toJson(parm)).success(function (result) {
             if(result.success){
@@ -91,6 +101,8 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
     };
 
     this.maxSize = 5;
+    selt.status = 0;
+    selt.type='dept';
     this.setPage(1);
 
 

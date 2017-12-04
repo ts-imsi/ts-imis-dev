@@ -12,7 +12,6 @@
             'WEBAPP.SUBATT.CONTROLLER',
             'WEBAPP.PROMOTION.CONTROLLER',
             'WEBAPP.JFRECORD.CONTROLLER',
-            'WEBAPP.IMITATIONLOGIN.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
@@ -83,11 +82,11 @@
                 templateUrl: window.rootSrc + 'app/jfrecord/index.tpl.html',
                 controller: 'JfRecordCtrl as $ctrl'
             })
-            .state('imitation', {
+            /*.state('imitation', {
             url: '/imitation',
             templateUrl: window.rootSrc + 'app/imitationLogin/index.tpl.html',
             controller: 'imitationCtrl as $ctrl'
-            });
+            })*/;
 
 
         /**

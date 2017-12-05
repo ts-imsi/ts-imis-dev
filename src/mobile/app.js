@@ -12,6 +12,7 @@
             'MOBILEAPP.PROJECTDETAILS.CONTROLLER',
             'MOBILEAPP.OUTPUTVALUE.CONTROLLER',
             'MOBILEAPP.CONFIRVALUE.CONTROLLER',
+            'MOBILEAPP.INFO.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
@@ -73,12 +74,17 @@
                 url: '/confirValue',
                 templateUrl: window.rootSrc + 'mobile/output-value/confir-value.html',
                 controller: 'confirValueCtrl as $ctrl'
+            })
+            .state('info', {
+                url: '/info',
+                templateUrl: window.rootSrc + 'mobile/info/info.html',
+                controller: 'infoCtrl as $ctrl'
             });
 
 
         /**
          * 什么都匹配不到的时候就跳转到首页
          */
-        $urlRouterProvider.otherwise('/index');
+        $urlRouterProvider.otherwise('/user');
     }
 })();

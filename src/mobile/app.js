@@ -10,6 +10,8 @@
             'MOBILEAPP.TRACHEDULE.CONTROLLER',
             'MOBILEAPP.PROJECTMENT.CONTROLLER',
             'MOBILEAPP.PROJECTDETAILS.CONTROLLER',
+            'MOBILEAPP.OUTPUTVALUE.CONTROLLER',
+            'MOBILEAPP.CONFIRVALUE.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
@@ -61,6 +63,16 @@
                 url: '/projectDetails',
                 templateUrl: window.rootSrc + 'mobile/project-mament/project-details.html',
                 controller: 'projectDetailsCtrl as $ctrl'
+            })
+            .state('outputValue', {
+            url: '/outputValue',
+            templateUrl: window.rootSrc + 'mobile/output-value/output-value.html',
+            controller: 'outputValueCtrl as $ctrl'
+            })
+            .state('confirValue', {
+                url: '/confirValue',
+                templateUrl: window.rootSrc + 'mobile/output-value/confir-value.html',
+                controller: 'confirValueCtrl as $ctrl'
             });
 
 

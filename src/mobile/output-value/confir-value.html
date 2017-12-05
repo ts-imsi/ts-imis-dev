@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>产值</title>
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link href="../css/mobileCss.css" rel="stylesheet" />
-    <link href="../css/iconfont.css" rel="stylesheet" />
+    <script src="./js/mui.min.js"></script>
+    <link href="./css/mui.min.css" rel="stylesheet"/>
+    <link href="./css/mobileCss.css" rel="stylesheet" />
+    <link href="./css/iconfont.css" rel="stylesheet" />
     <script type="text/javascript" charset="utf-8">
         mui.init();
     </script>
@@ -15,162 +15,40 @@
 <body>
 <!--header-->
 <header class="mui-bar mui-bar-nav headerBG">
-    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA" href="#/user"></a>
     <h1 class="mui-title headerA">产值</h1>
 </header>
 <!--header end-->
 <!--合计-->
 <nav class="mui-bar mui-bar-tab BG-with">
-   <div class="barBot">合计：4847W</div>
+   <div class="barBot">合计：{{$ctrl.total}}</div>
 </nav>
 
 <div class="mui-content outPutList">
 
     <ul class="mui-table-view mui-table-view-chevron outPut" style="margin-top: 0">
-        <li class="mui-table-view-cell mui-collapse mui-active">
-            <a class="mui-navigate-right posRe" href="#">
-                <span class="w60 fl">HIS医技事业部</span>
-                <span class="fl">总值：500W</span>
+        <li ng-class="{'mui-table-view-cell mui-collapse':!$ctrl.objtype[{{$index}}],'mui-table-view-cell mui-collapse mui-active':$ctrl.objtype[{{$index}}]}" ng-repeat="outputValueVo in $ctrl.outputValueVoList">
+            <a class="mui-navigate-right posRe" ng-click="$ctrl.chickClassMui($index)">
+                <span class="w60 fl" ng-bind="outputValueVo.name"></span>
+                <span class="fl">总值：{{outputValueVo.totle}}</span>
              </a>
             <ul class="mui-table-view mui-table-view-chevron">
                 <!--按钮-->
                 <div class="posAbs outPutPor">
-                    <button type="button" class="mui-btn outPutBut buleButBG" style="margin: 15px auto;" onclick="javascript:top.location='tra-chedule.html'">确认</button>
+                    <button type="button" class="mui-btn outPutBut buleButBG" style="margin: 15px auto;" ng-click="$ctrl.checkOutputValue(outputValueVo)">确认</button>
                 </div>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
+                <li class="mui-table-view-cell posRe mui-checkbox " ng-repeat="output in outputValueVo.outputValueList">
+                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs" ng-checked="output.checked"  ng-click="$ctrl.isSelected(output)">
                         <div class="mui-media-body">
-                            <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                            <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                            <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   HIS系统</h5>
-                            <p class="graufont9 font12">HIS系统与诊疗卡自助服务系统接口项目文档 2017-11-13</p>
+                            <p class="font14 mui-ellipsis-2 graufont3" ng-bind="output.customerName"></p>
+                            <h5 class="graufont6  mui-ellipsis" ng-bind="output.htName"></h5>
+                            <h5 class="greenFont"><span class="graufont9 font12">合同号：{{output.htNo}}</span>   {{output.proName}}</h5>
+                            <p class="graufont9 font12">{{output.docName}} {{output.created | date:'yyyy-MM-dd'}}</p>
                         </div>
                     <!--数值-->
                     <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
-                    </div>
-                </li>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
-                    <div class="mui-media-body">
-                        <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                        <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                        <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   HIS接口项目</h5>
-                        <p class="graufont9 font12">HIS系统与诊疗卡自助服务系统接口项目 2017-11-13</p>
-                    </div>
-                    <!--数值-->
-                    <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
-                    </div>
-                </li>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
-                    <div class="mui-media-body">
-                        <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                        <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                        <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   HIS项目</h5>
-                        <p class="graufont9 font12">诊疗卡自助服务系统接口项目 2017-11-13</p>
-                    </div>
-                    <!--数值-->
-                    <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li class="mui-table-view-cell mui-collapse">
-            <a class="mui-navigate-right posRe" href="#">
-                <span class="w60">LIS医技事业部</span>
-                <span>总值：300W</span>
-            </a>
-            <ul class="mui-table-view mui-table-view-chevron">
-                <!--按钮-->
-                <div class="posAbs outPutPor">
-                    <button type="button" class="mui-btn outPutBut buleButBG" style="margin: 15px auto;" onclick="javascript:top.location='tra-chedule.html'">确认</button>
-                </div>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
-                    <div class="mui-media-body">
-                        <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                        <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                        <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   LIS接口</h5>
-                        <p class="graufont9 font12">自助服务系统接口项目 2017-11-13</p>
-                    </div>
-                    <!--数值-->
-                    <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
-                    </div>
-                </li>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
-                    <div class="mui-media-body">
-                        <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                        <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                        <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   LIS项目</h5>
-                        <p class="graufont9 font12">HIS系统与诊疗卡 2017-11-13</p>
-                    </div>
-                    <!--数值-->
-                    <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
-                    </div>
-                </li>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
-                    <div class="mui-media-body">
-                        <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                        <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                        <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   LIS</h5>
-                        <p class="graufont9 font12">接口项目文档 2017-11-13</p>
-                    </div>
-                    <!--数值-->
-                    <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li class="mui-table-view-cell mui-collapse">
-            <a class="mui-navigate-right posRe" href="#">
-                <span class="w60">爱笑恩</span>
-                <span>总值：500W</span>
-            </a>
-            <ul class="mui-table-view mui-table-view-chevron">
-                <!--按钮-->
-                <div class="posAbs outPutPor">
-                    <button type="button" class="mui-btn outPutBut buleButBG" style="margin: 15px auto;" onclick="javascript:top.location='tra-chedule.html'">确认</button>
-                </div>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
-                    <div class="mui-media-body">
-                        <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                        <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                        <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   H5爱笑恩</h5>
-                        <p class="graufont9 font12">爱笑恩H5页面研发文档 2017-11-13</p>
-                    </div>
-                    <!--数值-->
-                    <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
-                    </div>
-                </li>
-                <li class="mui-table-view-cell posRe mui-checkbox ">
-                    <input id="checkAct" name="checkbox" value="Item 1" type="checkbox" class="posAbs">
-                    <div class="mui-media-body">
-                        <p class="font14 mui-ellipsis-2 graufont3">长沙市中医医院（长沙市第八医院）</p>
-                        <h5 class="graufont6  mui-ellipsis">HIS系统与诊疗卡自助服务系统接口项目</h5>
-                        <h5 class="greenFont"><span class="graufont9 font12">合同号：B14056</span>   H5爱笑恩</h5>
-                        <p class="graufont9 font12">爱笑恩H5页面研发文档 2017-11-13</p>
-                    </div>
-                    <!--数值-->
-                    <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;">20%</div>
-                        <div class="greenFont font18" style="margin: 15px auto;">20w</div>
+                        <div class="buleFont font18" style="margin: 15px auto;" ng-bind="output.output"></div>
+                        <div class="greenFont font18" style="margin: 15px auto;" ng-bind="output.subtotal"></div>
                     </div>
                 </li>
             </ul>

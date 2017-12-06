@@ -123,7 +123,7 @@
                          <td>{{stage.planStartTime}}至{{stage.planEndTime}}</td>
                          <td>
                              <div class="progress progress-sm progress-striped active m-t-xs m-b-none">
-                                 <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="80%" style="width: 80%">60%</div>
+                                 <div class="progress-bar bg-success" data-toggle="tooltip"  ng-style="ctrl.showPoit(stage.poit/stage.allPoit*100)">{{stage.poit/stage.allPoit*100}}%</div>
                              </div>
                          </td>
                      </tr>

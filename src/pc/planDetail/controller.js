@@ -204,6 +204,13 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
                 selt.queryPlanItems();
             }
         });
+    };
+
+    this.showPoit = function (p) {
+        var poit ={
+            width: p+'%'
+        };
+        return poit;
     }
 
 

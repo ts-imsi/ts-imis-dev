@@ -124,6 +124,73 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
 
 
 
+    this.isHt = false;
+    this.line = {
+        proLine:undefined
+    };
+
+    this.selectByHt = function (boo) {
+        selt.isHt = boo;
+    };
+
+    $http.post("/ts-project/outputValue/queryProLine").success(function (result) {
+        if(result.success){
+            selt.proLineList = result.object;
+        }
+    });
+
+    this.saveNoHtOutput = function (line) {
+        if(line.proLine == undefined){
+            alert("请选择产品线!");
+            return;
+        }
+        if(line.total == undefined){
+            alert("请填写金额!");
+            return;
+        }
+        $http.post("/ts-project/outputValue/saveNoHtOutput",angular.toJson(line)).success(function (result) {
+            alert(result.message);
+            if(result.success){
+                 selt.line = {
+                    proLine:undefined
+                }
+            }
+        });
+
+    };
+
+    this.htOutput = {
+        htNo : undefined
+    };
+
+    this.findHt = function () {
+        var param={htNo:selt.htOutput.htNo};
+        $http.post("/ts-project/outputValue/queryHtProduct",angular.toJson(param)).success(function (result) {
+            if(result.success){
+                selt.htOutputList = result.object;
+                selt.htOutput = selt.htOutputList[0];
+            }else{
+                alert("该合同未分解合同额或无效合同!");
+            }
+        });
+
+    };
+
+    this.saveHtOutput = function (remark) {
+        angular.forEach(selt.htOutputList, function(output) {
+            output.remark = remark;
+        });
+        $http.post("/ts-project/outputValue/saveHtOutput",angular.toJson(selt.htOutputList)).success(function (result) {
+            alert(result.message);
+        });
+
+    }
+
+
+
+
+
+
 
 
 

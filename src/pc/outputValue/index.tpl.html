@@ -199,8 +199,168 @@
                         </div>
                     </footer>
                 </tab>
+                <tab>
+                    <tab-heading>
+                        <i class="glyphicon  glyphicon-plus"></i> 添加产值
+                    </tab-heading>
+
+
+                    <div class="RuleCont">
+
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading font-bold">回款产值确认</div>
+                                <div class="panel-body">
+                                    <form class="bs-example form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">是否有合同</label>
+                                            <div class="col-sm-9">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio" name="zxh" value="false" checked ng-click="ctrl.selectByHt(false)"> 无合同
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="radio" name="zxh" value="true" ng-click="ctrl.selectByHt(true)"> 有合同
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div ng-show="ctrl.isHt==false">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">产品线</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control Rinput60"  ng-model="ctrl.line" ng-options="line.proLine  for line in ctrl.proLineList">
+                                                        <option value="">-- 请选择 --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">部门</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" ng-model="ctrl.line.depName" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">金额</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" ng-model="ctrl.line.total">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">备注</label>
+                                                <div class="col-sm-9">
+                                                    <textarea type="text" class="form-control Rinput60" cols="60" rows="4"  name="remark" ng-model="ctrl.line.remark"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-3 col-sm-9">
+                                                    <button type="submit" class="btn btn-sm btn-info" ng-click="ctrl.saveNoHtOutput(ctrl.line)">添加产值</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div ng-show="ctrl.isHt==true">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">合同号</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.htNo" ng-blur="ctrl.findHt()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">合同名</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.htName" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">客户名</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.customerName" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">合同额</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.total" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">备注</label>
+                                            <div class="col-sm-9">
+                                                <textarea type="text" class="form-control Rinput60" cols="60" rows="4"  name="remark" ng-model="ctrl.htOutput.remark"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-3 col-sm-9">
+                                                <button type="submit" class="btn btn-sm btn-info" ng-click="ctrl.saveHtOutput(ctrl.htOutput.remark)">添加产值</button>
+                                            </div>
+                                        </div>
+
+
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped b-t b-light JG">
+                                    <thead class="bgJ">
+                                    <tr>
+                                        <th>部门</th>
+                                        <th>产品名</th>
+                                        <th>产品线</th>
+                                        <th>小计(万)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody ng-show="ctrl.isHt==true">
+                                    <tr ng-repeat="item in ctrl.htOutputList">
+                                        <td ng-bind="item.depName"></td>
+                                        <td ng-bind="item.proName"></td>
+                                        <td ng-bind="item.proLine"></td>
+                                        <td ng-bind="item.total"></td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody ng-show="ctrl.isHt==false">
+                                    <tr>
+                                        <td ng-bind="ctrl.line.depName"></td>
+                                        <td></td>
+                                        <td ng-bind="ctrl.line.proLine"></td>
+                                        <td ng-bind="ctrl.line.total"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+
+
+                </tab>
 
             </tabset>
+
 
 
 

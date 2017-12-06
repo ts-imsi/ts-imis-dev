@@ -124,6 +124,46 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
 
 
 
+    this.isHt = false;
+    this.line = {
+        proLine:undefined
+    };
+
+    this.selectByHt = function (boo) {
+        selt.isHt = boo;
+    };
+
+    $http.post("/ts-project/outputValue/queryProLine").success(function (result) {
+        if(result.success){
+            selt.proLineList = result.object;
+        }
+    });
+
+    this.saveNoHtOutput = function (line) {
+        if(line.proLine == undefined){
+            alert("请选择产品线!");
+            return;
+        }
+        if(line.total == undefined){
+            alert("请填写金额!");
+            return;
+        }
+        $http.post("/ts-project/outputValue/saveNoHtOutput",angular.toJson(line)).success(function (result) {
+            alert(result.message);
+            if(result.success){
+                 selt.line = {
+                    proLine:undefined
+                }
+            }
+        });
+
+    }
+
+
+
+
+
+
 
 
 

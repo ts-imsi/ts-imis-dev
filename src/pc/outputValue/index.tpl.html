@@ -271,38 +271,38 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">合同号</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.htNo" ng-blur="ctrl.findHt()">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">合同名</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.htName" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">客户名</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.customerName" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">合同额</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" ng-model="ctrl.htOutput.total" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">备注</label>
                                             <div class="col-sm-9">
-                                                <textarea type="text" class="form-control Rinput60" cols="60" rows="4"  name="remark"></textarea>
+                                                <textarea type="text" class="form-control Rinput60" cols="60" rows="4"  name="remark" ng-model="ctrl.htOutput.remark"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="col-lg-offset-3 col-sm-9">
-                                                <button type="submit" class="btn btn-sm btn-info">添加产值</button>
+                                                <button type="submit" class="btn btn-sm btn-info" ng-click="ctrl.saveHtOutput(ctrl.htOutput.remark)">添加产值</button>
                                             </div>
                                         </div>
 
@@ -329,29 +329,11 @@
                                     </tr>
                                     </thead>
                                     <tbody ng-show="ctrl.isHt==true">
-                                    <tr ng-repeat="item in ctrl.HtResolveList">
+                                    <tr ng-repeat="item in ctrl.htOutputList">
                                         <td ng-bind="item.depName"></td>
                                         <td ng-bind="item.proName"></td>
-                                        <td ng-bind="item.price"></td>
+                                        <td ng-bind="item.proLine"></td>
                                         <td ng-bind="item.total"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>HIS临床事业部</td>
-                                        <td>院内集成平台</td>
-                                        <td>HIS产品线</td>
-                                        <td>50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HIS临床事业部</td>
-                                        <td>院内集成平台</td>
-                                        <td>HIS产品线</td>
-                                        <td>50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HIS临床事业部</td>
-                                        <td>院内集成平台</td>
-                                        <td>HIS产品线</td>
-                                        <td>50</td>
                                     </tr>
                                     </tbody>
                                     <tbody ng-show="ctrl.isHt==false">

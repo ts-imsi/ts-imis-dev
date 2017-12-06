@@ -157,6 +157,33 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
             }
         });
 
+    };
+
+    this.htOutput = {
+        htNo : undefined
+    };
+
+    this.findHt = function () {
+        var param={htNo:selt.htOutput.htNo};
+        $http.post("/ts-project/outputValue/queryHtProduct",angular.toJson(param)).success(function (result) {
+            if(result.success){
+                selt.htOutputList = result.object;
+                selt.htOutput = selt.htOutputList[0];
+            }else{
+                alert("该合同未分解合同额或无效合同!");
+            }
+        });
+
+    };
+
+    this.saveHtOutput = function (remark) {
+        angular.forEach(selt.htOutputList, function(output) {
+            output.remark = remark;
+        });
+        $http.post("/ts-project/outputValue/saveHtOutput",angular.toJson(selt.htOutputList)).success(function (result) {
+            alert(result.message);
+        });
+
     }
 
 

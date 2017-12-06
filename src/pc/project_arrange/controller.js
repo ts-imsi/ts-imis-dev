@@ -282,6 +282,17 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
     };
     this.closePanel = function () {
         selt.panelClass = "projectPlan panel panel-default";
+    };
+
+
+    this.showPoit = function (p) {
+        if(p==undefined){
+            p=0;
+        }
+        var poit ={
+            width: p*100+'%'
+        };
+        return poit;
     }
 
 }]);

@@ -15,6 +15,7 @@
                             <div class="btn-group col-px-700" style="position: relative;float:left">
                                 <button type="button" ng-click="ctrl.selectByType('dept')" class="btn btn-default">按部门</button>
                                 <button type="button" ng-click="ctrl.selectByType('ht')" class="btn btn-default">按合同</button>
+                                <button type="button" ng-click="ctrl.selectByType('proLine')" class="btn btn-default">按产品线</button>
                             </div>
                             <div class="col-px-230 fl" style="position: relative;">
                                 <input type="text" class="form-control" placeholder="请输入关键字" ng-model="ctrl.name">
@@ -31,6 +32,7 @@
                                 <th></th>
                                 <th ng-if="ctrl.type=='dept'">部门</th>
                                 <th ng-if="ctrl.type=='ht'">合同</th>
+                                <th ng-if="ctrl.type=='proLine'">产品线</th>
                                 <th>待确认产值</th>
                                 <th>操作</th>
                             </tr>
@@ -116,6 +118,7 @@
                             <div class="btn-group col-px-700" style="position: relative;float:left">
                                 <button type="button" ng-click="ctrl.selectByType('dept')" class="btn btn-default">按部门</button>
                                 <button type="button" ng-click="ctrl.selectByType('ht')" class="btn btn-default">按合同</button>
+                                <button type="button" ng-click="ctrl.selectByType('proLine')" class="btn btn-default">按产品线</button>
                             </div>
                             <div class="col-px-230 fl" style="position: relative;">
                                 <input type="text" class="form-control" placeholder="请输入关键字" ng-model="ctrl.name">
@@ -132,6 +135,7 @@
                                 <th></th>
                                 <th ng-if="ctrl.type=='dept'">部门</th>
                                 <th ng-if="ctrl.type=='ht'">合同</th>
+                                <th ng-if="ctrl.type=='proLine'">产品线</th>
                                 <th>待确认产值</th>
                             </tr>
                             </thead>

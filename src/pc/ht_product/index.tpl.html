@@ -122,7 +122,7 @@
 
                                 <li ng-repeat="pro in ctrl.proList">
                                     <label class="checkbox-inline i-checks">
-                                        <input type="checkbox"  ng-checked="ctrl.isNewProSelected(pro)" ng-click="ctrl.updateNewProSelection($event,pro)"><i></i>{{pro.proName}}
+                                        <input type="checkbox"  ng-checked="ctrl.isNewProSelected(pro)" ng-click="ctrl.updateNewProSelection($event,pro)"><i></i><a ng-click="ctrl.showProMSelect(pro)">{{pro.proName}}</a>
                                     </label>
                                 </li>
                             </ul>

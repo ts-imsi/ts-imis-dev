@@ -71,7 +71,7 @@
                     <ul>
                         <li ng-repeat="pro in ctrl.proList">
                             <label class="checkbox-inline i-checks">
-                                <input type="checkbox"  ng-checked="ctrl.isSelected(pro)" ng-click="ctrl.updateSelection($event,pro)"><i></i>{{pro.proName}}
+                                <input type="checkbox"  ng-checked="ctrl.isSelected(pro)" ng-click="ctrl.updateSelection($event,pro)"><i></i><a ng-click="ctrl.showSelect(pro)">{{pro.proName}}</a>
                             </label>
                         </li>
                     </ul>
@@ -105,7 +105,7 @@
 
                         <li ng-repeat="pro in ctrl.proList">
                             <label class="checkbox-inline i-checks">
-                                <input type="checkbox"  ng-checked="ctrl.isNewProSelected(pro)" ng-click="ctrl.updateNewProSelection($event,pro)"><i></i>{{pro.proName}}
+                                <input type="checkbox"  ng-checked="ctrl.isNewProSelected(pro)" ng-click="ctrl.updateNewProSelection($event,pro)"><i></i><a ng-click="ctrl.showNewSelect(pro)">{{pro.proName}}</a>
                             </label>
                         </li>
                     </ul>

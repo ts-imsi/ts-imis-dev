@@ -122,7 +122,14 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         selt.signDate="";
         selt.changeContent="";
         selt.remark="";
+        selt.oldWaitModuleList=[];
+        selt.oldPModuleList=[];
+        selt.proOldM=[];
         selt.oldModuleList=[];
+
+        selt.newProModuleList=[];
+        selt.newPModuleList=[];
+        selt.proNewM=[];
         selt.newModuleList=[];
 
         selt.htNo=htProduct.contractNo;
@@ -155,8 +162,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     };
 
     //老模块合计
-    selt.oldWaitModuleList=[];
-    selt.oldPModuleList=[];
+
     this.updateSelection = function ($event, item) {
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
@@ -167,8 +173,43 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         if (action == 'remove' && selt.oldWaitModuleList.indexOf(item.proCode) != -1) {
             var idx = selt.oldWaitModuleList.indexOf(item.proCode);
             selt.oldWaitModuleList.splice(idx, 1);
+
+            var sta=[];
+            var mo=[]
+            angular.forEach(selt.proOldM,function(proM){
+                sta.push(proM);
+            });
+
+            angular.forEach(selt.oldModuleList,function(mod){
+                mo.push(mod);
+            });
+
+            angular.forEach(sta,function(proM){
+                if(proM.split("|")[0]==item.proCode){
+                    var idlx= selt.proOldM.indexOf(proM);
+                    selt.proOldM.splice(idlx, 1);
+
+                    angular.forEach(mo,function(mod){
+                        if(proM.split("|")[1]==mod){
+                            var idTag = selt.oldModuleList.indexOf(mod);
+                            selt.oldModuleList.splice(idTag, 1);
+                        }
+                    })
+                }
+            })
         }
-        $http.post("/ts-project/product/queryProModuleList",angular.toJson(selt.oldWaitModuleList)).success(function (result) {
+        $http.post("/ts-project/product/selectProModule/"+item.proCode).success(function (result) {
+            if(result.success){
+                selt.oldPModuleList = result.object;
+            }else{
+                selt.oldPModuleList=[];
+                alert(result.message);
+            }
+        });
+    }
+
+    this.showSelect=function(pro){
+        $http.post("/ts-project/product/selectProModule/"+pro.proCode).success(function (result) {
             if(result.success){
                 selt.oldPModuleList = result.object;
             }else{
@@ -183,7 +224,6 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     }
 
     //老模块选中
-    selt.oldModuleList=[];
     this.isOldSelected = function (item) {
         var name=item.modId+":"+item.modName;
         return selt.oldModuleList.indexOf(name) != -1;
@@ -191,23 +231,26 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
     this.updateOldSelection = function ($event, item) {
         var name=item.modId+":"+item.modName;
+        var codeId=item.proCode+"|"+item.modId+":"+item.modName;
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
 
         if (action == 'add' && selt.oldModuleList.indexOf(name) == -1) {
             selt.oldModuleList.push(name);
+            selt.proOldM.push(codeId);
         }
         if (action == 'remove' && selt.oldModuleList.indexOf(name) != -1) {
             var idx = selt.oldModuleList.indexOf(name);
+            var idc=selt.proOldM.indexOf(codeId);
             selt.oldModuleList.splice(idx, 1);
+            selt.proOldM.splice(idc,1);
         }
     }
 
 
 
     //新模块合计
-    selt.newProModuleList=[];
-    selt.newPModuleList=[];
+
     this.updateNewProSelection = function ($event, item) {
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
@@ -218,8 +261,32 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         if (action == 'remove' && selt.newProModuleList.indexOf(item.proCode) != -1) {
             var idx = selt.newProModuleList.indexOf(item.proCode);
             selt.newProModuleList.splice(idx, 1);
+
+            var sta=[];
+            var mo=[]
+            angular.forEach(selt.proNewM,function(proM){
+                sta.push(proM);
+            });
+
+            angular.forEach(selt.newModuleList,function(mod){
+                mo.push(mod);
+            });
+
+            angular.forEach(sta,function(proM){
+                if(proM.split("|")[0]==item.proCode){
+                    var idlx= selt.proNewM.indexOf(proM);
+                    selt.proNewM.splice(idlx, 1);
+
+                    angular.forEach(mo,function(mod){
+                        if(proM.split("|")[1]==mod){
+                            var idTag = selt.newModuleList.indexOf(mod);
+                            selt.newModuleList.splice(idTag, 1);
+                        }
+                    })
+                }
+            })
         }
-        $http.post("/ts-project/product/queryProModuleList",angular.toJson(selt.newProModuleList)).success(function (result) {
+        $http.post("/ts-project/product/selectProModule/"+item.proCode).success(function (result) {
             if(result.success){
                 selt.newPModuleList = result.object;
             }else{
@@ -235,23 +302,37 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
 
     //新模块选中
-    selt.newModuleList=[];
     this.isNewSelected = function (item) {
         var name=item.modId+":"+item.modName;
         return selt.newModuleList.indexOf(name) != -1;
     }
 
+    this.showNewSelect=function(pro){
+        $http.post("/ts-project/product/selectProModule/"+pro.proCode).success(function (result) {
+            if(result.success){
+                selt.newPModuleList = result.object;
+            }else{
+                selt.newPModuleList=[];
+                alert(result.message);
+            }
+        });
+    }
+
     this.updateNewSelection = function ($event, item) {
         var name=item.modId+":"+item.modName;
+        var codeId=item.proCode+"|"+item.modId+":"+item.modName;
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
 
         if (action == 'add' && selt.newModuleList.indexOf(name) == -1) {
             selt.newModuleList.push(name);
+            selt.proNewM.push(codeId);
         }
         if (action == 'remove' && selt.newModuleList.indexOf(name) != -1) {
             var idx = selt.newModuleList.indexOf(name);
+            var idc=selt.proNewM.indexOf(codeId);
             selt.newModuleList.splice(idx, 1);
+            selt.proNewM.splice(idc,1);
         }
         if(selt.type=="BG"){
             selt.newModule_name="合同"+selt.htNo+"由"+selt.oldModuleList+"模块变更为"+selt.newModuleList+"模块";
@@ -535,12 +616,13 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
     product.newProModuleList=[];
     product.newPModuleList=[];
     product.newModuleList=[];
+    product.proM=[];
 
     $http.post("/ts-project/product/getAddModuleView/"+data.htNo).success(function (result) {
         if(result.success){
             product.proList = result.proList;
             product.newProModuleList=result.newProModuleList;
-            product.newPModuleList = result.newPModuleList;
+            product.proM = result.proM;
             product.newModuleList = result.newModuleList;
         }else{
             product.proList=[];
@@ -550,6 +632,18 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
+
+    this.showProMSelect=function(pro){
+        $http.post("/ts-project/product/selectProModule/"+pro.proCode).success(function (result) {
+            if(result.success){
+                product.newPModuleList = result.object;
+            }else{
+                product.newPModuleList=[];
+                alert(result.message);
+            }
+        });
+    }
+
     //新模块合计
     this.updateNewProSelection = function ($event, item) {
         var checkbox = $event.target;
@@ -561,8 +655,31 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
         if (action == 'remove' && product.newProModuleList.indexOf(item.proCode) != -1) {
             var idx = product.newProModuleList.indexOf(item.proCode);
             product.newProModuleList.splice(idx, 1);
+            var sta=[];
+            var mo=[]
+            angular.forEach(product.proM,function(proM){
+                sta.push(proM);
+            });
+
+            angular.forEach(product.newModuleList,function(mod){
+                mo.push(mod);
+            });
+
+            angular.forEach(sta,function(proM){
+                if(proM.split("|")[0]==item.proCode){
+                    var idlx= product.proM.indexOf(proM);
+                    product.proM.splice(idlx, 1);
+
+                    angular.forEach(mo,function(mod){
+                        if(proM.split("|")[1]==mod){
+                            var idTag = product.newModuleList.indexOf(mod);
+                            product.newModuleList.splice(idTag, 1);
+                        }
+                    })
+                }
+            })
         }
-        $http.post("/ts-project/product/queryProModuleList",angular.toJson(product.newProModuleList)).success(function (result) {
+        $http.post("/ts-project/product/selectProModule/"+item.proCode).success(function (result) {
             if(result.success){
                 product.newPModuleList = result.object;
             }else{
@@ -586,15 +703,19 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
 
     this.updateNewSelection = function ($event, item) {
         var name=item.modId+":"+item.modName;
+        var codeId=item.proCode+"|"+item.modId+":"+item.modName;
         var checkbox = $event.target;
         var action = (checkbox.checked ? 'add' : 'remove');
 
         if (action == 'add' && product.newModuleList.indexOf(name) == -1) {
             product.newModuleList.push(name);
+            product.proM.push(codeId)
         }
         if (action == 'remove' && product.newModuleList.indexOf(name) != -1) {
             var idx = product.newModuleList.indexOf(name);
+            var idc=product.proM.indexOf(codeId);
             product.newModuleList.splice(idx, 1);
+            product.proM.splice(idc,1);
         }
     }
 

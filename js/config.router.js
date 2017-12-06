@@ -909,6 +909,20 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.productModel', {
+                  url: '/productModel',
+                  templateUrl: 'src/pc/productModel/index.tpl.html',
+                  controller: 'productModelCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/pc/productModel/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
       }
     ]
   );

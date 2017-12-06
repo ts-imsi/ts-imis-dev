@@ -1,0 +1,46 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.productSubmit(form.$valid,form.$invalid,ctrl.product)">
+    <div class="fl RuleTit">
+        <div class="fr">
+            <input type="submit" class="save fl" ng-show="ctrl.submitProduct" value="新增" />
+            <input type="submit" class="save fl" ng-show="ctrl.updateProduct" value="更新" />
+            <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
+        </div>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput">
+                <label class="RuleName">产品CODE：</label>
+                <input type="text" class="form-control Rinput60"  name="proCode" ng-model="ctrl.product.proCode" required>
+                <span class="errorInput"
+                      ng-show="form.proCode.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">产品名称：</label>
+                <input type="text" class="form-control Rinput60" name="proName" ng-model="ctrl.product.proName" required>
+                <span class="errorInput"
+                      ng-show="form.proName.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">产品线：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.product.proLine" required>
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">部门：</label>
+                <p class="input-group">
+                    <input type="hidden" class="form-control"  ng-model="ctrl.product.depId"/>
+                    <input type="text" class="form-control"  ng-model="ctrl.product.depName" readonly/>
+                    <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default NkSearContract RSerBut" ng-click="ctrl.findDeptperson()"></i></button>
+                                            </span>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</form>

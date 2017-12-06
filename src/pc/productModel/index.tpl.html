@@ -1,0 +1,90 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">项目列表</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="col-px-230 fl" style="position: relative;">
+                    <input type="text" class="form-control" placeholder="请输入关键字" ng-model="ctrl.selectName">
+                </div>
+                <div class="col-px-140 fl" style="position: relative;">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.selectProductModel()">查询</button>
+                </div>
+                <div class="col-px-180 fl" style="position: relative;">
+                    <button type="button" class="form-control" ng-click="ctrl.addProduct();ctrl.openPanel()">新增产品</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <td ng-if="ctrl.isArrange==1"></td>
+                    <th>产品CODE</th>
+                    <th>产品名称</th>
+                    <th>产品线</th>
+                    <th>所属部门</th>
+                    <th>是否有效</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="productModel in ctrl.productModelList">
+                    <td ng-bind="productModel.proCode"></td>
+                    <td ng-bind="productModel.proName"></td>
+                    <td ng-bind="productModel.proLine"></td>
+                    <td ng-bind="productModel.depName"></td>
+                    <td ng-bind="productModel.isVaild==1?'是':'否'"></td>
+                    <td>
+                        <a ng-click="ctrl.updateProduct(productModel);ctrl.openPanel()">修改</a>
+                        <a ng-click="ctrl.deleteTbProduct(productModel.pkid)">删除
+                        </a>
+                        <a ng-click="">查看模块</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<div data-ng-include=" 'src/pc/productModel/product.html' " ng-class="ctrl.panelClass"></div>
+<script type="text/ng-template" id="selectdept.html">
+
+    <div class="wrapper hidden-sm hidden-xs">
+        <div class="bg-light" ng-if="selectdeptctrl.success" >
+
+            <span ng-if="doing_async">...loading...</span>
+            <abn-tree
+                    tree-data         = "selectdeptctrl.my_data"
+                    tree-control      = "selectdeptctrl.my_tree"
+                    on-select         = "selectdeptctrl.my_tree_handler(branch)"
+                    expand-level      = "2"
+                    initial-selection = "selectdeptctrl.inittree"
+                    icon-leaf         = "fa fa-folder"
+                    icon-expand       = "fa fa-folder"
+                    icon-collapse     = "fa fa-folder-open"
+            >
+            </abn-tree>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="selectdeptctrl.selectdept()">选择</button>
+        <button class="btn btn-warning" type="button" ng-click="selectdeptctrl.cancel()">取消</button>
+    </div>
+</script>

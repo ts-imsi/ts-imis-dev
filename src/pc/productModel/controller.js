@@ -68,6 +68,7 @@ app.controller('productModelCtrl', ['$scope', '$modal', '$http', '$filter','$log
     this.addProduct=function(){
         selt.submitProduct=true;
         selt.updateProduct=false;
+        selt.submitted=false;
         selt.product="";
     }
 

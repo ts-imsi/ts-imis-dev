@@ -27,8 +27,11 @@
             </div>
             <div class="form-group RuleInput" style="position: relative;">
                 <label class="RuleName">产品线：</label>
-                <input type="text" class="form-control Rinput60"  ng-model="ctrl.product.proLine" required>
-
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.product.proLine" name="proLine" required>
+                <span class="errorInput"
+                      ng-show="form.proLine.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
             </div>
             <div class="form-group RuleInput" style="position: relative;">
                 <label class="RuleName">部门：</label>

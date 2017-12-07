@@ -1,0 +1,50 @@
+<div class="fl RuleTit">
+    <i>|</i>
+    模块列表
+    <div class="fr">
+        <input type="button" class="save fl" ng-click="ctrl.saveModel('')" value="新增" />
+        <input type="button" class="CloseBut fl" ng-click="ctrl.closeModelPanel()"/>
+    </div>
+</div>
+<div class="RuleCont">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light JG">
+                <thead class="bgJ">
+                <tr>
+                    <th>模块名称</th>
+                    <th>模块编号</th>
+                    <th>产品编号</th>
+                    <th>版本</th>
+                    <th>是否有效</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="model in ctrl.modelList" >
+                    <td ng-bind="model.modName"></td>
+                    <td ng-bind="model.modNo"></td>
+                    <td ng-bind="model.proCode"></td>
+                    <td ng-bind="model.version"></td>
+                    <td ng-bind="model.isVaild==1?'是':'否'"></td>
+                    <td><a ng-click="ctrl.updateModel(model)">修改</a>
+                        <a ng-click="ctrl.deleteProMedel(model.modId)">删除</a>
+                        <a ng-click="ctrl.openModelPrice(model)">标准价</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="text-center text-center-xs">
+                    <pagination total-items="ctrl.totalModelCount" ng-model="ctrl.pageModelNo" ng-change="ctrl.pageModelChanged()"
+                                items-per-page="ctrl.pageModelSize" max-size="ctrl.maxModelSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+

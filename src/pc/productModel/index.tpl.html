@@ -20,7 +20,6 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                 <tr>
-                    <td ng-if="ctrl.isArrange==1"></td>
                     <th>产品CODE</th>
                     <th>产品名称</th>
                     <th>产品线</th>
@@ -38,10 +37,10 @@
                     <td ng-bind="productModel.depName"></td>
                     <td ng-bind="productModel.isVaild==1?'是':'否'"></td>
                     <td>
-                        <a ng-click="ctrl.updateProduct(productModel);ctrl.openPanel()">修改</a>
+                        <a ng-click="ctrl.updateProductSave(productModel);ctrl.openPanel()">修改</a>
                         <a ng-click="ctrl.deleteTbProduct(productModel.pkid)">删除
                         </a>
-                        <a ng-click="">查看模块</a>
+                        <a ng-click="ctrl.selectModel(productModel);ctrl.openModelPanel()">查看模块</a>
                     </td>
                 </tr>
                 </tbody>
@@ -64,6 +63,7 @@
     </div>
 </div>
 <div data-ng-include=" 'src/pc/productModel/product.html' " ng-class="ctrl.panelClass"></div>
+<div data-ng-include=" 'src/pc/productModel/productModel.html' " ng-class="ctrl.panelModelClass"></div>
 <script type="text/ng-template" id="selectdept.html">
 
     <div class="wrapper hidden-sm hidden-xs">
@@ -87,4 +87,105 @@
         <button class="btn btn-warning" ng-click="selectdeptctrl.selectdept()">选择</button>
         <button class="btn btn-warning" type="button" ng-click="selectdeptctrl.cancel()">取消</button>
     </div>
+</script>
+
+<script type="text/ng-template" id="proModel.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">模块表</h4>
+    </div>
+    <form class="form-horizontal" name="form"
+          ng-submit="ctrl.saveOrUpdateModel(form.$valid,form.$invalid,ctrl.proModel)"
+          novalidate role="form">
+        <div class="RuleCont">
+            <div class="panel-body">
+                <input type="hidden"  ng-model="ctrl.proModel.modId">
+                <input type="hidden"  ng-model="ctrl.proModel.proCode">
+                <div class="form-group RuleInput">
+                        <label class="RuleName">模块名称：</label>
+                        <input type="text" class="form-control Rinput60" ng-model="ctrl.proModel.modName" name="modName">
+                        <span class="errorInput"
+                              ng-show="form.modName.$error.required && ctrl.submitMed">
+                                        该选项框必填
+                            </span>
+                    </div>
+                    <div class="form-group RuleInput">
+                        <label class="RuleName">模块编号：</label>
+                        <input type="text" class="form-control Rinput60" ng-model="ctrl.proModel.modNo">
+                    </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">版本：</label>
+                    <input type="text" class="form-control Rinput60"  required name="version"
+                              ng-model="ctrl.proModel.version"/>
+                    <span class="errorInput"
+                          ng-show="form.version.$error.required && ctrl.submitMed">
+                              该选项框必填
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="submit">保存</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>
+
+<script type="text/ng-template" id="proModelPrice.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">标准价</h4>
+    </div>
+        <div class="RuleCont">
+            <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                    <tr>
+                        <th>模块名称</th>
+                        <th>医院等级</th>
+                        <th>标准价</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="modelPrice in ctrl.modelPriceList">
+                        <td ng-bind="ctrl.name"></td>
+                        <td ng-bind="modelPrice.hospitalLevel"></td>
+                        <td ng-bind="modelPrice.standardPrice"></td>
+                        <td>
+                            <a ng-click="ctrl.deleteModelPrice(modelPrice.pkid)">删除
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-2 hidden-xs">
+                    </div>
+                    <div class="col-sm-7 text-right text-center-xs">
+                        <pagination total-items="ctrl.totalPriceCount" ng-model="ctrl.pagePriceNo"
+                                    ng-change="ctrl.pagePriceChanged()"
+                                    items-per-page="ctrl.pagePriceSize" max-size="ctrl.maxPriceSize" class="pagination-sm"
+                                    boundary-links="true" force-ellipses="true"></pagination>
+                    </div>
+                </div>
+            </footer>
+            <div class="panel-body">
+                <div class="form-group RuleInput">
+                    <label class="RuleName">医院等级：</label>
+                    <select class="form-control Rinput40" ng-model="ctrl.proModelPrice.hospitalLevel" ng-options=" twfDict.code as twfDict.name  for twfDict in ctrl.twfList"></select>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">标准价：</label>
+                    <input type="text" class="form-control Rinput60" ng-model="ctrl.proModelPrice.standardPrice">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="ctrl.saveModelPrice()">保存</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
 </script>

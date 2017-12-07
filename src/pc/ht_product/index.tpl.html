@@ -39,11 +39,11 @@
                     <td ng-bind="htProduct.contractOwner"></td>
                     <td ng-bind="htProduct.signDate | date:'yyyy-MM-dd'"></td>
                     <td>
-                        <a ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()" ng-show="ctrl.status!='2'">填写交接单
+                        <a ng-show="ctrl.isShowOpe('ht_handover')" ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()" ng-show="ctrl.status!='2'">填写交接单
                         </a>
-                        <a ng-click="ctrl.queryHtResolve(htProduct);ctrl.openOPVPanel()">分解合同额
+                        <a ng-show="ctrl.isShowOpe('ht_resolve')" ng-click="ctrl.queryHtResolve(htProduct);ctrl.openOPVPanel()">分解合同额
                         </a>
-                        <a ng-click="ctrl.addHtChange(htProduct);ctrl.openAppyPanel()">合同变更
+                        <a ng-show="ctrl.isShowOpe('ht_change')" ng-click="ctrl.addHtChange(htProduct);ctrl.openAppyPanel()">合同变更
                         </a>
                     </td>
                 </tr>

@@ -65,7 +65,7 @@
                           <div ng-if="handOver.isProPlan==1" class="progress progress-sm progress-striped active m-t-xs m-b-none">
                               <div class="progress-bar bg-success" data-toggle="tooltip"  ng-style="ctrl.showPoit(handOver.poit)">{{handOver.poit*100}}%</div>
                           </div>
-                          <a ng-if="handOver.isProPlan==0" ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()">制定计划</a>
+                          <a ng-if="handOver.isProPlan==0" ng-click="ctrl.showActualizePlan(handOver);ctrl.openPanel()" ng-show="ctrl.isShowOpe('update_plan')">制定计划</a>
                       </td>
                   </tr>
                   <div>
@@ -112,7 +112,7 @@
                                                       <div class="progress-bar bg-success" data-toggle="tooltip"  ng-style="ctrl.showPoit(projectPlan.poit)">{{projectPlan.poit*100}}%</div>
                                                   </div>
                                               </a>
-                                              <a ng-click="ctrl.updatePlanTime(projectPlan)">修改计划</a>
+                                              <a ng-click="ctrl.updatePlanTime(projectPlan)" ng-show="ctrl.isShowOpe('update_plan')">修改计划</a>
                                           </td>
                                       </tr>
 

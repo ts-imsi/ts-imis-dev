@@ -5,9 +5,9 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     selt.submitApply=true;
     selt.showOldModule=false;
     selt.showNewModule=true;
+    this.maxSize = 5;
 
     this.selectContract=function(){
-
         this.setPage(1);
     };
     this.selectChange=function(){
@@ -26,6 +26,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             page:pageNo,
             rows:10,
             selectType:selt.selectType,
+            showAll:selt.showAll,
             selectName:selt.selectName,
             status:selt.status
         };
@@ -50,6 +51,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             page:this.pageNo,
             rows:10,
             selectType:selt.selectType,
+            showAll:selt.showAll,
             selectName:selt.selectName,
             status:selt.status
         };
@@ -66,8 +68,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     };
 
-    this.maxSize = 5;
-    this.setPage(1);
+
     //--时间控件
     this.dateOptions = {
         formatYear: 'yy',
@@ -326,6 +327,37 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     this.closeAppyVPanel = function () {
         selt.opAppyPanelClass = "person panel panel-default";
     };
+
+
+
+
+
+
+    //---页面按钮权限控制--start--
+    this.opCodes = [];
+    this.isShowOpe = function(value){
+        for(var i = 0; i < selt.opCodes.length; i++){
+            if(value === selt.opCodes[i]){
+                return true;
+            }
+        }
+        return false;
+    };
+    $http.get("/ts-authorize/ts-imis/operList/app-htChange").success(function (result) {
+        if (result.success) {
+            selt.opCodes = result.object;
+            if(selt.isShowOpe("all")){
+                selt.showAll = "all";
+            }
+            selt.setPage(1);
+        } else {
+            alert(result.message);
+        }
+    });
+
+    //-------------------end---
+
+
 }]);
 
 app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {

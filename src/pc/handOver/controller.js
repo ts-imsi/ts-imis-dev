@@ -1,10 +1,11 @@
 app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', function ($scope, $modal, $http,$filter, $log) {
     var selt = this;
+    this.maxSize = 5;
 
     this.selectContract=function(){
 
         this.setPage(1);
-    }
+    };
 
     this.selectChange=function(){
         this.setPage(1);
@@ -12,13 +13,14 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     this.selectNowStepChange=function(){
         this.setPage(1);
-    }
+    };
 
     this.setPage = function (pageNo) {
         var parm={
             page:pageNo,
             rows:10,
             selectName:selt.selectName,
+            showAll:selt.showAll,
             selectType:selt.selectType,
             nowStep:selt.nowStep
         };
@@ -44,6 +46,7 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             page:this.pageNo,
             rows:10,
             selectName:selt.selectName,
+            showAll:selt.showAll,
             selectType:selt.selectType,
             nowStep:selt.nowStep
         };
@@ -61,8 +64,7 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     };
 
-    this.maxSize = 5;
-    this.setPage(1);
+
 
 
     this.panelClass = "contact panel panel-default";
@@ -83,5 +85,31 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             }
         });
     };
+
+
+
+    //---页面按钮权限控制--start--
+    this.opCodes = [];
+    this.isShowOpe = function(value){
+        for(var i = 0; i < selt.opCodes.length; i++){
+            if(value === selt.opCodes[i]){
+                return true;
+            }
+        }
+        return false;
+    };
+    $http.get("/ts-authorize/ts-imis/operList/app-handOverList").success(function (result) {
+        if (result.success) {
+            selt.opCodes = result.object;
+            if(selt.isShowOpe("all")){
+                selt.showAll = "all";
+            }
+            selt.setPage(1);
+        } else {
+            alert(result.message);
+        }
+    });
+
+    //-------------------end---
 
 }]);

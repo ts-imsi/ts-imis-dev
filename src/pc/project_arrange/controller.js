@@ -1,12 +1,15 @@
 app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$log','utils', function ($scope, $modal, $http,$filter, $log,utils) {
     var selt = this;
     selt.showLetter=false;
+    this.maxSize = 5;
 
 
     var status =  utils.getUrlVar('status');
 
     if(status){
-        selt.isArrange=status;
+        selt.isArrange=0;
+    }else{
+        selt.isArrange=1;
     }
     this.selectArrange=function(){
         this.setPage(1);
@@ -17,6 +20,7 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
             page:pageNo,
             rows:10,
             selectName:selt.selectName,
+            showAll:selt.showAll,
             isArrange:selt.isArrange
         };
         console.log(parm);
@@ -56,6 +60,7 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
             page:this.pageNo,
             rows:10,
             selectName:selt.selectName,
+            showAll:selt.showAll,
             isArrange:selt.status
         };
         $http.post("/ts-project/arrange/selectProjectArrangeList",angular.toJson(parm)).success(function (result) {
@@ -71,8 +76,7 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
 
     };
 
-    this.maxSize = 5;
-    this.setPage(1);
+
 
     $http.post("/ts-project/arrange/getManageByType/"+"1").success(function (result) {
         if(result.success){
@@ -294,7 +298,35 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
             width: p*100+'%'
         };
         return poit;
-    }
+    };
+
+
+
+
+
+    //---页面按钮权限控制--start--
+    this.opCodes = [];
+    this.isShowOpe = function(value){
+        for(var i = 0; i < selt.opCodes.length; i++){
+            if(value === selt.opCodes[i]){
+                return true;
+            }
+        }
+        return false;
+    };
+    $http.get("/ts-authorize/ts-imis/operList/app-arrange").success(function (result) {
+        if (result.success) {
+            selt.opCodes = result.object;
+            if(selt.isShowOpe("all")){
+                selt.showAll = "all";
+            }
+            selt.setPage(1);
+        } else {
+            alert(result.message);
+        }
+    });
+
+    //-------------------end---
 
 }]);
 

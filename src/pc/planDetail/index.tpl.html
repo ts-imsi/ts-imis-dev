@@ -96,11 +96,11 @@
              <!--按钮-->
              <div class="fr  pt10">
                  <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanItem(ctrl.detail);" ng-show="ctrl.updateTimeBoo">保存</button>
-                 <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanDetail();">确定</button>
+                 <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.updatePlanDetail();" ng-show="ctrl.isShowOpe('add')">确定</button>
                  <button class="btn m-b-xs btn-default"  ng-click="ctrl.openPanel();ctrl.queryPlanUpdateLog()" >查看更改时间历史记录</button>
              </div>
              <!--表格-->
-         <div class="panel-default fl w100">
+         <div class="panel-default fl w100" ng-show="ctrl.showPlan">
              <div class="table-responsive table-striped">
                  <table class="table table-striped b-t b-light JG">
                      <thead class="bgJ">
@@ -143,7 +143,7 @@
                                              <th ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_SH|')">售后</th>
                                              <th ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_KF|')">客户</th>
                                              <th ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_XMZ|')">项目组</th>
-                                             <th>确认</th>
+                                             <th ng-show="ctrl.isShowOpe('check')">确认</th>
                                          </tr>
                                          </thead>
                                          <tbody>
@@ -174,7 +174,7 @@
                                              <td ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_SH|')" ng-class="ctrl.isRoleClass(item.planChecks,'|tag_check_SH|')">{{ctrl.isRoleCheck(item.planChecks,'|tag_check_SH|')}}</td>
                                              <td ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_KF|')" ng-class="ctrl.isRoleClass(item.planChecks,'|tag_check_KF|')">{{ctrl.isRoleCheck(item.planChecks,'|tag_check_KF|')}}</td>
                                              <td ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_XMZ|')" ng-class="ctrl.isRoleClass(item.planChecks,'|tag_check_XMZ|')">{{ctrl.isRoleCheck(item.planChecks,'|tag_check_XMZ|')}}</td>
-                                             <td tabLeft>
+                                             <td tabLeft ng-show="ctrl.isShowOpe('check')">
 
                                                  <button ng-if="ctrl.isCheckPermission(item.planChecks,ctrl.detail.userRole,'|check|')" class="btn btn-sm btn-icon btn-info" ng-click="ctrl.checkOk(item,ctrl.detail.userRole)"><i class="glyphicon glyphicon-ok"></i></button>
                                                  <button ng-if="ctrl.isCheckPermission(item.planChecks,ctrl.detail.userRole,'|back|')" class="btn btn-sm btn-icon btn-danger" ng-click="ctrl.checkBack(item,ctrl.detail.userRole)"><i class="glyphicon glyphicon-remove"></i></button>

@@ -55,8 +55,8 @@
                     <td ng-bind="htChange.signDate | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="htChange.nowStep"></td>
                     <td>
-                        <a ng-show="htChange.status==1" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">填写交接单</a>
-                        <a  ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解合同额</a>
+                        <a ng-show="htChange.status==1&&ctrl.isShowOpe('ht_handover')" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">填写交接单</a>
+                        <a  ng-show="ctrl.isShowOpe('ht_resolve')" ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解合同额</a>
                     </td>
                 </tr>
                 </tbody>

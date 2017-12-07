@@ -1,8 +1,28 @@
 app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log','utils', function ($scope, $modal, $http,$filter, $log,utils) {
     var selt = this;
 
+
+    //---页面按钮权限控制--start--
+    this.opCodes = [];
+    this.isShowOpe = function(value){
+        for(var i = 0; i < selt.opCodes.length; i++){
+            if(value === selt.opCodes[i]){
+                return true;
+            }
+        }
+        return false;
+    };
+    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-arrange").success(function (result) {
+        if (result.success) {
+            selt.opCodes = result.object;
+        } else {
+            alert(result.message);
+        }
+    });
+
+    //-------------------end---
+
     var planId =  utils.getUrlVar('planId');
-    var showPro = utils.getUrlVar('showPro');
 
     //制定计划划出层样式
     this.panelClass = "contact panel panel-default";
@@ -14,22 +34,27 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         selt.panelClass = "contact panel panel-default";
     };
 
-    //权限控制
-    this.updateTimeBoo = false;
 
-
-    this.showProTime = function () {
-        selt.updateTimeBoo = true;
-        selt.detail.checkRole="";
-    };
 
 
     this.queryPlanItems = function () {
         $http.post("/ts-project/planDetail/queryPlanItems/"+planId).success(function (result) {
             if(result.success){
                 selt.detail=result.object;
-                if(showPro&&showPro==1){
-                    selt.showProTime();
+                if(selt.detail.isPlan&&selt.detail.isPlan==1){
+                    selt.updateTimeBoo = false;
+                    selt.showPlan = true;
+                }else{
+                    if(selt.isShowOpe("update")){
+                        selt.updateTimeBoo = true;
+                        selt.showPlan = true;
+                    }else{
+                        selt.updateTimeBoo = false;
+                        selt.showPlan = false;
+                    }
+                }
+                if(!selt.isShowOpe("show_role")){
+                    selt.detail.checkRole="";
                 }
             }
         });
@@ -92,8 +117,6 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
                 alert(result.message);
                 if(result.success){
                     selt.queryPlanItems();
-                    selt.updateTimeBoo = false;
-                    showPro = 0;
                 }
             });
         }
@@ -216,7 +239,7 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
             width: p+'%'
         };
         return poit;
-    }
+    };
 
 
 

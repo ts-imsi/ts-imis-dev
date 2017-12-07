@@ -1,19 +1,21 @@
 app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', function ($scope, $modal, $http,$filter, $log) {
     var selt = this;
+    this.maxSize = 5;
+
 
     this.selectContract=function(){
-
         this.setPage(1);
-    }
+    };
     this.selectByStatus=function(status){
         selt.status=status;
         this.setPage(1);
-    }
+    };
     this.setPage = function (pageNo) {
         var parm={
             page:pageNo,
             rows:10,
             selectName:selt.selectName,
+            showAll:selt.showAll,
             status:selt.status
         };
         console.log(parm);
@@ -37,6 +39,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
             page:this.pageNo,
             rows:10,
             selectName:selt.selectName,
+            showAll:selt.showAll,
             status:selt.status
         };
         $http.post("/ts-project/con_product/getcontractTransenList",angular.toJson(parm)).success(function (result) {
@@ -71,10 +74,9 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         outputValueInstance.result.then(function (score) {
             selt.HtResolveList = score;
         });
-    }
+    };
 
-    this.maxSize = 5;
-    this.setPage(1);
+
 
 
 
@@ -206,7 +208,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 alert(result.message);
             }
         });
-    }
+    };
 
     this.showSelect=function(pro){
         $http.post("/ts-project/product/selectProModule/"+pro.proCode).success(function (result) {
@@ -217,17 +219,17 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 alert(result.message);
             }
         });
-    }
+    };
 
     this.isSelected = function (item) {
         return selt.oldWaitModuleList.indexOf(item.proCode) != -1;
-    }
+    };
 
     //老模块选中
     this.isOldSelected = function (item) {
         var name=item.modId+":"+item.modName;
         return selt.oldModuleList.indexOf(name) != -1;
-    }
+    };
 
     this.updateOldSelection = function ($event, item) {
         var name=item.modId+":"+item.modName;
@@ -245,7 +247,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
             selt.oldModuleList.splice(idx, 1);
             selt.proOldM.splice(idc,1);
         }
-    }
+    };
 
 
 
@@ -294,18 +296,18 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 alert(result.message);
             }
         });
-    }
+    };
 
     this.isNewProSelected = function (item) {
         return selt.newProModuleList.indexOf(item.proCode) != -1;
-    }
+    };
 
 
     //新模块选中
     this.isNewSelected = function (item) {
         var name=item.modId+":"+item.modName;
         return selt.newModuleList.indexOf(name) != -1;
-    }
+    };
 
     this.showNewSelect=function(pro){
         $http.post("/ts-project/product/selectProModule/"+pro.proCode).success(function (result) {
@@ -316,7 +318,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 alert(result.message);
             }
         });
-    }
+    };
 
     this.updateNewSelection = function ($event, item) {
         var name=item.modId+":"+item.modName;
@@ -342,7 +344,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
             selt.newModule_name="合同"+selt.htNo+"新增模块"+selt.newModuleList;
             selt.remark=selt.newModule_name;
         }
-    }
+    };
 
 
 
@@ -398,7 +400,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         }else{
             selt.submitted=true;
         }
-    }
+    };
 
 
 
@@ -579,7 +581,35 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 }
             });
         });
-    }
+    };
+
+
+
+
+
+    //---页面按钮权限控制--start--
+    this.opCodes = [];
+    this.isShowOpe = function(value){
+        for(var i = 0; i < selt.opCodes.length; i++){
+            if(value === selt.opCodes[i]){
+                return true;
+            }
+        }
+        return false;
+    };
+    $http.get("/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
+        if (result.success) {
+            selt.opCodes = result.object;
+            if(selt.isShowOpe("all")){
+                selt.showAll = "all";
+            }
+            selt.setPage(1);
+        } else {
+            alert(result.message);
+        }
+    });
+
+    //-------------------end---
 }]);
 
 app.controller('htModuleListCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {

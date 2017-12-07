@@ -106,15 +106,21 @@ app.controller('Contact', ['$scope','$modal','$http','$filter', function($scope,
 
 
     this.setCountPage = function (pageNo) {
+        var tagIdExcel;
+        if(selt.tagId != undefined){
+            tagIdExcel = selt.tagId.replace('|','');
+            tagIdExcel = tagIdExcel.replace('|','');
+        }
         var attenceMap = {
             name: selt.countName,
             tagName: selt.tagName,
+            tagId:selt.tagId,
             countDate: selt.countDate,
             selctCx:selt.selectedCx,
             pageNo: pageNo,
             pageSize: 10
         };
-        selt.excelCountExprot="/excel/excelContactExport?name="+selt.countName+"&tagName="+selt.tagName+"&countDate="+selt.countDate+"&column="+selt.selected+"&selectCx="+selt.selectedCx;
+        selt.excelCountExprot="/excel/excelContactExport?name="+selt.countName+"&tagName="+selt.tagName+"&tagId="+tagIdExcel+"&countDate="+selt.countDate+"&column="+selt.selected+"&selectCx="+selt.selectedCx;
         $http.post("/count/attCountData", angular.toJson(attenceMap)).success(function (result) {
             if (result.code == "1") {
                 selt.countList = result.list;
@@ -134,6 +140,7 @@ app.controller('Contact', ['$scope','$modal','$http','$filter', function($scope,
         var attenceMap = {
             name: selt.countName,
             tagName: selt.tagName,
+            tagId:selt.tagId,
             countDate: selt.countDate,
             pageNo: this.copageNo,
             pageSize: 10
@@ -161,7 +168,8 @@ app.controller('Contact', ['$scope','$modal','$http','$filter', function($scope,
 
 
 
-    this.setPage = function (pageNo,workNum) {
+    this.setPage = function (pageNo,workNum,name) {
+        selt.logName = name;
         selt.workNum = workNum;
         var attenceMap = {
             workNum: workNum,
@@ -169,7 +177,7 @@ app.controller('Contact', ['$scope','$modal','$http','$filter', function($scope,
             pageSize: 5,
             countDate: this.countDate
         };
-
+        selt.excelAttenceLogExprot="/excel/excelAttenceLogExprot?workNum="+workNum+"&countDate="+this.countDate;
         $http.post("/attencelog/getAttenceLogList", angular.toJson(attenceMap)).success(function (result) {
             if (result.code == "1") {
                 selt.acctenceLogList = result.list;
@@ -201,6 +209,71 @@ app.controller('Contact', ['$scope','$modal','$http','$filter', function($scope,
         });
 
     };
+
+
+
+
+    this.setDetailPage = function (pageNo,count,type,countType,typeName) {
+        selt.countDetail = count;
+        selt.detailType = type;
+        selt.countType =countType;
+        selt.typeName = typeName;
+        var attenceMap = {
+            name:count.name,
+            workNum: count.workNum,
+            date: this.countDate,
+            type:type,
+            countType:countType,
+            pageNo: pageNo,
+            pageSize: 5
+
+        };
+
+        $http.post("/count/attenceDtail", angular.toJson(attenceMap)).success(function (result) {
+            if (result.code == "1") {
+                selt.detailList = result.list;
+                selt.detailTotalCount = result.totalCount;
+                selt.detailPageSize = result.pageSize;
+                selt.detailPageNo = result.pageNo;
+            } else {
+                selt.detailList = [];
+            }
+        });
+    };
+
+    this.detailPageChanged = function () {
+        var attenceMap = {
+            name:selt.countDetail.name,
+            workNum: selt.countDetail.workNum,
+            date: this.countDate,
+            type:selt.detailType,
+            countType:selt.countType,
+            pageNo: selt.detailPageNo,
+            pageSize: 5
+
+        };
+
+        $http.post("/count/attenceDtail", angular.toJson(attenceMap)).success(function (result) {
+            if (result.code == "1") {
+                selt.detailList = result.list;
+                selt.detailTotalCount = result.totalCount;
+                selt.detailPageSize = result.pageSize;
+                selt.detailPageNo = result.pageNo;
+            } else {
+                selt.detailList = [];
+            }
+        });
+
+    };
+
+
+
+
+
+
+
+
+
     this.maxSize=5;
 
 
@@ -307,6 +380,15 @@ app.controller('Contact', ['$scope','$modal','$http','$filter', function($scope,
         selt.panelClass = "contact panel panel-default";
     };
 
+    this.panelClass2 = "person panel panel-default";
+
+    this.openPanel2 = function () {
+        selt.panelClass2 = "person panel panel-default active";
+    };
+    this.closePanel2 = function () {
+        selt.panelClass2 = "person panel panel-default";
+    };
+
 
     //---页面按钮权限控制--start--
     this.opCodes = [];
@@ -322,14 +404,41 @@ app.controller('Contact', ['$scope','$modal','$http','$filter', function($scope,
         if (result.success) {
             selt.opCodes = result.object;
             if(!selt.isShowOpe("all")){
-                selt.tagName = result.message;
+                if(selt.isShowOpe("tag")){
+                    $http.get("/personnel/tags").success(function (r) {
+                        if(r.success){
+                            selt.tagList = r.object;
+                            selt.tagList[0].checked = true;
+                            selt.tagId = selt.tagList[0].tagId;
+                            selt.setCountPage(1);
+                        }else{
+                            selt.tagName = result.message;
+                            selt.tagList = [];
+                        }
+                    });
+                }else{
+                    selt.tagName = result.message;
+                    selt.setCountPage(1);
+                }
+
+            }else{
+                selt.setCountPage(1);
             }
-            selt.setCountPage(1);
         } else {
             alert(result.message);
         }
     });
     //-------------------end---
+    this.checkedTagId = function (tagId) {
+        angular.forEach(selt.tagList, function(tag) {
+            if(tag.tagId == tagId){
+                tag.checked = true;
+            }else{
+                tag.checked = false;
+            }
+        });
+        selt.tagId = tagId;
+    }
 
 
 

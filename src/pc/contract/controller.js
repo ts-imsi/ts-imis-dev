@@ -46,6 +46,8 @@ app.controller('Contract', ['$scope', '$modal', '$http', '$filter','$log', funct
         selt.dtEnd="";
         selt.years="";
         selt.twfDictContractType="";
+        selt.depName="";
+        selt.qdStatus="";
     };
 
     this.submitSeach=function(){
@@ -59,16 +61,17 @@ app.controller('Contract', ['$scope', '$modal', '$http', '$filter','$log', funct
         }
         var parm={
             pageNo:pageNo,
-            pageSize:5,
+            pageSize:10,
             name:selt.name,
             workNum:selt.workNum,
             depName:selt.depName,
-            dtStart:selt.dtStart,
-            dtEnd:selt.dtEnd,
+            dtStart:$filter("date")(selt.dtStart, "yyyy-MM-dd"),
+            dtEnd:$filter("date")(selt.dtEnd, "yyyy-MM-dd"),
             years:selt.years,
-            type:type
+            type:type,
+            qdStatus:selt.qdStatus
         };
-        this.excelContractExprot="/excel/excelContractExprot?name="+selt.name+"&workNum="+selt.workNum+"&depName="+selt.depName+"&dtStart="+selt.dtStart+"&dtEnd="+selt.dtEnd+"&years="+selt.years+"&type="+type;
+        this.excelContractExprot="/excel/excelContractExprot?name="+selt.name+"&workNum="+selt.workNum+"&depName="+selt.depName+"&dtStart="+$filter("date")(selt.dtStart, "yyyy-MM-dd")+"&dtEnd="+$filter("date")(selt.dtEnd, "yyyy-MM-dd")+"&years="+selt.years+"&type="+type+"&qdStatus="+selt.qdStatus;
         $http.post("/contract/getTbContractList",angular.toJson(parm)).success(function (result) {
             selt.contractList = result.list;
             selt.totalCount = result.totalCount;
@@ -85,14 +88,15 @@ app.controller('Contract', ['$scope', '$modal', '$http', '$filter','$log', funct
         }
         var parm={
             pageNo:this.pageNo,
-            pageSize:5,
+            pageSize:10,
             name:selt.name,
             workNum:selt.workNum,
             depName:selt.depName,
-            dtStart:selt.dtStart,
-            dtEnd:selt.dtEnd,
+            dtStart:$filter("date")(selt.dtStart, "yyyy-MM-dd"),
+            dtEnd:$filter("date")(selt.dtEnd, "yyyy-MM-dd"),
             years:selt.years,
-            type:type
+            type:type,
+            qdStatus:selt.qdStatus
         };
         $http.post("/contract/getTbContractList",angular.toJson(parm)).success(function (result) {
             selt.contractList = result.list;
@@ -258,19 +262,19 @@ app.controller('Contract', ['$scope', '$modal', '$http', '$filter','$log', funct
 
     };
 
-    /*//获取部门
-     this.findDeptperson = function (size) {
-     var selectdeptInstance = $modal.open({
-     templateUrl: 'selectdept.html',
-     controller: 'selectdeptController as selectdeptctrl',
-     size: size
-     });
+    //获取部门
+    this.findDeptperson = function (size) {
+        var selectdeptInstance = $modal.open({
+            templateUrl: 'selectdept.html',
+            controller: 'selectdeptController as selectdeptctrl',
+            size: size
+        });
 
-     selectdeptInstance.result.then(function (deptname) {
-     selt.contract.name=deptname.label;
-     });
+        selectdeptInstance.result.then(function (deptname) {
+            selt.depName=deptname.label;
+        });
 
-     }*/
+    }
 
 
     this.panelClass = "contact panel panel-default";
@@ -284,32 +288,24 @@ app.controller('Contract', ['$scope', '$modal', '$http', '$filter','$log', funct
 
 }]);
 
-/*
- //组织结构添加修改
- app.controller('selectdeptController', ['$scope', '$modalInstance','$http', function($scope,$modalInstance,$http) {
- var finddept=this;
- var deptname;
- finddept.showbutton=false;
- finddept.my_tree = {};
- finddept.success=false;
- $http.post("/organization/getDeptOrganization").success(function(data){
- finddept.success=data.success;
+//组织结构添加修改
+app.controller('selectdeptController', ['$scope', '$modalInstance','$http', function($scope,$modalInstance,$http) {
+    var finddept=this;
+    var deptname;
+    finddept.my_tree = {};
+    finddept.success=false;
+    $http.post("/organization/getDeptOrganization").success(function(data){
+        finddept.success=data.success;
 
- finddept.my_data =data.object;
- });
- finddept.my_tree_handler = function(branch) {
- if(branch.data.type!="person"){
- alert("请选择人员");
- }else{
- deptname={level:branch.data.level,type:branch.data.type,id:branch.data.pkid,label:branch.label,parent:branch.data.parent};
- finddept.showbutton=true;
- }
-
- };
- finddept.selectdept=function(){
- $modalInstance.close(deptname);
- }
- finddept.cancel = function () {
- $modalInstance.dismiss('cancel');
- };
- }])*/
+        finddept.my_data =data.object;
+    });
+    finddept.my_tree_handler = function(branch) {
+        deptname={level:branch.data.level,type:branch.data.type,id:branch.data.pkid,label:branch.label,parent:branch.data.parent};
+    };
+    finddept.selectdept=function(){
+        $modalInstance.close(deptname);
+    }
+    finddept.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}])

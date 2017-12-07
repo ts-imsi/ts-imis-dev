@@ -1,0 +1,46 @@
+<div class="fl RuleTit">
+    <i>|</i>
+    考勤明细[{{ctrl.countDetail.name}}][{{ctrl.typeName}}]
+    <div class="fr">
+        <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel2()"/>
+    </div>
+</div>
+<div class="RuleCont">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light JG">
+                <thead class="bgJ">
+                <tr>
+                    <th>日期</th>
+                    <th>星期</th>
+                    <th ng-show="ctrl.countType=='attence'">签到时间</th>
+                    <th ng-show="ctrl.countType=='attence'">签到地址</th>
+                    <th>备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="detail in ctrl.detailList" >
+                    <td ng-bind="detail.attenceDate"></td>
+                    <td ng-bind="detail.week"></td>
+                    <td ng-show="ctrl.countType=='attence'" ng-bind="detail.signinTime | date:'HH:mm:ss'"></td>
+                    <td ng-show="ctrl.countType=='attence'" ng-bind="detail.signinAddress"></td>
+                    <td ng-bind="detail.remark"></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="text-center text-center-xs">
+                    <pagination total-items="ctrl.detailTotalCount" ng-model="ctrl.detailPageNo" ng-change="ctrl.detailPageChanged()"
+                                items-per-page="ctrl.detailPageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+

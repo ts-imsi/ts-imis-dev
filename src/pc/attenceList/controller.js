@@ -55,9 +55,16 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         selt.content = content;
         selt.dtStart = $filter("date")(selt.dtStart, "yyyy-MM-dd");
         selt.dtEnd = $filter("date")(selt.dtEnd, "yyyy-MM-dd");
+        var tagIdExcel;
+        if(selt.tagId != undefined){
+            tagIdExcel = selt.tagId.replace('|','');
+            tagIdExcel = tagIdExcel.replace('|','');
+        }
+
         if(content=='考勤列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -68,11 +75,12 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
                 "signinType":selt.signinType
             };
             //导出
-            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=考勤"+"&type="+selt.type+"&lackAtt=null&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&signinType="+selt.signinType;
+            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&tagId="+tagIdExcel+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=考勤"+"&type="+selt.type+"&lackAtt=null&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&signinType="+selt.signinType;
 
         }else if(content=='迟到列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -84,11 +92,12 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
                 "signinType":selt.signinType
             };
             //导出
-            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=迟到"+"&type="+selt.type+"&lackAtt=null&lateTime=1&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&signinType="+selt.signinType;
+            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&tagId="+tagIdExcel+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=迟到"+"&type="+selt.type+"&lackAtt=null&lateTime=1&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&signinType="+selt.signinType;
 
         }else if(content=='早退列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -99,10 +108,11 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
                 "backTime":1
             };
             //导出
-            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=早退"+"&type="+selt.type+"&lackAtt=null&backTime=1&startDate="+selt.dtStart+"&endDate="+selt.dtEnd;
+            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&tagId="+tagIdExcel+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=早退"+"&type="+selt.type+"&lackAtt=null&backTime=1&startDate="+selt.dtStart+"&endDate="+selt.dtEnd;
         }else if(content=='缺勤列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -112,10 +122,11 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
                 "lackAtt":"lack"
             };
             //导出
-            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=缺勤"+"&type="+selt.type+"&lackAtt=lack&startDate="+selt.dtStart+"&endDate="+selt.dtEnd;
+            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&tagId="+tagIdExcel+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=缺勤"+"&type="+selt.type+"&lackAtt=lack&startDate="+selt.dtStart+"&endDate="+selt.dtEnd;
         }else if(content=='加班列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -125,11 +136,12 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
                 "type":1
             };
             //导出
-            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=加班"+"&type="+"1"+"&lackAtt=null&startDate="+selt.dtStart+"&endDate="+selt.dtEnd;
+            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&tagId="+tagIdExcel+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=加班"+"&type="+"1"+"&lackAtt=null&startDate="+selt.dtStart+"&endDate="+selt.dtEnd;
 
         }else if(content=='请假列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -140,7 +152,7 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
                 "createUser":selt.createUser
             };
             //导出
-            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=请假"+"&type="+selt.type+"&lackAtt=leave&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&createUser="+selt.createUser;
+            this.excelExprot="/excel/excelExport?tagName="+selt.tagName+"&tagId="+tagIdExcel+"&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&name="+selt.name+"&attenceDate="+selt.dt+"&export=请假"+"&type="+selt.type+"&lackAtt=leave&startDate="+selt.dtStart+"&endDate="+selt.dtEnd+"&createUser="+selt.createUser;
         }
 
         $http.post("/attence/searchAttList",angular.toJson(paramsAtt)).success(function (result) {
@@ -166,6 +178,7 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         if(content=='考勤列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -178,6 +191,7 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         }else if(content=='迟到列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -191,6 +205,7 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         }else if(content=='早退列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -203,6 +218,7 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         }else if(content=='缺勤列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -214,6 +230,7 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         }else if(content=='加班列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -225,6 +242,7 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         }else if(content=='请假列表'){
             var paramsAtt = {
                 "tagName":selt.tagName,
+                "tagId":selt.tagId,
                 "name":selt.name,
                 "attenceDate":selt.dt,
                 "startDate":selt.dtStart,
@@ -362,15 +380,44 @@ app.controller('AttenceList', ['$scope','$http','$log','$modal','$filter', funct
         if (result.success) {
             selt.opCodes = result.object;
             if(!selt.isShowOpe("all")){
-                selt.tagName = result.message;
+                if(selt.isShowOpe("tag")){
+                    $http.get("/personnel/tags").success(function (r) {
+                        if(r.success){
+                            selt.tagList = r.object;
+                            selt.tagList[0].checked = true;
+                            selt.tagId = selt.tagList[0].tagId;
+                            selt.setPage(1,'考勤列表');
+                        }else{
+                            selt.tagName = result.message;
+                            selt.tagList = [];
+                        }
+                    });
+                }else{
+                    selt.tagName = result.message;
+                    selt.setPage(1,'考勤列表');
+                }
+
+            }else{
+                selt.setPage(1,'考勤列表');
             }
-            selt.setPage(1,'考勤列表');
+
         } else {
             alert(result.message);
         }
     });
 
     //-------------------end---
+
+    this.checkedTagId = function (tagId) {
+        angular.forEach(selt.tagList, function(tag) {
+            if(tag.tagId == tagId){
+                tag.checked = true;
+            }else{
+                tag.checked = false;
+            }
+        });
+        selt.tagId = tagId;
+    }
 
 
 

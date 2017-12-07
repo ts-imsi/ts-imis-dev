@@ -1,7 +1,10 @@
 <div class="fl RuleTit">
     <i>|</i>
-    考勤明细
+    考勤明细[{{ctrl.logName}}]
     <div class="fr">
+        <a ng-href="{{ctrl.excelAttenceLogExprot}}" >
+            <button class="btn btn-default daochu fl" style="padding-left: 20px">
+                导出</button></a>
         <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
     </div>
 </div>

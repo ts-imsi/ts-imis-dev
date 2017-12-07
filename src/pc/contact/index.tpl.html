@@ -72,6 +72,21 @@
                             </ul>
 
                         </div>
+                        <!--部门标签-->
+                        <div class="brbotP NKwrapper Nkcont" ng-show="ctrl.isShowOpe('tag')">
+                            <p>部门标签</p>
+                            <ul>
+                                <li ng-repeat="tag in ctrl.tagList">
+                                    <div class="checkbox">
+                                        <label class="i-checks">
+                                            <input type="checkbox" ng-checked="tag.checked" ng-click="ctrl.checkedTagId(tag.tagId)">
+                                            <i></i>
+                                            {{tag.tagName}}
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="brbotP NKwrapper Nkcont">
                             <p>签到情况</p>
                             <ul>
@@ -453,30 +468,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="count in ctrl.countList" ng-click="ctrl.setPage(1,count.workNum)"
-                    ng-dblclick="ctrl.openPanel()">
+                <tr ng-repeat="count in ctrl.countList">
 
                     <td ng-bind="count.name" ng-show="ctrl.showname"></td>
                     <td ng-bind="count.tagName" ng-show="ctrl.showtagName"></td>
                     <td ng-bind="count.shouldSignNum" ng-show="ctrl.showshouldSignNum"></td>
-                    <td ng-bind="count.factSignNum" ng-show="ctrl.showfactSignNum"></td>
+                    <td ng-bind="count.factSignNum" ng-show="ctrl.showfactSignNum" ng-dblclick="ctrl.setDetailPage(1,count,3,'attence','实签天数');ctrl.openPanel2()"></td>
 
-                    <td ng-bind="count.attNum" ng-show="ctrl.showattNum"></td>
-                    <td ng-bind="count.lateNum" ng-show="ctrl.showlateNum"></td>
-                    <td ng-bind="count.backNum" ng-show="ctrl.showbackNum"></td>
-                    <td ng-bind="count.lackNum" ng-show="ctrl.showlackNum"></td>
+                    <td ng-bind="count.attNum" ng-show="ctrl.showattNum" ng-dblclick="ctrl.setDetailPage(1,count,0,'attence','正常出勤');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.lateNum" ng-show="ctrl.showlateNum" ng-dblclick="ctrl.setDetailPage(1,count,1,'attence','迟到天数');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.backNum" ng-show="ctrl.showbackNum" ng-dblclick="ctrl.setDetailPage(1,count,2,'attence','早退天数');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.lackNum" ng-show="ctrl.showlackNum" ng-dblclick="ctrl.setDetailPage(1,count,3,'lack','旷工');ctrl.openPanel2()"></td>
 
-                    <td ng-bind="count.annualLeave" ng-show="ctrl.showannualLeave"></td>
-                    <td ng-bind="count.maternityLeave" ng-show="ctrl.showmaternityLeave"></td>
-                    <td ng-bind="count.peternituLeave" ng-show="ctrl.showpeternituLeave"></td>
-                    <td ng-bind="count.maritalLeave" ng-show="ctrl.showmaritalLeave"></td>
-                    <td ng-bind="count.funeralLeave" ng-show="ctrl.showfuneralLeave"></td>
+                    <td ng-bind="count.annualLeave" ng-show="ctrl.showannualLeave" ng-dblclick="ctrl.setDetailPage(1,count,4,'leave','年假');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.maternityLeave" ng-show="ctrl.showmaternityLeave" ng-dblclick="ctrl.setDetailPage(1,count,5,'leave','产假');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.peternituLeave" ng-show="ctrl.showpeternituLeave" ng-dblclick="ctrl.setDetailPage(1,count,6,'leave','陪产假');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.maritalLeave" ng-show="ctrl.showmaritalLeave" ng-dblclick="ctrl.setDetailPage(1,count,7,'leave','婚假');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.funeralLeave" ng-show="ctrl.showfuneralLeave" ng-dblclick="ctrl.setDetailPage(1,count,8,'leave','丧假');ctrl.openPanel2()"></td>
 
-                    <td ng-bind="count.affairLeave" ng-show="ctrl.showaffairLeave"></td>
-                    <td ng-bind="count.sickLeave" ng-show="ctrl.showsickLeave"></td>
-                    <td ng-bind="count.otherLeave" ng-show="ctrl.showotherLeave"></td>
+                    <td ng-bind="count.affairLeave" ng-show="ctrl.showaffairLeave" ng-dblclick="ctrl.setDetailPage(1,count,1,'leave','事假');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.sickLeave" ng-show="ctrl.showsickLeave" ng-dblclick="ctrl.setDetailPage(1,count,3,'leave','病假');ctrl.openPanel2()"></td>
+                    <td ng-bind="count.otherLeave" ng-show="ctrl.showotherLeave" ng-dblclick="ctrl.setDetailPage(1,count,9,'leave','其他');ctrl.openPanel2()"></td>
                     <td>
-                        <button  class="btn btn-default no-shadow" ng-click="ctrl.setPage(1,count.workNum);ctrl.openPanel()" >查看明细</button>
+                        <button  class="btn btn-default no-shadow" ng-click="ctrl.setPage(1,count.workNum,count.name);ctrl.openPanel()" >查看明细</button>
                     </td>
                 </tr>
                 </tbody>
@@ -498,4 +512,5 @@
         </footer>
     </div>
     <div data-ng-include=" 'src/pc/contact/contactsettings.html' " ng-class="ctrl.panelClass"></div>
+    <div data-ng-include=" 'src/pc/contact/countDetail.html' " ng-class="ctrl.panelClass2"></div>
 </div>

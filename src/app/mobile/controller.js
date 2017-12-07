@@ -273,6 +273,10 @@
                 var str = address.split("[");
                 return str[0]+"[湖南创星科技股份有限公司]"
             }
+            if(address!=undefined&&address.indexOf("湖南远越农业信息化科技有限公司") >= 0){
+                var str = address.split("[");
+                return str[0]+"[湖南创星科技股份有限公司]"
+            }
             return address;
         }
     });

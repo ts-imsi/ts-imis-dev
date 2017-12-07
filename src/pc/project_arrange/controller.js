@@ -1,15 +1,16 @@
-app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', function ($scope, $modal, $http,$filter, $log) {
+app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$log','utils', function ($scope, $modal, $http,$filter, $log,utils) {
     var selt = this;
     selt.showLetter=false;
 
-    selt.isArrange=0;
-    this.selectByStatus=function(status){
+
+    var status =  utils.getUrlVar('status');
+
+    if(status){
         selt.isArrange=status;
-        this.setPage(1);
     }
     this.selectArrange=function(){
         this.setPage(1);
-    }
+    };
 
     this.setPage = function (pageNo) {
         var parm={

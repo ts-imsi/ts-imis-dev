@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">合同变更&增补列表</h1>
+    <h1 class="m-n font-thin h3">合同变更增补</h1>
 </div>
 <div class="wrapper-md">
     <div class="panel panel-default">
@@ -56,7 +56,7 @@
                     <td ng-bind="htChange.nowStep"></td>
                     <td>
                         <a ng-show="htChange.status==1" ng-click="ctrl.handoverView(htChange);ctrl.openPanel()">填写交接单</a>
-                        <a  ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解产值</a>
+                        <a  ng-click="ctrl.queryHtResolve(htChange);ctrl.openOPVPanel()">分解合同额</a>
                     </td>
                 </tr>
                 </tbody>

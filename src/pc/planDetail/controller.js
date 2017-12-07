@@ -2,6 +2,7 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
     var selt = this;
 
     var planId =  utils.getUrlVar('planId');
+    var showPro = utils.getUrlVar('showPro');
 
     //制定计划划出层样式
     this.panelClass = "contact panel panel-default";
@@ -15,18 +16,21 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
 
     //权限控制
     this.updateTimeBoo = false;
-    this.test1 = function () {
+
+
+    this.showProTime = function () {
         selt.updateTimeBoo = true;
         selt.detail.checkRole="";
     };
-
 
 
     this.queryPlanItems = function () {
         $http.post("/ts-project/planDetail/queryPlanItems/"+planId).success(function (result) {
             if(result.success){
                 selt.detail=result.object;
-                //selt.test1();
+                if(showPro&&showPro==1){
+                    selt.showProTime();
+                }
             }
         });
     };
@@ -89,6 +93,7 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
                 if(result.success){
                     selt.queryPlanItems();
                     selt.updateTimeBoo = false;
+                    showPro = 0;
                 }
             });
         }

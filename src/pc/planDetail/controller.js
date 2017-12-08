@@ -12,7 +12,7 @@ app.controller('planDetailCtrl', ['$scope', '$modal', '$http', '$filter','$log',
         }
         return false;
     };
-    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-arrange").success(function (result) {
+    $http.get("/ts-authorize/ts-imis/operList/app-arrange").success(function (result) {
         if (result.success) {
             selt.opCodes = result.object;
         } else {

@@ -149,7 +149,7 @@
                     <tbody>
                     <tr ng-repeat="modelPrice in ctrl.modelPriceList">
                         <td ng-bind="ctrl.name"></td>
-                        <td ng-bind="modelPrice.hospitalLevel"></td>
+                        <td ng-bind="modelPrice.hospitalLevel | hosLevelType"></td>
                         <td ng-bind="modelPrice.standardPrice"></td>
                         <td>
                             <a ng-click="ctrl.deleteModelPrice(modelPrice.pkid)">删除

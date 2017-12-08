@@ -436,3 +436,30 @@ app.filter('templateType',function(){
         return resultType;
     }
 });
+
+app.filter('hosLevelType',function(){
+    return function(hospitalLevel){
+        var resultType = "";
+        switch(hospitalLevel)
+        {
+            case '1':
+                resultType = "一级";
+                break;
+            case '2':
+                resultType = "二级";
+                break;
+            case '3':
+                resultType = "三级";
+                break;
+            case '31':
+                resultType = "三甲";
+                break;
+            case '21':
+                resultType = "二甲";
+                break;
+            default:
+                resultType = hospitalLevel;
+        };
+        return resultType;
+    }
+});

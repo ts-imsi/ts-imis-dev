@@ -278,14 +278,7 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
             }
         });
         stageTempInstance.result.then(function () {
-            $http.post("/ts-project/planTemplate/selectTwfStageTag").success(function (result) {
-                if(result.success){
-                    selt.twfStageList = result.twfStageList;
-                }else{
-                    selt.twfStageList = [];
-                }
 
-            });
         });
     }
 

@@ -203,6 +203,7 @@ app.controller('createPlanTempCtrl', ['$scope', '$http','utils','$modal', functi
         $http.post("/ts-project/planTemplate/savePlanTemp",angular.toJson(param)).success(function (result) {
             if(result.success){
                 alert(result.message);
+                window.location.href="#/app/planTemplate";
             }else{
                 alert(result.message);
             }

@@ -61,7 +61,7 @@
                       <td ng-bind="handOver.created | date:'yyyy-MM-dd'"></td>
                       <td ng-bind="handOver.recountTime | date:'yyyy-MM-dd'"></td>
                       <td ng-bind="handOver.proManager"></td>
-                      <td>
+                      <td style="width: 10%">
                           <div ng-if="handOver.isProPlan==1" class="progress progress-sm progress-striped active m-t-xs m-b-none">
                               <div class="progress-bar bg-success" data-toggle="tooltip"  ng-style="ctrl.showPoit(handOver.poit)">{{handOver.poit*100}}%</div>
                           </div>
@@ -75,7 +75,7 @@
                                   <table class="table table-striped b-t b-light">
                                       <thead>
                                       <tr>
-                                          <th>项目名称</th>
+                                          <th>产品名称</th>
                                           <th>实施经理</th>
                                           <th>计划调研</th>
                                           <th>计划进场</th>
@@ -106,7 +106,7 @@
 
                                           <td ng-if="projectPlan.isCheck==0" ng-bind="projectPlan.checkTime"></td>
                                           <td ng-if="projectPlan.isCheck==1"  ng-dblclick="ctrl.showHistoryLog(projectPlan.planId,'check')"><a class="text-blue" ng-bind="projectPlan.checkTime"></a></td>
-                                          <td style="width: 10%">
+                                          <td style="width: 15%">
                                               <a href="#/app/planDetail?planId={{projectPlan.planId}}">
                                                   <div class="progress progress-sm progress-striped active m-t-xs m-b-none">
                                                       <div class="progress-bar bg-success" data-toggle="tooltip"  ng-style="ctrl.showPoit(projectPlan.poit)">{{projectPlan.poit*100}}%</div>

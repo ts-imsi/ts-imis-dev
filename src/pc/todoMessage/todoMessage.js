@@ -1,4 +1,4 @@
-app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal', function($scope, $http,utils,$modal) {
+app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filter', function($scope, $http,utils,$modal,$filter) {
     var selt = this;
     var pkid =  utils.getUrlVar('pkid');
 
@@ -6,6 +6,9 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal', functi
     $http.get("/ts-project/tb_message/getTbMsgById/"+pkid).success(function (result) {
         if(result.success){
             selt.msg = result.object;
+            if(selt.msg.tbHtChange!=null){
+                selt.msg.tbHtChange.created=$filter("date")(selt.msg.tbHtChange.created, "yyyy-MM-dd")
+            }
             //TODO 在流程中获取合同号和交接单号
             param={
                 htNo:selt.msg.htNo,

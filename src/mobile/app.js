@@ -20,7 +20,7 @@
     config.$inject = ['$stateProvider', '$urlRouterProvider', '$compileProvider', '$locationProvider','$httpProvider'];
     function config($stateProvider, $urlRouterProvider, $compileProvider, $locationProvider,$httpProvider) {
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
-        $httpProvider.defaults.headers.common = { 'X-TOKEN' : sessionStorage.getItem("X-TOKEN") }
+        $httpProvider.defaults.headers.common = { 'X-TOKEN' : sessionStorage.getItem("X-TOKEN") };
         /**
          * 定义路由
          */

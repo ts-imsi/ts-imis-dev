@@ -49,8 +49,8 @@
                 <li class="mui-table-view-cell posRe" ng-repeat="pro in handover.planList">
                     <a class="mui-navigate-right" href="#/projectDetails?planId={{pro.planId}}">{{pro.proName}}
                        <div class="fr posAbs proMametJD">
-                          <div class="posRe proSchedule" style="width: 80%">
-                              <span class="posAbs" >80%</span>
+                          <div class="posRe proSchedule"  ng-style="pro.planStyle">
+                              <span class="posAbs" ng-bind="pro.planStyleN"></span>
                           </div>
                        </div>
                     </a>

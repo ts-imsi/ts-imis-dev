@@ -1,0 +1,173 @@
+<div>
+    <!-- header -->
+    <div class="wrapper bg-light lter b-b">
+        <div class="col-lg-2-4" style="margin-left: 36%; margin-bottom: 10px">
+            <a href="#/app/todoMessage"><button class="btn m-b-xs w-xs btn-default">返回列表</button></a>
+        </div>
+        <div class="btn-group m-r-sm" ng-if="ctrl.msg.type=='todo'&&ctrl.msg.status=='0'">
+            <button class="btn  btn-default w-xxs w-auto-xs"  ng-click="ctrl.submitFlow()" ng-show="detailCtrl.msg.productStatus!=1"><i class="fa fa-archive">提交</i></button>
+            <button class="btn  btn-default w-xxs w-auto-xs" ng-show="ctrl.msg.returnStatus==1"  ng-click="detailCtrl.returnFlow()"><i class="fa fa-exclamation-circle">驳回</i></button>
+            <button class="btn  btn-default w-xxs w-auto-xs" ng-show="ctrl.msg.resolveStatus==1"  ng-click="detailCtrl.analyze()"><i class="fa fa-pencil-square">分解</i></button>
+            <button class="btn  btn-default w-xxs w-auto-xs" ng-show="ctrl.msg.productStatus==1"  ng-click="ctrl.pdConfirm()"><i class="fa fa-pencil-square">生产部门确认</i></button>
+        </div>
+        <div class="btn-group">
+        </div>
+    </div>
+    <!-- / header -->
+    <div class="wrapper b-b">
+        <h2 class="font-thin m-n" ng-bind="ctrl.msg.title"></h2>
+    </div>
+    <div class="wrapper b-b">
+        发送人 <span ng-bind="ctrl.msg.sendName"></span>   发送时间：<span ng-bind="ctrl.msg.sendTime | date:'yyyy-MM-dd'"></span> <a ng-show="ctrl.msg.handOverId" href="#/access/handover?id={{ctrl.msg.handOverId}}" target="_blank">查看交接单</a>
+    </div>
+    <div class="wrapper">
+        <div class="table-responsive" ng-if="ctrl.msg.handover">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>合同编号</th>
+                    <th>合同名称</th>
+                    <th>客户名称</th>
+                    <th>合同拥有人</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ng-bind="ctrl.msg.handover.htNo"></td>
+                    <td ng-bind="ctrl.msg.handover.htName"></td>
+                    <td ng-bind="ctrl.msg.handover.customerName"></td>
+                    <td ng-bind="ctrl.msg.handover.htOwner"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div  ng-if="ctrl.msg.tbHtChange">
+            <div class="form-group RuleInput">
+                <label class="RuleName">变更类型：</label>
+                <select class="form-control Rinput40" ng-model="ctrl.msg.tbHtChange.type" class="form-control"  name="type" ng-change="ctrl.showModule()">
+                    <option value="">请选择</option>
+                    <option value="BG">变更</option>
+                    <option value="ZB">增补</option>
+                </select>
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">合同名称：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.htName" readonly>
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">客户名称：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.customerName" readonly >
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">合同签订时间：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.signDate" readonly>
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">变更理由：</label>
+                <textarea type="text" class="form-control Rinput60" cols="60" rows="4"  name="changeContent"
+                          ng-model="ctrl.msg.tbHtChange.changeContent" readonly></textarea>
+            </div>
+            <div class="form-group RuleInput" style="position: relative;" >
+                <label class="RuleName">申请人：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.createUser" readonly>
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;" >
+                <label class="RuleName">申请人部门：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.applicationDept" readonly >
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;" >
+                <label class="RuleName">申请人时间：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.created" readonly >
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">备注：</label>
+                <textarea type="text" class="form-control Rinput60" cols="60" rows="4" readonly name="remark"
+                          ng-model="ctrl.msg.tbHtChange.remark"></textarea>
+            </div>
+        </div>
+        <span ng-bind="ctrl.msg.msgContent"></span>
+    </div>
+</div>
+<script type="text/ng-template" id="analyze.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">合同分解接收人选择</h4>
+    </div>
+    <form class="form-horizontal" name="analyzeForm"
+          ng-submit=""
+          novalidate role="form">
+        <div class="RuleCont">
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>生产部门</th>
+                        <th>模块</th>
+                        <th>部门接受人</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in ctrl.analyzeList">
+                        <td ng-bind="item.depName"></td>
+                        <td ng-bind="item.proName"></td>
+                        <td>
+                            <input  select2  select2-model="item.selectJson" config="item" multiple placeholder="请选择" class="form-control" type="text" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="ctrl.saveAnalyze()">保存</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>
+
+
+<script type="text/ng-template" id="returnFlow.html">
+    <div class="modal-header">
+        <h4 class="modal-title">驳回</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label class="RuleName">项目编号：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.htNo" readonly/>
+            </div>
+
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label  class="RuleName">项目名称：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.htName" readonly/>
+            </div>
+
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label  class="RuleName">客户名称：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.customerName" readonly/>
+            </div>
+
+            <div class="form-group RuleInput" ng-if="returnCtrl.msg.handover">
+                <label  class="RuleName">合同拥有人：</label>
+                <input type="text" class="form-control Rinput60" ng-model="returnCtrl.msg.handover.htOwner" readonly/>
+            </div>
+
+            <div class="form-group RuleInput">
+                <label class="RuleName">驳回理由：</label>
+                <textarea type="text" class="form-control Rinput60" cols="60" rows="4" required name="remark"
+                          ng-model="returnCtrl.msg.remark"></textarea>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="returnCtrl.saveMsg(returnCtrl.msg)">提交</button>
+        <button class="btn btn-warning" type="button" ng-click="returnCtrl.cancel()">取消</button>
+    </div>
+</script>

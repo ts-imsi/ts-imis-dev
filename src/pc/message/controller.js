@@ -151,6 +151,10 @@ app.controller('messageDetailCtrl',['$scope', '$modal', '$http', '$log','$stateP
         });
     }
 
+    this.openTodo=function(){
+        window.location.href="#/app/todoMegContent?pkid="+seltmsgDetail.pkid;
+    }
+
 
 }])
 

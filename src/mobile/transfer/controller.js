@@ -3,18 +3,42 @@
         .module('MOBILEAPP.TRANSFER.CONTROLLER', ['ui.bootstrap'])
         .controller('transferCtrl', ['$http','$uibModal','$log','$document','utils',function($http,$uibModal, $log, $document,utils) {
             var selt = this;
-            var depName=utils.getUrlVar("depName");
-            var param={
-                depName:depName
+            this.queryHandOver=function(){
+                var param={
+                    showAll:selt.showAll
+                };
+                $http.post("/ts-project/mobileTransfer/queryHandOverList",angular.toJson(param)).success(function (result) {
+                    if (result.success) {
+                        selt.handOverList=result.object;
+                    } else {
+                        selt.handOverList=[];
+                        alert(result.message);
+                    }
+                });
             }
-            $http.post("/ts-project/mobileTransfer/queryHandOverList",angular.toJson(param)).success(function (result) {
+            //---页面按钮权限控制--start--
+            this.opCodes = [];
+            this.isShowOpe = function(value){
+                for(var i = 0; i < selt.opCodes.length; i++){
+                    if(value === selt.opCodes[i]){
+                        return true;
+                    }
+                }
+                return false;
+            };
+            $http.get("/ts-authorize/ts-imis/operList/app-handOverList").success(function (result) {
                 if (result.success) {
-                    selt.handOverList=result.object;
+                    selt.opCodes = result.object;
+                    if(selt.isShowOpe("all")){
+                        selt.showAll = "all";
+                    }
+                    selt.queryHandOver();
                 } else {
-                    selt.handOverList=[];
                     alert(result.message);
                 }
             });
+
+            //-------------------end---
         }]);
 
     angular

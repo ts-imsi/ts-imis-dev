@@ -3,30 +3,32 @@
         .module('MOBILEAPP.PROJECTMENT.CONTROLLER', ['ui.bootstrap'])
         .controller('projectMentCtrl', ['$http','$uibModal','$log','$document','utils',function($http,$uibModal, $log, $document,utils) {
             var selt = this;
-            var param={
-                isArrange:1
-            };
-            selt.objtype=[];
-            $http.post("/ts-project/mobileProject/selectMobileProjectArrangeList",angular.toJson(param)).success(function (result) {
-                if (result.success) {
-                    selt.handOverList=result.object;
-                    angular.forEach(selt.handOverList,function(item){
-                        selt.objtype.push(false);
-                        angular.forEach(item.planList,function(pl){
-                            if(pl.poit==null){
-                                pl.poit=0;
-                            }
-                            pl.planStyle={"width":pl.poit*100+'%'};
-                            pl.planStyleN=pl.poit*100+'%';
+            this.queryProjectArrange=function(){
+                var param={
+                    isArrange:1,
+                    showAll:selt.showAll
+                };
+                selt.objtype=[];
+                $http.post("/ts-project/mobileProject/selectMobileProjectArrangeList",angular.toJson(param)).success(function (result) {
+                    if (result.success) {
+                        selt.handOverList=result.object;
+                        angular.forEach(selt.handOverList,function(item){
+                            selt.objtype.push(false);
+                            angular.forEach(item.planList,function(pl){
+                                if(pl.poit==null){
+                                    pl.poit=0;
+                                }
+                                pl.planStyle={"width":pl.poit*100+'%'};
+                                pl.planStyleN=pl.poit*100+'%';
+                            })
                         })
-                    })
 
-                } else {
-                    selt.handOverList=[];
-                    alert(result.message);
-                }
-            });
-
+                    } else {
+                        selt.handOverList=[];
+                        alert(result.message);
+                    }
+                });
+            }
             this.chickClassMui=function(index){
                 console.log(selt.objtype[index]);
                 if(selt.objtype[index]){
@@ -36,6 +38,32 @@
                 }
 
             }
+
+
+            //---页面按钮权限控制--start--
+            this.opCodes = [];
+            this.isShowOpe = function(value){
+                for(var i = 0; i < selt.opCodes.length; i++){
+                    if(value === selt.opCodes[i]){
+                        return true;
+                    }
+                }
+                return false;
+            };
+            $http.get("/ts-authorize/ts-imis/operList/app-arrange").success(function (result) {
+                if (result.success) {
+                    selt.opCodes = result.object;
+                    if(selt.isShowOpe("all")){
+                        selt.showAll = "all";
+                    }
+                    selt.queryProjectArrange();
+                } else {
+                    alert(result.message);
+                }
+            });
+
+            //-------------------end---
+
         }]);
 
     angular

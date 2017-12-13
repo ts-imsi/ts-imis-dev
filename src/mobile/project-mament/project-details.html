@@ -15,7 +15,7 @@
 <!--header-->
 <header class="mui-bar mui-bar-nav headerBG">
     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA" href="#/projectMent"></a>
-    <h1 class="mui-title headerA" ng-bind="$ctrl.handover.htName"></h1>
+    <h1 class="mui-title headerA" ng-bind="$ctrl.projectPlan.proName"></h1>
 </header>
 <!--header end-->
 <!--底部导航-->
@@ -41,9 +41,10 @@
 <div class="mui-content">
     <div class="mui-table-view-cell mui-media withBG">
         <div class="mui-media-body">
-            <h5 class="graufont6  mui-ellipsis font18" ng-bind="$ctrl.handover.htName">实施计划文档</h5>
-            <p class="font16 mui-ellipsis-2 graufont3">HIS系统 <span class="font14"> 项目经理：{{$ctrl.handover.proManager}}</span></p>
-            <h5 class="greenFont"> 提成基准金额：{{$ctrl.planDetail.takeDase}}</h5>
+            <h5 class="graufont6  mui-ellipsis font18" ng-bind="$ctrl.handover.customerName"></h5>
+            <h5 class="graufont6  mui-ellipsis font18" ng-bind="$ctrl.handover.htName"></h5>
+            <p class="font16 mui-ellipsis-2 graufont3">{{$ctrl.handover.htNo}} <span class="font14"> 项目经理：{{$ctrl.handover.proManager}}</span></p>
+            <h5 class="greenFont"> <span ng-if="$ctrl.planDetail.planCycle">计划周期：{{$ctrl.planDetail.planCycle}}</span> 实施经理：{{$ctrl.projectPlan.actualizeManager}}</h5>
         </div>
     </div>
     <div class="mui-table-view" style="margin-top: 15px">

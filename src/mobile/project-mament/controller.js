@@ -76,7 +76,7 @@
             this.queryItem=function(){
                 $http.post("/ts-project/mobileProject/selectMobilePlanItems/"+planId).success(function (result) {
                     if (result.success) {
-
+                        selt.projectPlan=result.tbProjectPlan;
                         selt.handover=result.handover;
                         selt.planDetail=result.planDetail;
                         angular.forEach(selt.planDetail.tbPlanStages,function(item){

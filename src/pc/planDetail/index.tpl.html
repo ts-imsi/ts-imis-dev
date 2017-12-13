@@ -8,7 +8,7 @@
                  <div class="panel-body pad7-15">
                          <label class="control-label fl pt10"  style="padding-left: inherit;">总评分：</label>
                      <div class="pw60  fl">
-                             <input type="text" class="form-control" ng-model="ctrl.detail.total">
+                             <input type="text" class="form-control" ng-model="ctrl.detail.total" readonly>
                          </div>
                  </div>
              </div>
@@ -31,7 +31,7 @@
                  <div class="panel-body pad7-15">
                      <label class="control-label fl pt10">计划周期：</label>
                      <div class="pw60  fl">
-                         <input type="text" class="form-control" ng-model="ctrl.detail.planCycle">
+                         <input type="text" class="form-control" ng-model="ctrl.detail.planCycle" readonly>
                      </div>
                  </div>
              </div>
@@ -148,11 +148,12 @@
                                          </thead>
                                          <tbody>
                                          <tr ng-repeat="item in stage.tbPlanItems">
-                                             <td class="tabLeft" ng-show="ctrl.updateTimeBoo">
+                                             <td class="tabLeft" ng-show="item.time" ng-bind="item.planTime"></td>
+                                             <td class="tabLeft" ng-show="!item.time&&ctrl.updateTimeBoo">
                                                  <input ng-model="item.planTime" id="id{{item.pkid}}" onClick="laydate()">
                                              </td>
 
-                                             <td class="tabLeft" ng-show="!ctrl.updateTimeBoo">
+                                             <td class="tabLeft" ng-show="!item.time&&!ctrl.updateTimeBoo">
                                                  <a ng-show="item.isUpdate==1" class="text-blue" ng-bind="item.planTime" ng-dblclick="ctrl.updatePlanTime(item)"></a>
                                                  <a ng-show="item.isUpdate==0" ng-bind="item.planTime" ng-dblclick="ctrl.updatePlanTime(item)"></a>
                                              </td>

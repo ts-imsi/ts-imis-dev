@@ -20,7 +20,7 @@
                             selt.nowStep=result.change.nowStep;
                         }
                         if(result.type=="handover"){
-                            selt.type="表接单审批";
+                            selt.type="交接单审批";
                             selt.htNo=result.handover.htNo;
                             selt.customerName=result.handover.customerName;
                             selt.htName=result.handover.htName;

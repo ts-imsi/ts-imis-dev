@@ -1,0 +1,59 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">消息待办列表</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="btn-group col-px-700" style="position: relative;float:left">
+                    <button type="button" ng-click="ctrl.selectByType('0')" class="btn btn-default">待办</button>
+                    <button type="button" ng-click="ctrl.selectByType('1')" class="btn btn-default">已办</button>
+                </div>
+                <div class="col-px-230 fl" style="position: relative;">
+                    <input type="text" class="form-control" placeholder="请输入合同名，合同号，客户名" ng-model="ctrl.selectName">
+                </div>
+                <div class="col-px-140 fl" style="position: relative;">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.selectTodo()">查询</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>消息类型</th>
+                    <th>接收时间</th>
+                    <th>标题</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="message in ctrl.messageList">
+                    <td ng-bind="message.status==0?'待办':'已办'"></td>
+                    <td ng-bind="message.sendTime | date:'yyyy-MM-dd'"></td>
+                    <td ng-bind="message.title"></td>
+                    <td>
+                        <a ng-if="message.status==0" href="#/app/todoMegContent?pkid={{message.pkid}}" class="btn btn-default daochu Nksx">办理</a>
+                        <a ng-if="message.status==1" href="#/app/todoMegContent?pkid={{message.pkid}}" class="btn btn-default daochu Nksx">查阅</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

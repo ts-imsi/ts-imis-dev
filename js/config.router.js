@@ -923,6 +923,28 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.todoMessage', {
+                  url: '/todoMessage',
+                  templateUrl: 'src/pc/todoMessage/index.tpl.html',
+                  controller: 'todoMessageCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/todoMessage/controller.js'] );
+                          }]
+                  }
+              })
+              .state('app.todoMegContent', {
+                  url: '/todoMegContent',
+                  templateUrl: 'src/pc/todoMessage/todoMessage.html',
+                  controller: 'todoMegContentCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/todoMessage/todoMessage.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

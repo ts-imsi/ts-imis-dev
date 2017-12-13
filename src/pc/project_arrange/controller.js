@@ -130,6 +130,7 @@ app.controller('projectArrangeCtrl', ['$scope', '$modal', '$http', '$filter','$l
                             proPlan.isApproach = plan.isApproach;
                             proPlan.isOnline = plan.isOnline;
                             proPlan.isCheck = plan.isCheck;
+                            proPlan.isManager = plan.isManager;
                         }
                     });
                 }

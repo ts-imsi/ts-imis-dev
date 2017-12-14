@@ -44,6 +44,7 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
         $http.post("/ts-project/tb_message/submitFlow",angular.toJson(selt.msg)).success(function (result) {
             if(result.success){
                 alert(result.message);
+                window.location.href="#/app/todoMessage";
             }else{
                 alert(result.message);
             }
@@ -60,11 +61,11 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
             }
         });
 
-        returnFlowInstance.result.then(function () {
+        returnFlowInstance.result.then(function (returnFlow) {
+            if(returnFlow){
+                window.location.href="#/app/todoMessage";
+            }
         });
-
-
-
     }
 
     this.pdConfirm=function(){
@@ -72,6 +73,7 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
         $http.post("/ts-project/tb_message/pdConfirm",angular.toJson(selt.msg)).success(function (result) {
             if(result.success){
                 alert(result.message);
+                window.location.href="#/app/todoMessage";
             }else{
                 alert(result.message);
             }
@@ -82,3 +84,59 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
 
 }]);
 
+app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
+    var seltAnaly=this;
+
+
+    $http.get("/ts-project/ht_analyze/selectAnalyzeList/"+data.htNo).success(function (result) {
+        if(result.success){
+            seltAnaly.analyzeList = result.object;
+        }else{
+            seltAnaly.analyzeList='';
+            alert(result.message);
+        }
+    });
+
+    this.saveAnalyze=function(){
+        console.log("=========");
+        angular.forEach(seltAnaly.analyzeList,function(item){
+            item.handoverId=data.handOverId;
+            item.processId=data.processId;
+        })
+        $http.post("/ts-project/ht_analyze/saveAnaly",angular.toJson(seltAnaly.analyzeList)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+            }else{
+                alert(result.message);
+            }
+
+        });
+    }
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+}]);
+app.controller('ReturnFlowCtrl', ['$scope', '$modalInstance','$http', '$filter','data', function($scope,$modalInstance,$http,$filter,data) {
+    var selt=this;
+    selt.msg = data;
+    selt.returnFlow=false;
+
+    this.saveMsg = function (msg) {
+        $http.post("/ts-project/tb_message/returnFlow",angular.toJson(msg)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+                selt.returnFlow=true;
+            }else{
+                alert(result.message);
+            }
+        });
+        $modalInstance.close(selt.returnFlow);
+    };
+
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}])

@@ -87,7 +87,8 @@
                                       <tbody>
                                       <tr ng-repeat="projectPlan in handOver.planList">
                                           <td ng-bind="projectPlan.proName"></td>
-                                          <td ng-bind="projectPlan.actualizeManager"></td>
+                                          <td ng-if="projectPlan.isManager==0" ng-bind="projectPlan.actualizeManager"></td>
+                                          <td ng-if="projectPlan.isManager==1"  ng-dblclick="ctrl.showHistoryLog(projectPlan.planId,'manager')"><a class="text-blue" ng-bind="projectPlan.actualizeManager"></a></td>
 
                                           <td ng-if="projectPlan.isSurvey==0" ng-bind="projectPlan.surveyTime"></td>
                                           <td ng-if="projectPlan.isSurvey==1"  ng-dblclick="ctrl.showHistoryLog(projectPlan.planId,'survey')"><a class="text-blue" ng-bind="projectPlan.surveyTime"></a></td>
@@ -247,8 +248,8 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
-                        <th>变更后时间</th>
-                        <th>变更前时间</th>
+                        <th>变更后</th>
+                        <th>变更前</th>
                         <th>变更时间</th>
                         <th>变更事由</th>
                     </tr>

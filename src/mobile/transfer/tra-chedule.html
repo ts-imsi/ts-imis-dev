@@ -60,24 +60,25 @@
                 <div class="application" ng-show="$ctrl.handover.type=='ZB'">
                     <label>类型</label><span class="mui-pull-right applicationInfoText">合同增补交接</span>
                 </div>
-                <div class="application">
+                <!--<div class="application">
                     <label>合同号</label><span class="mui-pull-right applicationInfoText" ng-bind="$ctrl.handover.htNo"></span>
                 </div>
                 <div class="application">
                     <label>客户名称</label><span class="mui-pull-right applicationInfoText" ng-bind="$ctrl.handover.customerName"></span>
-                </div>
-                <div class="application">
-                    <label>合同名称</label><span class="mui-pull-right applicationInfoText" ng-bind="$ctrl.handover.htName"></span>
+                </div>-->
+                <div class="application" ng-repeat="module in $ctrl.handover.contentJson">
+                    <label ng-if="module.value" ng-bind="module.name"></label><span ng-if="module.value" class="mui-pull-right applicationInfoText" ng-bind="module.value"></span>
                 </div>
             </div>
         </div>
     <!--交接单进度-->
     <ul class="mui-table-view fl w100" style="margin-top: 0;" id="contSet">
         <li class="mui-table-view-cell mui-media thisDA" ng-repeat="timeLine in $ctrl.timeLineVos">
-            <div class="mui-media-body padd010">
+            <div  class="mui-media-body padd010">
                 <span class="graufont9 font12" ng-bind="timeLine.time"></span>
                 <span class="greenFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile--tongguo" style="padding-right: 5px;"></i>通过</span>
-                <h5 class="graufont9 font16">{{timeLine.taskName}}</h5>
+                <h5 class="graufont9 font14">{{timeLine.taskName}} <span style="padding-left: 10px;" class="font12">提交人:{{timeline.name}}</span></h5>
+                <h5 class="graufont9 font14">提交时间:{{timeline.startTime}}</h5>
             </div>
         </li>
         <!--<li class="mui-table-view-cell mui-media thisDA">

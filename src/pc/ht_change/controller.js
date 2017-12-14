@@ -5,6 +5,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     selt.submitApply=true;
     selt.showOldModule=false;
     selt.showNewModule=true;
+    selt.showLModule=false;
     this.maxSize = 5;
 
     this.selectContract=function(){
@@ -275,7 +276,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
             selt.showOldModule=false;
             selt.showNewModule=true;
         }
-
+        selt.showLModule=true;
         $http.post("/ts-project/htChange/getHtChangeView/"+htChange.type+"-"+htChange.pkid).success(function (result) {
             if(result.success){
                 selt.oldModuleList = result.oldModule;
@@ -343,7 +344,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         }
         return false;
     };
-    $http.get("/ts-authorize/ts-imis/operList/app-htChange").success(function (result) {
+    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-htChange").success(function (result) {
         if (result.success) {
             selt.opCodes = result.object;
             if(selt.isShowOpe("all")){

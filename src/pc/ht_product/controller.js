@@ -2,7 +2,6 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     var selt = this;
     this.maxSize = 5;
 
-
     this.selectContract=function(){
         this.setPage(1);
     };
@@ -116,7 +115,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
     this.addHtChange=function(htProduct){
         console.log("===========ceshi");
-
+        selt.showLModule=false;
         selt.submitApply=true;
         selt.submitted=false;
         selt.type="";
@@ -356,6 +355,9 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         }else{
             selt.showOldModule=false;
             selt.showNewModule=true;
+        }
+        if(selt.showModule==false&&selt.showOldModule==true){
+            console.log("3232");
         }
     };
 
@@ -597,7 +599,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         }
         return false;
     };
-    $http.get("/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
+    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
         if (result.success) {
             selt.opCodes = result.object;
             if(selt.isShowOpe("all")){

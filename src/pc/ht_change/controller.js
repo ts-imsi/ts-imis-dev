@@ -344,7 +344,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
         }
         return false;
     };
-    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-htChange").success(function (result) {
+    $http.get("/ts-authorize/ts-imis/operList/app-htChange").success(function (result) {
         if (result.success) {
             selt.opCodes = result.object;
             if(selt.isShowOpe("all")){

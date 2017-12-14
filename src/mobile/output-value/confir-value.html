@@ -30,7 +30,7 @@
         <li ng-class="{'mui-table-view-cell mui-collapse':!$ctrl.objtype[{{$index}}],'mui-table-view-cell mui-collapse mui-active':$ctrl.objtype[{{$index}}]}" ng-repeat="outputValueVo in $ctrl.outputValueVoList">
             <a class="mui-navigate-right posRe" ng-click="$ctrl.chickClassMui($index)">
                 <span class="w60 fl" ng-bind="outputValueVo.name"></span>
-                <span class="fl">总值：{{outputValueVo.totle}}</span>
+                <span class="fl">总值：{{outputValueVo.totle}}{{$ctrl.dw}}</span>
              </a>
             <ul class="mui-table-view mui-table-view-chevron">
                 <!--按钮-->
@@ -47,8 +47,8 @@
                         </div>
                     <!--数值-->
                     <div class="posAbs traPor">
-                        <div class="buleFont font18" style="margin: 15px auto;" ng-bind="output.output"></div>
-                        <div class="greenFont font18" style="margin: 15px auto;" ng-bind="output.subtotal"></div>
+                        <div class="buleFont font18" style="margin: 15px auto;" >{{output.output*100}}{{$ctrl.bfh}}</div>
+                        <div class="greenFont font18" style="margin: 15px auto;" >{{output.subtotal}}{{$ctrl.dw}}</div>
                     </div>
                 </li>
             </ul>

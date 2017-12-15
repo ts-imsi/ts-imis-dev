@@ -596,7 +596,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         }
         return false;
     };
-    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
+    $http.get("/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
         if (result.success) {
             selt.opCodes = result.object;
             if(selt.isShowOpe("all")){

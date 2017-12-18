@@ -9,6 +9,12 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
             if(selt.msg.tbHtChange!=null){
                 selt.msg.tbHtChange.created=$filter("date")(selt.msg.tbHtChange.created, "yyyy-MM-dd")
             }
+            param={
+                htNo:selt.msg.htNo,
+                handOverId:selt.msg.handOverId,
+                processId:selt.msg.processId,
+                msg:selt.msg
+            }
         }else{
             selt.msg='';
             alert(result.message);

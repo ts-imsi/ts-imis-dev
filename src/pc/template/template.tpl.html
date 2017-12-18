@@ -18,8 +18,6 @@
                 <div class="form-group RuleInput" ng-repeat='text in ctrl.handover.contentJson'>
                     <label class="RuleName130" >{{text.name}}：</label>
 
-                    <input type="text" class="form-control Rinput60"  ng-show="!text.input" value="预览交接单时自动填充" readonly>
-
                     <!-- 单行文本框 -->
                     <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.input=='text'" ng-model="text.value">
 

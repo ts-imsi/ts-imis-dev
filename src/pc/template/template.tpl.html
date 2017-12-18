@@ -16,7 +16,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="form-group RuleInput" ng-repeat='text in ctrl.handover.contentJson'>
-                    <label class="RuleName130" >{{text.name}}：</label>
+                    <label class="RuleName130" ng-show="text.input">{{text.name}}：</label>
 
                     <!-- 单行文本框 -->
                     <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.input=='text'" ng-model="text.value">

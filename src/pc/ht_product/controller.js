@@ -452,10 +452,14 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         selt.finishTime = true;
 
     };
+    selt.handover = {
+      pkid:null
+    };
 
     this.handoverView = function (htProduct) {
         selt.showbutton=false;
         selt.submitted=false;
+        selt.showHtProduct = htProduct;
         htProduct.type='NEW';
         htProduct.changeNo = htProduct.contractNo;
         $http.post("/ts-project/handover/getHandover",angular.toJson(htProduct)).success(function (result) {
@@ -583,6 +587,22 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     };
 
 
+
+    this.fileUploader=function(handover){
+        var FileUploaderInstance = $modal.open({
+            templateUrl: 'fileUploader.html',
+            controller: 'FileUploaderCtrl as fileCtrl',
+            resolve: {
+                data: function () {
+                    return handover;
+                }
+            }
+        });
+
+        FileUploaderInstance.result.then(function () {
+
+        });
+    };
 
 
 
@@ -770,4 +790,36 @@ app.controller('proModuleCtrl', ['$scope', '$modalInstance','$http','data', func
     };
 
 
-}])
+}]);
+
+app.controller('FileUploaderCtrl', ['$scope', '$modalInstance','$http', '$filter','data','FileUploader', function($scope,$modalInstance,$http,$filter,data,FileUploader) {
+    var selt=this;
+    selt.handover = data;
+
+    var uploader = $scope.uploader = new FileUploader({
+        url: '/ts-project/fileUpload/file?id='+selt.handover.pkid+'&name=handover',
+        headers:undefined
+    });
+
+
+    this.fileItem = "";
+    uploader.onAfterAddingFile = function(fileItem) {
+        console.log(uploader.queue.length);
+        console.log(uploader.queue[uploader.queue.length-1].file.name);
+        console.log(fileItem.file.name);
+        selt.fileItem = fileItem;
+        if(!selt.handover.pkid){
+            alert("请先提交交接单!");
+        }
+    };
+
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        alert(response.message);
+        $modalInstance.close();
+    };
+
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}]);

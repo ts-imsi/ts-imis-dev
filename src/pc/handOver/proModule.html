@@ -69,14 +69,17 @@
     .contleft{float: left; width: 81%;}
     .contleft ul li{float: left; width: 20%;}
     .contRight{float: right; width: 19%;border-top: 2px solid #000;}
-    .infoContBot{width: 100%;float: left; border-top:1px solid #000;box-sizing: border-box;border-left:1px solid #000;border-right:1px solid #000}
-    .infoContLeft{width: 30%;float: left;text-indent: 20px;}   .infoRight{width: 80%;float: right; border-left: 1px solid #000;}
-    .infoContRight{width: 69.2%;float: right; border-left: 1px solid #bebdbd;}
-    .infoContRight ul li{line-height: 30px; width: 33.33%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #000;}
+    .infoContBot{width: 100%;float: left; border-top:1px solid #000;box-sizing: border-box;border-left:2px solid #000;border-right:2px solid #000;}
+    .infoContLeft{width: 24.8%;float: left;text-indent: 20px;border-top:1px solid #000}
+    .infoRight{width: 80%;float: right; border-left: 1px solid #000;}
+    .infoContRight{width: 75.2%;float: right; border-left: 1px solid #bebdbd;}
+    .infoContRight ul li{line-height: 30px; width: 100%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000;border-left: 1px solid #000}
     .posr{position: absolute; bottom: 36%; right: 10%;}
     .allcont{width: 100%;}
     .allcont ul li{line-height: 30px; width: 20%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #000;}
     .allcont ul li:first-child {font-weight: bold}
+    .conter{border:1px solid #000}
+    .conter tr td{padding: 5px 10px; border-bottom: 1px solid #000}
 </style>
 <div class="trasen">
     <!--logo-->
@@ -98,23 +101,24 @@
     <!--标题 end-->
     <!--打印单 内容-->
     <div>
-        <table class="conter fl">
-            <tr>
-                <td class="infoLeft">产品</td>
-                <td class="infoRight">模块</td>
-            </tr>
-            <tr ng-repeat="module in ctrl.voList">
-                <td class="infoLeft" ng-bind="module.proName"></td>
-                <td class="infoRight">
-                    <table>
-                        <tr ng-repeat="vo in module.modList">
-                            <td ng-bind="vo"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
 
-        </table>
+
+
+        <div class="infoBot" style="border-bottom: 2px solid #000000; float: left; margin-bottom: 50px">
+            <div style="width: 100%" ng-repeat="module in ctrl.voList">
+                <div class="infoContBot ng-scope" style="position: relative;">
+                    <div class="infoContLeft">
+                        <div class="pos2 ng-binding" ng-bind="module.proName" style="text-align: center;"></div>
+                    </div>
+                    <div class="infoContRight">
+                        <ul class="ng-scope" ng-repeat="vo in module.modList">
+                        <li class="ng-binding" ng-bind="vo"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 

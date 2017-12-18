@@ -1,138 +1,230 @@
+<style>
+
+    body,*{ font-family:"宋体" ; font-size:15px;}
+    ul,ol{list-style:none;margin: 0; padding: 0;}
+    em{font-style: normal;}
+    i{font-style: normal;}
+    .trasen{
+        width: 96%;
+        margin: 0 2%;
+        height: 100%;
+
+        padding-bottom: 40px;
+
+    }
+    .top{width:100%}
+    .font12{ font-size:12px; padding-top:30px}
+    .logo{ width:40%}
+    .logo img{ height:50px}
+    .Tit{ font-family:"微软雅黑";font-weight: bold; width:100%; text-align:center; font-size:25px}
+    .fl{float:left}
+    .fr{float:right}
+    .w10{width: 10% !important;}
+    .w15{width: 15% !important;}
+    .w20{width: 20% !important;}
+    .w25{width: 25% !important;}
+    .w30{width: 30% !important;}
+    .w40{width: 40% !important;}
+    .w45{width: 45% !important;}
+    .w50{width: 50% !important;}
+    .w55{width: 55% !important;}
+    .w60{width: 60% !important;}
+    .w65{width: 65% !important;}
+    .w70{width: 70% !important;}
+    .w75{width: 75% !important;}
+    .w80{width: 80% !important;}
+    .w85{width: 85% !important;}
+    .w90{width: 90% !important;}
+    .w95{width: 95% !important;}
+    .w100{width: 100% !important;}
+    .w23{width: 20.2% !important;}
+    .w445{width: 44.5% !important;}
+    .w185{width: 18.5% !important;}
+    .w301{width: 30.1% !important;}
+    .w297{width: 29.7% !important;}
+    .day{ text-align:right}
+    .conter{ margin-top:5px; width:100%; border-bottom: 1px solid #000;}
+    .info{width: 100%;float: left; border-top:1px solid #000;box-sizing: border-box;border-left:1px solid #000;border-right:1px solid #000}
+    .infoLeft{width: 20%;float: left;text-indent: 20px;}
+    .infoRight{width: 80%;float: right; border-left: 1px solid #000;}
+    .infoRight ul li{line-height: 30px; width: 100%;float: left; position: relative;}
+    .infoRight span{display: block; width: 25%;float: left;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #bebdbd;padding-left: 10px;}
+    .w50 span{width: 50%;}
+    .topInfo td span{ font-weight:bold}
+    .topInfo td{width:20%; line-height: 30px;border:1px solid #000}
+    .botInfo{ width:100%}
+    .botInfo td{width:20%;  line-height: 30px; padding-left: 15px; border:1px solid #000}
+    .botInfo td.w15{width:15%;  line-height: 30px; padding-left: 15px;}
+    .juzhong{ text-align:center}
+    .bk{border:1px solid #000;box-sizing: border-box;}
+    .infoRight ul li span div{position: absolute; top: 36%;}
+    .pos{font-family:"微软雅黑";position: absolute; top: 36%;font-weight: bold}
+    .pos2{position: absolute; top: 36%;}
+    .trasen::-webkit-scrollbar{display: none;}
+    .infoTop{font-weight: bold}
+    .infoTop ul li{float: left; width: 18.7%;}
+    .infoTop span{display: block; width: 100%;float: left;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #000;padding-left: 10px;}
+    .infoBot{width: 100%;border-left:1px solid #000;border-right:1px solid #000}
+
+    .contleft{float: left; width: 81%;}
+    .contleft ul li{float: left; width: 20%;}
+    .contRight{float: right; width: 19%;border-top: 2px solid #000;}
+    .infoContBot{width: 100%;float: left; border-top:1px solid #000;box-sizing: border-box;border-left:1px solid #000;border-right:1px solid #000}
+    .infoContLeft{width: 30%;float: left;text-indent: 20px;}
+    .infoRight{width: 100%;float: left; border-left: 1px solid #000;border-right: 1px solid #000}
+    .infoContRight{width: 69.2%;float: right; border-left: 1px solid #bebdbd;}
+    .infoContRight ul li{line-height: 30px; width: 33.33%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #000;}
+    .infoContRight2{width: 75.2%;float: right; border-left: 1px solid #bebdbd;}
+    .infoContRight2 ul li{line-height: 30px; width: 100%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000;border-left: 1px solid #000}
+    .posr{position: absolute; top:60%; right: 10%;}
+    .allcont{width: 100%;}
+    .allcont ul li{line-height: 30px; width: 20%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #000;}
+    .allcont ul li:first-child {font-weight: bold}
+</style>
 <div class="wrapper-md">
     <div class="panel panel-default">
         <div class="panel-heading">
             {{ctrl.msg.title}}
             <div class="fr">
-                <a href="#/app/todoMessage">返回列表</a>
-                <a ng-click="ctrl.submitFlow()" ng-show="ctrl.msg.productStatus!=1&&ctrl.msg.status=='0'">提交</a>
-                <a ng-show="ctrl.msg.returnStatus==1&&ctrl.msg.status=='0'"  ng-click="ctrl.returnFlow()">驳回</a>
-                <a ng-show="ctrl.msg.resolveStatus==1&&ctrl.msg.status=='0'"  ng-click="ctrl.analyze()">分解</a>
-                <a ng-show="ctrl.msg.productStatus==1&&ctrl.msg.status=='0'"  ng-click="ctrl.pdConfirm()">生产部门确认</a>
+                <a href="#/app/todoMessage">
+                    <button class="btn m-b-xs w-xs btn-primary" style="margin-top:  -5px; padding-top: 1px;">返回列表</button>
+                </a>
+                <button ng-click="ctrl.submitFlow()" ng-show="ctrl.msg.productStatus!=1&&ctrl.msg.status=='0'" class="btn m-b-xs btn-success" style="margin-top:  -5px; padding-top: 1px;">提交</button>
+                <button ng-show="ctrl.msg.returnStatus==1&&ctrl.msg.status=='0'"  ng-click="ctrl.returnFlow()" class="btn m-b-xs btn-danger" style="margin-top:  -5px; padding-top: 1px;">驳回</button>
+                <button ng-show="ctrl.msg.resolveStatus==1&&ctrl.msg.status=='0'"  ng-click="ctrl.analyze()" class="btn m-b-xs w-xs btn-success" style="margin-top:  -5px; padding-top: 1px;">分解</button>
+                <button ng-show="ctrl.msg.productStatus==1&&ctrl.msg.status=='0'"  ng-click="ctrl.pdConfirm()" class="btn m-b-xs btn-info" style="margin-top:  -5px; padding-top: 1px;">生产确认</button>
+
+
+
+
+
+
             </div>
         </div>
         <div class="panel-body">
-            <div ng-if="ctrl.msg.handover">
-                <div class="form-group RuleInput" style="position: relative;" ng-repeat="module in ctrl.msg.handover.contentJson">
-                    <label ng-if="module.value" class="RuleName" ng-bind="module.name"></label>
-                    <label ng-if="module.value"  class="form-control Rinput60"  ng-bind="module.value">
+            <div class="conter fl" ng-if="ctrl.msg.handover">
+                <div class="info" style="position: relative;" ng-repeat="module in ctrl.msg.handoverData.tempDataVoList">
+                    <div class="infoRight" ng-if="module.length">
+                        <ul>
+                            <li ng-class="vo.length==5?'w50':'w100'" ng-repeat="vo in module.voList">
+                                <span ng-bind="vo.name"></span>
+                                <span ng-class="vo.length==10?'w75':''" ng-bind="vo.value"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="infoRight" style="position: relative;" ng-if="module.name=='合同分解信息'&&module.voList.length>0">
+                        <div class="infoTop">
+                            <ul>
+                                <li class="w25"><span>实施部门</span></li>
+                                <li><span>产品名</span></li>
+                                <li><span>合同占比</span></li>
+                                <li class="w185"><span>小计（万）</span></li>
+                                <li style="width: 19.1%;"><span>金额（万）</span></li>
+                            </ul>
+                        </div>
+                        <div class="contleft">
+                            <div class="infoContBot" style="position: relative;" ng-repeat="vo in module.voList">
+                                <div class="infoContLeft">
+                                    <div class="pos2" ng-bind="vo.name"></div>
+                                </div>
+                                <div class="infoContRight">
+                                    <ul ng-repeat="pro in vo.voList">
+                                        <li ng-bind="pro.name"></li>
+                                        <li ng-bind="pro.value"></li>
+                                        <li ng-bind="pro.total"></li>
+                                    </ul>
+                                </div>
+                            </div>
 
+                        </div>
+
+                        <div class="contRight">
+                            <div class="infoLeft">
+                                <div  class="posr" ng-bind="ctrl.msg.handoverData.total"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
+                <div class="infoBot" style="border-bottom: 2px solid #000000; float: left;">
+                    <div style="width: 100%" ng-repeat="module in ctrl.msg.moduleData.list">
+                        <div class="infoContBot ng-scope" style="position: relative;">
+                            <div class="infoContLeft">
+                                <div class="pos2 ng-binding" ng-bind="module.proName" style="text-align: center;"></div>
+                            </div>
+                            <div class="infoContRight2">
+                                <ul class="ng-scope" ng-repeat="vo in module.modList">
+                                    <li class="ng-binding" ng-bind="vo"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
             </div>
-            <div  ng-if="ctrl.msg.tbHtChange">
-                <div class="form-group RuleInput">
-                    <label class="RuleName">变更类型：</label>
-                    <select class="form-control Rinput60" ng-model="ctrl.msg.tbHtChange.type" class="form-control"  name="type" ng-change="ctrl.showModule()">
-                        <option value="">请选择</option>
-                        <option value="BG">变更</option>
-                        <option value="ZB">增补</option>
-                    </select>
-                </div>
-                <div class="form-group RuleInput" style="position: relative;">
-                    <label class="RuleName">合同名称：</label>
-                    <label class="form-control Rinput60"  ng-bind="ctrl.msg.tbHtChange.htName"></label>
 
-                </div>
-                <div class="form-group RuleInput" style="position: relative;">
-                    <label class="RuleName">客户名称：</label>
-                    <label class="form-control Rinput60"  ng-bind="ctrl.msg.tbHtChange.customerName"  ></label>
 
-                </div>
-                <div class="form-group RuleInput" style="position: relative;">
-                    <label class="RuleName">合同签订时间：</label>
-                    <label class="form-control Rinput60"  ng-bind="ctrl.msg.tbHtChange.signDate" ></label>
 
-                </div>
-                <div class="form-group RuleInput" style="position: relative;">
-                    <label class="RuleName">变更理由：</label>
-                    <label class="form-control Rinput60"   name="changeContent"
-                              ng-bind="ctrl.msg.tbHtChange.changeContent" ></label>
-                </div>
-                <div class="form-group RuleInput" style="position: relative;" >
-                    <label class="RuleName">申请人：</label>
-                    <label class="form-control Rinput60"  ng-bind="ctrl.msg.tbHtChange.createUser" ></label>
 
-                </div>
-                <div class="form-group RuleInput" style="position: relative;" >
-                    <label class="RuleName">申请人部门：</label>
-                    <label  class="form-control Rinput60"  ng-bind="ctrl.msg.tbHtChange.applicationDept"  ></label>
 
+            <div class="conter fl" ng-if="ctrl.msg.tbHtChange">
+                <div class="infoRight">
+                    <ul>
+                        <li class="w100">
+                            <span>变更类型</span>
+                            <span class="w75" ng-model="ctrl.msg.tbHtChange.type"></span>
+                        </li>
+                        <li class="w100">
+                            <span>合同名称</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.htName"></span>
+                        </li>
+                        <li class="w100">
+                            <span>客户名称</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.customerName"></span>
+                        </li>
+                        <li class="w100">
+                            <span>合同签订时间</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.signDate"></span>
+                        </li>
+                        <li class="w100">
+                            <span>变更理由</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.changeContent"></span>
+                        </li>
+                        <li class="w100">
+                            <span>申请人</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.createUser"></span>
+                        </li>
+                        <li class="w100">
+                            <span>申请人部门</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.applicationDept"></span>
+                        </li>
+                        <li class="w100">
+                            <span>申请人时间</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.created"></span>
+                        </li>
+                        <li class="w100">
+                            <span>备注</span>
+                            <span class="w75" ng-bind="ctrl.msg.tbHtChange.remark"></span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="form-group RuleInput" style="position: relative;" >
-                    <label class="RuleName">申请人时间：</label>
-                    <label  class="form-control Rinput60"  ng-bind="ctrl.msg.tbHtChange.created"  ></label>
 
-                </div>
-                <div class="form-group RuleInput" style="position: relative;">
-                    <label class="RuleName">备注：</label>
-                    <label class="form-control Rinput60"   name="remark"
-                              ng-bind="ctrl.msg.tbHtChange.remark"></label>
-                </div>
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
 </div>
-<!--    <div class="wrapper b-b">
-        发送人 <span ng-bind="ctrl.msg.sendName"></span>   发送时间：<span ng-bind="ctrl.msg.sendTime | date:'yyyy-MM-dd'"></span> <a ng-show="ctrl.msg.handOverId" href="#/access/handover?id={{ctrl.msg.handOverId}}" target="_blank">查看交接单</a>
-    </div>
-    <div class="wrapper">
-        <div ng-if="ctrl.msg.handover">
-            <div class="form-group RuleInput" style="position: relative;" ng-repeat="module in ctrl.msg.handover.contentJson">
-                <label ng-if="module.value" class="RuleName" ng-bind="module.name"></label>
-                <input ng-if="module.value" type="text" class="form-control Rinput60"  ng-model="module.value" readonly>
 
-            </div>
-        </div>
-        <div  ng-if="ctrl.msg.tbHtChange">
-            <div class="form-group RuleInput">
-                <label class="RuleName">变更类型：</label>
-                <select class="form-control Rinput40" ng-model="ctrl.msg.tbHtChange.type" class="form-control"  name="type" ng-change="ctrl.showModule()">
-                    <option value="">请选择</option>
-                    <option value="BG">变更</option>
-                    <option value="ZB">增补</option>
-                </select>
-            </div>
-            <div class="form-group RuleInput" style="position: relative;">
-                <label class="RuleName">合同名称：</label>
-                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.htName" readonly>
-
-            </div>
-            <div class="form-group RuleInput" style="position: relative;">
-                <label class="RuleName">客户名称：</label>
-                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.customerName" readonly >
-
-            </div>
-            <div class="form-group RuleInput" style="position: relative;">
-                <label class="RuleName">合同签订时间：</label>
-                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.signDate" readonly>
-
-            </div>
-            <div class="form-group RuleInput" style="position: relative;">
-                <label class="RuleName">变更理由：</label>
-                <textarea type="text" class="form-control Rinput60" cols="60" rows="4"  name="changeContent"
-                          ng-model="ctrl.msg.tbHtChange.changeContent" readonly></textarea>
-            </div>
-            <div class="form-group RuleInput" style="position: relative;" >
-                <label class="RuleName">申请人：</label>
-                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.createUser" readonly>
-
-            </div>
-            <div class="form-group RuleInput" style="position: relative;" >
-                <label class="RuleName">申请人部门：</label>
-                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.applicationDept" readonly >
-
-            </div>
-            <div class="form-group RuleInput" style="position: relative;" >
-                <label class="RuleName">申请人时间：</label>
-                <input type="text" class="form-control Rinput60"  ng-model="ctrl.msg.tbHtChange.created" readonly >
-
-            </div>
-            <div class="form-group RuleInput" style="position: relative;">
-                <label class="RuleName">备注：</label>
-                <textarea type="text" class="form-control Rinput60" cols="60" rows="4" readonly name="remark"
-                          ng-model="ctrl.msg.tbHtChange.remark"></textarea>
-            </div>
-        </div>
-    </div>-->
 
 <script type="text/ng-template" id="analyze.html">
     <div class="modal-header">

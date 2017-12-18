@@ -1,34 +1,22 @@
 <form class="form-horizontal" name="form" novalidate>
     <!--标题-->
-    <div class="fl RuleTitTab">
-        <!--tab切换-->
-        <div  class="RulTab">
-            <ul id="tags">
-                <li ng-class="ctrl.tagclass01"><a ng-click="ctrl.selectTag('1')">交接单信息</a></li>
-                <!--<li ng-class="ctrl.tagclass02"><a ng-click="ctrl.selectTag('2')">模块信息</a></li>
-                <li ng-class="ctrl.tagclass03"><a ng-click="ctrl.selectTag('3')">附件</a></li>-->
-            </ul>
-
-        </div>
-        <!--tab切换end-->
+    <div class="fl RuleTit">
+        <i>|</i>
+        交接单
         <div class="fr">
             <input ng-show="ctrl.tag!=4" type="submit"  ng-click="ctrl.handoverSave()" class="save fl" value="保存" />
             <input ng-show="ctrl.tag!=4" type="submit" ng-click="ctrl.handoverSubmit()" class="save fl" value="提交" />
+            <input ng-show="ctrl.tag!=4" type="submit" ng-click="ctrl.fileUploader(ctrl.handover)" class="save fl" value="附件" />
             <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
         </div>
     </div>
 
-
-
-
     <div class="RuleCont">
 
         <div class="panel-body">
-            <div class="row" ng-show="ctrl.tag==1">
+            <div class="row">
                 <div class="form-group RuleInput" ng-repeat='text in ctrl.handover.contentJson'>
-                    <label class="RuleName130" >{{text.name}}：</label>
-
-                    <input type="text" class="form-control Rinput60"  ng-show="!text.input" value="预览交接单时自动填充" readonly>
+                    <label class="RuleName130" ng-show="text.input">{{text.name}}：</label>
 
                     <!-- 单行文本框 -->
                     <input type="text" class="form-control Rinput{{text.length}}"  ng-if="text.input=='text'" ng-model="text.value">
@@ -54,21 +42,6 @@
 
                 </div>
             </div>
-
-
-            <div class="row" ng-show="ctrl.tag==2">
-                模块信息
-
-            </div>
-
-
-            <div class="row" ng-show="ctrl.tag==3">
-                附件
-            </div>
-
-
-
-
         </div>
 
     </div>

@@ -45,7 +45,7 @@
                     <th>交接时间</th>
                     <th>当前步骤</th>
                     <th>安排</th>
-                    <th>操作</th>
+                    <th>查看</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,10 +60,11 @@
                     <td ng-bind="htHandOver.nowStep"></td>
                     <td >{{htHandOver.isArrange==0 ? '否' : '是'}}</td>
                     <td>
-                        <a href="#/access/handover?id={{htHandOver.pkid}}" target="_blank">查看交接单
+                        <a href="#/access/handover?id={{htHandOver.pkid}}" target="_blank">交接单
                         </a>
-                        <a href="#/access/proModule?id={{htHandOver.pkid}}" target="_blank">查看模块
+                        <a href="#/access/proModule?id={{htHandOver.pkid}}" target="_blank">模块
                         </a>
+                        <a ng-show="htHandOver.fileUrl" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fview%3ffileName%3d{{htHandOver.fileUrl}}"  target="_blank">附件</a>
                     </td>
                 </tr>
                 </tbody>

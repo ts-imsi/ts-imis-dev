@@ -747,10 +747,17 @@ angular.module('app')
                   templateUrl: 'src/pc/ht_product/index.tpl.html',
                   controller: 'htProductCtrl as ctrl',
                   resolve: {
-                      deps: ['uiLoad',
-                          function( uiLoad ){
-                              return uiLoad.load( ['src/pc/ht_product/controller.js'] );
-                          }]
+                      load: ['$ocLazyLoad', function ($ocLazyLoad) {
+                          return $ocLazyLoad.load([
+                              'angularBootstrapNavTree',
+                              'angularFileUpload',
+                              'ngImgCrop'
+                          ]).then(
+                              function () {
+                                  return $ocLazyLoad.load('src/pc/ht_product/controller.js');
+                              }
+                          );
+                      }]
                   }
               })
               .state('app.templateList', {

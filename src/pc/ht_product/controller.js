@@ -2,7 +2,6 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     var selt = this;
     this.maxSize = 5;
 
-
     this.selectContract=function(){
         this.setPage(1);
     };
@@ -116,7 +115,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
 
     this.addHtChange=function(htProduct){
         console.log("===========ceshi");
-
+        selt.showLModule=false;
         selt.submitApply=true;
         selt.submitted=false;
         selt.type="";

@@ -1,0 +1,130 @@
+<style>
+
+    body,*{ font-family:"宋体" ; font-size:15px;}
+    ul,ol{list-style:none;margin: 0; padding: 0;}
+    em{font-style: normal;}
+    i{font-style: normal;}
+    .trasen{
+        width: 96%;
+        margin: 0 2%;
+        height: 100%;
+
+        padding-bottom: 40px;
+
+    }
+    .top{width:100%}
+    .font12{ font-size:12px; padding-top:30px}
+    .logo{ width:40%}
+    .logo img{ height:50px}
+    .Tit{ font-family:"微软雅黑";font-weight: bold; width:100%; text-align:left; font-size:25px}
+    .fl{float:left}
+    .fr{float:right}
+    .w10{width: 10% !important;}
+    .w15{width: 15% !important;}
+    .w20{width: 20% !important;}
+    .w25{width: 25% !important;}
+    .w30{width: 30% !important;}
+    .w40{width: 40% !important;}
+    .w45{width: 45% !important;}
+    .w50{width: 50% !important;}
+    .w55{width: 55% !important;}
+    .w60{width: 60% !important;}
+    .w65{width: 65% !important;}
+    .w70{width: 70% !important;}
+    .w75{width: 75% !important;}
+    .w80{width: 80% !important;}
+    .w85{width: 85% !important;}
+    .w90{width: 90% !important;}
+    .w95{width: 95% !important;}
+    .w100{width: 100% !important;}
+    .w23{width: 20.2% !important;}
+    .w445{width: 44.5% !important;}
+    .w185{width: 18.5% !important;}
+    .w301{width: 30.1% !important;}
+    .w297{width: 29.7% !important;}
+    .day{ text-align:right}
+    .conter{ margin-top:5px; width:100%; border-bottom: 1px solid #000;}
+    .info{width: 100%;float: left; border-top:1px solid #000;box-sizing: border-box;border-left:1px solid #000;border-right:1px solid #000}
+    .infoLeft{width: 20%;float: left;text-indent: 20px;}
+    .infoRight{width: 80%;float: right; border-left: 1px solid #000;}
+    .infoRight ul li{line-height: 30px; width: 100%;float: left; position: relative;}
+    .infoRight span{display: block; width: 25%;float: left;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #bebdbd;padding-left: 10px;}
+    .w50 span{width: 50%;}
+    .topInfo td span{ font-weight:bold}
+    .topInfo td{width:20%; line-height: 30px;border:1px solid #000}
+    .botInfo{ width:100%}
+    .botInfo td{width:20%;  line-height: 30px; padding-left: 15px; border:1px solid #000}
+    .botInfo td.w15{width:15%;  line-height: 30px; padding-left: 15px;}
+    .juzhong{ text-align:center}
+    .bk{border:1px solid #000;box-sizing: border-box;}
+    .infoRight ul li span div{position: absolute; top: 36%;}
+    .pos{font-family:"微软雅黑";position: absolute; top: 36%;font-weight: bold}
+    .pos2{position: absolute; top: 36%;}
+    .trasen::-webkit-scrollbar{display: none;}
+    .infoTop{font-weight: bold}
+    .infoTop ul li{float: left; width: 18.7%;}
+    .infoTop span{display: block; width: 100%;float: left;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #000;padding-left: 10px;}
+    .infoBot{width: 100%;}
+
+    .contleft{float: left; width: 81%;}
+    .contleft ul li{float: left; width: 20%;}
+    .contRight{float: right; width: 19%;border-top: 2px solid #000;}
+    .infoContBot{width: 100%;float: left; border-top:1px solid #000;box-sizing: border-box;border-left:2px solid #000;border-right:2px solid #000;}
+    .infoContLeft{width: 24.8%;float: left;text-indent: 20px;border-top:1px solid #000}
+    .infoRight{width: 80%;float: right; border-left: 1px solid #000;}
+    .infoContRight{width: 75.2%;float: right; border-left: 1px solid #bebdbd;}
+    .infoContRight ul li{line-height: 30px; width: 100%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000;border-left: 1px solid #000}
+    .posr{position: absolute; bottom: 36%; right: 10%;}
+    .allcont{width: 100%;}
+    .allcont ul li{line-height: 30px; width: 20%;float: left; position: relative;text-indent: 10px;box-sizing: border-box; border-top: 1px solid #000; border-left: 1px solid #000;}
+    .allcont ul li:first-child {font-weight: bold}
+    .conter{border:1px solid #000}
+    .conter tr td{padding: 5px 10px; border-bottom: 1px solid #000}
+</style>
+<div class="trasen">
+    <!--logo-->
+    <div class="top fl">
+        <div class="fl logo">
+            <img src="img/logo01.png" />
+        </div>
+        <div class="fr font12"></div>
+    </div>
+    <!--logo end-->
+    <!--标题-->
+    <div class="day fr">
+        交接日期： {{ctrl.handover.created | date:'yyyy年MM月dd日'}}
+    </div>
+    <div class="Tit">
+        附件一： {{ctrl.handover.customerName}}{{ctrl.handover.htName}}
+    </div>
+
+    <!--标题 end-->
+    <!--打印单 内容-->
+    <div>
+
+
+
+        <div class="infoBot" style="border-bottom: 2px solid #000000; float: left; margin-bottom: 50px">
+            <div style="width: 100%" ng-repeat="module in ctrl.voList">
+                <div class="infoContBot ng-scope" style="position: relative;">
+                    <div class="infoContLeft">
+                        <div class="pos2 ng-binding" ng-bind="module.proName" style="text-align: center;"></div>
+                    </div>
+                    <div class="infoContRight">
+                        <ul class="ng-scope" ng-repeat="vo in module.modList">
+                        <li class="ng-binding" ng-bind="vo"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+

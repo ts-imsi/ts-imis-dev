@@ -1,6 +1,7 @@
 <div class="bg-light lter b-b wrapper-md">
     <h1 class="m-n font-thin h3">项目合同</h1>
 </div>
+
 <div class="wrapper-md">
     <div class="panel panel-default">
         <div class="row NKwrapper Nkinput">
@@ -9,6 +10,7 @@
                     <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
                     <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">待交接</button>
                     <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">已交接</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(3)" class="btn btn-default">待分解</button>
                 </div>
                 <div class="col-px-230 fl" style="position: relative;">
                     <input type="text" class="form-control" placeholder="请输入合同号、客户名、合同名" ng-model="ctrl.selectName">
@@ -18,6 +20,7 @@
                 </div>
             </div>
         </div>
+        <loading style="position: fixed;top:50%; right: 40%;z-index: 999;vertical-align: middle;"></loading>
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>

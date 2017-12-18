@@ -15,7 +15,7 @@ angular.module('app')
   .config(
     [          '$stateProvider', '$urlRouterProvider','$httpProvider',
       function ($stateProvider,   $urlRouterProvider,$httpProvider) {
-
+          $httpProvider.interceptors.push('loadingInterceptor');
           $httpProvider.defaults.headers.common = { 'X-TOKEN' : sessionStorage.getItem("X-TOKEN") }
           
           $urlRouterProvider
@@ -786,6 +786,17 @@ angular.module('app')
                           }]
                   }
               })
+              .state('access.proModule', {
+                  url: '/proModule',
+                  templateUrl: 'src/pc/handOver/proModule.html',
+                  controller: 'ProModuleCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/handOver/proModule.js'] );
+                          }]
+                  }
+              })
               .state('app.htChange', {
                   url: '/htChange',
                   templateUrl: 'src/pc/ht_change/index.tpl.html',
@@ -948,4 +959,6 @@ angular.module('app')
       }
     ]
   );
+
+
 

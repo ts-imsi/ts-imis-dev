@@ -3,17 +3,17 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
     var pkid =  utils.getUrlVar('pkid');
 
     var param;
-    $http.get("/ts-project/tb_message/getTbMsgById/"+pkid).success(function (result) {
+    $http.get("/ts-project/tb_message/getTodoMsg/"+pkid).success(function (result) {
         if(result.success){
             selt.msg = result.object;
             if(selt.msg.tbHtChange!=null){
                 selt.msg.tbHtChange.created=$filter("date")(selt.msg.tbHtChange.created, "yyyy-MM-dd")
             }
-            //TODO 在流程中获取合同号和交接单号
             param={
                 htNo:selt.msg.htNo,
                 handOverId:selt.msg.handOverId,
-                processId:selt.msg.processId
+                processId:selt.msg.processId,
+                msg:selt.msg
             }
         }else{
             selt.msg='';
@@ -105,13 +105,26 @@ app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', funct
         })
         $http.post("/ts-project/ht_analyze/saveAnaly",angular.toJson(seltAnaly.analyzeList)).success(function (result) {
             if(result.success){
-                alert(result.message);
+                seltAnaly.submitFlow();
             }else{
                 alert(result.message);
             }
 
         });
     }
+
+    this.submitFlow=function(){
+        data.msg.remark="审批通过";
+        $http.post("/ts-project/tb_message/submitFlow",angular.toJson(data.msg)).success(function (result) {
+            if(result.success){
+                alert(result.message);
+                $modalInstance.dismiss('cancel');
+                window.location.href="#/app/todoMessage";
+            }else{
+                alert(result.message);
+            }
+        });
+    };
 
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
@@ -128,11 +141,13 @@ app.controller('ReturnFlowCtrl', ['$scope', '$modalInstance','$http', '$filter',
             if(result.success){
                 alert(result.message);
                 selt.returnFlow=true;
+                $modalInstance.close(selt.returnFlow);
             }else{
                 alert(result.message);
+                selt.returnFlow=false;
+                $modalInstance.close(selt.returnFlow);
             }
         });
-        $modalInstance.close(selt.returnFlow);
     };
 
 

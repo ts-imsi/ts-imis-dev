@@ -3,6 +3,8 @@
         .module('MOBILEAPP.OUTPUTVALUE.CONTROLLER', ['ui.bootstrap'])
         .controller('outputValueCtrl', ['$http','$uibModal','$log','$document','utils',function($http,$uibModal, $log, $document,utils) {
             var selt = this;
+            this.dw="万元";
+            this.bfh="%";
             var param={
                 type:"dept",
                 status:1
@@ -41,6 +43,8 @@
         .module('MOBILEAPP.CONFIRVALUE.CONTROLLER', ['ui.bootstrap'])
         .controller('confirValueCtrl', ['$http','$uibModal','$log','$document','utils',function($http,$uibModal, $log, $document,utils) {
             var selt = this;
+            this.dw="万元";
+            this.bfh="%";
             var param={
                 type:"dept",
                 status:0

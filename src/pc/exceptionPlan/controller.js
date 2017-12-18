@@ -42,7 +42,7 @@ app.controller('ExceptionPlanCtrl', ['$scope', '$modal', '$http', '$filter','$lo
     };
 
     this.format = 'yyyy-MM-dd';
-    selt.status=0;
+    selt.status=1;
     this.selectByStatus=function(status){
         selt.status=status;
         selt.setPage(1);

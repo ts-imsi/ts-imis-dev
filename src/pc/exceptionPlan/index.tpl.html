@@ -6,7 +6,6 @@
         <div class="row NKwrapper Nkinput">
             <div class="fr">
                 <div class="btn-group col-px-230" style="position: relative;float:left">
-                    <button type="button" ng-click="ctrl.selectByStatus(0)" class="btn btn-default">全部</button>
                     <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">过期</button>
                     <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">超时</button>
                 </div>
@@ -109,6 +108,7 @@
                     <th>阶段名称</th>
                     <th>文档名称</th>
                     <th>计划时间</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -120,6 +120,7 @@
                     <td ng-bind="excePlan.stageName"></td>
                     <td ng-bind="excePlan.docName"></td>
                     <td ng-bind="excePlan.planTime"></td>
+                    <td><a href="#/app/planDetail?planId={{excePlan.planId}}">查看</a> </td>
                 </tr>
                 </tbody>
             </table>

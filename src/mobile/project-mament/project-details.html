@@ -24,17 +24,17 @@
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
     </a>
-    <a class="mui-tab-item" href="#/info">
-        <span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
-        <span class="mui-tab-label">消息中心</span>
+    <a ng-show="$ctrl.handoverM" class="mui-tab-item" href="#/transfer">
+        <span class="mui-icon mui-icon-list"></span>
+        <span class="mui-tab-label">交接进度</span>
     </a>
-    <a class="mui-tab-item" href="#/transact">
+    <a ng-show="$ctrl.transactM" class="mui-tab-item" href="#/transact">
         <span class="mui-icon mui-icon-contact"></span>
         <span class="mui-tab-label">待办事项</span>
     </a>
-    <a class="mui-tab-item" href="#/user">
-        <span class="mui-icon mui-icon-gear"></span>
-        <span class="mui-tab-label">个人中心</span>
+    <a ng-show="$ctrl.projectMentM" class="mui-tab-item" href="#/projectMent">
+        <span class="mui-icon mui-icon-compose"></span>
+        <span class="mui-tab-label">项目管理</span>
     </a>
 </nav>
 

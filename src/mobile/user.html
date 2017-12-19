@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>创新之家综合信息平台</title>
+    <title>创星之家综合信息平台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -16,7 +16,7 @@
 <body>
 <header class="mui-bar mui-bar-nav headerBG">
     <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
-    <h1 class="mui-title headerA">创新之家综合信息平台</h1>
+    <h1 class="mui-title headerA">创星之家综合信息平台</h1>
 </header>
 <!--底部导航-->
 <nav class="mui-bar mui-bar-tab BG-with">
@@ -24,17 +24,17 @@
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
     </a>
-    <a class="mui-tab-item" href="#/info">
-        <span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
-        <span class="mui-tab-label">消息中心</span>
+    <a ng-show="$ctrl.handoverM" class="mui-tab-item" href="#/transfer">
+        <span class="mui-icon mui-icon-list"></span>
+        <span class="mui-tab-label">交接进度</span>
     </a>
-    <a class="mui-tab-item" href="#/transact">
+    <a ng-show="$ctrl.transactM" class="mui-tab-item" href="#/transact">
         <span class="mui-icon mui-icon-contact"></span>
         <span class="mui-tab-label">待办事项</span>
     </a>
-    <a class="mui-tab-item" href="#/user">
-        <span class="mui-icon mui-icon-gear"></span>
-        <span class="mui-tab-label">个人中心</span>
+    <a ng-show="$ctrl.projectMentM" class="mui-tab-item" href="#/projectMent">
+        <span class="mui-icon mui-icon-compose"></span>
+        <span class="mui-tab-label">项目管理</span>
     </a>
 </nav>
 <!--个人信息-->
@@ -54,8 +54,9 @@
 
         <div class="mui-table-view font16">
             <div class="indexFunc">
+                <span sytle="text-align:center;" ng-show="$ctrl.munuList.length==0">您无权限，请联系管理员</span>
                 <ul>
-                    <li>
+                    <li ng-show="$ctrl.outputValueM">
                         <a href="#/outputValue">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i class="indexFuncIcon MHiconfont icon-mobile--chanzhinenghao buleFont"></i>
@@ -63,7 +64,7 @@
                             <span>部门产值</span>
                         </a>
                     </li>
-                    <li>
+                    <li ng-show="$ctrl.confirValueM">
                         <a href="#/confirValue">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i class="indexFuncIcon MHiconfont icon-mobile--chanzhinenghao buleFont"></i>
@@ -71,7 +72,7 @@
                             <span>确认产值</span>
                         </a>
                     </li>
-                    <li>
+                    <li ng-show="$ctrl.transactM">
                         <a href="#/transact">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i class="mui-icon MHiconfont icon-mobile--daiban1 redWarnFont  font40"></i>
@@ -79,7 +80,7 @@
                             <span>待办</span>
                         </a>
                     </li>
-                    <li>
+                    <li ng-show="$ctrl.handoverM">
                         <a href="#/transfer">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i class="indexFuncIcon MHiconfont icon-mobile--jiaojie orgFont"></i>
@@ -87,7 +88,7 @@
                             <span>交接进度</span>
                         </a>
                     </li>
-                    <li>
+                    <li ng-show="$ctrl.projectMentM">
                         <a href="#/projectMent">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i class="indexFuncIcon MHiconfont icon-mobile--xiangmu greenFont"></i>
@@ -95,14 +96,14 @@
                             <span>项目管理</span>
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="#/info">
                             <div class="borderRad100 Square50 marginCenter">
-                                <i class="indexFuncIcon MHiconfont icon-mobile--xiaoxizhongxin buleFont"></i>
+                                <i class="indexFuncIcon MHiconfont icon-mobile&#45;&#45;xiaoxizhongxin buleFont"></i>
                             </div>
                             <span>消息中心</span>
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>

@@ -12,7 +12,7 @@ app.controller('LoginController', ['$scope', '$http', function($scope, $http) {
                 console.log($scope.authError);
             }else{
                 sessionStorage.setItem("X-TOKEN", result.object.xtoken);
-                window.location.href="/index.html#/app/attenceList";
+                window.location.href="/index.html#/app/dashboard-v1";
             }
 
         });

@@ -57,7 +57,7 @@
                 <span sytle="text-align:center;" ng-show="$ctrl.munuList.length==0">您无权限，请联系管理员</span>
                 <ul>
                     <li ng-repeat="munu in $ctrl.munuList">
-                        <a ng-href="munu.url">
+                        <a href="{{munu.url}}">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i ng-class="munu.icon"></i>
                             </div>

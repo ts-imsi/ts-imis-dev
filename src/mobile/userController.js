@@ -16,6 +16,7 @@
             selt.transactM=false;
             selt.handoverM=false;
             selt.projectMentM=false;
+            selt.munuList=[];
             $http.get("/ts-authorize/ts-mobile/menus").success(function(result){
                 if(result.success){
                     selt.munuList=result.object;
@@ -31,9 +32,8 @@
                         }else if(item.translate=='projectMent'){
                             selt.projectMentM=true;
                         }
-                    })
-                }else{
-                    alert("该用户无权限，请联系管理员");
+                    });
+
                 }
             });
         }]);

@@ -12,20 +12,20 @@
             selt.projectMentM=false;
             $http.get("/ts-authorize/ts-mobile/menus").success(function(result){
                 if(result.success){
-                    selt.munuList=result.object.childrens;
-                    angular.forEach(selt.munuList,function(item){
-                        if(item.translate=='outputValue'){
-                            selt.outputValueM=true;
-                        }else if(item.translate=='confirValue'){
-                            selt.confirValueM=true;
-                        }else if(item.translate=='transact'){
-                            selt.transactM=true;
-                        }else if(item.translate=='handover'){
-                            selt.handoverM=true;
-                        }else if(item.translate=='projectMent'){
-                            selt.projectMentM=true;
-                        }
-                    })
+                        selt.munuList=result.object[0].childrens;
+                        angular.forEach(selt.munuList,function(item){
+                            if(item.translate=='outputValue'){
+                                selt.outputValueM=true;
+                            }else if(item.translate=='confirValue'){
+                                selt.confirValueM=true;
+                            }else if(item.translate=='transact'){
+                                selt.transactM=true;
+                            }else if(item.translate=='handover'){
+                                selt.handoverM=true;
+                            }else if(item.translate=='projectMent'){
+                                selt.projectMentM=true;
+                            }
+                        })
                 }
             });
 

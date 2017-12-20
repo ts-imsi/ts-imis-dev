@@ -14,7 +14,7 @@ app.controller('imitation', ['$scope', '$http','utils',function ($scope, $http,u
         } else {
             //todo openId设置
             //var openId = "o8qZCwdhpNkRkSwlNLC1WOwB37bE";
-            $http.get("/ts-project/mobileImitation/authorize/oauth2?code="+code).success(function(result){
+            $http.get("/authorize/oauth2?code="+code).success(function(result){
                 if(result.status==1){
                     var openId=result.openid;
 

@@ -6,7 +6,7 @@
             console.log("======"+openId);
             var selt = this;
             $cookies.put("userSign",sessionStorage.getItem("X-TOKEN"),{'path':'/'});
-            $http.post("/ts-project/mobileUser/selectTbPersonnel").success(function (result) {
+            $http.post("/ts-project/mobileUser/weixinToPersonnel/"+openId).success(function (result) {
                 if(result.success){
                     selt.person=result.object;
                 }else{
@@ -36,7 +36,13 @@
                         }
                     });
 
+                }else{
+                    selt.munuList = [];
                 }
             });
+
+            this.unauthorize = function () {
+                alert("您未授权,请联系管理员!");
+            }
         }]);
 })();

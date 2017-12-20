@@ -22,6 +22,13 @@ app.controller('productModelCtrl', ['$scope', '$modal', '$http', '$filter','$log
         });
     };
 
+    this.selectProductModel=function(){
+        if(selt.selectName==''){
+            selt.selectName=null;
+        }
+        this.setPage(1);
+    }
+
     this.pageChanged = function () {
         $log.log('Page changed to: ' + this.pageNo);
         var parm={

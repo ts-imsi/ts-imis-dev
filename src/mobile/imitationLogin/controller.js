@@ -24,7 +24,7 @@ app.controller('imitation', ['$scope', '$http','utils',function ($scope, $http,u
                             console.log($scope.authError);
                         } else {
                             sessionStorage.setItem("X-TOKEN", result.object.xtoken);
-                            window.location.href = "/src/mobile/index.html#/user";
+                            window.location.href = "/src/mobile/index.html#/user?openId="+openId;
                         }
                     });
                 }else{

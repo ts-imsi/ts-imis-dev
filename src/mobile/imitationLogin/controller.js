@@ -14,21 +14,20 @@ app.controller('imitation', ['$scope', '$http','utils',function ($scope, $http,u
         } else {
             //todo openId设置
             //var openId = "o8qZCwdhpNkRkSwlNLC1WOwB37bE";
-            $http.get("/ts-project/mobileImitation/oauth2/"+code).success(function(result){
-                if(result.success){
-                    var openId=result.openId;
+            $http.get("/authorize/oauth2?code="+code).success(function(result){
+                if(result.status==1){
+                    var openId=result.openid;
 
                     $http.post("/ts-project/mobileImitation/imitationLogin/" + openId).success(function (result) {
-                        if (!result.success) {
-                            alert(result.message);
-                            console.log($scope.authError);
-                        } else {
+                        if (result.success) {
                             sessionStorage.setItem("X-TOKEN", result.object.xtoken);
                             window.location.href = "/src/mobile/index.html#/user";
+                        }else{
+                            window.location.href = "/src/mobile/index.html#/user?openId="+openId;
                         }
                     });
                 }else{
-                    alert(result.message);
+                    alert("微信授权失败,请联系管理员!");
                 }
             })
 

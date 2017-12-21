@@ -524,6 +524,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     };
 
     this.queryHtResolve = function (htProduct) {
+        selt.showTotalMessage=false;
         var parm={
             contractNo:htProduct.contractNo,
             hospitalLevel:htProduct.hospitalLevel,
@@ -535,6 +536,14 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
             if(result.success){
                 selt.HtResolveList = result.object;
+                var suTotal=0;
+                angular.forEach(selt.HtResolveList,function(item){
+                    suTotal=suTotal+item.total;
+                })
+                selt.sumTotal=suTotal;
+                if(selt.sumTotal!=selt.htPrice){
+                    selt.showTotalMessage=true;
+                }
             }else{
                 selt.HtResolveList=[];
             }
@@ -616,7 +625,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         }
         return false;
     };
-    $http.get("/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
+    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
         if (result.success) {
             selt.opCodes = result.object;
             if(selt.isShowOpe("all")){

@@ -198,7 +198,7 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
 
     this.queryHtResolve = function (htChange) {
-
+        selt.showTotalMessage=false;
         $http.post("/ts-project/htChange/getContractByHtNo/"+htChange.htNo).success(function (result) {
             if(result.success){
 
@@ -211,6 +211,14 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
                 $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
                     if(result.success){
                         selt.HtResolveList = result.object;
+                        var suTotal=0;
+                        angular.forEach(selt.HtResolveList,function(item){
+                            suTotal=suTotal+item.total;
+                        })
+                        selt.sumTotal=suTotal;
+                        if(selt.sumTotal!=selt.htPrice){
+                            selt.showTotalMessage=true;
+                        }
                     }else{
                         selt.HtResolveList=[];
                     }

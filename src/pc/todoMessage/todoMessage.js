@@ -10,6 +10,12 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
                 selt.msg.tbHtChange.created=$filter("date")(selt.msg.tbHtChange.created, "yyyy-MM-dd")
             }
             if(selt.msg.handover!=null){
+                param={
+                    changeNo:selt.msg.handover.changeNo,
+                    handOverId:selt.msg.handover.pkid,
+                    processId:selt.msg.handover.processId,
+                    msg:selt.msg
+                };
                 angular.forEach(selt.msg.handoverData.tempDataVoList,function(item){
                     if(item.name=="合同信息"){
                         angular.forEach(item.voList,function(it){
@@ -24,12 +30,7 @@ app.controller('todoMegContentCtrl', ['$scope', '$http','utils','$modal','$filte
                     }
                 })
             };
-            param={
-                htNo:selt.msg.htNo,
-                handOverId:selt.msg.handOverId,
-                processId:selt.msg.processId,
-                msg:selt.msg
-            }
+
         }else{
             selt.msg='';
             alert(result.message);
@@ -103,9 +104,12 @@ app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', funct
     var seltAnaly=this;
 
 
-    $http.get("/ts-project/ht_analyze/selectAnalyzeList/"+data.htNo).success(function (result) {
+    $http.get("/ts-project/ht_analyze/selectAnalyzeList/"+data.changeNo).success(function (result) {
         if(result.success){
-            seltAnaly.analyzeList = result.object;
+            seltAnaly.object = result.object;
+            seltAnaly.analyzeList = result.object.list;
+            seltAnaly.selectJson = result.object.selectJson;
+
         }else{
             seltAnaly.analyzeList='';
             alert(result.message);
@@ -114,11 +118,16 @@ app.controller('analyzeCtrl', ['$scope', '$modalInstance','$http', 'data', funct
 
     this.saveAnalyze=function(){
         console.log("=========");
-        angular.forEach(seltAnaly.analyzeList,function(item){
+        var selectJson = [];
+        angular.forEach(seltAnaly.selectJson,function(item){
             item.handoverId=data.handOverId;
             item.processId=data.processId;
-        })
-        $http.post("/ts-project/ht_analyze/saveAnaly",angular.toJson(seltAnaly.analyzeList)).success(function (result) {
+            item.htNo = data.changeNo;
+            selectJson.push(item);
+        });
+
+
+        $http.post("/ts-project/ht_analyze/saveAnaly",angular.toJson(selectJson)).success(function (result) {
             if(result.success){
                 seltAnaly.submitFlow();
             }else{

@@ -239,16 +239,17 @@
                     <thead>
                     <tr>
                         <th>生产部门</th>
-                        <th>模块</th>
-                        <th>部门接受人</th>
+                        <th>产品</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="item in ctrl.analyzeList">
                         <td ng-bind="item.depName"></td>
                         <td ng-bind="item.proName"></td>
-                        <td>
-                            <input  select2  select2-model="item.selectJson" config="item" multiple placeholder="请选择" class="form-control" type="text" />
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input  select2  select2-model="ctrl.selectJson" config="ctrl.object" multiple placeholder="请选择生产确认人" class="form-control" type="text" />
                         </td>
                     </tr>
                     </tbody>

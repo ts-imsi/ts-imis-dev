@@ -618,6 +618,29 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
             $http.post("/ts-project/con_product/queryHtResolve",angular.toJson(parm)).success(function (result) {
                 if(result.success){
                     selt.HtResolveList = result.object;
+                    var suTotal=0;
+                    var xjTotal=0;
+                    var bfTotal=0;
+                    var priceTotal=0;
+                    angular.forEach(selt.HtResolveList,function(item){
+                        priceTotal=priceTotal+item.price;
+                        suTotal=suTotal+item.total;
+                        xjTotal=xjTotal+item.subtotal;
+                        bfTotal=bfTotal+parseInt(item.outputValue.substr(0,item.outputValue.length-1));
+                    })
+                    selt.sumTotal=suTotal;
+                    selt.zjTotal=xjTotal;
+                    selt.bfOutput=bfTotal;
+                    selt.priceMTotal=priceTotal;
+                    if(selt.sumTotal!=selt.htPrice){
+                        selt.showTotalMessage=true;
+                    }
+                    if(selt.zjTotal!=selt.htPrice){
+                        selt.showZjTotalMessage=true;
+                    }
+                    if(selt.bfOutput!=100){
+                        selt.bfOutputMessage=true;
+                    }
                 }else{
                     selt.HtResolveList=[];
                 }
@@ -655,7 +678,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         }
         return false;
     };
-    $http.get("/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
+    $http.get("/ts-project/ts-authorize/ts-imis/operList/app-ht_product").success(function (result) {
         if (result.success) {
             selt.opCodes = result.object;
             if(selt.isShowOpe("all")){

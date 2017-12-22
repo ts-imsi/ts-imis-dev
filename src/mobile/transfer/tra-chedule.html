@@ -76,19 +76,20 @@
         <li class="mui-table-view-cell mui-media thisDA" ng-repeat="timeLine in $ctrl.timeLineVos">
             <div  class="mui-media-body padd010">
                 <span class="graufont9 font12" ng-bind="timeLine.time"></span>
-                <span class="greenFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile--tongguo" style="padding-right: 5px;"></i>通过</span>
-                <h5 class="graufont9 font14">{{timeLine.taskName}} <span style="padding-left: 10px;" class="font12">提交人:{{timeline.name}}</span></h5>
-                <h5 class="graufont9 font14">提交时间:{{timeline.startTime}}</h5>
+                <span class="greenFont font14" style="padding-left: 10px;" ng-if="timeLine.colour=='info'">
+                    <i class="MHiconfont icon-mobile--tongguo" style="padding-right: 5px;"></i>通过
+                </span>
+                <span class="redFont font14" style="padding-left: 10px;" ng-if="timeLine.colour=='danger'">
+                    <i class="MHiconfont icon-mobile--shape" style="padding-right: 5px;"></i>被驳回
+                </span>
+                <span class="greenFont font14" style="padding-left: 10px;" ng-if="timeLine.colour=='light'">
+                    <i class="MHiconfont icon-mobile--tongguo" style="padding-right: 5px;"></i>待审核
+                </span>
+                <h5 class="graufont9 font14">{{timeLine.taskName}} <span style="padding-left: 10px;" class="font12">提交人:{{timeLine.name}}</span></h5>
+                <h5 class="graufont9 font14">提交时间:{{timeLine.startTime}}</h5>
+                <p class="MemListTime mui-ellipsis2" ng-if="timeLine.remark!=''">{{timeLine.remark}}</p>
             </div>
         </li>
-        <!--<li class="mui-table-view-cell mui-media thisDA">
-            <div class="mui-media-body padd010">
-                <span class="graufont9 font12">2017-03-05</span>
-                <span class="redFont font14" style="padding-left: 10px;"><i class="MHiconfont icon-mobile&#45;&#45;shape" style="padding-right: 5px;"></i>被驳回</span>
-                <h5 class="graufont9 font16">节点名节点名 <span style="padding-left: 10px;" class="font12">张三</span></h5>
-                <p class="MemListTime mui-ellipsis2">驳回理由驳回理由驳回理由驳回理由驳回理由驳回理由</p>
-            </div>
-        </li>-->
     </ul>
 </div>
 

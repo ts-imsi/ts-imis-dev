@@ -197,7 +197,22 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     };
 
 
+    this.totalChange=function(){
+        var suTotal=0;
+        angular.forEach(selt.HtResolveList,function(item){
+            suTotal=suTotal+parseFloat(item.total);
+        })
+        selt.sumTotal=suTotal;
+        if(selt.sumTotal!=selt.htPrice){
+            selt.showTotalMessage=true;
+        }else{
+            selt.showTotalMessage=false;
+        }
+    }
+
     this.queryHtResolve = function (htChange) {
+        selt.bfOutputMessage=false;
+        selt.showZjTotalMessage=false;
         selt.showTotalMessage=false;
         $http.post("/ts-project/htChange/getContractByHtNo/"+htChange.htNo).success(function (result) {
             if(result.success){
@@ -212,12 +227,27 @@ app.controller('htChangeCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
                     if(result.success){
                         selt.HtResolveList = result.object;
                         var suTotal=0;
+                        var xjTotal=0;
+                        var bfTotal=0;
+                        var priceTotal=0;
                         angular.forEach(selt.HtResolveList,function(item){
+                            priceTotal=priceTotal+item.price;
                             suTotal=suTotal+item.total;
+                            xjTotal=xjTotal+item.subtotal;
+                            bfTotal=bfTotal+parseInt(item.outputValue.substr(0,item.outputValue.length-1));
                         })
                         selt.sumTotal=suTotal;
+                        selt.zjTotal=xjTotal;
+                        selt.bfOutput=bfTotal;
+                        selt.priceMTotal=priceTotal;
                         if(selt.sumTotal!=selt.htPrice){
                             selt.showTotalMessage=true;
+                        }
+                        if(selt.zjTotal!=selt.htPrice){
+                            selt.showZjTotalMessage=true;
+                        }
+                        if(selt.bfOutput!=100){
+                            selt.bfOutputMessage=true;
                         }
                     }else{
                         selt.HtResolveList=[];

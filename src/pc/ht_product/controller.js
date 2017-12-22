@@ -567,12 +567,18 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                 selt.priceMTotal=priceTotal;
                 if(selt.sumTotal!=selt.htPrice){
                     selt.showTotalMessage=true;
+                }else{
+                    selt.showTotalMessage=false;
                 }
                 if(selt.zjTotal!=selt.htPrice){
                     selt.showZjTotalMessage=true;
+                }else{
+                    selt.showZjTotalMessage=false;
                 }
                 if(selt.bfOutput!=100){
                     selt.bfOutputMessage=true;
+                }else{
+                    selt.bfOutputMessage=false;
                 }
             }else{
                 selt.HtResolveList=[];
@@ -634,12 +640,18 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
                     selt.priceMTotal=priceTotal;
                     if(selt.sumTotal!=selt.htPrice){
                         selt.showTotalMessage=true;
+                    }else{
+                        selt.showTotalMessage=false;
                     }
                     if(selt.zjTotal!=selt.htPrice){
                         selt.showZjTotalMessage=true;
+                    }else{
+                        selt.showZjTotalMessage=false;
                     }
                     if(selt.bfOutput!=100){
                         selt.bfOutputMessage=true;
+                    }else{
+                        selt.bfOutputMessage=false;
                     }
                 }else{
                     selt.HtResolveList=[];

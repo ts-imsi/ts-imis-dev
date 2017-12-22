@@ -30,17 +30,30 @@
                     <td ng-bind="item.subtotal"></td>
                     <td>
                         <div style="width:40px">
-                            <input style="width:40px" ng-model="item.total" />
+                            <input style="width:40px" ng-model="item.total" ng-blur="ctrl.totalChange()"/>
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td >总计</td>
+                    <td ></td>
+                    <td ><span ng-bind="ctrl.priceMTotal"></span></td>
+                    <td >
+                        <span ng-show="ctrl.bfOutputMessage" style="color: red"  >{{ctrl.bfOutput}}%</span>
+                        <span ng-show="!ctrl.bfOutputMessage"  >{{ctrl.bfOutput}}%</span>
+                    </td>
+                    <td >
+                        <span ng-show="ctrl.showZjTotalMessage" style="color: red"  ng-bind="ctrl.zjTotal"></span>
+                        <span ng-show="!ctrl.showZjTotalMessage"  ng-bind="ctrl.zjTotal"></span>
+                    </td>
+                    <td>
+                        <span ng-show="ctrl.showTotalMessage" style="color: red" ng-bind="ctrl.sumTotal"></span>
+                        <span ng-show="!ctrl.showTotalMessage"  ng-bind="ctrl.sumTotal"></span>
                     </td>
                 </tr>
 
                 </tbody>
             </table>
-        </div>
-
-        <div>
-            总计：<span ng-bind="ctrl.sumTotal"></span>万元 <span ng-show="ctrl.showTotalMessage" style="color:red">该产值分解总价和合同总价不等</span>
         </div>
     </div>
 </div>

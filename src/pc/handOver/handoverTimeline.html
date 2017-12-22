@@ -13,7 +13,7 @@
     <div class="wrapper">
         <ul class="timeline">
             <li class="tl-header">
-                <div class="btn btn-info">Now</div>
+                <div class="btn btn-info">开始</div>
             </li>
 
 
@@ -26,8 +26,10 @@
                         <span ng-if="$index%2==1" class="arrow arrow-{{timeline.colour}} right pull-up visible-left"></span>
                         <span ng-if="$index%2==0" class="arrow arrow-{{timeline.colour}} left pull-up"></span>
                         <div class="text-lt m-b-sm" ng-bind="timeline.taskName"></div>
-                        <div class="panel-body pull-in b-t b-light" ng-bind="timeline.remark">
-
+                        <div class="panel-body pull-in b-t b-light">
+                            <span ng-show="timeline.remark">{{timeline.remark}}<br></span>
+                            <spen>提交人:{{timeline.name}}<br></spen>
+                            <spen>提交时间:{{timeline.endTime}}</spen>
                         </div>
                     </div>
                 </div>
@@ -39,7 +41,7 @@
 
 
             <li class="tl-header">
-                <div class="btn btn-sm btn-default btn-rounded">开始</div>
+                <div class="btn btn-sm btn-default btn-rounded">结束</div>
             </li>
         </ul>
     </div>

@@ -1,0 +1,104 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.managerSave(form.$valid,form.$invalid,ctrl.projectManager)">
+    <!--标题-->
+    <div class="fl RuleTitTab">
+        <!--tab切换-->
+        <!--tab切换end-->
+        <div class="fr">
+            <input  type="submit" ng-if="ctrl.showbutton" class="save fl" value="保存" />
+            <input  type="submit" ng-if="!ctrl.showbutton" class="save fl" value="更新" />
+            <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
+        </div>
+    </div>
+    <div class="RuleCont">
+
+        <div class="panel-body">
+            <div class="form-group RuleInput">
+                <label class="RuleName">经理类型：</label>
+                <select class="form-control Rinput60" name="type" ng-model="ctrl.projectManager.type" required>
+                    <option value="1">项目经理</option>
+                    <option value="2">实施经理</option>
+                </select>
+                <span class="errorInput"
+                      ng-show="form.type.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">工号：</label>
+                <p class="input-group">
+                    <input type="hidden" ng-model="ctrl.projectManager.preId">
+                    <input type="text" class="form-control Rinput40"  ng-model="ctrl.projectManager.workNum" />
+                    <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" style="height:34px" ng-click="ctrl.findPerson()">调取</button>
+                                            </span>
+                </p>
+                <!--<input type="text" class="form-control Rinput40" name="workNum" ng-model="ctrl.projectManager.workNum" required>
+                <span class="errorInput"
+                      ng-show="form.workNum.$error.required && ctrl.submitted">
+                          该选项框必填
+                    </span>-->
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">姓名：</label>
+                <input type="text" class="form-control Rinput60" name="name" ng-model="ctrl.projectManager.name" required>
+                <span class="errorInput"
+                      ng-show="form.name.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">性别：</label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="person-sex" value="1" ng-model="ctrl.projectManager.sex" ><i></i> 男
+                </label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="person-sex" value="2" ng-model="ctrl.projectManager.sex"><i></i> 女
+                </label>
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">手机：</label>
+                <input type="text" class="form-control Rinput60" name="phone" ng-model="ctrl.projectManager.phone" required>
+                <span class="errorInput"
+                      ng-show="form.phone.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">邮箱：</label>
+                <input type="text" class="form-control Rinput60" name="email" ng-model="ctrl.projectManager.email" required>
+                <span class="errorInput"
+                      ng-show="form.email.$error.required && ctrl.submitted">
+                              该选项框必填
+                        </span>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+
+<script type="text/ng-template" id="selectTree.html">
+
+    <div class="wrapper hidden-sm hidden-xs">
+        <div class="bg-light" ng-if="selectCtrl.success" >
+
+            <span ng-if="doing_async">...loading...</span>
+            <abn-tree
+                    tree-data         = "selectCtrl.my_data"
+                    tree-control      = "selectCtrl.my_tree"
+                    on-select         = "selectCtrl.my_tree_handler(branch)"
+                    expand-level      = "2"
+                    initial-selection = "selectCtrl.inittree"
+                    icon-leaf         = "fa fa-folder"
+                    icon-expand       = "fa fa-folder"
+                    icon-collapse     = "fa fa-folder-open"
+            >
+            </abn-tree>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="selectCtrl.selectdept()">选择</button>
+        <button class="btn btn-warning" type="button" ng-click="selectCtrl.cancel()">取消</button>
+    </div>
+</script>

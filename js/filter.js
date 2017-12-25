@@ -463,3 +463,21 @@ app.filter('hosLevelType',function(){
         return resultType;
     }
 });
+
+app.filter('manageType',function(){
+    return function(type){
+        var resultType = "";
+        switch(type)
+        {
+            case '1':
+                resultType = "项目经理";
+                break;
+            case '2':
+                resultType = "实施经理";
+                break;
+            default:
+                resultType = type;
+        };
+        return resultType;
+    }
+});

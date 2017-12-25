@@ -1,0 +1,83 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">项目经理管理</h1>
+</div>
+
+<div class="wrapper-md">
+    <div class="row bawiMtop">
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >姓名：</label>
+                    <div class="pw60  fl">
+                        <input type="text" class="form-control" placeholder="姓名筛选" ng-model="ctrl.name">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >经理类型：</label>
+                    <div class="pw60  fl">
+                        <select class="form-control Rinput60" name="type" ng-model="ctrl.type">
+                            <option value="">请选择</option>
+                            <option value="1">项目经理</option>
+                            <option value="2">实施经理</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="fr  pt10">
+            <button class="btn m-b-xs w-xs" ng-click="ctrl.managerCancel()">清空</button>
+            <button class="btn m-b-xs w-xs" ng-click="ctrl.submitSeach()">查询</button>
+            <button type="button" class="btn btn-default" style="padding-left: 30px;" ng-click="ctrl.saveOrUpdateManager('',0);ctrl.openPanel()">新增经理</button>
+        </div>
+        <div class="panel panel-default fl w100">
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>工号</th>
+                    <th>经理类型</th>
+                    <th>手机</th>
+                    <th>邮箱</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="manager in ctrl.managerList">
+                    <td ng-bind="manager.name"></td>
+                    <td ng-bind="manager.sex | sexType"></td>
+                    <td ng-bind="manager.workNum"></td>
+                    <td ng-bind="manager.type | manageType"></td>
+                    <td ng-bind="manager.phone"></td>
+                    <td ng-bind="manager.email"></td>
+                    <td>
+                        <a ng-click="ctrl.saveOrUpdateManager(manager,1);ctrl.openPanel()">修改</a>
+                        <a ng-click="ctrl.deleteManager(manager)">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+</div>
+<div data-ng-include=" 'src/pc/projectManager/projectManager.html' " ng-class="ctrl.panelClass"></div>

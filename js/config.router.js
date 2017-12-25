@@ -963,6 +963,20 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.projectManager', {
+                  url: '/projectManager',
+                  templateUrl: 'src/pc/projectManager/index.tpl.html',
+                  controller: 'projectManagerCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/pc/projectManager/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
       }
     ]
   );

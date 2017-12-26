@@ -27,10 +27,15 @@
                 <label class="RuleName">工号：</label>
                 <p class="input-group">
                     <input type="hidden" ng-model="ctrl.projectManager.preId">
-                    <input type="text" class="form-control Rinput40"  ng-model="ctrl.projectManager.workNum" />
-                    <span class="input-group-btn">
+                    <input type="text" class="form-control Rinput60"  name="workNum" ng-model="ctrl.projectManager.workNum" />
+                    <button type="button"  class="NkSearBut RSerBut" ng-click="ctrl.findPerson()" ></button>
+                    <span class="errorInput"
+                          ng-show="form.workNum.$error.required && ctrl.submitted">
+                          该选项框必填
+                    </span>
+                    <!--<span class="input-group-btn">
                                                 <button type="button" class="btn btn-default" style="height:34px" ng-click="ctrl.findPerson()">调取</button>
-                                            </span>
+                                            </span>-->
                 </p>
                 <!--<input type="text" class="form-control Rinput40" name="workNum" ng-model="ctrl.projectManager.workNum" required>
                 <span class="errorInput"

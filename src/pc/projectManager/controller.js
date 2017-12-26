@@ -75,6 +75,7 @@ app.controller('projectManagerCtrl', ['$scope','$http','$log','$modal','$filter'
         $http.post("/ts-project/projectManager/deleteManager/"+manager.pkid).success(function (result) {
             if(result.success){
                 alert(result.message);
+                selt.setPage(1);
             }else{
                 alert(result.message);
             }
@@ -95,10 +96,12 @@ app.controller('projectManagerCtrl', ['$scope','$http','$log','$modal','$filter'
     this.saveOrUpdateManager = function (manager,type) {
         if(type==1){
             selt.showbutton=false;
+            selt.submitted=false;
             selt.projectManager=manager;
         }else{
             selt.projectManager={sex:1};
             selt.showbutton=true;
+            selt.submitted=false;
         }
 
     };

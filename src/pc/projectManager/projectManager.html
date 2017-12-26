@@ -27,7 +27,7 @@
                 <label class="RuleName">工号：</label>
                 <p class="input-group">
                     <input type="hidden" ng-model="ctrl.projectManager.preId">
-                    <input type="text" class="form-control Rinput60"  name="workNum" ng-model="ctrl.projectManager.workNum" />
+                    <input type="text" class="form-control Rinput60"  name="workNum" ng-model="ctrl.projectManager.workNum" required/>
                     <button type="button"  class="NkSearBut RSerBut" ng-click="ctrl.findPerson()" ></button>
                     <span class="errorInput"
                           ng-show="form.workNum.$error.required && ctrl.submitted">

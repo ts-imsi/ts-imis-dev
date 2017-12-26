@@ -134,11 +134,24 @@ app.controller('projectManagerCtrl', ['$scope','$http','$log','$modal','$filter'
         selectInstance.result.then(function (person) {
             $http.post("/ts-project/projectManager/queryPersonById/"+person.id).success(function (result) {
                 if(result.success){
-                    selt.projectManager={name:result.object.name,
-                        workNum:result.object.workNum,
-                        preId:result.object.perId,
-                        sex:result.object.sex,
-                        phone:result.object.phone}
+                    if(selt.projectManager!=null&&selt.projectManager!=undefined){
+                        if(selt.projectManager.type!=null){
+                            var type=selt.projectManager.type;
+                            selt.projectManager={name:result.object.name,
+                                type:type,
+                                workNum:result.object.workNum,
+                                preId:result.object.perId,
+                                sex:result.object.sex,
+                                phone:result.object.phone}
+                        }else{
+                            selt.projectManager={name:result.object.name,
+                                workNum:result.object.workNum,
+                                preId:result.object.perId,
+                                sex:result.object.sex,
+                                phone:result.object.phone}
+                        }
+                    }
+
                 }else{
                     alert(result.messages);
                 }

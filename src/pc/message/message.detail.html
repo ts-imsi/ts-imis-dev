@@ -16,8 +16,8 @@
         发送人 <span ng-bind="detailCtrl.msg.sendName"></span>   发送时间：<span ng-bind="detailCtrl.msg.sendTime | date:'yyyy-MM-dd'"></span> <a ng-show="detailCtrl.msg.handOverId" href="#/access/handover?id={{detailCtrl.msg.handOverId}}" target="_blank">查看交接单</a>
     </div>
     <div class="wrapper">
-        <span ng-bind="detailCtrl.msg.msgContent"></span>
-
+        <span ng-bind="detailCtrl.msg.msgContent"></span><p>
+        <span style="color: red;font-size: 20px" ng-bind="detailCtrl.msg.remark"></span>
     <!--<div class="wrapper">
         <div class="panel b-a">
             <div>

@@ -492,7 +492,7 @@ app.controller('htProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         });
 
         if(keepGoing){
-            if(selt.handover.status&&selt.handover.status==1){
+            if(selt.handover.status&&selt.handover.status==1&&selt.handover.nowStep&&selt.handover.nowStep!='待内控审批'){
                 alert("该交接单已经提交,不能修改!");
                 return;
             }

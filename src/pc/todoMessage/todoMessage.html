@@ -154,7 +154,7 @@
                                 <div class="pos2 ng-binding" ng-bind="module.proName" style="text-align: center;"></div>
                             </div>
                             <div class="infoContRight2">
-                                <ul class="ng-scope" ng-repeat="vo in module.modList">
+                                <ul class="ng-scope" ng-repeat="vo in module.modList track by $index">
                                     <li class="ng-binding" ng-bind="vo"></li>
                                 </ul>
                             </div>

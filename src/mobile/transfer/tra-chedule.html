@@ -71,8 +71,80 @@
                     <label ng-if="module.value" ng-bind="module.name"></label><span ng-if="module.value" class="mui-pull-right applicationInfoText" ng-bind="module.value"></span>
                 </div>
         </div>
-    <!--交接单进度-->
-    <ul class="mui-table-view fl w100" style="margin-top: 0;" id="contSet">
+         <!--合同分解信息-->
+         <div class="TextStyle fl">
+             <p class="TextStyleTit">合同分解信息  <span>金额:<i>169.99</i>万</span></p>
+             <div class="textTable">
+                 <ul class="HTTit">
+                     <li><b>产品名</b><span>合同占比</span><span>小计（万） </span></li>
+                 </ul>
+                 <div class="HtBm">
+                     <p class="TextStyleBM"><span>企管部</span></p>
+                     <ul>
+                         <li><b>其他</b><span>11%</span><span>18.7 </span></li>
+                         <li><b>EMR</b><span>3%</span><span>5.1</span></li>
+                     </ul>
+                 </div>
+                 <div class="HtBm">
+                     <p class="TextStyleBM"><span>医技事业部</span></p>
+                     <ul>
+                         <li><b>LIS</b><span>4%</span><span>6.8</span></li>
+                     </ul>
+                 </div>
+                 <div class="HtBm">
+                     <p class="TextStyleBM"><span>HIS临床事业部</span></p>
+                     <ul>
+                         <li><b>HIS接口</b><span>13%</span><span>22.1</span></li>
+                         <li><b>临床模块</b><span>21%</span><span>35.69</span></li>
+                         <li><b>HIS</b><span>48%</span><span>81.6</span></li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+
+         <!--模块信息-->
+         <div class="TextStyle fl">
+             <p class="TextStyleTit">惠州市中医医院惠州市中医医院信息系统</p>
+             <div class="textTableXX">
+                 <div class="HtBm">
+                     <p class="TextStyleBM"><span>临床模块</span></p>
+                     <ul>
+                         <li>市预约挂号便民服务平台接口</li>
+                         <li>社保卡身份证疗卡一卡通接口</li>
+                         <li>药剂师处方点评系统接口</li>
+                         <li>门诊 分诊系统接口</li>
+                         <li>颗粒机接口</li>
+                         <li>医疗安全时间（不良）直报系统接口</li>
+                         <li>传染病管理系统</li>
+                         <li>抗菌药物管理系统接口</li>
+                     </ul>
+                 </div>
+                 <div class="HtBm">
+                     <p class="TextStyleBM"><span>HIS</span></p>
+                     <ul>
+                         <li>门诊医生工作站系统</li>
+                         <li>门急诊挂号管理系统</li>
+                         <li>物资管理系统</li>
+                         <li>财务和统计分析管理系统</li>
+                         <li>院长综合查询与分析系统</li>
+                         <li>住院药房管理系统</li>
+                     </ul>
+                 </div>
+                 <div class="HtBm">
+                     <p class="TextStyleBM"><span>HIS接口</span></p>
+                     <ul>
+                         <li>银医接口</li>
+                         <li>门户网站预约HIS</li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+
+
+
+         <!--交接单进度-->
+
+    <ul class="mui-table-view fl w100" style="margin-top: 15px;" id="contSet">
         <li class="mui-table-view-cell mui-media thisDA" ng-repeat="timeLine in $ctrl.timeLineVos">
             <div  class="mui-media-body padd010">
                 <span class="graufont9 font12" ng-bind="timeLine.time"></span>

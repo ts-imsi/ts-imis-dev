@@ -66,10 +66,10 @@
                 <div class="application">
                     <label>客户名称</label><span class="mui-pull-right applicationInfoText" ng-bind="$ctrl.handover.customerName"></span>
                 </div>-->
+
                 <div class="application" ng-repeat="module in $ctrl.handover.contentJson">
                     <label ng-if="module.value" ng-bind="module.name"></label><span ng-if="module.value" class="mui-pull-right applicationInfoText" ng-bind="module.value"></span>
                 </div>
-            </div>
         </div>
     <!--交接单进度-->
     <ul class="mui-table-view fl w100" style="margin-top: 0;" id="contSet">

@@ -54,7 +54,7 @@
 
         <div class="mui-table-view font16">
             <div class="indexFunc">
-                <ul ng-show="$ctrl.munuList.length!=0">
+                <!--<ul ng-show="$ctrl.munuList.length!=0">
                     <li ng-repeat="munu in $ctrl.munuList">
                         <a href="{{munu.url}}">
                             <div class="borderRad100 Square50 marginCenter">
@@ -63,10 +63,10 @@
                             <span ng-bind="munu.name"></span>
                         </a>
                     </li>
-                </ul>
-                <ul ng-show="$ctrl.munuList.length==0">
+                </ul>-->
+                <ul >
                     <li>
-                        <a ng-click="$ctrl.unauthorize()">
+                        <a href="#/outputValue">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i class="indexFuncIcon MHiconfont icon-mobile--chanzhinenghao buleFont"></i>
                             </div>
@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     <li>
-                        <a ng-click="$ctrl.unauthorize()">
+                        <a href="#/transfer">
                             <div class="borderRad100 Square50 marginCenter">
                                 <i class="indexFuncIcon MHiconfont icon-mobile--jiaojie orgFont"></i>
                             </div>
@@ -103,6 +103,14 @@
                                 <i class="indexFuncIcon MHiconfont icon-mobile--xiaoxizhongxin buleFont"></i>
                             </div>
                             <span>消息中心</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/makeInTransfer">
+                            <div class="borderRad100 Square50 marginCenter">
+                                <i class="indexFuncIcon MHiconfont icon-mobile--jiaojie orgFont"></i>
+                            </div>
+                            <span>填写交接单</span>
                         </a>
                     </li>
                 </ul>

@@ -28,6 +28,7 @@
                 }
             });
 
+
             this.queryHandOver=function(){
                 var param={
                     showAll:selt.showAll
@@ -64,6 +65,12 @@
             });
 
             //-------------------end---
+
+            this.test=function(){
+                selt.showAll = "all";
+                selt.queryHandOver();
+            };
+            this.test();
         }]);
 
     angular
@@ -74,6 +81,11 @@
             $http.post("/ts-project/mobileTransfer/queryHandOverByProcessId/"+processId).success(function (result) {
                 if (result.success) {
                     selt.handover=result.tbHtHandover;
+                    angular.forEach(result.tempVo,function(item){
+                        if(item.name=="合同分解信息"){
+                            selt.tempVo=item;
+                        }
+                    });
                     selt.timeLineVos=result.timeLineVos;
                 } else {
                     selt.handover='';

@@ -79,6 +79,11 @@
                 url: '/info',
                 templateUrl: window.rootSrc + 'mobile/info/info.html',
                 controller: 'infoCtrl as $ctrl'
+            })
+            .state('makeInTransfer', {
+                url: '/makeInTransfer',
+                templateUrl: window.rootSrc + 'mobile/makeInTransfer/makeInTransfer.html',
+                controller: 'makeInCtrl as $ctrl'
             });
 
 

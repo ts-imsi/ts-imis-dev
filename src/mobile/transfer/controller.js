@@ -70,7 +70,7 @@
                 selt.showAll = "all";
                 selt.queryHandOver();
             };
-            this.test();
+            //this.test();
         }]);
 
     angular
@@ -87,6 +87,8 @@
                         }
                     });
                     selt.timeLineVos=result.timeLineVos;
+                    selt.proModuleVos=result.proModuleVos;
+                    selt.total=result.total;
                 } else {
                     selt.handover='';
                     selt.timeLineVos=[];

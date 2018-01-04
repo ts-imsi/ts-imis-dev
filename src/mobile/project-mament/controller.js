@@ -65,7 +65,12 @@
 
             }
 
+            this.test=function(){
+                selt.showAll="all";
+                selt.queryProjectArrange();
+            }
 
+            //this.test();
             //---页面按钮权限控制--start--
             this.opCodes = [];
             this.isShowOpe = function(value){

@@ -13,6 +13,8 @@
             'MOBILEAPP.OUTPUTVALUE.CONTROLLER',
             'MOBILEAPP.CONFIRVALUE.CONTROLLER',
             'MOBILEAPP.INFO.CONTROLLER',
+            'MOBILEAPP.MAKEINTRANSFER.CONTROLLER',
+            'MOBILEAPP.MAKEINCHEDULE.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
@@ -84,6 +86,11 @@
                 url: '/makeInTransfer',
                 templateUrl: window.rootSrc + 'mobile/makeInTransfer/makeInTransfer.html',
                 controller: 'makeInCtrl as $ctrl'
+            })
+            .state('makeInChedule', {
+                url: '/makeInChedule',
+                templateUrl: window.rootSrc + 'mobile/makeInTransfer/tra-chedule.html',
+                controller: 'makeInCheduleCtrl as $ctrl'
             });
 
 

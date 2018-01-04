@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>交接单填写列表</title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link href="../css/mobileCss.css" rel="stylesheet" />
+    <link href="../css/iconfont.css" rel="stylesheet" />
+    <link href="../css/mui.picker.css" rel="stylesheet"/>
+    <link href="../css/mui.picker.min.css" rel="stylesheet" />
+    <link href="../css/mui.poppicker.css" rel="stylesheet"/>
+    <script src="../js/mui.picker.js"></script>
+    <script src="../js/mui.picker.min.js"></script>
+    <script src="../js/mui.poppicker.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+    <style>
+        .mui-input-row label{font-size: 14px; padding: 13px 15px 11px 15px;}
+        .mui-input-row label~input, .mui-input-row label~select, .mui-input-row label~textarea{font-size: 14px}
+        .mui-input-group .mui-input-row{height: inherit}
+        .mui-table-view-cell{padding: 11px 0px;font-size: 14px}
+        .inputChe { color: #ccc; }
+        .mui-input-row .mui-switch {float: left;  margin-top: 7px;  margin-right: 20px;  margin-bottom: 7px; }
+        .mui-switch:before{content: '否';}
+        .mui-switch.mui-active:before{content: '是';}
+    </style>
+</head>
+<body>
+<!--header-->
+<header class="mui-bar mui-bar-nav headerBG">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA"></a>
+    <h1 class="mui-title headerA">项目合同</h1>
+</header>
+<!--header end-->
+
+
+<!--底部按钮-->
+<nav class="mui-bar mui-bar-tab" style="padding-left: 0;padding-right: 0;">
+    <a class="mui-tab-item borderRight orgButBG font14">
+        <span class="mui-tab-label withFont">保存</span>
+    </a>
+    <a class="mui-tab-item buleButBG font14">
+        <span class="mui-tab-label withFont"><i id="info">提交</i></span>
+    </a>
+</nav>
+
+<div class="mui-content proSea">
+        <form class="mui-input-group">
+            <div class="mui-input-row">
+                <label>医院名称</label>
+                <input type="text" placeholder="澧县人民医院">
+            </div>
+            <div class="mui-input-row">
+                <label>地址</label>
+                <input type="text" placeholder="请输入">
+            </div>
+            <div class="mui-input-row">
+                <label>联系人（职务）</label>
+                <input type="tel" placeholder="骆铁">
+            </div>
+            <div class="mui-input-row">
+                <label>联系电话</label>
+                <input type="text" placeholder="0736-3662504">
+            </div>
+            <div class="mui-input-row">
+                <label>合同号</label>
+                <input type="tel" placeholder="B15073">
+            </div>
+
+
+            <!--下拉选择-->
+            <div class="mui-input-row">
+                <div class="mui-navigate-right">
+                    <label>是否签订合同</label>
+                    <div id="CFzhen" class="mui-table-view-cell inputChe">请选择</div>
+                </div>
+            </div>
+
+            <!--单选开关-->
+            <div class="mui-input-row huiz">
+                <label>是否签订合同</label><span style="display: none;"></span>
+                <div class="mui-switch">
+                    <div class="mui-switch-handle"></div>
+                </div>
+            </div>
+
+            <!--多行文本框-->
+            <div class="mui-input-row">
+                <label>委托方（甲方）</label>
+                <textarea type="text" rows="3" placeholder="澧县人民医院"></textarea>
+            </div>
+        </form>
+</div>
+
+
+<script type="text/javascript">
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+    mui('.huiz .mui-switch').each(function() { //循环所有toggle
+
+        //toggle.classList.contains('mui-active') 可识别该toggle的开关状态
+        this.parentNode.querySelector('span').innerText = (this.classList.contains('mui-active') ? '是' : '否');
+        /**
+         * toggle 事件监听
+         */
+        this.addEventListener('toggle', function(event) {
+            //event.detail.isActive 可直接获取当前状态
+            this.parentNode.querySelector('span').innerText = (event.detail.isActive ? '是' : '否');
+
+
+
+        });
+    });
+</script>
+
+<script>
+    (function($, doc) {
+        $.init();
+        $.ready(function() {
+
+            //初诊,复诊
+            var CFzhenPicker = new $.PopPicker();
+            CFzhenPicker.setData([{
+                value: 'chuz',
+                text: '是'
+            }, {
+                value: 'fuz',
+                text: '否'
+            }]);
+
+            var yishowCFzhenButton = doc.getElementById('CFzhen');
+            var CFzhenResult = doc.getElementById('CFzhen');
+            yishowCFzhenButton.addEventListener('tap', function(event) {
+                CFzhenPicker.show(function(items) {
+                    CFzhenResult.innerText =  items[0].text;
+                    CFzhenResult.style.color = "#666666";
+                    //返回 false 可以阻止选择框的关闭
+                    //return false;
+                });
+            }, false);
+
+
+        });
+    })(mui, document);
+
+
+</script>
+</body>
+</html>

@@ -113,6 +113,19 @@ a{color: #333;}
 .DoBut{width: 92%;border-radius: 10px;margin: 0 auto; background-color: #19B5FD;border: 1px solid #19B5FD; color: #fff;height: 44px;padding: 0;}
 .zhipaiBut{width: 92%;border-radius: 100px;margin: 0 auto; background-color: #F86161;border: 1px solid #09BB07; color: #fff;height: 44px;padding: 0;}
 
+
+/*placeholder样式*/
+input::-webkit-input-placeholder {color:#ccc;}
+input:-moz-placeholder {color:#ccc;}
+input::-moz-placeholder {color:#ccc;}
+input:-ms-input-placeholder {color:#ccc;}
+
+/*placeholder样式*/
+textarea::-webkit-input-placeholder {color:#ccc;}
+textarea:-moz-placeholder {color:#ccc;}
+textarea::-moz-placeholder {color:#ccc;}
+textarea:-ms-input-placeholder {color:#ccc;}
+
 /*面板*/
 .Content{min-width: 320px;max-width: 640px;margin: 0 auto;}
 

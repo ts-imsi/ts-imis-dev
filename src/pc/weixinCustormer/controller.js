@@ -62,6 +62,7 @@ app.controller('weixinCustormerCtrl',['$scope', '$modal', '$http', '$log','$stat
 
 
     this.showWeixinCus=function(weixinCus){
+        selt.submitted=false;
         if(weixinCus==""){
             selt.weixinCus='';
             selt.submitweixinCus=true;

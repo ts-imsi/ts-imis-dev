@@ -1,0 +1,46 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.weixinCusSubmit(form.$valid,form.$invalid,ctrl.weixinCus)">
+    <div class="fl RuleTit">
+        <div class="fr">
+            <input type="submit" class="save fl" ng-show="ctrl.submitweixinCus" value="新增" />
+            <input type="submit" class="save fl" ng-show="ctrl.updateweixinCus" value="更新" />
+            <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
+        </div>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput">
+                <label class="RuleName">客户名称：</label>
+                <input type="text" class="form-control Rinput60"  name="name" ng-model="ctrl.weixinCus.name" required>
+                <span class="errorInput"
+                      ng-show="form.name.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">客户地址：</label>
+                <input type="text" class="form-control Rinput60" name="address" ng-model="ctrl.weixinCus.address" required>
+                <span class="errorInput"
+                      ng-show="form.address.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">联系人：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.weixinCus.linkMan" name="linkMan" required>
+                <span class="errorInput"
+                      ng-show="form.linkMan.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">联系电话：</label>
+                <input type="text" class="form-control Rinput60"  ng-model="ctrl.weixinCus.phone" name="phone" required>
+                <span class="errorInput"
+                      ng-show="form.phone.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+            </div>
+        </div>
+    </div>
+</form>

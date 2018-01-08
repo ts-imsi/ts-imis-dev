@@ -977,6 +977,17 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.weixinCustormer', {
+                  url: '/weixinCustormer',
+                  templateUrl: 'src/pc/weixinCustormer/index.tpl.html',
+                  controller: 'weixinCustormerCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/weixinCustormer/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

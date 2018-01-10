@@ -15,6 +15,8 @@
             'MOBILEAPP.INFO.CONTROLLER',
             'MOBILEAPP.MAKEINTRANSFER.CONTROLLER',
             'MOBILEAPP.MAKEINCHEDULE.CONTROLLER',
+            'MOBILEAPP.CUSPROJECTMAMENT.CONTROLLER',
+            'MOBILEAPP.CUSPROJECTDETAILS.CONTROLLER',
             'mobile.utils'
         ])
         .config(config);
@@ -62,10 +64,20 @@
             templateUrl: window.rootSrc + 'mobile/project-mament/project-ment.html',
             controller: 'projectMentCtrl as $ctrl'
             })
+            .state('cusProjectMament', {
+                url: '/cusProjectMament',
+                templateUrl: window.rootSrc + 'mobile/cusProjectMament/project-ment.html',
+                controller: 'cusProjectMamentCtrl as $ctrl'
+            })
             .state('projectDetails', {
                 url: '/projectDetails',
                 templateUrl: window.rootSrc + 'mobile/project-mament/project-details.html',
                 controller: 'projectDetailsCtrl as $ctrl'
+            })
+            .state('cusProjectDetails', {
+                url: '/cusProjectDetails',
+                templateUrl: window.rootSrc + 'mobile/cusProjectMament/project-details.html',
+                controller: 'cusProjectDetailsCtrl as $ctrl'
             })
             .state('outputValue', {
             url: '/outputValue',

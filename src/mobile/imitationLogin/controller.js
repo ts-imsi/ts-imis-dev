@@ -13,23 +13,25 @@ app.controller('imitation', ['$scope', '$http','utils',function ($scope, $http,u
             window.location.href = url;
         } else {
             //todo openId设置
-            //var openId = "o8qZCwdhpNkRkSwlNLC1WOwB37bE";
-            $http.get("/authorize/oauth2?code="+code).success(function(result){
+            var openId = "o8qZCwdhpNkRkSwlNLC1WOwB37bP";
+            /*$http.get("/authorize/oauth2?code="+code).success(function(result){
                 if(result.status==1){
-                    var openId=result.openid;
+                    var openId=result.openid;*/
 
                     $http.post("/ts-project/mobileImitation/imitationLogin/" + openId).success(function (result) {
                         if (result.success) {
                             sessionStorage.setItem("X-TOKEN", result.object.xtoken);
+                            sessionStorage.setItem("identification",result.statusCode);
+                            sessionStorage.setItem("openId",openId);
                             window.location.href = "/src/mobile/index.html#/user?openId="+openId;
                         }else{
                             window.location.href = "/src/mobile/index.html#/user?openId="+openId;
                         }
                     });
-                }else{
+                /*}else{
                     alert("微信授权失败,请联系管理员!");
                 }
-            })
+            })*/
 
         }
     }]);

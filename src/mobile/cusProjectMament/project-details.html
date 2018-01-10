@@ -10,11 +10,19 @@
     <script type="text/javascript" charset="utf-8">
         mui.init();
     </script>
+    <style>
+    .traPor {
+        right: 68px;
+    }
+    .traPor button {
+        margin: 9px 27px 2px 0!important;
+    }
+</style>
 </head>
 <body>
 <!--header-->
 <header class="mui-bar mui-bar-nav headerBG">
-    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA" href="#/projectMent"></a>
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left headerA" href="#/cusProjectMent"></a>
     <h1 class="mui-title headerA" ng-bind="$ctrl.projectPlan.proName"></h1>
 </header>
 <!--header end-->
@@ -64,16 +72,27 @@
                                         <div class="mui-media-body">
                                             <p class="font14 mui-ellipsis-2 graufont3" ng-bind="planItem.docName"></p>
                                             <p class="font12 graufont9" ng-bind="planItem.planTime"></p>
-                                            <a class="graufont9 font12" ng-show="planItem.fileName" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fmobileView%3ffileName%3d{{planItem.fileName}}" target="_blank">
-                                                查看文档
-                                            </a>
-                                            <p class="graufont9 font12">文档提交：{{planItem.submitTime | date:'yyyy-MM-dd'}}
+
+                                            <p class="graufont9 font12">
+                                                <span ng-show="!planItem.fileName" style="color: #1a9c39;font-size: 12px">文档未提交</span>
+                                                <span ng-show="planItem.fileName">文档提交：{{planItem.submitTime | date:'yyyy-MM-dd'}}</span>
                                                 <span class="buleFont" style="padding-left: 5px" ng-bind="planItem.submitter"></span>
-                                                <span ng-show="planItem.isSubmit==1">
-                                                    <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole,'|check|')" class="mui-btn traBut buleButBG fr" ng-click="$ctrl.checkOk(planItem,$ctrl.planDetail.userRole)" style="padding: 4px 15px">确认</button>
-                                                    <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole,'|back|')" class="mui-btn traBut buleButBG fr" ng-click="$ctrl.checkBack(planItem,$ctrl.planDetail.userRole)" style="padding: 4px 15px;float: right;">驳回</button>
-                                                </span>
                                             </p>
+                                        </div>
+                                        <div class="posAbs traPor">
+                                            <div class="buleFont font18" ng-show="!planItem.fileName">
+                                                <button type="button" disabled="disabled" class="mui-btn traBut buleButBG fr">查看文档</button>
+                                            </div>
+                                            <div class="buleFont font18" ng-show="planItem.fileName">
+                                                <a class="graufont9 font12"  href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fmobileView%3ffileName%3d{{planItem.fileName}}" target="_blank"><button type="button" class="mui-btn traBut buleButBG fr">查看文档</button>
+                                                </a>
+                                            </div>
+                                            <div class="buleFont font18" ng-show="planItem.fileName">
+                                                <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,'|tag_check_KF|','|check|')" class="mui-btn traBut orgButBG fr" ng-click="$ctrl.checkOk(planItem,'|tag_check_KF|')" style="padding: 4px 15px">确认</button>
+                                            </div>
+                                            <div class="buleFont font18">
+                                                <button type="button" ng-show="!$ctrl.showButton(planItem.planChecks,'|tag_check_KF|','|check|')" class="buleButBGmui-btn traBut greenButBG fr">已确认</button>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>

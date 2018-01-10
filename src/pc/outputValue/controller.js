@@ -124,13 +124,17 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
 
 
 
-    this.isHt = false;
+    this.htRadio = 1;
     this.line = {
         proLine:undefined
     };
 
-    this.selectByHt = function (boo) {
-        selt.isHt = boo;
+    this.proLineT = {
+        proLine:undefined
+    };
+
+    this.selectByHt = function (num) {
+        selt.htRadio = num;
     };
 
     $http.post("/ts-project/outputValue/queryProLine").success(function (result) {
@@ -152,6 +156,26 @@ app.controller('OutputValueCtrl', ['$scope', '$modal', '$http', '$filter','$log'
             alert(result.message);
             if(result.success){
                  selt.line = {
+                    proLine:undefined
+                }
+            }
+        });
+
+    };
+
+    this.saveProductOutput = function (line) {
+        if(line.proLine == undefined){
+            alert("请选择产品线!");
+            return;
+        }
+        if(line.total == undefined){
+            alert("请填写金额!");
+            return;
+        }
+        $http.post("/ts-project/outputValue/saveProductOutput",angular.toJson(line)).success(function (result) {
+            alert(result.message);
+            if(result.success){
+                selt.line = {
                     proLine:undefined
                 }
             }

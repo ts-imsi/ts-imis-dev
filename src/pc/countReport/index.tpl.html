@@ -1,0 +1,56 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">内控报表</h1>
+</div>
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="row NKwrapper Nkinput">
+            <div class="fr">
+                <div class="btn-group col-px-230" style="position: relative;float:left">
+                    <button type="button" ng-click="ctrl.selectByStatus(1)" class="btn btn-default">过期</button>
+                    <button type="button" ng-click="ctrl.selectByStatus(2)" class="btn btn-default">超时</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>合同名称</th>
+                    <th>客户名称</th>
+                    <th>产品</th>
+                    <th>实施经理</th>
+                    <th>阶段名称</th>
+                    <th>文档名称</th>
+                    <th>计划时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="excePlan in ctrl.excePlanList">
+                    <td ng-bind="excePlan.htNo"></td>
+                    <td ng-bind="excePlan.customerName"></td>
+                    <td ng-bind="excePlan.proName"></td>
+                    <td ng-bind="excePlan.actualizeManager"></td>
+                    <td ng-bind="excePlan.stageName"></td>
+                    <td ng-bind="excePlan.docName"></td>
+                    <td ng-bind="excePlan.planTime"></td>
+                    <td><a href="#/app/planDetail?planId={{excePlan.planId}}">查看</a> </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+                </div>
+                <div class="col-sm-5 text-right text-center-xs">
+                    <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                ng-change="ctrl.pageChanged()"
+                                items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                boundary-links="true" force-ellipses="true"></pagination>
+                </div>
+            </div>
+        </footer>
+</div>
+</div>

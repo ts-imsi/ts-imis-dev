@@ -2,17 +2,29 @@
     angular
         .module('MOBILEAPP.USER.CONTROLLER', ['ui.bootstrap','ngCookies'])
         .controller('userCtrl', ['$http','$uibModal','$log','$document','utils','$cookies','$cookieStore',function($http,$uibModal, $log, $document,utils,$cookies, $cookieStore) {
-            var openId=utils.getUrlVar("openId");
+            var openId=sessionStorage.getItem("openId");
             console.log("======"+openId);
             var selt = this;
             $cookies.put("userSign",sessionStorage.getItem("X-TOKEN"),{'path':'/'});
-            $http.post("/ts-project/mobileUser/weixinToPersonnel/"+openId).success(function (result) {
-                if(result.success){
-                    selt.person=result.object;
-                }else{
-                    alert(result.message);
-                }
-            });
+            selt.identification=sessionStorage.getItem("identification");
+            if(selt.identification==1){
+                $http.post("/ts-project/mobileUser/weixinToPersonnel/"+openId).success(function (result) {
+                    if(result.success){
+                        selt.person=result.object;
+                    }else{
+                        alert(result.message);
+                    }
+                });
+            }else{
+                $http.post("/ts-project/mobileUser/weixinCusToPersonnel/"+openId).success(function (result){
+                    if(result.success){
+                        selt.weixinCus=result.object;
+                    }else{
+                        alert(result.message);
+                    }
+                })
+            }
+
             selt.outputValueM=false;
             selt.confirValueM=false;
             selt.transactM=false;

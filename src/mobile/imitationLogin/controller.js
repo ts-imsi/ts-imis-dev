@@ -21,6 +21,8 @@ app.controller('imitation', ['$scope', '$http','utils',function ($scope, $http,u
                     $http.post("/ts-project/mobileImitation/imitationLogin/" + openId).success(function (result) {
                         if (result.success) {
                             sessionStorage.setItem("X-TOKEN", result.object.xtoken);
+                            sessionStorage.setItem("identification",result.statusCode);
+                            sessionStorage.setItem("openId",openId);
                             window.location.href = "/src/mobile/index.html#/user?openId="+openId;
                         }else{
                             window.location.href = "/src/mobile/index.html#/user?openId="+openId;

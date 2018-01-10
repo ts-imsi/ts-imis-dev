@@ -16,26 +16,22 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                 <tr>
+                    <th>合同号</th>
+                    <th>客户</th>
                     <th>合同名称</th>
-                    <th>客户名称</th>
-                    <th>产品</th>
-                    <th>实施经理</th>
-                    <th>阶段名称</th>
-                    <th>文档名称</th>
-                    <th>计划时间</th>
-                    <th>操作</th>
+                    <th>合同额</th>
+                    <th>已完成</th>
+                    <th>未完成</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="excePlan in ctrl.excePlanList">
-                    <td ng-bind="excePlan.htNo"></td>
-                    <td ng-bind="excePlan.customerName"></td>
-                    <td ng-bind="excePlan.proName"></td>
-                    <td ng-bind="excePlan.actualizeManager"></td>
-                    <td ng-bind="excePlan.stageName"></td>
-                    <td ng-bind="excePlan.docName"></td>
-                    <td ng-bind="excePlan.planTime"></td>
-                    <td><a href="#/app/planDetail?planId={{excePlan.planId}}">查看</a> </td>
+                <tr ng-repeat="countR in ctrl.countRList">
+                    <td ng-bind="countR.htNo"></td>
+                    <td ng-bind="countR.customerName"></td>
+                    <td ng-bind="countR.htName"></td>
+                    <td ng-bind="countR.total"></td>
+                    <td ng-bind="countR.finished"></td>
+                    <td ng-bind="countR.unfinished"></td>
                 </tr>
                 </tbody>
             </table>

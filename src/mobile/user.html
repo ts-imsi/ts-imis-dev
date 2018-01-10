@@ -41,11 +41,17 @@
 <div class="mui-content">
     <div class="doctorTop">
         <dl>
-            <dd>
+            <dd ng-if="$ctrl.identification==1">
                 <img ng-if="$ctrl.person.picture!=null" ng-src="{{$ctrl.person.picture}}" class="borderRad100">
                 <img ng-if="$ctrl.person.picture==null" src="../../img/u1268.png" class="borderRad100">
                 <p>{{$ctrl.person.name}} <span>{{$ctrl.person.position}}</span></p>
                 <p>工号：{{$ctrl.person.workNum}} <span>{{$ctrl.person.depName}}</span>　</p>
+            </dd>
+            <dd ng-if="$ctrl.identification==0">
+                <img ng-if="$ctrl.person.picture!=null" ng-src="{{$ctrl.person.picture}}" class="borderRad100">
+                <img ng-if="$ctrl.person.picture==null" src="../../img/u1268.png" class="borderRad100">
+                <p>{{$ctrl.weixinCus.linkMan}} </p>
+                <p>医院名称：{{$ctrl.weixinCus.name}} 　</p>
             </dd>
         </dl>
     </div>
@@ -53,7 +59,7 @@
     <div class="TextStyle fl">
 
         <div class="mui-table-view font16">
-            <div class="indexFunc">
+            <div class="indexFunc" ng-if="$ctrl.identification==1">
                 <ul ng-show="$ctrl.munuList.length!=0">
                     <li ng-repeat="munu in $ctrl.munuList">
                         <a href="{{munu.url}}">
@@ -115,6 +121,20 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="indexFunc" ng-if="$ctrl.identification==0">
+                <ul >
+                    <li>
+                        <a href="#/cusProjectMament?cusName={{$ctrl.weixinCus.name}}">
+                            <div class="borderRad100 Square50 marginCenter">
+                                <i class="indexFuncIcon MHiconfont icon-mobile--xiangmu buleFont"></i>
+                            </div>
+                            <span>项目管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="attenceApp">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">-->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/app/index/index.css">
+    <link rel="stylesheet" type="text/css" href="/src/app/css/newfile.css" />
+    <link rel="stylesheet" type="text/css" href="/src/app/css/style.css" />
+    <link ref="stylesheet" type="text/css" href="/css/newStyle.css">
+    <title>创星之家综合信息平台</title>
+</head>
+
+<body ng-controller="MobileCtrl">
+
+    <!--公司考勤 -->
+    <div class="cheUser green boxs">
+        <div ng-show="!$ctrl.attType"> 公司考勤</div>
+        <div ng-show="$ctrl.attType"> 外出考勤</div>
+    </div>
+    <div class="checkWork">
+        <div class="checkDay">
+            <p>今天 <span ng-bind="$ctrl.pageDateT"></span> <font color="#19B317" ng-bind="$ctrl.pageWeekT"></font></p>
+        </div>
+        <div class="checkSig" ng-show="!$ctrl.attType">
+            <ul>
+                <li>
+                    今日签到时间:
+                    <i class="green" ng-show="$ctrl.attence.signinTime" ng-bind="$ctrl.attence.signinTime"></i>
+                    <i class="green" ng-show="!$ctrl.attence.signinTime" ng-bind="$ctrl.Now"></i>
+                </li>
+                <li>
+                    今日签退时间:
+                    <i class="red" ng-show="$ctrl.attence.signoutTime" ng-bind="$ctrl.attence.signoutTime"></i>
+                    <i class="red" ng-show="!$ctrl.attence.signoutTime" ng-bind="$ctrl.Now"></i>
+                </li>
+            </ul>
+        </div>
+        <!--地图-->
+        <div class="map">
+            <img ng-src="{{$ctrl.baidumapurl}}">
+            <!--重新定位-->
+            <div class="GoTo">
+                <input type="button" class="GoToAg" ng-click="$ctrl.submitOrderInfoClick()"/>
+            </div>
+        </div>
+        <!--地图end-->
+
+        <!--我的位置-->
+        <div class="Location">
+            <p ng-show="$ctrl.attType">我在<i ng-bind="$ctrl.address"></i>附近<i ng-click="$ctrl.open()">地址微调</i></p>
+            <p ng-show="!$ctrl.attType">我在<i ng-bind="$ctrl.address | attenceAddress"></i>附近</p>
+        </div>
+        <!--签到按钮-->
+        <div class="SignBut" ng-show="!$ctrl.attType">
+            <input ng-show="!$ctrl.attence.signinTime&&$ctrl.address&&$ctrl.attence.name" type="button" class="sigBut siBack" value="签到" ng-click="$ctrl.signInOrOutClick('signIn')">
+            <input ng-show="$ctrl.attence.signinTime&&$ctrl.address&&$ctrl.attence.name" type="button" class="sigBut qtBack" value="签退" ng-click="$ctrl.signInOrOutClick('signOut')">
+        </div>
+
+        <!--外出原因-->
+        <div class="OutCause" ng-show="$ctrl.attType">
+            <textarea class="Outtesta" ng-model="$ctrl.attenceRemark" tabindex="1" placeholder="外出事因" style="overflow: hidden; line-height: normal; resize:none;" rows="2" cols="30" ></textarea>
+
+        </div>
+        <!--签到按钮-->
+        <div class="SignBut" ng-show="$ctrl.attType">
+            <input ng-show="$ctrl.address&&$ctrl.attence.name" type="button" class="sigBut siBack" value="打卡" ng-click="$ctrl.signInOrOutClick('sign')">
+        </div>
+
+    </div>
+
+    <script type="text/ng-template" id="signConfirm.html">
+        <div class="modal-header">
+            <h4 class="modal-title" id="show-title">提示</h4>
+        </div>
+        <div class="modal-body" id="show-body">
+            是否确认考勤！
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-warning-1" ng-click="$confirmctrl.ok()">是</button>
+            <button class="btn btn-warning-1" type="button" ng-click="$confirmctrl.cancel()">否</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-title">考勤地址微调</h4>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul>
+                <li ng-repeat="item in $ctrl.items">
+                    <label class="checkbox-inline i-checks" ng-click="$ctrl.selected.item = item">
+                        <input type="radio" name="address">{{ item.address }}
+                    </label>
+                </li>
+            </ul>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">确定</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">取消</button>
+        </div>
+
+    </script>
+
+
+
+    <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="/src/app/mobile/utils.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="controller.js"></script>
+
+</body>
+</html>

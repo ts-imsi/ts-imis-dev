@@ -9,7 +9,7 @@
             console.log("====="+code);
             if(!code){
                 var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?' +
-                    'appid=wx883815fb0da06f3d' +
+                    'appid=wx5788f1ce93ff3255' +
                     '&redirect_uri=' + encodeURIComponent(window.location.href) +
                     '&response_type=code&scope=snsapi_base&state=TS-IMIS' +
                     '#wechat_redirect';

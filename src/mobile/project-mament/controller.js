@@ -154,7 +154,7 @@
             };
 
             this.showButton = function (planCheck,role,perm) {
-
+                //role="|tag_check_ZZ|";
                 var  permission = "";
                 var show;
                 angular.forEach(planCheck,function(item){

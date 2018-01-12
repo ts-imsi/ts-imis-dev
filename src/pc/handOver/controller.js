@@ -87,6 +87,24 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
     };
 
 
+    this.pdConfirm=function(handOver){
+        var pdInstance = $modal.open({
+            templateUrl: 'PdConfirm.html',
+            controller: 'PdConfirmCtrl as pdCtrl',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return handOver;
+                }
+            }
+        });
+
+        pdInstance.result.then(function () {
+
+        });
+    };
+
+
 
     //---页面按钮权限控制--start--
     this.opCodes = [];
@@ -112,4 +130,19 @@ app.controller('handOverCtrl', ['$scope', '$modal', '$http', '$filter','$log', f
 
     //-------------------end---
 
+}]);
+
+app.controller('PdConfirmCtrl', ['$scope', '$modalInstance','$http', '$filter','data', function($scope,$modalInstance,$http,$filter,data) {
+    var selt=this;
+    console.log(data);
+    $http.get("/ts-project/handover/getPDConfirm/"+data.pkid).success(function (result) {
+        if(result.success){
+            selt.pdList=result.object;
+        }else{
+            selt.pdList=[];
+        }
+    });
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 }]);

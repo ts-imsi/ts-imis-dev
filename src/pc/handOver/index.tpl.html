@@ -65,6 +65,8 @@
                         <a href="#/access/proModule?id={{htHandOver.pkid}}" target="_blank">模块
                         </a>
                         <a ng-show="htHandOver.fileUrl" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fview%3ffileName%3d{{htHandOver.fileUrl}}"  target="_blank">附件</a>
+                        <a ng-click="ctrl.pdConfirm(htHandOver)">生产待阅
+                        </a>
                     </td>
                 </tr>
                 </tbody>
@@ -85,3 +87,40 @@
 </div>
     <div data-ng-include=" 'src/pc/handOver/handoverTimeline.html' " ng-class="ctrl.panelClass"></div>
 </div>
+<script type="text/ng-template" id="PdConfirm.html">
+    <div class="modal-header">
+        <h4 class="modal-title">生产部门待阅情况</h4>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="table-responsive">
+
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>部门</th>
+                        <th>是否已阅</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="pd in pdCtrl.pdList">
+                        <td ng-bind="pd.name"></td>
+                        <td ng-bind="pd.depName"></td>
+                        <td>{{pd.status==0 ? '否' : '是'}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="pdCtrl.cancel()">关闭</button>
+    </div>
+</script>

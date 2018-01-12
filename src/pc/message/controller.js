@@ -1,13 +1,11 @@
 app.controller('messageCtrl', ['$scope', '$modal', '$http', '$log', function ($scope, $modal, $http, $log) {
     var selt = this;
-    this.folds = [
-        {name: '全部', type:'all',status:'all'},
-        {name: '待办', type:'todo',status:'0'},
-        {name: '已办', type:'todo',status:'1'},
-        {name: '待阅', type:'read',status:'0'},
-        {name: '已阅',  type:'read',status:'1'}
-    ];
-}])
+    $http.get("/ts-project/tb_message/getAllMsgCount").success(function (result) {
+        if (result.success) {
+            selt.folds = result.object;
+        }
+    });
+}]);
 
 app.controller('messageListCtrl',['$scope', '$modal', '$http', '$log','$stateParams', function ($scope, $modal, $http, $log,$stateParams){
     var seltmsgList=this;

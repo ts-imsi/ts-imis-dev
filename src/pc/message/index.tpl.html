@@ -7,6 +7,7 @@
             <ul class="nav nav-pills nav-stacked nav-sm">
                 <li ng-repeat="fold in ctrl.folds" ui-sref-active="active">
                     <a ui-sref="app.message.list({type:fold.type,status:fold.status})">
+                        <b ng-if="fold.name!='已办'&&fold.name!='已阅'" class="badge bg-info pull-right">{{fold.num}}</b>
                         {{fold.name}}
                     </a>
                 </li>

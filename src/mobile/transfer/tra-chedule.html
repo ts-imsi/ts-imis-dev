@@ -106,9 +106,9 @@
              <p class="TextStyleTit" ng-bind="$ctrl.handover.htName"></p>
              <div class="textTableXX">
                  <div class="HtBm" ng-repeat="pro in $ctrl.proModuleVos">
-                     <p class="TextStyleBM"><span ng-bind="pro.proName"></span></p>
+                     <p ><span ng-bind="pro.proName"></span></p>
                      <ul>
-                         <li ng-repeat="mod in pro.modList">{{mod}}</li>
+                         <li class="TextStyleBM" ng-repeat="mod in pro.modList">{{mod}}</li>
                    <!--      <li>社保卡身份证疗卡一卡通接口</li>
                          <li>药剂师处方点评系统接口</li>
                          <li>门诊 分诊系统接口</li>

@@ -988,6 +988,17 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.countReport', {
+                  url: '/countReport',
+                  templateUrl: 'src/pc/countReport/index.tpl.html',
+                  controller: 'CountReport as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/countReport/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

@@ -59,13 +59,13 @@
                 }
                 return false;
             };
-            $http.get("/ts-authorize/ts-mobile/operList/transfer").success(function (result) {
+            $http.get("/ts-authorize/ts-mobile/operList/makeInTransfer").success(function (result) {
                 if (result.success) {
                     selt.opCodes = result.object;
                     if(selt.isShowOpe("all")){
                         selt.showAll = "all";
                     }
-                    selt.queryHandOver();
+                    selt.queryOaContractListByOwner();
                 } else {
                     alert(result.message);
                 }

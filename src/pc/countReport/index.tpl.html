@@ -5,6 +5,12 @@
     <div class="panel panel-default">
         <div class="row NKwrapper Nkinput">
             <div class="fr">
+                <div class="btn-group col-px-700" style="position: relative;float:left">
+                    <button type="button" ng-click="ctrl.selectByType('all')" class="btn btn-default">查看全部</button>
+                    <button type="button" ng-click="ctrl.selectByType('dept')" class="btn btn-default">按部门</button>
+                    <button type="button" ng-click="ctrl.selectByType('pro')" class="btn btn-default">按产品</button>
+                    <button type="button" ng-click="ctrl.selectByType('proLine')" class="btn btn-default">按产品线</button>
+                </div>
                 <div class="col-px-120 fl" style="position: relative;">
                     <input type="text" class="form-control" placeholder="请输入年份" ng-model="ctrl.year">
                 </div>
@@ -14,7 +20,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped b-t b-light">
+            <table class="table table-striped b-t b-light" ng-if="ctrl.showAll">
                 <thead>
                 <tr>
                     <th>合同号</th>
@@ -36,8 +42,40 @@
                 </tr>
                 </tbody>
             </table>
+
+            <table class="table table-striped b-t b-light" ng-if="ctrl.showPro">
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th ng-show="ctrl.showProLine">产品线</th>
+                    <th>上年结转合同额</th>
+                    <th>今年新签合同额</th>
+                    <th>已完成合同额</th>
+                    <th>待完成合同额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="countRp in ctrl.countRPro">
+                    <td ng-bind="countRp.name">
+                    <td ng-show="ctrl.showProLine" ng-bind="countRp.proLine"></td>
+                    <td ng-bind="countRp.lastUnFinished"></td>
+                    <td ng-bind="countRp.total"></td>
+                    <td ng-bind="countRp.finished"></td>
+                    <td ng-bind="countRp.unfinished"></td>
+                </tr>
+                <tr>
+                    <td>总计</td>
+                    <td ng-show="ctrl.showProLine"></td>
+                    <td ng-bind="ctrl.nextUnCount"></td>
+                    <td ng-bind="ctrl.totalCount"></td>
+                    <td ng-bind="ctrl.finishedCount"></td>
+                    <td ng-bind="ctrl.unfinishedCount"></td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
-        <footer class="panel-footer">
+        <footer class="panel-footer" ng-if="ctrl.showAll">
             <div class="row">
                 <div class="col-sm-3 hidden-xs">
                 </div>

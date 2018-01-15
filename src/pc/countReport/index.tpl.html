@@ -122,12 +122,12 @@
                         <td ng-bind="output.docName"></td>
                         <td ng-bind="output.output"></td>
                         <td ng-bind="output.subtotal"></td>
-                        <td>{{output.status==0?否:是}}</td>
+                        <td>{{output.status==0?'否':'是'}}</td>
                     </tr>
                     </tbody>
                 </table>
                 </div>
-                <footer class="panel-footer" ng-if="ctrl.showAll">
+                <footer class="panel-footer">
                     <div class="row">
                         <div class="col-sm-3 hidden-xs">
                         </div>

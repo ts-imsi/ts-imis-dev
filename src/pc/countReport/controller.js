@@ -103,7 +103,7 @@ app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', fu
     }
 
     this.dblclickCountReport = function (outputCount) {
-        selt.dbClickCountParam.name=outputCount.name;
+        selt.dbClickCountParam.selectName=outputCount.name;
         var countRDeilInstance = $modal.open({
             templateUrl: 'countRDeil.html',
             controller: 'countRDeilCtrl as ctrl',

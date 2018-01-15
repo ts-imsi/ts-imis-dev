@@ -5,12 +5,20 @@ app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', fu
     selt.showAll=true;
     selt.showPro=false;
     selt.showProLine=false;
+    selt.dbClickCountParam="";
     this.selectByType=function(showType) {
         if (showType == 'all') {
             selt.showAll=true;
             selt.showPro=false;
+            selt.excelExprot="/ts-project/countReport/excelCountReportExport?year="+selt.year;
             selt.setPage(1);
         } else {
+            selt.dbClickCountParam={
+                year:selt.year,
+                selectType:showType,
+                selectName:''
+            }
+            selt.excelExprot="/ts-project/countReport/excelCountReportByTypeExport?year="+selt.year+"&selectType="+showType;
             selt.showPro = true;
             selt.showAll = false;
             if(showType=='pro'){
@@ -93,5 +101,87 @@ app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', fu
     this.selectYear=function(){
         selt.setPage(1);
     }
+
+    this.dblclickCountReport = function (outputCount) {
+        selt.dbClickCountParam.name=outputCount.name;
+        var countRDeilInstance = $modal.open({
+            templateUrl: 'countRDeil.html',
+            controller: 'countRDeilCtrl as ctrl',
+            size: 'lg',
+            resolve: {
+                data: function () {
+                    return selt.dbClickCountParam;
+                }
+            }
+        });
+        countRDeilInstance.result.then(function () {
+        });
+
+    };
+
+    this.printLetter=function(){
+        $("#countReport").printThis({
+            debug: false,
+            importCSS: true,
+            importStyle: true,
+            printContainer: true,
+            removeInline: false,
+            printDelay: 333,
+            header: null,
+            formValues: false
+        });
+    }
+
 }]);
 
+app.controller('countRDeilCtrl', ['$scope', '$modalInstance','$http', 'data', function($scope,$modalInstance,$http,data) {
+    var seltC=this;
+        this.setPage = function (pageNo) {
+        var parm={
+            page:pageNo,
+            rows:10,
+            year:data.year,
+            selectType:data.selectType,
+            selectName:data.selectName
+        };
+        $http.post("/ts-project/countReport/getOutputDetailed",angular.toJson(parm)).success(function (result) {
+            if(result.success){
+                seltC.outputList = result.list;
+                seltC.totalCount = result.totalCount;
+                seltC.pageSize = result.pageSize;
+                seltC.pageNo = result.pageNo;
+            }else{
+                seltC.outputList=[];
+            }
+
+        });
+    };
+
+
+    this.pageChanged = function () {
+        $log.log('Page changed to: ' + this.pageNo);
+        var parm={
+            page:this.pageNo,
+            rows:10,
+            year:data.year,
+            selectType:data.selectType,
+            selectName:data.selectName
+        };
+        $http.post("/ts-project/countReport/getOutputDetailed",angular.toJson(parm)).success(function (result) {
+            if(result.success){
+                seltC.outputList = result.list;
+                seltC.totalCount = result.totalCount;
+                seltC.pageSize = result.pageSize;
+                seltC.pageNo = result.pageNo;
+            }else{
+                seltC.outputList=[];
+            }
+        });
+
+    };
+    seltC.setPage(1);
+    this.excelOutputExprot="/ts-project/countReport/getOutputDetailedExport?year="+data.year+"&selectType="+data.selectType+"&selectName="+data.selectName;
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}])

@@ -10,6 +10,9 @@
                     <button type="button" ng-click="ctrl.selectByType('dept')" class="btn btn-default">按部门</button>
                     <button type="button" ng-click="ctrl.selectByType('pro')" class="btn btn-default">按产品</button>
                     <button type="button" ng-click="ctrl.selectByType('proLine')" class="btn btn-default">按产品线</button>
+                    <button type="button" ng-click="ctrl.printLetter()" class="btn btn-default" ng-show="ctrl.showPro">打印</button>
+                    <a href="{{ctrl.excelExprot}}"><button class="btn btn-default">
+                        导出</button></a>
                 </div>
                 <div class="col-px-120 fl" style="position: relative;">
                     <input type="text" class="form-control" placeholder="请输入年份" ng-model="ctrl.year">
@@ -43,7 +46,7 @@
                 </tbody>
             </table>
 
-            <table class="table table-striped b-t b-light" ng-if="ctrl.showPro">
+            <table class="table table-striped b-t b-light" ng-if="ctrl.showPro" id="countReport">
                 <thead>
                 <tr>
                     <th>名称</th>
@@ -55,7 +58,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="countRp in ctrl.countRPro">
+                <tr ng-repeat="countRp in ctrl.countRPro" ng-dblclick="ctrl.dblclickCountReport(countRp)">
                     <td ng-bind="countRp.name">
                     <td ng-show="ctrl.showProLine" ng-bind="countRp.proLine"></td>
                     <td ng-bind="countRp.lastUnFinished"></td>
@@ -89,3 +92,58 @@
         </footer>
 </div>
 </div>
+
+<script type="text/ng-template" id="countRDeil.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">产值详细</h4>
+    </div>
+        <div class="RuleCont">
+            <div class="panel-body">
+                <div class="table-responsive">
+                <table class="table table-striped b-t b-light">
+                    <thead>
+                    <tr>
+                        <th>合同名</th>
+                        <th>产品名称</th>
+                        <th>产品线</th>
+                        <th>部门名称</th>
+                        <th>阶段报告</th>
+                        <th>核算比例</th>
+                        <th>本次产值</th>
+                        <th>是否确认产值</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="output in ctrl.outputList">
+                        <td ng-bind="output.htName"></td>
+                        <td ng-bind="output.proName"></td>
+                        <td ng-bind="output.proLine"></td>
+                        <td ng-bind="output.depName"></td>
+                        <td ng-bind="output.docName"></td>
+                        <td ng-bind="output.output"></td>
+                        <td ng-bind="output.subtotal"></td>
+                        <td>{{output.status==0?否:是}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+                <footer class="panel-footer" ng-if="ctrl.showAll">
+                    <div class="row">
+                        <div class="col-sm-3 hidden-xs">
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+                            <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                        ng-change="ctrl.pageChanged()"
+                                        items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                        boundary-links="true" force-ellipses="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="{{ctrl.excelOutputExprot}}"><button class="btn btn-info">
+                导出</button></a>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+</script>

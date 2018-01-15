@@ -1,6 +1,18 @@
 app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', function ($scope, $modal, $http,$filter, $log) {
     var selt = this;
 
+
+    this.sync=function(){
+        $http.get("/ts-project/countReport/countOutputValue").success(function (result) {
+            if(result.success){
+                alert("数据同步成功");
+            }else{
+                alert("数据同步失败");
+            }
+        });
+
+    }
+
     this.year = $filter("date")(new Date(), "yyyy");
     selt.showAll=true;
     selt.showPro=false;

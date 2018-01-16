@@ -115,8 +115,10 @@ angular.module('app')
           $scope.msgCount = result.object.msgCount;
           if(result.object.msgList){
             $scope.msgList = result.object.msgList;
+            $scope.showName=result.object.showName;
           }else{
             $scope.msgList = [];
+              $scope.showName="超级管理员";
           }
           if(result.object.userId){
             initStompClient(result.object.userId);

@@ -46,6 +46,16 @@ app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', fu
         }
     }
 
+    this.accAdd=function(arg1,arg2){
+        var r1,r2,m;
+        try{
+            r1=arg1.toString().split(".")[1].length
+        }catch(e){
+            r1=0}  try{
+            r2=arg2.toString().split(".")[1].length}catch(e){r2=0}  m=Math.pow(10,Math.max(r1,r2))
+        return (arg1*m+arg2*m)/m
+    }
+
     this.countReportByType=function(showType){
         var param={
             year:selt.year,
@@ -56,10 +66,10 @@ app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', fu
             if(result.success){
                 selt.countRPro = result.object;
                 angular.forEach(selt.countRPro,function(item){
-                    selt.unfinishedCount=selt.unfinishedCount+item.unfinished;
-                    selt.finishedCount=selt.finishedCount+item.finished;
-                    selt.totalCount=selt.totalCount+item.total;
-                    selt.nextUnCount=selt.nextUnCount+item.lastUnFinished;
+                    selt.unfinishedCount=selt.accAdd(selt.unfinishedCount,item.unfinished);
+                    selt.finishedCount=selt.accAdd(selt.finishedCount,item.finished);
+                    selt.totalCount=selt.accAdd(selt.totalCount,item.total);
+                    selt.nextUnCount=selt.accAdd(selt.nextUnCount,item.lastUnFinished);
                 });
             }else{
                 selt.countRPro=[];
@@ -67,6 +77,8 @@ app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', fu
 
         });
     }
+
+
 
     this.setPage = function (pageNo) {
         var parm={

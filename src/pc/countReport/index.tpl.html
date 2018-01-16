@@ -104,26 +104,28 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                     <tr>
-                        <th>合同名</th>
-                        <th>产品名称</th>
-                        <th>产品线</th>
-                        <th>部门名称</th>
+                        <th>时间</th>
+                        <th>合同号</th>
+                        <th>医院名称</th>
+                        <th>合同名称</th>
+                        <th>产品</th>
                         <th>阶段报告</th>
                         <th>核算比例</th>
+                        <th>分配合同额</th>
                         <th>本次产值</th>
-                        <th>是否确认产值</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="output in ctrl.outputList">
+                        <td ng-bind="output.created | date:'yyyy-MM-dd'"></td>
+                        <td ng-bind="output.htNo"></td>
+                        <td ng-bind="output.customerName"></td>
                         <td ng-bind="output.htName"></td>
                         <td ng-bind="output.proName"></td>
-                        <td ng-bind="output.proLine"></td>
-                        <td ng-bind="output.depName"></td>
                         <td ng-bind="output.docName"></td>
                         <td ng-bind="output.output"></td>
+                        <td ng-bind="output.total"></td>
                         <td ng-bind="output.subtotal"></td>
-                        <td>{{output.status==0?'否':'是'}}</td>
                     </tr>
                     </tbody>
                 </table>

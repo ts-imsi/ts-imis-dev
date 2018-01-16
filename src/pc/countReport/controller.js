@@ -111,7 +111,7 @@ app.controller('CountReport', ['$scope', '$modal', '$http', '$filter','$log', fu
     this.maxSize = 5;
     this.setPage(1);
     this.selectYear=function(){
-        selt.setPage(1);
+        selt.selectByType('all');
     }
 
     this.dblclickCountReport = function (outputCount) {

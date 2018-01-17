@@ -158,7 +158,7 @@
                                                  <a ng-show="item.isUpdate==0" ng-bind="item.planTime" ng-dblclick="ctrl.updatePlanTime(item)"></a>
                                              </td>
 
-                                             <td ng-bind="item.isComplete" class="tabLeft"></td>
+                                             <td class="tabLeft">{{item.isComplete==0 ? '否' : '是'}}</td>
                                              <td class="tabLeft">
                                                  <a ng-dblclick="ctrl.fileUploader(item)">{{item.docName}}</a>
                                                  <a ng-show="item.fileName" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fview%3ffileName%3d{{item.fileName}}" target="_blank">
@@ -168,7 +168,7 @@
                                                  </a>
 
                                              </td>
-                                             <td ng-bind="item.isSubmit" class="tabLeft"></td>
+                                             <td class="tabLeft">{{item.isSubmit==0 ? '否' : '是'}}</td>
                                              <td ng-bind="item.submitter" class="tabLeft"></td>
                                              <td ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_ZZ|')" ng-class="ctrl.isRoleClass(item.planChecks,'|tag_check_ZZ|')">{{ctrl.isRoleCheck(item.planChecks,'|tag_check_ZZ|')}}</td>
                                              <td ng-if="ctrl.isShowCheck(ctrl.detail.checkRole,'|tag_check_ZK|')" ng-class="ctrl.isRoleClass(item.planChecks,'|tag_check_ZK|')">{{ctrl.isRoleCheck(item.planChecks,'|tag_check_ZK|')}}</td>

@@ -14,7 +14,8 @@
             this.queryProjectArrange=function(){
                 var param={
                     isArrange:1,
-                    customerName:selt.customerName
+                    customerName:selt.customerName,
+                    showAll:'all'
                 };
                 selt.objtype=[];
                 $http.post("/ts-project/mobileProject/selectMobileProjectArrangeList",angular.toJson(param)).success(function (result) {

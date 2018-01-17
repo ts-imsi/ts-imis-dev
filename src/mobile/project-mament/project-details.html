@@ -93,10 +93,10 @@
                                                 </a>
                                             </div>
                                             <div class="buleFont font18" >
-                                                <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole,'|check|')" class="mui-btn traBut orgButBG fr" ng-click="$ctrl.checkOk(planItem,$ctrl.planDetail.userRole)" style="padding: 4px 15px">确认</button>
+                                                <button type="button" ng-if="$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole)==1" class="mui-btn traBut orgButBG fr" ng-click="$ctrl.checkOk(planItem,$ctrl.planDetail.userRole)" style="padding: 4px 15px">确认</button>
                                             </div>
                                             <div class="buleFont font18">
-                                                <button type="button" ng-show="!$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole,'|check|')" class="buleButBGmui-btn traBut greenButBG fr">已确认</button>
+                                                <button type="button" ng-if="$ctrl.showButton(planItem.planChecks,$ctrl.planDetail.userRole)==2" class="buleButBGmui-btn traBut greenButBG fr">已确认</button>
                                             </div>
                                         </div>
                                     </li>

@@ -88,10 +88,10 @@
                                                 </a>
                                             </div>
                                             <div class="buleFont font18">
-                                                <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,'|tag_check_KF|','|check|')" class="mui-btn traBut orgButBG fr" ng-click="$ctrl.checkOk(planItem,'|tag_check_KF|')" style="padding: 4px 15px">确认</button>
+                                                <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,'|tag_check_KF|')==1" class="mui-btn traBut orgButBG fr" ng-click="$ctrl.checkOk(planItem,'|tag_check_KF|')" style="padding: 4px 15px">确认</button>
                                             </div>
                                             <div class="buleFont font18">
-                                                <button type="button" ng-show="!$ctrl.showButton(planItem.planChecks,'|tag_check_KF|','|check|')" class="buleButBGmui-btn traBut greenButBG fr">已确认</button>
+                                                <button type="button" ng-show="$ctrl.showButton(planItem.planChecks,'|tag_check_KF|')==2" class="buleButBGmui-btn traBut greenButBG fr">已确认</button>
                                             </div>
                                         </div>
                                     </li>

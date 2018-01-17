@@ -153,27 +153,19 @@
                 });
             };
 
-            this.showButton = function (planCheck,role,perm) {
-                //role="|tag_check_ZZ|";
-                var  permission = "";
-                var show;
+            this.showButton = function (planCheck,role) {
+                var show = 0;
                 angular.forEach(planCheck,function(item){
                     if(item.checkTag == role){
-                        permission = item.permission;
+                        show = 1;
                     }
                     if(item.checkTag==role&&item.status==1){
-                        show=true;
+                        show = 2;
                     }
                 });
-                    if(permission.indexOf(perm) >= 0){
-                        if(show){
-                            return false;
-                        }else{
-                            return true;
-                        }
-                    }else{
-                        return false;
-                    }
+
+                return show;
+
 
             }
 

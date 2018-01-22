@@ -105,10 +105,10 @@
          <div class="TextStyle fl">
              <p class="TextStyleTit" ng-bind="$ctrl.handover.htName"></p>
              <div class="textTableXX">
-                 <div class="HtBm" ng-repeat="pro in $ctrl.proModuleVos">
+                 <div class="HtBm" ng-repeat="pro in $ctrl.proModuleVos  track by $index">
                      <p ><span ng-bind="pro.proName"></span></p>
                      <ul>
-                         <li class="TextStyleBM" ng-repeat="mod in pro.modList">{{mod}}</li>
+                         <li class="TextStyleBM" ng-repeat="mod in pro.modList  track by $index">{{mod}}</li>
                    <!--      <li>社保卡身份证疗卡一卡通接口</li>
                          <li>药剂师处方点评系统接口</li>
                          <li>门诊 分诊系统接口</li>

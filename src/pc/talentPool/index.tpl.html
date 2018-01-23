@@ -2,9 +2,66 @@
     <h1 class="m-n font-thin h3">人才库</h1>
 </div>
 <div class="wrapper-md">
+    <div class="row bawiMtop">
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >姓名：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" placeholder="姓名筛选" ng-model="ctrl.name">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >擅长技术：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" placeholder="擅长技术" ng-model="ctrl.beGood">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >意向岗位：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" placeholder="意向岗位" ng-model="ctrl.willJob">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >面试结果：</label>
+                    <div class="pw60  fl">
+                        <select class="form-control Rinput60" ng-model="ctrl.twfDictms" required  name="result" ng-options="twfDict.name  for twfDict in ctrl.twfDictmsList"><option value="">请选择</option></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+        <div class="panel-default">
+            <div class="panel-body pad7-15">
+                <label class="control-label fl pt10" style="padding-left: 28px;" >是否来过公司：</label>
+                <div class="pw60  fl">
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="talent-isComeCx" value="1" ng-model="ctrl.isComeCx"><i></i> 来过
+                    </label>
+                    <label class="checkbox-inline i-checks">
+                        <input type="radio" name="talent-isComeCx" value="0" ng-model="ctrl.isComeCx"><i></i> 未来过
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="panel panel-default">
-        <div class="row NKwrapper Nkinput">
+    </div>
+
+        <!--<div class="row NKwrapper Nkinput">
             <div  class="fr">
 
                 <div class="col-px-140 fl" ng-show="ctrl.isShowOpe('add')">
@@ -14,7 +71,7 @@
                 <div class="col-px-80 fl" style="position: relative;" id="myShaix">
                     <button class="btn btn-default saixuan Nksx"  ng-click="ctrl.toggShaix()">
                         筛选</button>
-                    <!--筛选弹出-->
+                    &lt;!&ndash;筛选弹出&ndash;&gt;
                     <div class="shaixBox" style="display: block;" ng-show="ctrl.myShaix">
                         <div  class="wixian"></div>
 
@@ -26,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--部门-->
+                        &lt;!&ndash;部门&ndash;&gt;
                         <div class="brbotP NKwrapper Nkcont">
                             <div class="form-group NkSerTit">
                                 <label class="col-px-70 control-label fl NkSN">擅长技术</label>
@@ -36,7 +93,7 @@
                             </div>
                         </div>
 
-                        <!--部门-->
+                        &lt;!&ndash;部门&ndash;&gt;
                         <div class="brbotP NKwrapper Nkcont">
                             <div class="form-group NkSerTit">
                                 <label class="col-px-70 control-label fl NkSN">意向岗位</label>
@@ -45,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--部门-->
+                        &lt;!&ndash;部门&ndash;&gt;
                         <div class="brbotP NKwrapper Nkcont">
                             <div class="form-group NkSerTit">
                                 <label class="col-px-70 control-label fl NkSN">是否来过公司</label>
@@ -67,14 +124,14 @@
                                 </div>
                             </div>
                         </div>
-                        <!--重置按钮-->
+                        &lt;!&ndash;重置按钮&ndash;&gt;
                         <div class="fr NKwrapper">
                             <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.cancel()">清空</button>
                             <button class="btn m-b-xs w-xs ButCz" ng-click="ctrl.submitSeach()">查询</button>
                         </div>
 
                     </div>
-                    <!--筛选弹出end-->
+                    &lt;!&ndash;筛选弹出end&ndash;&gt;
 
                 </div>
                 <div class="col-px-80 fl" ng-show="ctrl.isShowOpe('export')">
@@ -85,9 +142,16 @@
 
 
             </div>
-        </div>
-
-        <div class="table-responsive">
+        </div>-->
+        <div class="row">
+            <div class="fr  pt10">
+                <button class="btn m-b-xs w-xs btn-warning" ng-click="ctrl.cancel()">清空</button>
+                <button class="btn m-b-xs w-xs btn-info" ng-click="ctrl.submitSeach()">查询</button>
+                <a ng-show="ctrl.isShowOpe('export')" ng-href="{{ctrl.excelTalentExprot}}" >
+                    <button class="btn btn-default daochu Nksx">导出</button></a>
+            </div>
+            <div class="panel panel-default fl w100">
+                <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>
                 <tr>
@@ -128,7 +192,7 @@
                 </tbody>
             </table>
         </div>
-        <footer class="panel-footer">
+                <footer class="panel-footer">
             <div class="row">
                 <div class="col-sm-3 hidden-xs">
                 </div>
@@ -140,7 +204,8 @@
                 </div>
             </div>
         </footer>
-    </div>
+            </div>
+        </div>
 
     <div data-ng-include=" 'src/pc/talentPool/talent.tpl.html' " ng-class="ctrl.panelClass"></div>
 </div>

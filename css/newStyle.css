@@ -340,7 +340,11 @@ button.xguize{background: url(../img/fa-add.png)15% 50% no-repeat;background-siz
 
 .pad7-15{padding: 7px 15px !important;}
 .bawiMtop{background-color: #fff;margin-top: -15px}
+.pw20{width: 20% !important;}
+.pw30{width: 30% !important;}
+.pw35{width: 35% !important;}
 .pw60{width: 53% !important;}
+.pw65{width: 65% !important;}
 
 .chaTime{border-bottom: 1px solid #edf1f2 !important;float: left;width: 100%;margin-left: 10px;}
 .chaTime p{margin-top: 5px}

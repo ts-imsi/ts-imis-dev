@@ -708,13 +708,59 @@ app.controller('PersonnelFile', ['$scope','$http','$log','$modal','$filter','Fil
     //划出层样式
     this.panelClass = "contact panel panel-default";
 
-    this.openPanel = function () {
+    this.openPanel = function (per) {
+        selt.updatePersonnelView(per);
         selt.panelClass = "contact panel panel-default active";
-    }
+    };
     this.closePanel = function () {
         selt.panelClass = "contact panel panel-default";
         selt.selectTag('1');
-    }
+    };
+    //批量操作请假checkbox
+    selt.selected = [];
+    var updateSelected = function (action, att) {
+        if (action == 'add' && selt.selected.indexOf(att) == -1) {
+            selt.selected.push(att);
+        }
+        if (action == 'remove' && selt.selected.indexOf(att) != -1) {
+            var idx = selt.selected.indexOf(att);
+            selt.selected.splice(idx, 1);
+        }
+    };
+
+    this.updateSelection = function ($event, att) {
+        var checkbox = $event.target;
+        var action = (checkbox.checked ? 'add' : 'remove');
+        updateSelected(action, att);
+    };
+
+    this.isSelected = function (att) {
+        return this.selected.indexOf(att) != -1;
+
+    };
+    //批量操作
+    this.batchUpdateDept = function (size) {
+        if(selt.selected.length==0){
+            alert("请选择一条数据");
+            return;
+        }
+
+        var MultipleInstance = $modal.open({
+            templateUrl: 'batchUpdateDept.html',
+            controller: 'BatchUpdateDeptCtrl as ctrl',
+            size: size,
+            resolve: {
+                data: function () {
+                    return selt.selected;
+                }
+            }
+        });
+        MultipleInstance.result.then(function () {
+            selt.selected=[];
+            selt.setPage(1);
+        });
+
+    };
 
 }]);
 
@@ -959,4 +1005,66 @@ app.controller('imageController', ['$scope', '$modalInstance','$http','FileUploa
 
 
 
+}]);
+app.controller('BatchUpdateDeptCtrl', ['$scope', '$modalInstance','$modal','$http', 'data', function($scope,$modalInstance,$modal,$http,data) {
+    var selt=this;
+
+    var workNUms = [];
+
+
+    if(data.length>0){
+        var selectedname="";
+        for(var i=0;i<data.length;i++){
+            selectedname=selectedname+data[i].name+",";
+            workNUms.push(data[i].workNum);
+        }
+        selt.mul=selectedname;
+    }
+
+    //获取部门
+    this.findDeptperson = function (size) {
+        var selectdeptInstance = $modal.open({
+            templateUrl: 'selectdept.html',
+            controller: 'selectdeptController as selectdeptctrl',
+            size: size
+        });
+
+        selectdeptInstance.result.then(function (deptname) {
+            selt.depId=deptname.id;
+            selt.depName=deptname.label;
+        });
+
+    };
+
+    this.updateDept=function(){
+        if(!confirm("你确定操作调岗吗？")){
+            return;
+        };
+
+        var param = {
+            list:workNUms,
+            depId : selt.depId,
+            depName : selt.depName
+        };
+
+        $http.post("/personnel/batchUpdateDept", angular.toJson(param)).success(function (result) {
+            if (result.success) {
+                alert(result.message);
+                $modalInstance.close();
+            } else {
+                alert(result.message);
+            }
+        });
+    };
+
+
+
+
+    this.ok = function () {
+        $modalInstance.close();
+    };
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 }])

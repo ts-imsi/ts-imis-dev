@@ -94,6 +94,7 @@
                     <span class="m-r">当前等级：
                         <b ng-bind="ctrl.person.rankName"></b>
                     </span>
+                    <span>还差<b style="color: red" ng-bind="ctrl.person.nextRank-ctrl.person.score"></b>积分到<b ng-bind="ctrl.person.nextRankName"></b></span>
                 </div>
             </div>
 

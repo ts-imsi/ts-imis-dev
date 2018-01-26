@@ -45,7 +45,7 @@
                     <th>交接时间</th>
                     <th>当前步骤</th>
                     <th>安排</th>
-                    <th>查看</th>
+                    <th style="width: 252px">查看</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,14 +59,20 @@
                     <td ng-bind="htHandOver.created | date:'yyyy-MM-dd'"></td>
                     <td ng-bind="htHandOver.nowStep"></td>
                     <td >{{htHandOver.isArrange==0 ? '否' : '是'}}</td>
-                    <td>
-                        <a href="#/access/handover?id={{htHandOver.pkid}}" target="_blank">交接单
+                    <td><a href="#/access/handover?id={{htHandOver.pkid}}" target="_blank">
+                            <button style="padding: 1px 6px" class="btn btn-primary">交接单</button>
                         </a>
-                        <a href="#/access/proModule?id={{htHandOver.pkid}}" target="_blank">模块
+                        <a href="#/access/proModule?id={{htHandOver.pkid}}" target="_blank">
+                            <button style="padding: 1px 6px" class="btn btn-success">模块</button>
                         </a>
-                        <a ng-show="htHandOver.fileUrl" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fview%3ffileName%3d{{htHandOver.fileUrl}}"  target="_blank">附件</a>
-                        <a ng-click="ctrl.pdConfirm(htHandOver)">生产待阅
+                        <a ng-show="htHandOver.fileUrl" href="/vendor/pdf/web/viewer.html?file=%2fts-project%2fdownload%2fview%3ffileName%3d{{htHandOver.fileUrl}}"  target="_blank">
+                            <button style="padding: 1px 6px" class="btn btn-info">附件</button>
                         </a>
+                        <button style="padding: 1px 6px" class="btn btn-default" ng-click="ctrl.pdConfirm(htHandOver)">生产待阅</button>
+
+
+
+
                     </td>
                 </tr>
                 </tbody>

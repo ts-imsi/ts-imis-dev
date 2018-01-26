@@ -220,10 +220,8 @@
                     <td ng-bind="per.position"></td>
                     <td ng-bind="per.phone"></td>
                     <td>
-                        <a ng-click="ctrl.deletePerson(per.perId,per.workNum)">离职
-                        </a>
-                        <a ng-click="ctrl.updatePersonnelView(per);ctrl.openPanel()">修改
-                        </a>
+                        <button style="padding: 1px 6px" class="btn btn-primary" ng-click="ctrl.deletePerson(per.perId,per.workNum)">离职</button>
+                        <button style="padding: 1px 6px" class="btn btn-success" ng-click="ctrl.openPanel(per)">修改</button>
                     </td>
                 </tr>
                 </tbody>

@@ -58,8 +58,8 @@
                     <td ng-bind="manager.phone"></td>
                     <td ng-bind="manager.email"></td>
                     <td>
-                        <a ng-click="ctrl.saveOrUpdateManager(manager,1);ctrl.openPanel()">修改</a>
-                        <a ng-click="ctrl.deleteManager(manager)">删除</a>
+                        <button style="padding: 1px 6px" class="btn btn-primary" ng-click="ctrl.saveOrUpdateManager(manager,1);ctrl.openPanel()">修改</button>
+                        <button style="padding: 1px 6px" class="btn btn-danger" ng-click="ctrl.deleteManager(manager)">删除</button>
                     </td>
                 </tr>
                 </tbody>

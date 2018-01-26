@@ -37,10 +37,9 @@
                     <td ng-bind="productModel.depName"></td>
                     <td ng-bind="productModel.isVaild==1?'是':'否'"></td>
                     <td>
-                        <a ng-click="ctrl.updateProductSave(productModel);ctrl.openPanel()">修改</a>
-                        <a ng-click="ctrl.deleteTbProduct(productModel.pkid)">删除
-                        </a>
-                        <a ng-click="ctrl.selectModel(productModel);ctrl.openModelPanel()">查看模块</a>
+                        <button style="padding: 1px 6px" class="btn btn-primary" ng-click="ctrl.updateProductSave(productModel);ctrl.openPanel()">修改</button>
+                        <button style="padding: 1px 6px" class="btn btn-danger" ng-click="ctrl.deleteTbProduct(productModel.pkid)">删除</button>
+                        <button style="padding: 1px 6px" class="btn btn-info" ng-click="ctrl.selectModel(productModel);ctrl.openModelPanel()">查看模块</button>
                     </td>
                 </tr>
                 </tbody>

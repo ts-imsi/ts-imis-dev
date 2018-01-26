@@ -36,8 +36,9 @@
                     <td ng-bind="wxCus.linkMan"></td>
                     <td ng-bind="wxCus.phone"></td>
                     <td ng-bind="wxCus.inviteCode"></td>
-                    <td><a ng-click="ctrl.deleteWxCus(wxCus.pkid)">删除</a>
-                        <a ng-click="ctrl.showWeixinCus(wxCus);ctrl.openPanel()">更新</a>
+                    <td>
+                        <button style="padding: 1px 6px" class="btn btn-primary" ng-click="ctrl.showWeixinCus(wxCus);ctrl.openPanel()">修改</button>
+                        <button style="padding: 1px 6px" class="btn btn-danger" ng-click="ctrl.deleteWxCus(wxCus.pkid)">删除</button>
                     </td>
                 </tr>
                 </tbody>

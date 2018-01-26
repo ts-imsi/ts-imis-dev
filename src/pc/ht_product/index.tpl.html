@@ -42,12 +42,9 @@
                     <td ng-bind="htProduct.contractOwner"></td>
                     <td ng-bind="htProduct.signDate | date:'yyyy-MM-dd'"></td>
                     <td>
-                        <a  ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()">填写交接单
-                        </a>
-                        <a ng-show="ctrl.isShowOpe('ht_resolve')" ng-click="ctrl.queryHtResolve(htProduct);ctrl.openOPVPanel()">分解合同额
-                        </a>
-                        <a ng-show="ctrl.isShowOpe('ht_change')" ng-click="ctrl.addHtChange(htProduct);ctrl.openAppyPanel()">合同变更
-                        </a>
+                        <button style="padding: 1px 6px" class="btn btn-primary" ng-click="ctrl.handoverView(htProduct);ctrl.openPanel()">交接单</button>
+                        <button style="padding: 1px 6px" class="btn btn-success" ng-show="ctrl.isShowOpe('ht_resolve')" ng-click="ctrl.queryHtResolve(htProduct);ctrl.openOPVPanel()">分解</button>
+                        <button style="padding: 1px 6px" class="btn btn-info" ng-show="ctrl.isShowOpe('ht_change')" ng-click="ctrl.addHtChange(htProduct);ctrl.openAppyPanel()">变更</button>
                     </td>
                 </tr>
                 </tbody>

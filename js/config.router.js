@@ -999,6 +999,17 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.quarters', {
+                  url: '/quarters',
+                  templateUrl: 'src/pc/quarters/index.tpl.html',
+                  controller: 'quartersCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/pc/quarters/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );

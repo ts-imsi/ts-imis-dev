@@ -1,0 +1,43 @@
+<form class="form-horizontal" name="form" novalidate ng-submit="ctrl.twfDictSubmit(form.$valid,form.$invalid,ctrl.twfDict)">
+    <div class="fl RuleTit">
+        <div class="fr">
+            <input type="submit" class="save fl" ng-show="ctrl.submittwfDict" value="新增" />
+            <input type="submit" class="save fl" ng-show="ctrl.updatetwfDict" value="更新" />
+            <input type="button" class="CloseBut fl" ng-click="ctrl.closePanel()"/>
+        </div>
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput">
+                <label class="RuleName">岗位名称：</label>
+                <input type="text" class="form-control Rinput60"  name="name" ng-model="ctrl.twfDict.name" required>
+                <span class="errorInput"
+                      ng-show="form.name.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">岗位编码：</label>
+                <input type="text" class="form-control Rinput60" name="code" ng-model="ctrl.twfDict.code" required>
+                <span class="errorInput"
+                      ng-show="form.code.$error.required && ctrl.submitted">
+                              该选项框必填
+                    </span>
+
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">类型：</label>
+                <input type="text" class="form-control Rinput60" name="type" ng-model="ctrl.twfDict.type" readonly>
+            </div>
+            <div class="form-group RuleInput" style="position: relative;">
+                <label class="RuleName">是否有效：</label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="person-sex" value="1" ng-model="ctrl.twfDict.isVaild" ><i></i> 有效
+                </label>
+                <label class="checkbox-inline i-checks">
+                    <input type="radio" name="person-sex" value="0" ng-model="ctrl.twfDict.isVaild"><i></i> 无效
+                </label>
+            </div>
+        </div>
+    </div>
+</form>

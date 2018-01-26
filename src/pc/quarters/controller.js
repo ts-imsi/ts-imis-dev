@@ -8,8 +8,7 @@ app.controller('quartersCtrl',['$scope', '$modal', '$http', '$log','$stateParams
     selt.updatetwfDict=false;
 
     selt.status=0;
-    this.selectByName=function(selectName){
-        selt.selectName=selectName;
+    this.selectByName=function(){
         selt.setPage(1);
     }
 

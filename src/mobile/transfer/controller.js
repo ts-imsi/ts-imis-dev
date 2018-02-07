@@ -11,7 +11,7 @@
             selt.projectMentM=false;
             $http.get("/ts-authorize/ts-mobile/menus").success(function(result){
                 if(result.success){
-                    if(result.object[0].length!=0) {
+                    if(result.object.length.length!=0) {
                         selt.munuList = result.object[0].childrens;
                         angular.forEach(selt.munuList, function (item) {
                             if (item.translate == 'outputValue') {

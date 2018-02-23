@@ -1,0 +1,197 @@
+body,ul,ol,li,p,dl,dd,dt,h1,h2,h3,h4,h5,form,input,button,select{margin:0; padding:0; font-family: "Microsoft YaHei"; list-style:none; outline:none; font-size:14px; color:#333;}
+body{color:#353535;}
+a{text-decoration:none; color:#353535;}
+img{border:0;}
+button:active{opacity:0.8;}
+.clear{clear:both;}
+
+/*首页*/
+.heaerBox{width:100%; height:50px; background:#2277EF; position:fixed; top:0; left:0; z-index:9;}
+.heaerBox .logo{float:left; background:url(../images/topLogo.png) no-repeat left center; margin-left:20px; color:#fff; font-size:18px; padding-left:42px; line-height:50px;}
+.hearLink{float:right; padding-right:20px;}
+.topSearchBox{background:#FFF; width:280px; height:32px; border-radius:32px; float:left; padding:0 15px; margin-top:9px;}
+.topSearchBox input{border:0; width:240px; height:24px; float:left; margin:4px;}
+.topSearchBox button{border:0; background:none; float:right; margin-top:7px;}
+.hearLink a{position:relative; color:#fff; float:left; margin-left:40px;}
+.hearLink a font{position:absolute; border:1px solid #fff; background:#F00; width:16px; height:16px; border-radius:12px; text-align:center; line-height:18px; font-size:12px; right:-10px; top:5px;}
+.hearLink a img{margin-top:15px;}
+.hearLink .userLink{padding-left:45px; line-height:50px;}
+.hearLink .userLink img{position:absolute; left:0; top:9px; margin:0;}
+
+.conBox{position:relative; padding-left:240px;}
+.conLeft{position:fixed; left:0; top:50px; height:100%; width:240px; border-right:1px solid #ccc; background:#fff;}
+.conLeft h3{line-height:50px; height:50px; border-bottom:1px solid #ccc; padding-left:50px;}
+.conLeft ul li{line-height:30px; border-bottom:1px solid #ccc; padding:10px 0 10px 20px;}
+.conLeft ul li span{background:url(../images/treeIcon1.png) no-repeat left center; padding-left:30px; cursor:pointer; font-weight:bold;}
+.conLeft ul li .childLink{display:none;}
+.conLeft ul li .childLink a{display:block; padding-left:50px; width:150px; background:url(../images/treeIcon3.png) no-repeat 30px center; line-height:30px; color:#666;}
+.conLeft ul li .childLink a:hover{color:#151515; background:url(../images/treeIcon2.png) no-repeat 30px center #FFF8D8;}
+.conLeft ul li .childLink .on{color:#151515; background:url(../images/treeIcon2.png) no-repeat 30px center #FFF8D8;}
+.innerBox{padding-top:50px;}
+.topTitle{font-size:14px; margin:20px 20px 10px;}
+.topTitle i{height:16px; background:#2277EF; width:4px; margin-bottom:-2px; border-radius:2px; display:inline-block; margin-right:10px;}
+.innerBox h4{border-bottom:1px solid #ccc; line-height:50px; color:#F00; background:#fff; padding:0 1%;}
+.topNumberBox{padding-top:10px;}
+.topNumberBox span{color:#fff; background:url(../images/indexTopBg.png) no-repeat 10px center #F5A623; width:32%; height:100px; float:left; margin-left:1%; text-align:right; font-size:30px;}
+.topNumberBox span b{margin-right:10px; font-weight:500; padding-top:18px; display:block;}
+.topNumberBox span font{display:block; font-size:16px; margin-right:10px;}
+.topNumberBox .redBg{background-color:#E7505A;}
+.topNumberBox .greenBg{background-color:#15C182;}
+.boxList{clear:both; padding-top:10px;}
+.echartsBox{float:left; width:48.5%; height:380px; margin-left:1%; border:1px solid #E6EAEE; margin-bottom:10px; background:#fff;}
+.echartsBox .title{border-bottom:2px solid #E6EAEE; line-height:50px; padding:0 20px; font-size:16px;}
+.echartsBox .title .tabBox{float:right; font-size:14px;}
+.echartsBox .title .tabBox span{margin-left:20px; display:inline-block; color:#999; cursor:pointer;}
+.echartsBox .title .tabBox .on{border-bottom:2px solid #2277EF; color:#333;}
+
+.userMsgBox{border:1px solid #E6EAEE; background:#fff; margin:10px; border:1px solid #E6EAEE;}
+.userMsgBox .title{line-height:50px; height:50px; text-align:right; padding:0 20px; border-bottom:1px solid #E6EAEE;}
+.userMsgBox .title span{color:#2277EF; font-size:16px; float:left;}
+.userMsgBox .title button{width:100px; height:30px; background-image: linear-gradient(0deg, #F2F4F7 0%, #FFFFFF 100%); border: 1px solid #C3C7D9; border-radius: 3px; margin-left:20px; line-height:28px;}
+.userMsgBox table td{border:solid #E6EAEE; border-width:0px 1px 1px 0px; line-height:42px; text-align:left; vertical-align:middle; padding:0 10px; position:relative;}
+.userMsgBox table td:nth-child(odd){width:120px;}
+.userMsgBox table td:nth-child(even){color:#3367D6;}
+.userMsgBox table tr td:last-child{border-width:0px 0px 1px 0px;}
+
+
+.addUserMsgBox{border:1px solid #E6EAEE; background:#fff; margin:10px; border:1px solid #E6EAEE;}
+.addUserMsgBox .title{line-height:50px; height:50px; text-align:right; padding:0 20px; border-bottom:1px solid #E6EAEE;}
+.addUserMsgBox .title span{color:#2277EF; font-size:16px; float:left;}
+.addUserMsgBox .title button{width:100px; height:30px; background-image: linear-gradient(0deg, #F2F4F7 0%, #FFFFFF 100%); border: 1px solid #C3C7D9; border-radius: 3px; margin-left:20px; line-height:28px;}
+.addUserMsgBox table td{border:solid #E6EAEE; border-width:0px 1px 1px 0px; line-height:42px; text-align:left; vertical-align:middle; padding:0 10px; position:relative;}
+.addUserMsgBox table td:nth-child(odd){width:120px;}
+.addUserMsgBox table tr td:last-child{border-width:0px 0px 1px 0px;}
+.addUserMsgBox table td input[type=text],.addUserMsgBox table td input[type=password]{width:240px; border:1px solid #DFE3E9; height:40px; padding:0 10px; margin:10px 0;}
+.addUserMsgBox table td a{position:absolute; color:#3367D6; left:190px; top: 25px; line-height:14px;}
+.addUserMsgBox table td b{color:#F00; margin-left:10px;}
+.addUserMsgBox table td select{width:260px; border:1px solid #DFE3E9; height:40px;}
+.footBtnBox{padding:40px 0; text-align:center;}
+.footBtnBox button{width:300px; height:40px; background:#f5f5f5; border:1px solid #e5e5e5; border-radius:5px; margin:0 20px; font-size:18px; color:#999;}
+.footBtnBox button:nth-child(even){background:#2277EF; border:1px solid #2277EF; color:#fff;}
+.filesTab{margin:10px 10px 0;}
+.filesTab span{background-image: linear-gradient(-180deg, #FFFFFF 4%, #EFF3F6 99%); border: 1px solid #D8E1EA; border-radius:3px 3px 0 0; border-bottom:0; line-height:40px; float:left; padding:0 20px; margin-right:10px; cursor:pointer;}
+.filesTab .on{color:#2277EF; background:#fff;}
+.filesBox{border:1px solid #E6EAEE; background:#fff; margin:0 10px; padding:20px; clear:both;}
+.filesBox h5{line-height:50px;}
+.filesBox h5 b{color:#F00;}
+.filesBox h5 button{width:100px; height:30px; background-image: linear-gradient(0deg, #F2F4F7 0%, #FFFFFF 100%); border: 1px solid #C3C7D9; border-radius: 3px; margin-left:20px; float:right; line-height:28px;}
+.filesBox .filesMsg table{border:solid #ccc; border-width:1px 0px 0px 1px;}
+.filesBox .filesMsg table td{border:solid #ccc; border-width:0px 1px 1px 0px; line-height:40px; text-align:left; vertical-align:middle; padding:0 10px;}
+.filesBox .filesMsg table td:nth-child(odd){width:15%;}
+.filesBox .filesMsg table td:nth-child(even){width:35%;}
+
+.checkBox{border:1px solid #E6EAEE; background:#fff; margin:0 10px; padding:20px 0; clear:both;}
+.checkList{border-bottom:1px solid #E6EAEE; padding:20px; line-height:40px;}
+.checkList label{margin-right:20px; color:#999;}
+.checkList label input{margin-right:10px; bottom:-1px; position:relative; width:14px; height:14px;}
+
+.searchBox{margin:0 20px;}
+.searchBox .inputBox{background: #FFFFFF; border: 1px solid #DFE3E9; border-radius: 3px; width:240px; height:30px; line-height:30px; display:inline-block; margin-right:10px; margin-top:10px;}
+.searchBox .inputBox font{display:inline-block; text-align:right; padding-left:10px;}
+.searchBox .inputBox input{border:0; width:150px;}
+.searchBox .inputBox select{border:0; width:150px;}
+.searchBox span{background:url(../images/downIcon.png) no-repeat 80px center #fff; border: 1px solid #C3C7D9; border-radius: 3px; float:left; line-height:40px; padding:0 40px; margin-top:10px; cursor:pointer;}
+.searchBox .up{background:url(../images/upIcon.png) no-repeat 80px center #fff;}
+.moreSearchBox{clear:both; border:1px solid #ccc; padding:0 10px 10px; background:#fff; margin-top:10px; display:none;}
+.searchBox button{padding:0 15px; height:30px; border:0; background:#2277EF; margin:10px 10px 0 0; color:#fff; border-radius:3px;}
+.searchBox .gridBtn{background:#fff; border:1px solid #ccc; color:#666;}
+.searchBox .gridBgBtn{background:#ccc; color:#fff;}
+.searchBox .fr{float:right;}
+
+.searchTableBox{margin:20px; background:#fff; border:1px solid #E6EAEE;}
+.searchTableBox .topBtnBox{padding:20px 0;}
+.searchTableBox .topBtnBox button{width:80px; height:34px; background:#2277EF; border:1px solid #2277EF; color:#fff; border-radius:5px; margin:0 0 0 20px; font-size:14px;}
+.searchTableBox .topBtnBox button:nth-child(even){background:#f5f5f5; border:1px solid #e5e5e5; color:#999;}
+.filesTab{margin:10px 10px 0;}
+
+
+
+.searchTableBox table{border:solid #E6EAEE; border-width:0px 0px 0px 0px;}
+.searchTableBox table th{border:solid #E6EAEE; border-width:0px 1px 1px 0px; background:#F5F7FA; padding:0 5px; line-height:40px; text-align:center;}
+.searchTableBox table td{border:solid #E6EAEE; border-width:0px 1px 1px 0px; line-height:24px; padding:5px; text-align:center; vertical-align:middle; font-size:12px;}
+.searchTableBox table tr th:last-child{border-width:0px 0px 1px 0px;}
+.searchTableBox table tr td:last-child{border-width:0px 0px 1px 0px;}
+.searchTableBox table span{display:inline-block; border:1px solid #2277EF; cursor:pointer; color:#2277EF; margin:5px; padding:0 5px; height:20px; text-align:center; line-height:20px; font-size:12px; border-radius:3px; padding:0 5px;}
+.searchTableBox table .redBg span{background:#E7505A;}
+.searchTableBox table .orangeBg span{background:#F5A623;}
+.blue{color:#3367D6;}
+.green{color:#09BB07;}
+.orange{color:#F5A623;}
+.searchTableBox table .title{text-align:left;}
+.searchTableBox table .title img{height:16px; margin:0 10px -3px;}
+
+
+.navBox{border:1px solid #E3E8F0; height:40px; margin:10px 20px 0; border-radius:3px; background:#F5F7FA;}
+.navBox span{border-right:1px solid #E3E8F0; line-height:40px; float:left; min-width:120px; text-align:center; cursor:pointer;}
+.navBox .on{color:#2894FE; background:#fff;}
+
+.pageBox{clear:both; text-align:center; padding:20px;}
+.pageBox a{line-height:30px; text-decoration:none; display:inline-block; padding:0 15px; border:1px solid #D7DEEA; margin-left:10px; font-size:14px; border-radius:3px; color:#666;}
+.pageBox input{line-height:30px; padding:0; display:inline-block; margin-left:10px; border:1px solid #D7DEEA; border-radius:3px; width:40px; text-align:center; color:#0E77FF;}
+.pageBox a:hover{border:1px solid #0E77FF; color:#fff; background:#0E77FF;}
+.pageBox .move{border:1px solid #0E77FF; color:#fff; background:#0E77FF;}
+.pageBox span{line-height:30px; text-decoration:none; display:inline-block; padding:0 15px; border:1px solid #D7DEEA; margin-left:10px; font-size:14px; border-radius:3px; color:#666;}
+.pageBox font{margin-left:10px;}
+.pageBox font b{color:#0E77FF; font-weight:500;}
+
+
+
+.examineMsgBox{margin:20px; border:1px solid #E3E8F0; background:#fff; padding-bottom:30px;}
+.examineTitle{border-bottom:1px solid #E3E8F0; font-size:16px; padding:0 15px; line-height:40px;}
+.examineAlt{text-align:center; background:#FFC; color:#F00; line-height:30px; font-size:12px;}
+
+.examineInputInner{padding:20px 20px 0; clear:both;}
+.examineInputInner span{width:220px; float:left; text-align:right; line-height:40px; margin-right:10px;}
+.examineInputInner span b{color:#F00; margin:0 5px;}
+.searchIconBox{border:1px solid #E3E8F0; border-radius:3px; display:inline-block; width:500px; height:38px;}
+.searchIconBox input{border:0; height:38px; line-height:38px; padding:0 10px; width:420px;}
+.searchIconBox button{border:0; float:right; border-left:1px solid #E3E8F0; height:38px; width:40px; background:url(../images/searchIcon.png) no-repeat center #fff; padding:0 5px;}
+.examineInputInner textarea{border:1px solid #E3E8F0; border-radius:3px; display:inline-block; width:490px; height:80px; line-height:24px; padding:5px;}
+.examineInputInner label{line-height:40px; margin-right:10px;}
+.examineInputInner label input{margin-right:10px;}
+.examineInputInner .dateBox{display:inline-block;}
+.examineInputInner .dateBox .dateSelect{border:1px solid #E3E8F0; width:200px; border-radius:3px; height:38px; padding:0 5px;}
+.fileSel{margin-top:10px; width:300px;}
+
+
+.examineTable{padding:20px 20px 0;}
+.examineTableInner{display:inline-block;}
+.ml230{margin-left:230px;}
+.examineTable span{width:220px; display:block; line-height:20px; padding-bottom:10px; margin-right:10px;}
+.examineTable table{border:solid #E6EAEE; border-width:1px 1px 0px 1px; min-width:300px;;}
+.examineTable table th{border:solid #E6EAEE; border-width:0px 1px 1px 0px; background:#F5F7FA; padding:5px; line-height:30px; text-align:center;}
+.examineTable table td{border:solid #E6EAEE; border-width:0px 1px 1px 0px; line-height:24px; padding:5px 15px; text-align:center; vertical-align:middle; font-size:12px;}
+.examineTable table td a{color:#2894FE;}
+.examineTable table tr th:last-child{border-width:0px 0px 1px 0px;}
+.examineTable table tr td:last-child{border-width:0px 0px 1px 0px;}
+.changeIcon{width:50px; display:inline-block; cursor:pointer; text-align:center;}
+.changeIcon img{width:24px; height:24px; margin-bottom:-50px;}
+
+
+.productBox .treeBox{width:20%; float:left; margin:20px 0 20px 20px; border:1px solid #E3E8F0; padding:10px;}
+.productBox .treeBox .treeInner{background:#eee; min-height:400px;}
+.productBox .treeBox .treeBtnBox{text-align:center;}
+.productBox .treeBox .treeBtnBox button{width:60px; height:30px; border:1px solid #3367D6; background:#fff; margin:10px 10px 0 0; color:#3367D6; border-radius:3px;}
+.productBox .searchTableBox{width:74%; float:left; margin:20px 0 20px 20px;}
+
+
+.addJk{margin:20px;}
+.addJk table{border:solid #E6EAEE; border-width:1px 1px 0px 1px;}
+.addJk table th{border:solid #E6EAEE; border-width:0px 1px 1px 0px; background:#F5F7FA; padding:5px; line-height:40px; text-align:center;}
+.addJk table td{border:solid #E6EAEE; border-width:0px 1px 1px 0px; line-height:24px; padding:5px; text-align:center; vertical-align:middle; font-size:12px;}
+.addJk table tr th:last-child{border-width:0px 0px 1px 0px;}
+.addJk table tr td:last-child{border-width:0px 0px 1px 0px;}
+.addJk table span{display:inline-block; border:1px solid #2277EF; cursor:pointer; color:#2277EF; margin:5px; padding:0 5px; height:20px; text-align:center; line-height:20px; font-size:12px; border-radius:3px; padding:0 5px; min-width:40px;}
+.addJk table td input{border:1px solid #E6EAEE; height:30px; float:left; border-radius:3px; padding:0 5px;}
+.addJk table td button{border:1px solid #E6EAEE; border-radius:3px; float:left; height:32px; width:40px; background:url(../images/searchIcon.png) no-repeat center #fff; padding:0 5px;}
+.addJk table .redBg span{background:#E7505A;}
+.addJk table .orangeBg span{background:#F5A623;}
+.topText{border:1px solid #E6EAEE; margin:20px; padding:10px 20px; line-height:40px;}
+.topText span{color:#2277EF; margin-right:40px; margin-left:10px;}
+.topText font{margin-right:40px; color:#666;}
+.topText font b{color:#2277EF; font-weight:500; margin:0 5px;}
+.topText .fr{float:right; margin:0;}
+.topText button{border:1px solid #ccc; padding:0 15px; height:30px; background:#fff; border-radius:5px; float:right;}
+
+
+

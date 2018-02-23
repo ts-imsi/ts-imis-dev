@@ -1,0 +1,113 @@
+<div class="conBox">
+<div class="innerBox">
+    <h5 class="topTitle"><i></i>产品信息</h5>
+    <div class="searchBox">
+        <div class="inputBox"><font>模块名称：</font><input name="" type="text"></div>
+        <button>搜索</button>
+        <button class="gridBtn fr">添加模块</button>
+        <div class="clear"></div>
+    </div>
+
+    <div class="productBox">
+        <div class="treeBox">
+            <div class="treeInner">
+                <div class="bg-light" ng-if="ctrl.success" >
+
+                    <span ng-if="doing_async">...loading...</span>
+                <abn-tree
+                        tree-data         = "ctrl.my_data"
+                        tree-control      = "ctrl.my_tree"
+                        on-select         = "ctrl.my_tree_handler(branch)"
+                        expand-level      = "2"
+                        initial-selection = "ctrl.inittree"
+                        icon-leaf         = "fa fa-folder"
+                        icon-expand       = "fa fa-folder"
+                        icon-collapse     = "fa fa-folder-open"
+                >
+                </abn-tree>
+                </div>
+            </div>
+            <div class="treeBtnBox">
+                <button class="gridBtn">添加</button>
+                <button class="gridBtn">编辑</button>
+                <button class="gridBtn">删除</button>
+            </div>
+        </div>
+        <div class="searchTableBox">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th scope="col">序号</th>
+                    <th scope="col">模块名称</th>
+                    <th scope="col">拼音码</th>
+                    <th scope="col">显示顺序</th>
+                    <th scope="col">打包顺序</th>
+                    <th scope="col">操作</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>门诊管理</td>
+                    <td>MZGL</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td><span>编辑</span><span>删除</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>门诊管理</td>
+                    <td>MZGL</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td><span>编辑</span><span>删除</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>门诊管理</td>
+                    <td>MZGL</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td><span>编辑</span><span>删除</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>门诊管理</td>
+                    <td>MZGL</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td><span>编辑</span><span>删除</span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>门诊管理</td>
+                    <td>MZGL</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td><span>编辑</span><span>删除</span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>门诊管理</td>
+                    <td>MZGL</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td><span>编辑</span><span>删除</span></td>
+                </tr>
+            </table>
+
+            <div class="pageBox">
+                <a href="#">首页</a>
+                <a href="#">上一页</a>
+                <span class="move">1</span>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">下一页</a>
+                <span>共1/2页</span>
+                <input name="" type="text" value="1">
+                <a href="#">跳转</a>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

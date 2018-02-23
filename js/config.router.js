@@ -1010,6 +1010,20 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.reProduct', {
+                  url: '/reProduct',
+                  templateUrl: 'src/release/product/index.tpl.html',
+                  controller: 'ReProductCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/release/product/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
       }
     ]
   );

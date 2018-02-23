@@ -1,5 +1,4 @@
 <div class="conBox">
-<div class="innerBox">
     <h5 class="topTitle"><i></i>产品信息</h5>
     <div class="searchBox">
         <div class="inputBox"><font>模块名称：</font><input name="" type="text"></div>
@@ -10,8 +9,7 @@
 
     <div class="productBox">
         <div class="treeBox">
-            <div class="treeInner">
-                <div class="bg-light" ng-if="ctrl.success" >
+            <div class="treeInner" ng-if="ctrl.success">
 
                     <span ng-if="doing_async">...loading...</span>
                 <abn-tree
@@ -25,7 +23,6 @@
                         icon-collapse     = "fa fa-folder-open"
                 >
                 </abn-tree>
-                </div>
             </div>
             <div class="treeBtnBox">
                 <button class="gridBtn">添加</button>
@@ -107,7 +104,4 @@
             </div>
         </div>
     </div>
-
-
-</div>
 </div>

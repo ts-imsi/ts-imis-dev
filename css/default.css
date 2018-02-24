@@ -18,7 +18,7 @@ button:active{opacity:0.8;}
 .hearLink .userLink{padding-left:45px; line-height:50px;}
 .hearLink .userLink img{position:absolute; left:0; top:9px; margin:0;}
 
-.conBox{position:relative; padding-left:240px;}
+.conBox{position:relative;}
 .conLeft{position:fixed; left:0; top:50px; height:100%; width:240px; border-right:1px solid #ccc; background:#fff;}
 .conLeft h3{line-height:50px; height:50px; border-bottom:1px solid #ccc; padding-left:50px;}
 .conLeft ul li{line-height:30px; border-bottom:1px solid #ccc; padding:10px 0 10px 20px;}
@@ -88,7 +88,7 @@ button:active{opacity:0.8;}
 .searchBox{margin:0 20px;}
 .searchBox .inputBox{background: #FFFFFF; border: 1px solid #DFE3E9; border-radius: 3px; width:240px; height:30px; line-height:30px; display:inline-block; margin-right:10px; margin-top:10px;}
 .searchBox .inputBox font{display:inline-block; text-align:right; padding-left:10px;}
-.searchBox .inputBox input{border:0; width:150px;}
+.searchBox .inputBox input{border:0; width:150px; height: 26px;}
 .searchBox .inputBox select{border:0; width:150px;}
 .searchBox span{background:url(../images/downIcon.png) no-repeat 80px center #fff; border: 1px solid #C3C7D9; border-radius: 3px; float:left; line-height:40px; padding:0 40px; margin-top:10px; cursor:pointer;}
 .searchBox .up{background:url(../images/upIcon.png) no-repeat 80px center #fff;}
@@ -133,6 +133,7 @@ button:active{opacity:0.8;}
 .pageBox span{line-height:30px; text-decoration:none; display:inline-block; padding:0 15px; border:1px solid #D7DEEA; margin-left:10px; font-size:14px; border-radius:3px; color:#666;}
 .pageBox font{margin-left:10px;}
 .pageBox font b{color:#0E77FF; font-weight:500;}
+.pageBox .col-sm-5{width:100%; text-align: center;}
 
 
 
@@ -168,10 +169,10 @@ button:active{opacity:0.8;}
 .changeIcon img{width:24px; height:24px; margin-bottom:-50px;}
 
 
-.productBox .treeBox{width:20%; float:left; margin:20px 0 20px 20px; border:1px solid #E3E8F0; padding:10px;}
+.productBox .treeBox{width:20%; background: #fff; float:left; margin:20px 0 20px 20px; border:1px solid #E3E8F0; padding:10px;}
 .productBox .treeBox .treeInner{background:#eee; min-height:400px;}
 .productBox .treeBox .treeBtnBox{text-align:center;}
-.productBox .treeBox .treeBtnBox button{width:60px; height:30px; border:1px solid #3367D6; background:#fff; margin:10px 10px 0 0; color:#3367D6; border-radius:3px;}
+.productBox .treeBox .treeBtnBox button{width:40px; height:20px; border:1px solid #3367D6; background:#fff; margin:10px 10px 0 0; color:#3367D6; font-size: 12px; border-radius:3px;}
 .productBox .searchTableBox{width:74%; float:left; margin:20px 0 20px 20px;}
 
 

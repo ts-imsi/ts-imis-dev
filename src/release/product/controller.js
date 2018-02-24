@@ -15,18 +15,19 @@ app.controller('ReProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
     this.setPage = function (pageNo) {
         var parm={
             page:pageNo,
-            rows:10,
-            selectName:selt.selectName
+            rows: 1,
+            selectName:selt.selectName,
+            type:'mod'
         };
         console.log(parm);
-        $http.post("/ts-project/product/queryProductModelList",angular.toJson(parm)).success(function (result) {
+        $http.post("/ts-release/product/selectModList",angular.toJson(parm)).success(function (result) {
             if(result.success){
-                selt.productModelList = result.list;
+                selt.modList = result.list;
                 selt.totalCount = result.totalCount;
                 selt.pageSize = result.pageSize;
                 selt.pageNo = result.pageNo;
             }else{
-                selt.productModelList=[];
+                selt.modList=[];
             }
 
         });
@@ -43,20 +44,64 @@ app.controller('ReProductCtrl', ['$scope', '$modal', '$http', '$filter','$log', 
         $log.log('Page changed to: ' + this.pageNo);
         var parm={
             page:this.pageNo,
-            rows:10,
-            selectName:selt.selectName
+            rows: 1,
+            name:selt.selectname,
+            type:'mod'
         };
-        $http.post("/ts-project/product/queryProductModelList",angular.toJson(parm)).success(function (result) {
+        $http.post("/ts-release/product/selectModList",angular.toJson(parm)).success(function (result) {
             if(result.success){
-                selt.productModelList = result.list;
+                selt.modList = result.list;
                 selt.totalCount = result.totalCount;
                 selt.pageSize = result.pageSize;
                 selt.pageNo = result.pageNo;
             }else{
-                selt.productModelList=[];
+                selt.modList=[];
             }
         });
 
+    };
+
+    this.delete = function(pkid){
+        var r=confirm("是否删除模块设置");
+        if(r==true) {
+            if (pkid == null) {
+                window.alert("请选择表格数据");
+            }else{
+                var parm={
+                    pkid:selt.pkid,
+
+                };
+                $http.post("/ts-release/product/deletePro",angular.toJson(parm) ).success(function (result) {
+                    if (result.success) {
+                        window.alert(result.message);
+                    } else {
+                        window.alert(result.message);
+                    }
+
+                    selt.setPage(1);
+                });
+            }
+        }
+    };
+
+    this.search = function(){
+       var parm={
+            page: 1,
+            rows: 1,
+            name:selt.selectname
+        };
+        console.log(parm);
+        $http.post("/ts-release/product/selectModList",angular.toJson(parm)).success(function (result) {
+            if(result.success){
+                selt.modList = result.list;
+                selt.totalCount = result.totalCount;
+                selt.pageSize = result.pageSize;
+                selt.pageNo = result.pageNo;
+            }else{
+                selt.modList=[];
+            }
+
+        });
     };
 
     this.maxSize = 5;

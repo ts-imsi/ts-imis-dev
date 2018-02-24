@@ -769,6 +769,7 @@ body {
   width: 100%;
   padding-bottom: 50px;
   min-height: 850px;
+  background:#fafafa;
 }
 
 .app-footer {

@@ -1,8 +1,8 @@
 <div class="conBox">
     <h5 class="topTitle"><i></i>产品信息</h5>
     <div class="searchBox">
-        <div class="inputBox"><font>模块名称：</font><input name="" type="text"></div>
-        <button>搜索</button>
+        <div class="inputBox"><font>模块名称：</font><input ng-model="ctrl.selectname" type="text"></div>
+        <button ng-click="ctrl.search()">搜索</button>
         <button class="gridBtn fr">添加模块</button>
         <div class="clear"></div>
     </div>
@@ -48,59 +48,27 @@
                     <td>1</td>
                     <td><span>编辑</span><span>删除</span></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>门诊管理</td>
-                    <td>MZGL</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td><span>编辑</span><span>删除</span></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>门诊管理</td>
-                    <td>MZGL</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td><span>编辑</span><span>删除</span></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>门诊管理</td>
-                    <td>MZGL</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td><span>编辑</span><span>删除</span></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>门诊管理</td>
-                    <td>MZGL</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td><span>编辑</span><span>删除</span></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>门诊管理</td>
-                    <td>MZGL</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td><span>编辑</span><span>删除</span></td>
+                <tr ng-repeat="mod in ctrl.modList">
+                    <td ng-bind="mod.name"></td>
+                    <td ng-bind="mod.depName"></td>
+                    <td ng-bind="mod.depName"></td>
+                    <td><span ng-click="ctrl.update(mod);ctrl.openPanel()">编辑</span><span ng-click="ctrl.delete(mod)">删除</span></td>
                 </tr>
             </table>
 
             <div class="pageBox">
-                <a href="#">首页</a>
-                <a href="#">上一页</a>
-                <span class="move">1</span>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">下一页</a>
-                <span>共1/2页</span>
-                <input name="" type="text" value="1">
-                <a href="#">跳转</a>
-                <div class="clear"></div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-3 hidden-xs">
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+                            <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                        ng-change="ctrl.pageChanged()"
+                                        items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                        boundary-links="true" force-ellipses="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
     </div>

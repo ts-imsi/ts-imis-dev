@@ -1024,6 +1024,20 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.reIndividuality', {
+                  url: '/reIndividuality',
+                  templateUrl: 'src/release/individuality/index.tpl.html',
+                  controller: 'ReIndividualityCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/release/individuality/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
       }
     ]
   );

@@ -1,0 +1,64 @@
+<div class="conBox">
+    <h5 class="topTitle"><i></i>个性过程管理</h5>
+    <div class="searchBox">
+        <div class="inputBox"><font>医院名称：</font><input name="" type="text"></div>
+        <button>搜索</button>
+        <button class="gridBtn fr">批量上传</button>
+        <button class="gridBtn fr">上传个性过程</button>
+        <div class="clear"></div>
+    </div>
+
+    <div class="productBox">
+        <div class="treeBox">
+            <div class="treeInner" ng-if="ctrl.success">
+                <span ng-if="doing_async">...loading...</span>
+                <abn-tree
+                        tree-data         = "ctrl.my_data"
+                        tree-control      = "ctrl.my_tree"
+                        on-select         = "ctrl.my_tree_handler(branch)"
+                        expand-level      = "2"
+                        initial-selection = "ctrl.inittree"
+                        icon-leaf         = "fa fa-folder"
+                        icon-expand       = "fa fa-folder"
+                        icon-collapse     = "fa fa-folder-open"
+                >
+                </abn-tree>
+            </div>
+        </div>
+        <div class="searchTableBox">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th scope="col">文件名</th>
+                    <th scope="col">所属模块</th>
+                    <th scope="col">大小</th>
+                    <th scope="col">上传者</th>
+                    <th scope="col">上传时间</th>
+                    <th scope="col">操作</th>
+                </tr>
+                <tr ng-repeat="individuality in ctrl.individualityList">
+                    <td ng-bind="individuality.name"></td>
+                    <td ng-bind="individuality.modName">门诊管理</td>
+                    <td ng-bind="individuality.size">986KB</td>
+                    <td ng-bind="individuality.operator">罗芹</td>
+                    <td ng-bind="individuality.created | date:'yyyy-MM-dd HH:mm:ss'">2015-07-05 14:29:21</td>
+                    <td><span>编辑</span><span>下载</span><span>删除</span></td>
+                </tr>
+            </table>
+
+            <div class="pageBox">
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-3 hidden-xs">
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+                            <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                        ng-change="ctrl.pageChanged()"
+                                        items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                        boundary-links="true" force-ellipses="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>

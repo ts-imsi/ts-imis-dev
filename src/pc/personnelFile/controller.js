@@ -712,6 +712,9 @@ app.controller('PersonnelFile', ['$scope','$http','$log','$modal','$filter','Fil
         selt.updatePersonnelView(per);
         selt.panelClass = "contact panel panel-default active";
     };
+    this.openPanelNew = function () {
+        selt.panelClass = "contact panel panel-default active";
+    };
     this.closePanel = function () {
         selt.panelClass = "contact panel panel-default";
         selt.selectTag('1');

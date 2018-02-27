@@ -1,6 +1,8 @@
 app.controller('PerformanceCtrl', ['$scope','$http','$log','$modal','$filter', function($scope,$http,$log,$modal,$filter) {
     var selt = this;
     this.performanceList = [];
+    this.year = $filter("date")(new Date(), "yyyy");
+    this.month = $filter("date")(new Date(), "MM");
 
 
     $http.post("/performance/getJF").success(function (result) {
@@ -9,11 +11,19 @@ app.controller('PerformanceCtrl', ['$scope','$http','$log','$modal','$filter', f
         }
     });
 
-    $http.post("/performance/queryPerformance").success(function (result) {
+    $http.post("/performance/queryPerformance?date="+this.year+this.month).success(function (result) {
         if (result.success) {
             selt.performanceList = result.object;
         }
     });
+
+    this.seachPerformance = function (date) {
+        $http.post("/performance/queryPerformance?date="+date).success(function (result) {
+            if (result.success) {
+                selt.performanceList = result.object;
+            }
+        });
+    };
 
 
 
@@ -31,7 +41,7 @@ app.controller('PerformanceCtrl', ['$scope','$http','$log','$modal','$filter', f
             controller: 'ImportExcelCtrl as fileCtrl',
             resolve: {
                 data: function () {
-                    return "";
+                    return selt.year+selt.month;
                 }
             }
         });
@@ -66,12 +76,11 @@ app.controller('PerformanceCtrl', ['$scope','$http','$log','$modal','$filter', f
 
 app.controller('ImportExcelCtrl', ['$scope', '$modalInstance','$http', '$filter','data','FileUploader', function($scope,$modalInstance,$http,$filter,data,FileUploader) {
     var selt=this;
+    this.fileDate = data;
 
-    this.year = $filter("date")(new Date(), "yyyy");
-    this.month = $filter("date")(new Date(), "MM");
 
     var uploader = $scope.uploader = new FileUploader({
-        url: '/performance/importExcel?date='+selt.year+selt.month,
+        url: '/performance/importExcel?date='+data,
         headers:undefined
     });
 

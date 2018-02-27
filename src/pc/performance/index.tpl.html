@@ -8,6 +8,44 @@
         <div class="col-lg-4">
             <div class="panel-default">
                 <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >年份：</label>
+                    <div class="pw65  fl">
+                        <select class="form-control Rinput50" ng-model="ctrl.year">
+                            <option value="">请选择</option>
+                            <option value="2018">2018年</option>
+                            <option value="2019">2019年</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >月份：</label>
+                    <div class="pw65  fl">
+                        <select class="form-control Rinput50" ng-model="ctrl.month">
+                            <option value="">请选择</option>
+                            <option value="01">一月</option>
+                            <option value="02">二月</option>
+                            <option value="03">三月</option>
+                            <option value="04">四月</option>
+                            <option value="05">五月</option>
+                            <option value="06">六月</option>
+                            <option value="07">七月</option>
+                            <option value="08">八月</option>
+                            <option value="09">九月</option>
+                            <option value="10">十月</option>
+                            <option value="11">十一月</option>
+                            <option value="12">十二月</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
                     <label class="control-label fl pt10" style="padding-left: 28px;" >优秀：</label>
                     <div class="pw65  fl">
                         <input type="text" class="form-control" ng-model="ctrl.performanceJF.fine">
@@ -55,12 +93,11 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
         <div class="row">
             <div class="fr  pt10">
+                <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.seachPerformance(ctrl.year+ctrl.month)">查询</button>
                 <button class="btn m-b-xs w-sm btn-info" ng-click="ctrl.updateJF()">更新绩效系数</button>
                 <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.importExcel()">导入绩效</button>
                 <button class="btn m-b-xs w-sm btn-info" ng-click="ctrl.autoUpdateJF()">自动增加绩效积分</button>
@@ -97,43 +134,12 @@
 <script type="text/ng-template" id="importExcel.html">
     <div class="modal-header">
         <h4 class="modal-title">
-            文件上传
+            {{fileCtrl.fileDate}}绩效上传
         </h4>
 
     </div>
     <div class="RuleCont">
         <div class="panel-body">
-
-
-
-
-
-            <div class="form-group RuleInput">
-                <label  class="RuleName">年份：</label>
-                <select class="form-control Rinput50" ng-model="fileCtrl.year">
-                    <option value="">请选择</option>
-                    <option value="2018">2018年</option>
-                    <option value="2019">2019年</option>
-                </select>
-            </div>
-            <div class="form-group RuleInput">
-                <label  class="RuleName">月份：</label>
-                <select class="form-control Rinput50" ng-model="fileCtrl.month">
-                    <option value="">请选择</option>
-                    <option value="01">一月</option>
-                    <option value="02">二月</option>
-                    <option value="03">三月</option>
-                    <option value="04">四月</option>
-                    <option value="05">五月</option>
-                    <option value="06">六月</option>
-                    <option value="07">七月</option>
-                    <option value="08">八月</option>
-                    <option value="09">九月</option>
-                    <option value="10">十月</option>
-                    <option value="11">十一月</option>
-                    <option value="12">十二月</option>
-                </select>
-            </div>
             <div class="form-group RuleInput">
                 <label class="RuleName">文件：</label>
                 <input type="text" class="form-control Rinput50" ng-model="fileCtrl.item.fileUrl" readonly >

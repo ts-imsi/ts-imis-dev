@@ -1,0 +1,204 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">绩效导入</h1>
+</div>
+
+<div class="wrapper-md">
+
+    <div class="row bawiMtop">
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >优秀：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" ng-model="ctrl.performanceJF.fine">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >良好：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" ng-model="ctrl.performanceJF.good">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >中等：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" ng-model="ctrl.performanceJF.middling">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >及格：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" ng-model="ctrl.performanceJF.pass">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel-default">
+                <div class="panel-body pad7-15">
+                    <label class="control-label fl pt10" style="padding-left: 28px;" >不及格：</label>
+                    <div class="pw65  fl">
+                        <input type="text" class="form-control" ng-model="ctrl.performanceJF.flunk">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+        <div class="row">
+            <div class="fr  pt10">
+                <button class="btn m-b-xs w-sm btn-info" ng-click="ctrl.updateJF()">更新绩效系数</button>
+                <button class="btn m-b-xs w-xs btn-success" ng-click="ctrl.importExcel()">导入绩效</button>
+                <button class="btn m-b-xs w-sm btn-info" ng-click="ctrl.autoUpdateJF()">自动增加绩效积分</button>
+            </div>
+            <div class="panel panel-default fl w100">
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                <tr>
+                    <th>工号</th>
+                    <th>日期</th>
+                    <th>姓名</th>
+                    <th>得分</th>
+                    <th>等级</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="per in ctrl.performanceList">
+                    <td ng-bind="per.workNum"></td>
+                    <td ng-bind="per.importDate"></td>
+                    <td ng-bind="per.name"></td>
+                    <td ng-bind="per.score"></td>
+                    <td ng-bind="per.grade"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+            </div>
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="importExcel.html">
+    <div class="modal-header">
+        <h4 class="modal-title">
+            文件上传
+        </h4>
+
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+
+
+
+
+
+            <div class="form-group RuleInput">
+                <label  class="RuleName">年份：</label>
+                <select class="form-control Rinput50" ng-model="fileCtrl.year">
+                    <option value="">请选择</option>
+                    <option value="2018">2018年</option>
+                    <option value="2019">2019年</option>
+                </select>
+            </div>
+            <div class="form-group RuleInput">
+                <label  class="RuleName">月份：</label>
+                <select class="form-control Rinput50" ng-model="fileCtrl.month">
+                    <option value="">请选择</option>
+                    <option value="01">一月</option>
+                    <option value="02">二月</option>
+                    <option value="03">三月</option>
+                    <option value="04">四月</option>
+                    <option value="05">五月</option>
+                    <option value="06">六月</option>
+                    <option value="07">七月</option>
+                    <option value="08">八月</option>
+                    <option value="09">九月</option>
+                    <option value="10">十月</option>
+                    <option value="11">十一月</option>
+                    <option value="12">十二月</option>
+                </select>
+            </div>
+            <div class="form-group RuleInput">
+                <label class="RuleName">文件：</label>
+                <input type="text" class="form-control Rinput50" ng-model="fileCtrl.item.fileUrl" readonly >
+                <button  type="button" class="btn RSerBut" ng-click="fileCtrl.fileItem.upload()"
+                         ng-disabled="fileCtrl.fileItem.isReady
+                        || fileCtrl.fileItem.isUploading
+                        || fileCtrl.fileItem.isSuccess">
+                    导入
+                </button>
+                <input type="file" nv-file-select="" uploader="uploader" />
+            </div>
+            <div class="form-group RuleInput">
+                <div class="progress progress-sm m-b-none m-t-xs">
+                    <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': fileCtrl.fileItem.progress + '%' }"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="fileCtrl.cancel()">关闭</button>
+    </div>
+
+</script>
+
+<script type="text/ng-template" id="updateJF.html">
+    <div class="modal-header">
+        <h4 class="modal-title">
+            请确认要增加绩效积分的年月
+        </h4>
+
+    </div>
+    <div class="RuleCont">
+        <div class="panel-body">
+            <div class="form-group RuleInput">
+                <label  class="RuleName">年份：</label>
+                <select class="form-control Rinput50" ng-model="fileCtrl.year">
+                    <option value="">请选择</option>
+                    <option value="2018">2018年</option>
+                    <option value="2019">2019年</option>
+                </select>
+            </div>
+            <div class="form-group RuleInput">
+                <label  class="RuleName">月份：</label>
+                <select class="form-control Rinput50" ng-model="fileCtrl.month">
+                    <option value="">请选择</option>
+                    <option value="01">一月</option>
+                    <option value="02">二月</option>
+                    <option value="03">三月</option>
+                    <option value="04">四月</option>
+                    <option value="05">五月</option>
+                    <option value="06">六月</option>
+                    <option value="07">七月</option>
+                    <option value="08">八月</option>
+                    <option value="09">九月</option>
+                    <option value="10">十月</option>
+                    <option value="11">十一月</option>
+                    <option value="12">十二月</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="fileCtrl.autoAddJf()">批量更新积分</button>
+        <button class="btn btn-warning" type="button" ng-click="fileCtrl.cancel()">关闭</button>
+    </div>
+
+</script>

@@ -1010,6 +1010,20 @@ angular.module('app')
                           }]
                   }
               })
+              .state('app.performance', {
+                  url: '/performance',
+                  templateUrl: 'src/pc/performance/index.tpl.html',
+                  controller: 'PerformanceCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularFileUpload').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/pc/performance/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
       }
     ]
   );

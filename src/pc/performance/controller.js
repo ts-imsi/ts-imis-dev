@@ -64,12 +64,8 @@ app.controller('PerformanceCtrl', ['$scope','$http','$log','$modal','$filter', f
             }
         });
 
-        UpdateJFInstance.result.then(function () {
-            $http.post("/performance/queryPerformance").success(function (result) {
-                if (result.success) {
-                    selt.performanceList = result.object;
-                }
-            });
+        UpdateJFInstance.result.then(function (date) {
+            selt.seachPerformance(date);
         });
     };
 }]);
@@ -115,7 +111,7 @@ app.controller('UpdateJFCtrl', ['$scope', '$modalInstance','$http', '$filter', f
     this.autoAddJf = function () {
         $http.post("/performance/autoAddJf?date="+this.year+this.month).success(function (result) {
             alert(result.message);
-            $modalInstance.close();
+            $modalInstance.close(selt.year+selt.month);
         });
     };
 

@@ -55,9 +55,95 @@ app.controller('ReIndividualityCtrl', ['$scope', '$modal', '$http', '$filter','$
 
     this.maxSize = 5;
 
+    this.individualUpload=function(size){
+        var individualityInstance = $modal.open({
+            templateUrl: 'individuality.html',
+            controller: 'individualityCtrl as ctrl',
+            size: size,
+            resolve: {
+                data: function () {
+                    return selt.my_data;
+                }
+            }
+        });
 
+        individualityInstance.result.then(function () {
+        });
+    };
 
 }]);
+
+app.controller('individualityCtrl', ['$scope', '$modalInstance','$http','data', function($scope,$modalInstance,$http,data) {
+    var selt=this;
+
+    $http.post("/ts-release/product/getProModuleList").success(function (result) {
+        if(result.success){
+            selt.proModule = result.object;
+        }else{
+            selt.proModule=[];
+        }
+    });
+    if(data[0].children!=null){
+        selt.hospitalList=data[0].children;
+        var hospi=[];
+        angular.forEach(selt.hospitalList,function(item){
+            var selectJosn={
+                id:item.data.id,
+                text:item.data.customValue
+            }
+            hospi.push(selectJosn);
+        })
+        selt.hosList={data:hospi};
+    }
+    selt.submitted=false;
+    this.saveIndividuality=function(valid,invalid){
+        if (valid) {
+            if (!invalid) {
+                var fd = new FormData();
+                var files = document.querySelector('input[name="files"]').files;
+                for (var i=0; i<files.length; i++) {
+                    fd.append("files", files[i]);
+                }
+                fd.append("remark",selt.remark);
+                fd.append("name",selt.name);
+                if(selt.pModule!=null){
+                    fd.append("modId",selt.pModule.modId);
+                    fd.append("modName",selt.pModule.modName);
+                }
+                var hospitalName="";
+                if(selt.selectHos!=null&&selt.selectHos.length>0){
+
+                    angular.forEach(selt.selectHos,function(item){
+                        hospitalName=hospitalName+item.text+",";
+                    })
+                    fd.append("hospital",hospitalName);
+                    fd.append("fileType","private-file");
+                }
+                $http({
+                    method:'POST',
+                    url  : '/ts-release/individuality/IndividualityUpload',
+                    data: fd,
+                    headers: {'Content-Type':undefined},
+                    transformRequest: angular.identity
+                }).success(function (result) {
+                    if(result.success){
+                        alert(result.message);
+                        $modalInstance.close();
+                    }else{
+                        alert(result.message);
+                    }
+                });
+            }
+        }else{
+            selt.submitted=true;
+        }
+
+    }
+
+    this.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}])
 
 
 

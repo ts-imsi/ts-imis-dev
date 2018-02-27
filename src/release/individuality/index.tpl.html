@@ -3,8 +3,8 @@
     <div class="searchBox">
         <div class="inputBox"><font>医院名称：</font><input name="" type="text"></div>
         <button>搜索</button>
-        <button class="gridBtn fr">批量上传</button>
-        <button class="gridBtn fr">上传个性过程</button>
+        <button class="gridBtn fr" ng-click="ctrl.individualUpload()">批量上传</button>
+        <button class="gridBtn fr" ng-click="ctrl.individualUpload()">上传个性过程</button>
         <div class="clear"></div>
     </div>
 
@@ -62,3 +62,48 @@
         </div>
     </div>
 </div>
+
+<script type="text/ng-template" id="individuality.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">新增个性文件</h4>
+    </div>
+    <form class="form-horizontal" name="individualityForm" ng-submit="ctrl.saveIndividuality(individualityForm.$valid,individualityForm.$invalid)" novalidate role="form">
+        <div class="RuleCont">
+            <div class="panel-body">
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">文件名称：</label>
+                    <input type="text" class="form-control Rinput60" ng-model="ctrl.name" name="name" ng-maxlength="100" required >
+                    <span class="errorInput" ng-show="individualityForm.name.$error.required && ctrl.submitted"> 该选项框必填 </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">模块类型：</label>
+                    <select class="form-control Rinput60" ng-model="ctrl.pModule"
+                            ng-options="module.modName  for module in ctrl.proModule" required name="module">
+                        <option value="">请选择模块类型</option>
+                    </select>
+                    <span class="errorInput" ng-show="individualityForm.module.$error.required && ctrl.submitted">该选项框必填</span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">适用医院：</label>
+                    <input  select2  select2-model="ctrl.selectHos" config="ctrl.hosList" multiple placeholder="请选择" class="form-control" type="text" />
+                    <span class="errorInput" ng-show="individualityForm.module.$error.required && ctrl.submitted">该选项框必填</span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">说明：</label>
+                    <textarea  type="text" class="form-control Rinput60" cols="60" rows="3" required name="remark" ng-model="ctrl.remark"></textarea>
+                    <span class="errorInput" ng-show="attenceForm.remark.$error.required && ctrl.submitted"> 该选项框必填 </span>
+
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">上传文件：</label>
+                    <input class="form-control Rinput60" type="file" multiple="multiple" name="files">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="submit" >提交</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>

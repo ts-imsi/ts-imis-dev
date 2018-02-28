@@ -59,7 +59,7 @@ app.controller('PerformanceCtrl', ['$scope','$http','$log','$modal','$filter', f
             controller: 'UpdateJFCtrl as fileCtrl',
             resolve: {
                 data: function () {
-                    return "";
+                    return selt.year+selt.month;;
                 }
             }
         });
@@ -102,14 +102,15 @@ app.controller('ImportExcelCtrl', ['$scope', '$modalInstance','$http', '$filter'
 }]);
 
 
-app.controller('UpdateJFCtrl', ['$scope', '$modalInstance','$http', '$filter', function($scope,$modalInstance,$http,$filter) {
+app.controller('UpdateJFCtrl', ['$scope', '$modalInstance','$http', '$filter','data', function($scope,$modalInstance,$http,$filter,data) {
     var selt=this;
+    this.autoDate = data;
 
-    this.year = $filter("date")(new Date(), "yyyy");
-    this.month = $filter("date")(new Date(), "MM");
+    //this.year = $filter("date")(new Date(), "yyyy");
+    //this.month = $filter("date")(new Date(), "MM");
 
     this.autoAddJf = function () {
-        $http.post("/performance/autoAddJf?date="+this.year+this.month).success(function (result) {
+        $http.post("/performance/autoAddJf?date="+data).success(function (result) {
             alert(result.message);
             $modalInstance.close(selt.year+selt.month);
         });

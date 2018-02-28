@@ -167,13 +167,14 @@
 <script type="text/ng-template" id="updateJF.html">
     <div class="modal-header">
         <h4 class="modal-title">
-            请确认要增加绩效积分的年月
+            自动增加绩效积分
         </h4>
 
     </div>
     <div class="RuleCont">
         <div class="panel-body">
-            <div class="form-group RuleInput">
+            日期[{{fileCtrl.autoDate}}]批量更新绩效积分
+            <!--<div class="form-group RuleInput">
                 <label  class="RuleName">年份：</label>
                 <select class="form-control Rinput50" ng-model="fileCtrl.year">
                     <option value="">请选择</option>
@@ -198,7 +199,8 @@
                     <option value="11">十一月</option>
                     <option value="12">十二月</option>
                 </select>
-            </div>
+            </div>-->
+
 
         </div>
     </div>

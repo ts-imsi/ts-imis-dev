@@ -1,0 +1,51 @@
+<div class="conBox">
+    <h5 class="topTitle"><i></i>模块版本查询</h5>
+    <div class="searchBox">
+
+        <div class="inputBox"><font>产品：</font>
+            <select name="" ng-change="ctrl.proModChanged()" ng-model="ctrl.proid">
+                <option value="{{pro.pkid}}" ng-repeat="pro in ctrl.productList">{{pro.name}}</option>
+            </select>
+        </div>
+        <div class="inputBox"><font>模块：</font>
+            <select name="" ng-model="ctrl.modid">
+                <option value="{{mod.pkid}}" ng-repeat="mod in ctrl.modList" >{{mod.name}}</option>
+            </select></div>
+        <button ng-click="ctrl.selectproMod()">查询</button>
+        <div class="clear"></div>
+    </div>
+
+    <div class="searchTableBox">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th scope="col">版本号</th>
+                <th scope="col">发布人</th>
+                <th scope="col">发布时间</th>
+                <th scope="col">前置依赖</th>
+            </tr>
+            <tr ng-repeat="mod in ctrl.modVersionList">
+                <td ng-bind="mod.version"></td>
+                <td ng-bind="mod.operator"></td>
+                <td ng-bind="mod.created"></td>
+                <td ng-bind="mod.created"></td>
+            </tr>
+        </table>
+
+        <div class="pageBox">
+            <footer class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-3 hidden-xs">
+                    </div>
+                    <div class="col-sm-5 text-right text-center-xs">
+                        <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                    ng-change="ctrl.pageChanged()"
+                                    items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                    boundary-links="true" force-ellipses="true"></pagination>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+</div>

@@ -71,6 +71,16 @@ app.controller('ReIndividualityCtrl', ['$scope', '$modal', '$http', '$filter','$
         });
     };
 
+    this.deleteFile=function(individuality){
+        $http.post("/ts-release/individuality/deleteFile/"+individuality.pkid+"/private-file").success(function (result) {
+            if(result.success){
+                alert("数据删除成功");
+            }else{
+                alert("数据删除失败");
+            }
+        });
+    }
+
 }]);
 
 app.controller('individualityCtrl', ['$scope', '$modalInstance','$http','data', function($scope,$modalInstance,$http,data) {

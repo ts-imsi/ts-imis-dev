@@ -37,11 +37,11 @@
                 </tr>
                 <tr ng-repeat="individuality in ctrl.individualityList">
                     <td ng-bind="individuality.name"></td>
-                    <td ng-bind="individuality.modName">门诊管理</td>
-                    <td ng-bind="individuality.size">986KB</td>
-                    <td ng-bind="individuality.operator">罗芹</td>
-                    <td ng-bind="individuality.created | date:'yyyy-MM-dd HH:mm:ss'">2015-07-05 14:29:21</td>
-                    <td><span>编辑</span><span>下载</span><span>删除</span></td>
+                    <td ng-bind="individuality.modName"></td>
+                    <td ng-bind="individuality.size"></td>
+                    <td ng-bind="individuality.operator"></td>
+                    <td ng-bind="individuality.created | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                    <td><span>编辑</span><span><a href="/ts-release/individuality/downloadFile/{{individuality.pkid}}">下载</a></span><span ng-click="ctrl.deleteFile(individuality)">删除</span></td>
                 </tr>
             </table>
 

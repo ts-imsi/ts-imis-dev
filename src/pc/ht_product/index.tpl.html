@@ -140,7 +140,7 @@
                         </div>
                         <div class="newfisJi newLastBg">
                             <ul>
-                                <li ng-repeat="newMod in ctrl.newModuleList">{{newMod}}</li>
+                                <li ng-repeat="newMod in ctrl.newModuleList track by $index">{{newMod}}</li>
                             </ul>
 
                         </div>

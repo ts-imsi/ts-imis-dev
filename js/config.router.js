@@ -1024,6 +1024,20 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.modVersion', {
+                  url: '/modVersion',
+                  templateUrl: 'src/release/modVersion/index.tpl.html',
+                  controller: 'ModVersionCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/release/modVersion/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
               .state('app.reIndividuality', {
                   url: '/reIndividuality',
                   templateUrl: 'src/release/individuality/index.tpl.html',

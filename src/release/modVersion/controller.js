@@ -9,7 +9,7 @@ app.controller('ModVersionCtrl', ['$scope', '$modal', '$http', '$filter', '$log'
     this.setPage = function (pageNo, modId) {
         var parm = {
             page: pageNo,
-            rows: 6,
+            rows: 2,
             selectName: selt.selectName,
             modId: selt.modid
         };
@@ -29,24 +29,7 @@ app.controller('ModVersionCtrl', ['$scope', '$modal', '$http', '$filter', '$log'
     };
 
     this.pageChanged = function () {
-        $log.log('Page changed to: ' + this.pageNo);
-        var parm = {
-            page: this.pageNo,
-            rows: 6,
-            name: selt.selectname,
-            modId: selt.modid
-        };
-        $http.post("/ts-release/modVersion/modVersionList", angular.toJson(parm)).success(function (result) {
-            if (result.success) {
-                selt.modVersionList = result.list;
-                selt.totalCount = result.totalCount;
-                selt.pageSize = result.pageSize;
-                selt.pageNo = result.pageNo;
-            } else {
-                selt.modList = [];
-            }
-        });
-
+        selt.setPage(selt.pageNo);
     };
 
 

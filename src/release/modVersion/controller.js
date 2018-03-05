@@ -11,7 +11,8 @@ app.controller('ModVersionCtrl', ['$scope', '$modal', '$http', '$filter', '$log'
             page: pageNo,
             rows: 2,
             selectName: selt.selectName,
-            modId: selt.modid
+            modId: selt.modid,
+            proId: selt.proid
         };
         console.log(parm);
         $http.post("/ts-release/modVersion/modVersionList", angular.toJson(parm)).success(function (result) {
@@ -53,6 +54,7 @@ app.controller('ModVersionCtrl', ['$scope', '$modal', '$http', '$filter', '$log'
             type: "mod",
             parent: selt.proid
         };
+        selt.modid = null;
         console.log(parm2);
         $http.post("/ts-release/product/selectProMod", angular.toJson(parm2)).success(function (result) {
             if (result.success) {
@@ -66,6 +68,7 @@ app.controller('ModVersionCtrl', ['$scope', '$modal', '$http', '$filter', '$log'
 
     this.selectproMod = function () {
         var modId = selt.modid;
+        var proId = selt.proid;
         this.setPage(1, modId);
     };
 

@@ -4,13 +4,11 @@
 
         <div class="inputBox"><font>产品：</font>
             <select name="" ng-change="ctrl.proModChanged()" ng-model="ctrl.proid">
-                <option value="null">所有</option>
                 <option value="{{pro.pkid}}" ng-repeat="pro in ctrl.productList">{{pro.name}}</option>
             </select>
         </div>
         <div class="inputBox"><font>模块：</font>
             <select name="" ng-model="ctrl.modid">
-                <option value="null">所有</option>
                 <option value="{{mod.pkid}}" ng-repeat="mod in ctrl.modList" >{{mod.name}}</option>
             </select></div>
         <button ng-click="ctrl.selectproMod()">查询</button>

@@ -1052,6 +1052,20 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.interface', {
+                  url: '/interface',
+                  templateUrl: 'src/release/interface/index.tpl.html',
+                  controller: 'InterfaceCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/release/interface/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
       }
     ]
   );

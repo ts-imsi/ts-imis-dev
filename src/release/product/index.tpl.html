@@ -1,9 +1,10 @@
 <div class="conBox">
     <h5 class="topTitle"><i></i>产品信息</h5>
     <div class="searchBox">
-        <div class="inputBox"><font>模块名称：</font><input ng-model="ctrl.selectname" type="text"></div>
+        <div class="inputBox"><font>模块名称：</font>
+            <input ng-model="ctrl.modName" type="text"></div>
         <button ng-click="ctrl.search()">搜索</button>
-        <button class="gridBtn fr">添加模块</button>
+        <button class="gridBtn fr" ng-click="ctrl.addModule()">添加模块</button>
         <div class="clear"></div>
     </div>
 
@@ -25,9 +26,10 @@
                 </abn-tree>
             </div>
             <div class="treeBtnBox">
-                <button class="gridBtn">添加</button>
-                <button class="gridBtn">编辑</button>
-                <button class="gridBtn">删除</button>
+                <button class="gridBtn"  ng-click="ctrl.addPro()">添加</button>
+                <button class="gridBtn"  ng-click="ctrl.updatePro()">编辑</button>
+                <button class="gridBtn"  ng-click="ctrl.deletePro()">删除</button>
+
             </div>
         </div>
         <div class="searchTableBox">
@@ -40,19 +42,13 @@
                     <th scope="col">打包顺序</th>
                     <th scope="col">操作</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>门诊管理</td>
-                    <td>MZGL</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td><span>编辑</span><span>删除</span></td>
-                </tr>
                 <tr ng-repeat="mod in ctrl.modList">
-                    <td ng-bind="mod.name"></td>
-                    <td ng-bind="mod.depName"></td>
-                    <td ng-bind="mod.depName"></td>
-                    <td><span ng-click="ctrl.update(mod);ctrl.openPanel()">编辑</span><span ng-click="ctrl.delete(mod)">删除</span></td>
+                    <td ng-bind="ctrl.i"></td>
+                    <td ng-bind="mod.modName"></td>
+                    <td ng-bind="mod.code"></td>
+                    <td ng-bind="mod.showPx"></td>
+                    <td ng-bind="mod.releasePx"></td>
+                    <td><span ng-click="ctrl.updateModule(mod);ctrl.openPanel()">编辑</span><span ng-click="ctrl.deleteModule(mod)">删除</span></td>
                 </tr>
             </table>
 
@@ -63,7 +59,7 @@
                         </div>
                         <div class="col-sm-5 text-right text-center-xs">
                             <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
-                                        ng-change="ctrl.pageChanged()"
+                                        ng-change="ctrl.setPage(ctrl.pageNo)"
                                         items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
                                         boundary-links="true" force-ellipses="true"></pagination>
                         </div>
@@ -73,3 +69,84 @@
         </div>
     </div>
 </div>
+
+<script type="text/ng-template" id="product.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">
+            <span ng-if="ctrl.showAdd">新增</span>
+            <span ng-if="!ctrl.showAdd">更改</span>产品
+        </h4>
+    </div>
+    <form class="form-horizontal" name="outputValueForm"
+          novalidate role="form" >
+        <div class="RuleCont">
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>产品名称</th>
+                        <th>所属部门</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr  >
+                        <td>
+                            <input ng-model="ctrl.product.name" name="name" value="{{ctrl.product.name}}" />
+                        </td>
+                        <td>
+                            <input ng-model="ctrl.product.depName" name="depName" value="{{ctrl.product.depName}}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="ctrl.updateProduct()">确定</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>
+
+
+<script type="text/ng-template" id="module.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">新增模块</h4>
+    </div>
+    <form class="form-horizontal" name="moduleForm" ng-submit="ctrl.saveModule(moduleForm.$valid, moduleForm.$invalid)" novalidate role="form">
+        <div class="RuleCont">
+            <div class="panel-body">
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">模块名称：</label>
+                    <input ng-model="ctrl.module.modName" name="modName" class="form-control Rinput60" value="{{ctrl.module.modName}}" required/>
+                    <span class="errorInput" ng-show="moduleForm.name.$error.required && ctrl.submitted">该选项框必填</span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">拼音码：</label>
+                    <input ng-model="ctrl.module.code" name="code" class="form-control Rinput60" value="{{ctrl.module.code}}"  required/>
+                    <span class="errorInput" ng-show="moduleForm.code.$error.required && ctrl.submitted">该选项框必填</span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">版本前缀：</label>
+                    <input ng-model="ctrl.module.versionFix" name="versionFix" class="form-control Rinput60" required/>
+                    <span class="errorInput" ng-show="moduleForm.versionFix.$error.required && ctrl.submitted"> 该选项框必填 </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">打包顺序：</label>
+                    <input ng-model="ctrl.module.releasePx" name="releasePx" class="form-control Rinput60" required/>
+                    <span class="errorInput" ng-show="moduleForm.releasePx.$error.required && ctrl.submitted"> 该选项框必填 </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">显示顺序：</label>
+                    <input ng-model="ctrl.module.showPx" name="showPx" class="form-control Rinput60" required/>
+                    <span class="errorInput" ng-show="moduleForm.showPx.$error.required && ctrl.submitted"> 该选项框必填 </span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="submit" >提交</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>

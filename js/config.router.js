@@ -1024,6 +1024,20 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.modVersion', {
+                  url: '/modVersion',
+                  templateUrl: 'src/release/modVersion/index.tpl.html',
+                  controller: 'ModVersionCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/release/modVersion/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
               .state('app.reIndividuality', {
                   url: '/reIndividuality',
                   templateUrl: 'src/release/individuality/index.tpl.html',
@@ -1033,6 +1047,34 @@ angular.module('app')
                           return $ocLazyLoad.load('angularBootstrapNavTree').then(
                               function(){
                                   return $ocLazyLoad.load('src/release/individuality/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
+              .state('app.interface', {
+                  url: '/interface',
+                  templateUrl: 'src/release/interface/index.tpl.html',
+                  controller: 'InterfaceCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/release/interface/controller.js');
+                              }
+                          );
+                      }]
+                  }
+              })
+              .state('app.interfaceContent', {
+                  url: '/interfaceContent',
+                  templateUrl: 'src/release/interface/interface.tpl.html',
+                  controller: 'InterfaceContentCtrl as ctrl',
+                  resolve: {
+                      load:['$ocLazyLoad',function($ocLazyLoad){
+                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                              function(){
+                                  return $ocLazyLoad.load('src/release/interface/interface.js');
                               }
                           );
                       }]

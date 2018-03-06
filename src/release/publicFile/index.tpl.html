@@ -1,0 +1,75 @@
+<div class="conBox">
+    <h5 class="topTitle"><i></i>公用文件管理</h5>
+    <div class="searchBox">
+        <div class="inputBox"><font>文件名称：</font><input ng-model="ctrl.name" type="text"></div>
+        <button ng-click="ctrl.selectByName()">搜索</button>
+        <button class="gridBtn fr" ng-click="ctrl.publicFileUpload()">上传文件</button>
+        <div class="clear"></div>
+    </div>
+        <div class="searchTableBox">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th scope="col">文件名</th>
+                    <th scope="col">大小</th>
+                    <th scope="col">上传者</th>
+                    <th scope="col">上传时间</th>
+                    <th scope="col">操作</th>
+                </tr>
+                <tr ng-repeat="publicFile in ctrl.publicFileList">
+                    <td ng-bind="publicFile.name"></td>
+                    <td ng-bind="publicFile.size"></td>
+                    <td ng-bind="publicFile.operator"></td>
+                    <td ng-bind="publicFile.created | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                    <td><span>编辑</span><span><a href="/ts-release/individuality/downloadFile/{{individuality.pkid}}">下载</a></span><span ng-click="ctrl.deleteFile(individuality)">删除</span></td>
+                </tr>
+            </table>
+
+            <div class="pageBox">
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-3 hidden-xs">
+                        </div>
+                        <div class="col-sm-5 text-right text-center-xs">
+                            <pagination total-items="ctrl.totalCount" ng-model="ctrl.pageNo"
+                                        ng-change="ctrl.pageChanged()"
+                                        items-per-page="ctrl.pageSize" max-size="ctrl.maxSize" class="pagination-sm"
+                                        boundary-links="true" force-ellipses="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="publicFile.html">
+    <div class="modal-header">
+        <h4 class="modal-title" id="show-title">新增个性文件</h4>
+    </div>
+    <form class="form-horizontal" name="publicForm" ng-submit="ctrl.savePublicFile(publicForm.$valid,publicForm.$invalid)" novalidate role="form">
+        <div class="RuleCont">
+            <div class="panel-body">
+
+                <div class="form-group RuleInput">
+                    <label class="RuleName">文件名称：</label>
+                    <input type="text" class="form-control Rinput60" ng-model="ctrl.name" name="name" ng-maxlength="100" required >
+                    <span class="errorInput" ng-show="publicForm.name.$error.required && ctrl.submitted"> 该选项框必填 </span>
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">说明：</label>
+                    <textarea  type="text" class="form-control Rinput60" cols="60" rows="3" required name="remark" ng-model="ctrl.remark"></textarea>
+                    <span class="errorInput" ng-show="publicForm.remark.$error.required && ctrl.submitted"> 该选项框必填 </span>
+
+                </div>
+                <div class="form-group RuleInput">
+                    <label class="RuleName">上传文件：</label>
+                    <input class="form-control Rinput60" type="file" multiple="multiple" name="files">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="submit" >提交</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">取消</button>
+        </div>
+    </form>
+</script>

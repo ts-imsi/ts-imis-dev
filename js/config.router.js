@@ -1038,6 +1038,17 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.publicFile', {
+                  url: '/publicFile',
+                  templateUrl: 'src/release/publicFile/index.tpl.html',
+                  controller: 'publicFileCtrl as ctrl',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['src/release/publicFile/controller.js'] );
+                          }]
+                  }
+              })
       }
     ]
   );
